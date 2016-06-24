@@ -153,8 +153,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="DispatchEvent.h" />
-    <ClInclude Include="Flower.h" />
-    <ClInclude Include="MovableFlower.h" />
+    <ClInclude Include="Shape\CLine.h" />
     <ClInclude Include="Shape\CShape.h" />
     <ClInclude Include="Shape\IShape.h" />
     <ClInclude Include="stdafx.h" />
@@ -164,9 +163,8 @@
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
-    <ClCompile Include="Flower.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovableFlower.cpp" />
+    <ClCompile Include="Shape\CLine.cpp" />
     <ClCompile Include="Shape\CShape.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

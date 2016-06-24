@@ -10,6 +10,11 @@ void CShape::SetOutlineColor(const glm::vec3 & color)
 	m_outlineColor = color;
 }
 
+glm::vec3 CShape::GetOutlineColor() const
+{
+	return m_outlineColor;
+}
+
 void CShape::Draw() const
 {
 	// если дисплейный список еще не был создан, то для начала создаем его

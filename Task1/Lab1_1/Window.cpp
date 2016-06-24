@@ -15,29 +15,23 @@ const glm::vec4 QUIET_GREEN = {0.f, 0.5f, 0.2f, 1.f};
 CWindow::CWindow()
 {
     {
-        auto pFlower = std::make_unique<CMovableFlower>();
-        pFlower->SetupShape(40, 150, 6);
-        pFlower->SetCenterColor(LIGHT_YELLOW);
-        pFlower->SetPetalColor(RED);
-        pFlower->SetPosition({ 150, 220 });
-        m_flowers.push_back(std::move(pFlower));
+        auto pLine = std::make_unique<CLine>();
+		pLine->SetFirstPoint(glm::vec2(250.f, 250.f));
+		pLine->SetSecondPoint(glm::vec2(250.f, 650.f));
+		pLine->SetOutlineColor(RED);
+		pLine->SetThikness(5.f);
+
+        m_shapes.push_back(std::move(pLine));
     }
     {
-        auto pFlower = std::make_unique<CMovableFlower>();
-        pFlower->SetupShape(20, 60, 5);
-        pFlower->SetCenterColor(LIGHT_YELLOW);
-        pFlower->SetPetalColor(ORANGE);
-        pFlower->SetPosition({ 350, 140 });
-        m_flowers.push_back(std::move(pFlower));
-    }
-    {
-        auto pFlower = std::make_unique<CMovableFlower>();
-        pFlower->SetupShape(25, 70, 7);
-        pFlower->SetCenterColor(RED);
-        pFlower->SetPetalColor(YELLOW);
-        pFlower->SetPosition({ 270, 360 });
-        m_flowers.push_back(std::move(pFlower));
-    }
+		auto pLine = std::make_unique<CLine>();
+		pLine->SetFirstPoint(glm::vec2(450.f, 250.f));
+		pLine->SetSecondPoint(glm::vec2(250.f, 450.f));
+		pLine->SetOutlineColor(YELLOW);
+		pLine->SetThikness(5.f);
+
+		m_shapes.push_back(std::move(pLine));
+	}
     SetBackgroundColor(QUIET_GREEN);
 }
 
@@ -50,15 +44,17 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 {
     SetupView(size);
 
-    for (const auto &pFlower : m_flowers)
+    for (const auto &pShape : m_shapes)
     {
-        pFlower->Draw();
+		pShape->Draw();
     }
 }
 
+///*
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-    auto flowers = boost::adaptors::reverse(m_flowers);
+	/*
+	    auto flowers = boost::adaptors::reverse(m_shapes);
     auto it = boost::find_if(flowers, [&](const auto &pFlower) {
         return pFlower->HitTest(pos);
     });
@@ -67,24 +63,32 @@ void CWindow::OnDragBegin(const glm::vec2 &pos)
         m_draggingFlower = it->get();
         m_dragOffset = pos - m_draggingFlower->GetPosition();
     }
+
+	*/
 }
 
 void CWindow::OnDragMotion(const glm::vec2 &pos)
 {
+	/*
     if (m_draggingFlower)
     {
         m_draggingFlower->SetPosition(pos - m_dragOffset);
     }
+	*/
 }
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
+	/*
     if (m_draggingFlower)
     {
         m_draggingFlower->SetPosition(pos - m_dragOffset);
         m_draggingFlower = nullptr;
     }
+	*/
 }
+
+//*/
 
 void CWindow::SetupView(const glm::ivec2 &size)
 {

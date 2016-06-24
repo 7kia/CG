@@ -39,16 +39,13 @@
     <ClInclude Include="DispatchEvent.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="Flower.h">
-      <Filter>Файлы исходного кода</Filter>
-    </ClInclude>
-    <ClInclude Include="MovableFlower.h">
-      <Filter>Файлы исходного кода</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\CShape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Shape\IShape.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CLine.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,14 +65,11 @@
     <ClCompile Include="DispatchEvent.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Flower.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="MovableFlower.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\CShape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\CLine.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

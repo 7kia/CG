@@ -12,14 +12,17 @@ public:
 	CShape() = default;
 	virtual ~CShape();
 
-public:
-	void					SetOutlineColor(const glm::vec3 &color);
-	void					Draw() const;
+public:// Methods
+	void					Draw() const override;
 
-private:
+	void					SetOutlineColor(const glm::vec3 &color);
+	glm::vec3				GetOutlineColor() const override;
+public:// Data
+
+protected:// Methods
 	void					DeleteList();
 
-private:
+protected:// Data
 	mutable unsigned		m_displayList = 0;
 	glm::vec3				m_outlineColor;
 
