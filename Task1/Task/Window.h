@@ -1,14 +1,19 @@
 #pragma once
-#include "AbstractWindow.h"
+#include "DispatchEvent.h"
 
-class CWindow : public CAbstractWindow
+class CWindow : public CAbstractInputControlWindow
 {
+public:
+    CWindow();
+
     // CAbstractWindow interface
 protected:
-    void OnWindowEvent(const SDL_Event &event) override;
     void OnUpdateWindow(float deltaSeconds) override;
     void OnDrawWindow(const glm::ivec2 &size) override;
 
 private:
-    void PrintOpenGLInfo();
+    void SetupView(const glm::ivec2 &size);
+    void DrawShapes();
+
+    float m_time = 0.f;
 };
