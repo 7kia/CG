@@ -117,18 +117,26 @@ std::unique_ptr<CRectangle> CShedule::GetDivision()
 
 void CShedule::CreateDivisions()
 {
+	AddListDivisions(glm::vec2(SCALE_FACTOR, 0.f), 0.f);
+	AddListDivisions(glm::vec2(-SCALE_FACTOR, 0.f), 0.f);
+
+	AddListDivisions(glm::vec2(0.f, SCALE_FACTOR), 0.f);
+	AddListDivisions(glm::vec2(0.f, -SCALE_FACTOR), 0.f);
+
+}
+
+void CShedule::AddListDivisions(const glm::vec2 & shift, float rotate)
+{
 	glm::vec2 startPosition = glm::vec2(m_windowWidth / 2.f, m_windowHeigth / 2.f);
 
-	// for x-axis ->
-	glm::vec2 shift = glm::vec2(SCALE_FACTOR, 0.f);
 	glm::vec2 position = startPosition + shift;
 	for (size_t amountDivisions = 0; amountDivisions < AMOUNT_DIVISIONS; ++amountDivisions)
 	{
 		auto pDivision = GetDivision();
-		pDivision->SetLeftTopPoint(position.x, position.y);
+		pDivision->SetLeftTopPoint(position.x, position.y + SHIFT_DIVISION);
+		pDivision->SetRotate(rotate);
 		m_coordinateSystem.push_back(std::move(pDivision));
 
 		position += shift;
 	}
-
 }

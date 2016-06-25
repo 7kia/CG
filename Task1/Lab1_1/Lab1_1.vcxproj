@@ -156,6 +156,7 @@
     <ClInclude Include="Shape\CLine.h" />
     <ClInclude Include="Shape\CShape.h" />
     <ClInclude Include="Shape\CDrawable.h" />
+    <ClInclude Include="Shape\FunctionGraph.h" />
     <ClInclude Include="Shape\IDrawable.h" />
     <ClInclude Include="Shape\IShape.h" />
     <ClInclude Include="Shape\Rectangle.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Shape\CDrawable.cpp" />
     <ClCompile Include="Shape\CLine.cpp" />
     <ClCompile Include="Shape\CShape.cpp" />
+    <ClCompile Include="Shape\FunctionGraph.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shedule\Shedule.cpp" />
     <ClCompile Include="stdafx.cpp">

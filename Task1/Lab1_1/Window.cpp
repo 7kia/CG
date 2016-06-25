@@ -6,23 +6,16 @@
 CWindow::CWindow()
 	: m_shedule(WINDOW_WIDTH, WINDOW_HEIGTH)
 {
+    
     {
-        auto pLine = std::make_unique<CLine>();
-		pLine->SetFirstPoint(glm::vec2(250.f, 250.f));
-		pLine->SetSecondPoint(glm::vec2(250.f, 650.f));
-		pLine->SetOutlineColor(Colors::RED);
-		pLine->SetThikness(5.f);
+		auto pFunctionGraph = std::make_unique<CFunctionGraph>();
 
-		m_shedule.AddFunctionsGraphs(std::move(pLine));
-    }
-    {
-		auto pRectagnle = std::make_unique<CRectangle>();
-		pRectagnle->SetLeftTopPoint(glm::vec2(550.f, 550.f));
-		pRectagnle->SetWidth(100.f);
-		pRectagnle->SetHeight(250.f);
-		pRectagnle->SetOutlineColor(Colors::YELLOW);
+		pFunctionGraph->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
+		pFunctionGraph->SetStart(-10.f);
+		pFunctionGraph->SetEnd(10.f);
+		pFunctionGraph->SetOutlineColor(Colors::YELLOW);
 
-		m_shedule.AddFunctionsGraphs(std::move(pRectagnle));
+		m_shedule.AddFunctionsGraphs(std::move(pFunctionGraph));
 	}
     SetBackgroundColor(Colors::QUIET_GREEN);
 }

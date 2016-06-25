@@ -12,6 +12,8 @@ namespace Colors
 	const glm::vec3 BLACK = { 0.f, 0.f, 0.f };
 }
 
+static const float SCALE_FACTOR = 25.f;
+
 //////////////////////////////////////////
 // CShape - basic for everything shapes, consist common data
 //////////////////////////////////////////

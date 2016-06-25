@@ -60,6 +60,9 @@
     <ClInclude Include="Shape\CDrawable.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\FunctionGraph.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="Shedule\Shedule.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\FunctionGraph.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
