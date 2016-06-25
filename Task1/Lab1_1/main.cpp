@@ -6,7 +6,7 @@ int main()
     glewInit();
 
     CWindow window;
-    window.Show({800, 600});
+    window.Show({WINDOW_WIDTH, WINDOW_HEIGTH});
     window.DoGameLoop();
 
 	return 0;

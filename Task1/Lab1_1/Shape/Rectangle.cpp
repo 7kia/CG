@@ -14,7 +14,9 @@ CRectangle::CRectangle()
 CRectangle::CRectangle(const glm::vec2 & leftTopPoint
 						, float width
 						, float height
+						, float rotate
 						, const glm::vec3 & outlineColor)
+	: m_rotation(rotate)
 {
 	m_rect.w = width;
 	m_rect.h = height;
@@ -32,6 +34,8 @@ CRectangle::~CRectangle()
 
 void CRectangle::Redraw() const
 {
+	glPushMatrix();
+	glRotatef(m_rotation, 0.f, 0.f, 1.f);
 	glBegin(GL_TRIANGLE_FAN);
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
@@ -45,6 +49,8 @@ void CRectangle::Redraw() const
 	glVertex2f(m_rect.x + m_rect.w, m_rect.y + m_rect.h);
 
 	glEnd();
+	glPopMatrix();
+
 }
 
 bool CRectangle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
@@ -101,4 +107,14 @@ void CRectangle::SetHeight(float height)
 float CRectangle::GetHeight() const
 {
 	return m_rect.h;
+}
+
+void CRectangle::SetRotate(float angle)
+{
+	m_rotation = angle;
+}
+
+float CRectangle::GetRotate() const
+{
+	return m_rotation;
 }

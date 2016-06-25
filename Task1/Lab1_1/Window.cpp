@@ -36,9 +36,7 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 {
     SetupView(size);
 
-	m_shedule.Draw();
-
-	
+	m_shedule.Draw();	
 }
 
 ///*

@@ -12,6 +12,7 @@ public:
 	CRectangle(const glm::vec2 & leftTopPoint
 				, float width
 				, float height
+				, float rotate
 				, const glm::vec3 & outlineColor);
 	~CRectangle();
 
@@ -30,6 +31,10 @@ public:
 
 	void				SetHeight(float height);
 	float				GetHeight() const;
+
+	void				SetRotate(float angle);
+	float				GetRotate() const;
 private:
 	SDL_Rect			m_rect;
+	float				m_rotation = 0;
 };
