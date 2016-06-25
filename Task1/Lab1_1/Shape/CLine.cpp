@@ -18,8 +18,6 @@ CLine::CLine(const glm::vec2 &firstPoint
 
 void CLine::Redraw() const
 {
-
-
 	glBegin(GL_LINE_STRIP);
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);

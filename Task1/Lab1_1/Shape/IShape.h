@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SDL2/SDL_rect.h>// TODO : ask why if there sdl2/sdl.h then error with sdl_main8
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <glm/vec3.hpp>

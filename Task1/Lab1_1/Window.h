@@ -1,6 +1,7 @@
 #pragma once
 #include "DispatchEvent.h"
 #include "Shape/CLine.h"
+#include "Shape/Rectangle.h"
 #include <vector>
 
 class CWindow : public CAbstractInputControlWindow

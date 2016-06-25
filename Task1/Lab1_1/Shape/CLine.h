@@ -2,7 +2,7 @@
 
 #include "CShape.h"
 
-class CLine
+class CLine final
 	: public CShape
 	, private boost::noncopyable
 
@@ -17,7 +17,7 @@ public:
 public:
 	// IShape
 	void		Redraw() const override;
-	bool		HitTest(const glm::vec2 &point) const;
+	bool		HitTest(const glm::vec2 &point) const override;
 	//
 
 	void		SetFirstPoint(const glm::vec2 &firstPoint);

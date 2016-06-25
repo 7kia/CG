@@ -24,13 +24,13 @@ CWindow::CWindow()
         m_shapes.push_back(std::move(pLine));
     }
     {
-		auto pLine = std::make_unique<CLine>();
-		pLine->SetFirstPoint(glm::vec2(450.f, 250.f));
-		pLine->SetSecondPoint(glm::vec2(250.f, 450.f));
-		pLine->SetOutlineColor(YELLOW);
-		pLine->SetThikness(5.f);
+		auto pRectagnle = std::make_unique<CRectangle>();
+		pRectagnle->SetLeftTopPoint(glm::vec2(550.f, 550.f));
+		pRectagnle->SetWidth(100.f);
+		pRectagnle->SetHeight(250.f);
+		pRectagnle->SetOutlineColor(YELLOW);
 
-		m_shapes.push_back(std::move(pLine));
+		m_shapes.push_back(std::move(pRectagnle));
 	}
     SetBackgroundColor(QUIET_GREEN);
 }
