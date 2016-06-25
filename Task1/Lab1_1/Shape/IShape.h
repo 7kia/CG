@@ -10,19 +10,31 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <boost/noncopyable.hpp>
 
+class CDrawable
+{
+public:
+	CDrawable() = default;
+	virtual ~CDrawable();
+public:
+
+	void					Draw() const;
+
+	// Redefine in heir \/
+	virtual void			Redraw() const = 0;
+	virtual bool			HitTest(const glm::vec2 &point) const = 0;// TODO : might will be neccessary
+	//					/\/
+
+protected:
+	void					DeleteList();
+	mutable unsigned		m_displayList = 0;
+
+};
+
 class IShape
+	: public CDrawable
 {
 public:
 	virtual void			SetOutlineColor(const glm::vec3 &color) = 0;
 	virtual glm::vec3		GetOutlineColor() const = 0;
 
-	virtual void			Draw() const = 0;
-
-	// Redefine in heir \/
-	virtual void			Redraw() const = 0;
-	virtual bool			HitTest(const glm::vec2 &point) const = 0;// TODO : might will be neccessary
-	//					/\
-
-private:
-	virtual void			DeleteList() = 0;
 };

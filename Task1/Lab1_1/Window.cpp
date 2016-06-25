@@ -21,7 +21,7 @@ CWindow::CWindow()
 		pLine->SetOutlineColor(RED);
 		pLine->SetThikness(5.f);
 
-        m_shapes.push_back(std::move(pLine));
+		m_shedule.AddFunctionsGraphs(std::move(pLine));
     }
     {
 		auto pRectagnle = std::make_unique<CRectangle>();
@@ -30,7 +30,7 @@ CWindow::CWindow()
 		pRectagnle->SetHeight(250.f);
 		pRectagnle->SetOutlineColor(YELLOW);
 
-		m_shapes.push_back(std::move(pRectagnle));
+		m_shedule.AddFunctionsGraphs(std::move(pRectagnle));
 	}
     SetBackgroundColor(QUIET_GREEN);
 }
@@ -44,7 +44,7 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 {
     SetupView(size);
 
-    for (const auto &pShape : m_shapes)
+    for (const auto &pShape : m_shedule.m_functionsGraphs)
     {
 		pShape->Draw();
     }

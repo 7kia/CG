@@ -15,7 +15,11 @@ glm::vec3 CShape::GetOutlineColor() const
 	return m_outlineColor;
 }
 
-void CShape::Draw() const
+CDrawable::~CDrawable()
+{
+}
+
+void CDrawable::Draw() const
 {
 	// если дисплейный список еще не был создан, то для начала создаем его
 	if (!m_displayList)
@@ -33,7 +37,7 @@ void CShape::Draw() const
 	glCallList(m_displayList);
 }
 
-void CShape::DeleteList()
+void CDrawable::DeleteList()
 {
 	if (m_displayList)
 	{

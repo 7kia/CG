@@ -51,6 +51,9 @@
     <ClInclude Include="Shape\Rectangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shedule\Shedule.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="Shape\Rectangle.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\Shedule.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

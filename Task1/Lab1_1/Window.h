@@ -1,5 +1,6 @@
 #pragma once
 #include "DispatchEvent.h"
+#include "Shedule/Shedule.h"
 #include "Shape/CLine.h"
 #include "Shape/Rectangle.h"
 #include <vector>
@@ -22,7 +23,7 @@ protected:
 private:
     void									SetupView(const glm::ivec2 &size);
 
-    std::vector<std::unique_ptr<CShape>>	m_shapes;
+    CShedule								m_shedule;
 	CShape*									m_draggingFlower = nullptr;
     glm::vec2								m_dragOffset;
 };
