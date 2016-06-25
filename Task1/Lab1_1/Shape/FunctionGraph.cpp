@@ -80,5 +80,5 @@ float CFunctionGraph::GetValueFunction(float x) const
 		denumerator = x - EPSILON;
 	}
 
-	return numerator / denumerator;
+	return -numerator / denumerator;// - because y-axis derected down, but up
 }
