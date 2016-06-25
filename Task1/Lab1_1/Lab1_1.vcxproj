@@ -155,6 +155,8 @@
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Shape\CLine.h" />
     <ClInclude Include="Shape\CShape.h" />
+    <ClInclude Include="Shape\CDrawable.h" />
+    <ClInclude Include="Shape\IDrawable.h" />
     <ClInclude Include="Shape\IShape.h" />
     <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shedule\Shedule.h" />
@@ -166,6 +168,7 @@
     <ClCompile Include="AbstractWindow.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Shape\CDrawable.cpp" />
     <ClCompile Include="Shape\CLine.cpp" />
     <ClCompile Include="Shape\CShape.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />

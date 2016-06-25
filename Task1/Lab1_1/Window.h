@@ -5,6 +5,10 @@
 #include "Shape/Rectangle.h"
 #include <vector>
 
+static const unsigned int WINDOW_WIDTH = 700;
+static const unsigned int WINDOW_HEIGTH = 700;
+
+
 class CWindow : public CAbstractInputControlWindow
 {
 public:

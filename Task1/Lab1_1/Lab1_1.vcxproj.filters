@@ -54,6 +54,12 @@
     <ClInclude Include="Shedule\Shedule.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\IDrawable.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CDrawable.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -68,9 +74,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="DispatchEvent.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\CShape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
@@ -82,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="Shedule\Shedule.cpp">
       <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="DispatchEvent.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\CDrawable.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
