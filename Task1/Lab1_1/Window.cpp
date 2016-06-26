@@ -20,6 +20,7 @@ CWindow::CWindow()
     SetBackgroundColor(Colors::QUIET_GREEN);
 }
 
+
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
     (void)deltaSeconds;
@@ -29,7 +30,8 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 {
     SetupView(size);
 
-	m_shedule.Draw();	
+	m_shedule.SetSize(size.x, size.y);
+	m_shedule.Redraw();	
 }
 
 ///*

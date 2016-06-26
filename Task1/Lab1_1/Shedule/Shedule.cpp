@@ -30,6 +30,11 @@ void CShedule::Draw() const
 
 void CShedule::Redraw() const
 {
+	for (const auto &pShape : m_coordinateSystem)
+	{
+		pShape->Redraw();
+	}
+
 	for (auto & graph : m_functionsGraphs)
 	{
 		graph->Redraw();
@@ -146,17 +151,17 @@ void CShedule::UpdateDivisionsProperties()
 {
 	glm::vec2 startPosition = glm::vec2(m_windowWidth / 2.f, m_windowHeigth / 2.f);
 
-	for (const auto & parametrs : PARAMETERS_DIVISIONS_AXIS)
+	for (size_t index = 0; index < PARAMETERS_DIVISIONS_AXIS.size(); index++)
 	{
 
-		glm::vec2 position = startPosition + parametrs.first;
+		glm::vec2 position = startPosition + PARAMETERS_DIVISIONS_AXIS[index].first;
 		for (size_t amountDivisions = 0; amountDivisions < AMOUNT_DIVISIONS; ++amountDivisions)
 		{
-			auto pDivision = dynamic_cast<CRectangle*>(m_coordinateSystem[amountDivisions + 2].get());
+			auto pDivision = dynamic_cast<CRectangle*>(m_coordinateSystem[amountDivisions + 2 + (index * AMOUNT_DIVISIONS)].get());
 
 			pDivision->SetLeftTopPoint(position.x, position.y + SHIFT_DIVISION);
 
-			position += parametrs.first;
+			position += PARAMETERS_DIVISIONS_AXIS[index].first;
 		}
 
 	}
