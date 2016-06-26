@@ -54,6 +54,10 @@ void CShedule::SetSize(unsigned int width, unsigned int height)
 	UpdateAxisProperties();
 	UpdateDivisionsProperties();
 
+	for (auto & graph : m_functionsGraphs)
+	{
+		graph->SetOrigin(glm::vec2(width / 2.f, height / 2.f));
+	}
 }
 
 void CShedule::AddFunctionsGraphs(std::shared_ptr<CShape> graph)

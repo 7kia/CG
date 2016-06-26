@@ -21,9 +21,6 @@ public:
 	bool		HitTest(const glm::vec2 &point) const override;
 	//
 
-	void		SetOrigin(const glm::vec2 & origin);
-	glm::vec2	GetOrigin() const;
-
 	void		SetStart(float start);
 	float		GetStart() const;
 
@@ -41,7 +38,6 @@ private:
 
 // Data
 private:
-	glm::vec2	m_origin;
 	float		m_start = 0.f;
 	float		m_end = 0.f;
 };

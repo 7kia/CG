@@ -26,13 +26,19 @@ public:
 	virtual ~CShape();
 
 public:// Methods
-	void					SetOutlineColor(const glm::vec3 &color);
+	void					SetOutlineColor(const glm::vec3 &color) override;
 	glm::vec3				GetOutlineColor() const override;
+
+	void					SetOrigin(const glm::vec2 & origin) override;
+	glm::vec2				GetOrigin() const override;
+
 public:// Data
 
 protected:// Methods
 
 protected:// Data
 	glm::vec3				m_outlineColor;
+	glm::vec2				m_origin;// for transfer graph to center window
+
 
 };

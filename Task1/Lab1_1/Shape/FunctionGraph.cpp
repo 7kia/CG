@@ -9,10 +9,10 @@ CFunctionGraph::CFunctionGraph(glm::vec2 origin
 								, float start
 								, float end
 								, const glm::vec3 & outlineColor)
-	: m_origin(origin)
-	, m_start(start)
+	: m_start(start)
 	, m_end(end)
 {
+	SetOrigin(origin);
 	SetOutlineColor(outlineColor);
 }
 
@@ -37,16 +37,6 @@ void CFunctionGraph::Redraw() const
 bool CFunctionGraph::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 {
 	return false;
-}
-
-void CFunctionGraph::SetOrigin(const glm::vec2 & origin)
-{
-	m_origin = origin;
-}
-
-glm::vec2 CFunctionGraph::GetOrigin() const
-{
-	return m_origin;
 }
 
 void CFunctionGraph::SetStart(float start)
