@@ -140,7 +140,7 @@ public:
         return consumed;
     }
 
-private:
+protected:
     void OnWindowEvent(const SDL_WindowEvent &event)
     {
         if (event.event == SDL_WINDOWEVENT_RESIZED)

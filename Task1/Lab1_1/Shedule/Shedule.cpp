@@ -41,6 +41,16 @@ bool CShedule::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 	return false;
 }
 
+void CShedule::SetSize(unsigned int width, unsigned int height)
+{
+	m_windowWidth = width;
+	m_windowHeigth = height;
+
+	UpdateAxisProperties();
+	UpdateDivisionsProperties();
+
+}
+
 void CShedule::AddFunctionsGraphs(std::shared_ptr<CShape> graph)
 {
 	m_functionsGraphs.push_back(graph);
@@ -48,45 +58,54 @@ void CShedule::AddFunctionsGraphs(std::shared_ptr<CShape> graph)
 
 void CShedule::CreateAxis()
 {
+	// there define constant properties, is not dependent by size window
 	auto pXAxis = std::make_unique<CRectangle>();
-	pXAxis->SetLeftTopPoint(glm::vec2(0.f, (m_windowHeigth + THIKNESS_LINES) / 2.f));
-	pXAxis->SetWidth(m_windowWidth);
 	pXAxis->SetHeight(THIKNESS_LINES);
 	pXAxis->SetOutlineColor(Colors::BLACK);
-
 	m_coordinateSystem.push_back(std::move(pXAxis));
 
-	// Y-axis
 	auto pYAxis = std::make_unique<CRectangle>();
-	pYAxis->SetLeftTopPoint(glm::vec2((m_windowWidth + THIKNESS_LINES) / 2.f, 0.f));
 	pYAxis->SetWidth(THIKNESS_LINES);
-	pYAxis->SetHeight(m_windowHeigth);
 	pYAxis->SetOutlineColor(Colors::BLACK);
-
 	m_coordinateSystem.push_back(std::move(pYAxis));
+
+	UpdateAxisProperties();
+}
+
+void CShedule::UpdateAxisProperties()
+{
+	auto pXAxis = dynamic_cast<CRectangle*>(m_coordinateSystem[0].get());
+
+	pXAxis->SetLeftTopPoint(glm::vec2(0.f, (m_windowHeigth + THIKNESS_LINES) / 2.f));
+	pXAxis->SetWidth(m_windowWidth);
+
+	auto pYAxis = dynamic_cast<CRectangle*>(m_coordinateSystem[1].get());
+	pYAxis->SetLeftTopPoint(glm::vec2((m_windowWidth + THIKNESS_LINES) / 2.f, 0.f));
+	pYAxis->SetHeight(m_windowHeigth);
+
 }
 
 void CShedule::CreateArrows()
 {
 	/*
 	// Arrow for y-axis
-	auto pLeftFirstPart = GetPartArrow();
+	auto pLeftFirstPart = CreatePartArrow();
 	pLeftFirstPart->SetLeftTopPoint(glm::vec2((m_windowWidth - THIKNESS_LINES * 8) / 2.f, (m_windowHeigth - THIKNESS_LINES * 8) / 2.f));
 	pLeftFirstPart->SetRotate(ARROW_ANGLE);
 	m_coordinateSystem.push_back(std::move(pLeftFirstPart));
 
 	
-	auto pRightFirstPart = GetPartArrow();
+	auto pRightFirstPart = CreatePartArrow();
 	pRightFirstPart->SetLeftTopPoint(glm::vec2((m_windowWidth - THIKNESS_LINES * 8) / 2.f, (m_windowHeigth - THIKNESS_LINES * 8) / 2.f));
 	pRightFirstPart->SetRotate(-ARROW_ANGLE);
 	m_coordinateSystem.push_back(std::move(pRightFirstPart));
 	// Arrow for x-axis
-	auto pLeftPart = GetPartArrow();
+	auto pLeftPart = CreatePartArrow();
 	pLeftPart->SetLeftTopPoint(glm::vec2((m_windowWidth + THIKNESS_LINES) / 2.f, 0.f));
 	pLeftPart->SetRotate(ARROW_ANGLE);
 	m_coordinateSystem.push_back(std::move(pLeftPart));
 
-	auto pRightPart = GetPartArrow();
+	auto pRightPart = CreatePartArrow();
 	pRightPart->SetLeftTopPoint(glm::vec2((m_windowWidth + THIKNESS_LINES) / 2.f, 0.f));
 	pRightPart->SetRotate(-ARROW_ANGLE);
 	m_coordinateSystem.push_back(std::move(pRightPart));
@@ -95,7 +114,7 @@ void CShedule::CreateArrows()
 	*/
 }
 
-std::unique_ptr<CRectangle> CShedule::GetPartArrow()
+std::unique_ptr<CRectangle> CShedule::CreatePartArrow()
 {
 	auto pPart = std::make_unique<CRectangle>();
 	pPart->SetWidth(ARROW_WIDTH);
@@ -105,7 +124,7 @@ std::unique_ptr<CRectangle> CShedule::GetPartArrow()
 	return pPart;
 }
 
-std::unique_ptr<CRectangle> CShedule::GetDivision()
+std::unique_ptr<CRectangle> CShedule::CreateDivision()
 {
 	auto pPart = std::make_unique<CRectangle>();
 	pPart->SetWidth(DIVISION_WIDTH);
@@ -117,12 +136,30 @@ std::unique_ptr<CRectangle> CShedule::GetDivision()
 
 void CShedule::CreateDivisions()
 {
-	AddListDivisions(glm::vec2(SCALE_FACTOR, 0.f), 0.f);
-	AddListDivisions(glm::vec2(-SCALE_FACTOR, 0.f), 0.f);
+	for (const auto & parametrs : PARAMETERS_DIVISIONS_AXIS)
+	{
+		AddListDivisions(parametrs.first, parametrs.second);
+	}
+}
 
-	AddListDivisions(glm::vec2(0.f, SCALE_FACTOR), 0.f);
-	AddListDivisions(glm::vec2(0.f, -SCALE_FACTOR), 0.f);
+void CShedule::UpdateDivisionsProperties()
+{
+	glm::vec2 startPosition = glm::vec2(m_windowWidth / 2.f, m_windowHeigth / 2.f);
 
+	for (const auto & parametrs : PARAMETERS_DIVISIONS_AXIS)
+	{
+
+		glm::vec2 position = startPosition + parametrs.first;
+		for (size_t amountDivisions = 0; amountDivisions < AMOUNT_DIVISIONS; ++amountDivisions)
+		{
+			auto pDivision = dynamic_cast<CRectangle*>(m_coordinateSystem[amountDivisions + 2].get());
+
+			pDivision->SetLeftTopPoint(position.x, position.y + SHIFT_DIVISION);
+
+			position += parametrs.first;
+		}
+
+	}
 }
 
 void CShedule::AddListDivisions(const glm::vec2 & shift, float rotate)
@@ -132,7 +169,7 @@ void CShedule::AddListDivisions(const glm::vec2 & shift, float rotate)
 	glm::vec2 position = startPosition + shift;
 	for (size_t amountDivisions = 0; amountDivisions < AMOUNT_DIVISIONS; ++amountDivisions)
 	{
-		auto pDivision = GetDivision();
+		auto pDivision = CreateDivision();
 		pDivision->SetLeftTopPoint(position.x, position.y + SHIFT_DIVISION);
 		pDivision->SetRotate(rotate);
 		m_coordinateSystem.push_back(std::move(pDivision));
