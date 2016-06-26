@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "CDrawable.h"
 
-CDrawable::~CDrawable()
-{
-}
-
 void CDrawable::Draw() const
 {
 	// если дисплейный список еще не был создан, то для начала создаем его

@@ -8,7 +8,7 @@ class CDrawable
 {
 public:
 	CDrawable() = default;
-	virtual ~CDrawable();
+	virtual ~CDrawable() = default;
 public:
 
 	void					Draw() const;

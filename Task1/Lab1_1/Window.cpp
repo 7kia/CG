@@ -8,12 +8,22 @@ CWindow::CWindow()
 {
     
     {
-		auto pFunctionGraph = std::make_unique<CFunctionGraph>();
+		auto pFunctionGraph = std::make_unique<CLimitFunction>();
 
 		pFunctionGraph->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
 		pFunctionGraph->SetStart(-10.f);
 		pFunctionGraph->SetEnd(10.f);
 		pFunctionGraph->SetOutlineColor(Colors::YELLOW);
+
+		m_shedule.AddFunctionsGraphs(std::move(pFunctionGraph));
+	}
+	{
+		auto pFunctionGraph = std::make_unique<CArchimedeanSpiral>();
+
+		pFunctionGraph->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
+		pFunctionGraph->SetStart(0.f);
+		pFunctionGraph->SetEnd(4.f * M_PI);
+		pFunctionGraph->SetOutlineColor(Colors::RED);
 
 		m_shedule.AddFunctionsGraphs(std::move(pFunctionGraph));
 	}

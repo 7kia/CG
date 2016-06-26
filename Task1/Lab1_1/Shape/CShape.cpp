@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "CShape.h"
 
-CShape::~CShape()
-{
-}
 
 void CShape::SetOutlineColor(const glm::vec3 & color)
 {

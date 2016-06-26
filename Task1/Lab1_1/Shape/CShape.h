@@ -23,7 +23,7 @@ class CShape
 {
 public:
 	CShape() = default;
-	virtual ~CShape();
+	virtual ~CShape() = default;
 
 public:// Methods
 	void					SetOutlineColor(const glm::vec3 &color) override;

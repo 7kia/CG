@@ -156,10 +156,13 @@
     <ClInclude Include="Shape\CLine.h" />
     <ClInclude Include="Shape\CShape.h" />
     <ClInclude Include="Shape\CDrawable.h" />
-    <ClInclude Include="Shape\FunctionGraph.h" />
     <ClInclude Include="Shape\IDrawable.h" />
     <ClInclude Include="Shape\IShape.h" />
     <ClInclude Include="Shape\Rectangle.h" />
+    <ClInclude Include="Shedule\ArchimedeanSpiral.h" />
+    <ClInclude Include="Shedule\FunctionGraph.h" />
+    <ClInclude Include="Shedule\IFunctionGraph.h" />
+    <ClInclude Include="Shedule\LimitFunction.h" />
     <ClInclude Include="Shedule\Shedule.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -172,8 +175,10 @@
     <ClCompile Include="Shape\CDrawable.cpp" />
     <ClCompile Include="Shape\CLine.cpp" />
     <ClCompile Include="Shape\CShape.cpp" />
-    <ClCompile Include="Shape\FunctionGraph.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
+    <ClCompile Include="Shedule\ArchimedeanSpiral.cpp" />
+    <ClCompile Include="Shedule\FunctionGraph.cpp" />
+    <ClCompile Include="Shedule\LimitFunction.cpp" />
     <ClCompile Include="Shedule\Shedule.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

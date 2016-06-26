@@ -3,7 +3,8 @@
 #pragma once
 
 #include "../Shape/Rectangle.h"
-#include "../Shape/FunctionGraph.h"
+#include "LimitFunction.h"
+#include "ArchimedeanSpiral.h"
 
 #include <memory>
 #include <vector>

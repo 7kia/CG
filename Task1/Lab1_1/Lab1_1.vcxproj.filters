@@ -60,8 +60,17 @@
     <ClInclude Include="Shape\CDrawable.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\FunctionGraph.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
+    <ClInclude Include="Shedule\FunctionGraph.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\IFunctionGraph.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\LimitFunction.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\ArchimedeanSpiral.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +104,13 @@
     <ClCompile Include="Shedule\Shedule.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\FunctionGraph.cpp">
+    <ClCompile Include="Shedule\FunctionGraph.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\LimitFunction.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\ArchimedeanSpiral.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
