@@ -34,7 +34,7 @@ class CShape
 	, public CHavePosition
 {
 public:
-	CShape() = default;
+	CShape();
 	virtual ~CShape() = default;
 
 public:// Methods

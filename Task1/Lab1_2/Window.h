@@ -30,6 +30,6 @@ private:
     void									SetupView(const glm::ivec2 &size);
 
     CShedule								m_shedule;
-	CShape*									m_draggingFlower = nullptr;
+	CParticle*								m_draggingParticle = nullptr;
     glm::vec2								m_dragOffset;
 };

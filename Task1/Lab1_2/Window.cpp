@@ -6,40 +6,22 @@
 CWindow::CWindow()
 	: m_shedule(WINDOW_WIDTH, WINDOW_HEIGTH)
 {
-    
-    {
-		auto pFunctionGraph = std::make_unique<CLimitFunction>();
-
-		pFunctionGraph->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
-		pFunctionGraph->SetStart(-10.f);
-		pFunctionGraph->SetEnd(10.f);
-		pFunctionGraph->SetOutlineColor(Colors::YELLOW);
-
-		//m_shedule.AddFunctionsGraphs(std::move(pFunctionGraph));
-	}
-	{
-		auto pFunctionGraph = std::make_unique<CArchimedeanSpiral>();
-
-		pFunctionGraph->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
-		pFunctionGraph->SetStart(0.f);
-		pFunctionGraph->SetEnd(4.f * static_cast<float>(M_PI));
-		pFunctionGraph->SetOutlineColor(Colors::RED);
-
-		//m_shedule.AddFunctionsGraphs(std::move(pFunctionGraph));
-	}
 	{
 		auto pParcticle = std::make_unique<CParticle>();
 
-		pParcticle->SetPosition(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
 		pParcticle->SetSign(true);
-		m_shedule.AddFunctionsGraphs(std::move(pParcticle));
+
+		pParcticle->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
+		pParcticle->SetPosition(glm::vec2(0.f, 100.f));
+		m_shedule.AddParcticle(std::move(pParcticle));
 	}
 	{
 		auto pParcticle = std::make_unique<CParticle>();
 
-		pParcticle->SetPosition(glm::vec2(WINDOW_WIDTH / 2.f - 150.f, WINDOW_HEIGTH / 2.f));
 		pParcticle->SetSign(false);
-		m_shedule.AddFunctionsGraphs(std::move(pParcticle));
+		pParcticle->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
+		pParcticle->SetPosition(glm::vec2(150.f, 150.f));
+		m_shedule.AddParcticle(std::move(pParcticle));
 	}
 
     SetBackgroundColor(Colors::GRAY);
@@ -62,44 +44,36 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 ///*
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	(void)pos;
-	/*
-	    auto flowers = boost::adaptors::reverse(m_shapes);
-    auto it = boost::find_if(flowers, [&](const auto &pFlower) {
-        return pFlower->HitTest(pos);
+	auto particles = &m_shedule.m_particles;
+
+	auto particle = boost::adaptors::reverse(*particles);
+    auto it = boost::find_if(particle, [&](const auto &pParticle) {
+        return pParticle->HitTest(pos);
     });
-    if (it != flowers.end())
+    if (it != particle.end())
     {
-        m_draggingFlower = it->get();
-        m_dragOffset = pos - m_draggingFlower->GetPosition();
+        m_draggingParticle = it->get();
+        m_dragOffset = pos - m_draggingParticle->GetPosition();
     }
 
-	*/
+
 }
 
 void CWindow::OnDragMotion(const glm::vec2 &pos)
 {
-	(void)pos;
-
-	/*
-    if (m_draggingFlower)
+    if (m_draggingParticle)
     {
-        m_draggingFlower->SetPosition(pos - m_dragOffset);
+        m_draggingParticle->SetPosition(pos - m_dragOffset);
     }
-	*/
 }
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
-	(void)pos;
-
-	/*
-    if (m_draggingFlower)
+    if (m_draggingParticle)
     {
-        m_draggingFlower->SetPosition(pos - m_dragOffset);
-        m_draggingFlower = nullptr;
+        m_draggingParticle->SetPosition(pos - m_dragOffset);
+        m_draggingParticle = nullptr;
     }
-	*/
 }
 
 //*/

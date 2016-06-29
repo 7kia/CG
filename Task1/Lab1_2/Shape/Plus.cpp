@@ -26,13 +26,15 @@ void CPlus::Redraw() const
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
 
-	glVertex2f(m_position.x - WIDTH_SIGN / 2.f, m_position.y - HEIGHT_SIGN / 2.f);
+	const glm::vec2 absolutePosition = GetAbsolutePosition(m_origin);
+
+	glVertex2f(absolutePosition.x - WIDTH_SIGN / 2.f, absolutePosition.y - HEIGHT_SIGN / 2.f);
 	// first triangle
-	glVertex2f(m_position.x - WIDTH_SIGN / 2.f, m_position.y + HEIGHT_SIGN / 2.f);
-	glVertex2f(m_position.x + WIDTH_SIGN / 2.f, m_position.y + HEIGHT_SIGN / 2.f);
+	glVertex2f(absolutePosition.x - WIDTH_SIGN / 2.f, absolutePosition.y + HEIGHT_SIGN / 2.f);
+	glVertex2f(absolutePosition.x + WIDTH_SIGN / 2.f, absolutePosition.y + HEIGHT_SIGN / 2.f);
 	// second triangle
-	glVertex2f(m_position.x + WIDTH_SIGN / 2.f, m_position.y - HEIGHT_SIGN / 2.f);
-	glVertex2f(m_position.x + WIDTH_SIGN / 2.f, m_position.y + HEIGHT_SIGN / 2.f);
+	glVertex2f(absolutePosition.x + WIDTH_SIGN / 2.f, absolutePosition.y - HEIGHT_SIGN / 2.f);
+	glVertex2f(absolutePosition.x + WIDTH_SIGN / 2.f, absolutePosition.y + HEIGHT_SIGN / 2.f);
 
 	glEnd();
 

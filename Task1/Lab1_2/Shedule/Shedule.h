@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "../Shape/Rectangle.h"
+#include "../Shape/Particle.h"
 #include "LimitFunction.h"
 #include "ArchimedeanSpiral.h"
 
@@ -32,22 +32,13 @@ public:
 	//
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddFunctionsGraphs(std::shared_ptr<CShape> graph);
+	void		AddParcticle(std::shared_ptr<CParticle> graph);
 // Data
 public:
-	std::vector<std::shared_ptr<CShape>>	m_functionsGraphs;
+	std::vector<std::shared_ptr<CParticle>>	m_particles;
 // Methods
 private:
-	void									CreateAxis();
-	void									UpdateAxisProperties();
 
-	void									CreateArrows();
-	std::unique_ptr<CRectangle>				CreatePartArrow();
-	std::unique_ptr<CRectangle>				CreateDivision();
-
-	void									CreateDivisions();
-	void									UpdateDivisionsProperties();
-	void									AddListDivisions(const glm::vec2 & shift, float rotate);
 // Constants
 private:
 	static const int						AMOUNT_DIVISIONS = 10;
@@ -65,7 +56,7 @@ private:
 
 // Data
 private:
-	std::vector<std::shared_ptr<CShape>>	m_coordinateSystem;
+	std::vector<std::shared_ptr<CShape>>	m_gui;
 
 	float									m_windowWidth = 0;
 	float									m_windowHeigth = 0;

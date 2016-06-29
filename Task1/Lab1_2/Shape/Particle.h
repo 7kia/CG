@@ -23,8 +23,11 @@ public:
 	bool		HitTest(const glm::vec2 &point) const override;
 	//
 
-	void		SetPosition(const glm::vec2 &position);
-	glm::vec2	GetPosition() const;
+	void		SetPosition(const glm::vec2 &position) override;
+	void		SetPosition(float x, float y) override;
+
+	void		SetOrigin(const glm::vec2 & origin) override;
+
 
 	void		SetSign(bool isNegative);
 	bool		GetSign() const;
