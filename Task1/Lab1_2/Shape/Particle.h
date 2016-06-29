@@ -28,7 +28,6 @@ public:
 
 	void		SetOrigin(const glm::vec2 & origin) override;
 
-
 	void		SetSign(bool isNegative);
 	bool		GetSign() const;
 	// Methods
@@ -44,8 +43,6 @@ private:
 	// Data
 private:
 	std::unique_ptr<CShape>	m_shapeSign;// for draw plus and minus
-
-	glm::vec2	m_position;
 
 	bool		m_isNegative = false;
 };

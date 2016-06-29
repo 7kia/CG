@@ -14,7 +14,6 @@ CParticle::CParticle() : CShape()
 }
 
 CParticle::CParticle(const glm::vec2 &position, bool isNegative)
-	: m_position(position)
 {
 	SetPosition(m_position);
 	SetOrigin(m_origin);
@@ -29,8 +28,8 @@ void CParticle::Redraw() const
 	glm::vec3 offset = { m_position.x, m_position.y, 0.f };
 	glm::mat4 transform = glm::translate(glm::mat4(), offset);
 	// Сохраняем старую матрицу в стек матриц драйвера
-	glPushMatrix();
-	glLoadMatrixf(glm::value_ptr(transform));
+	//glPushMatrix();
+	//glLoadMatrixf(glm::value_ptr(transform));
 
 	FillCircle();
 	StrokeCircle();
@@ -38,7 +37,7 @@ void CParticle::Redraw() const
 	m_shapeSign->Redraw();
 
 	// Извлекаем старую матрицу из стека матриц драйвера
-	glPopMatrix();
+	//glPopMatrix();
 }
 
 void CParticle::ChangeColor()
@@ -112,10 +111,10 @@ void CParticle::DefineCenterSign()
 
 bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 {
-	glm::vec2 resultShift = point - m_position;
+	glm::vec2 resultShift = GetAbsolutePosition(m_origin) - point;
 
-
-	return (glm::length(resultShift) < DEFAULT_PARTICLE::RADIUSE);
+	float distance = glm::length(resultShift);
+	return (distance < DEFAULT_PARTICLE::RADIUSE);
 }
 
 void CParticle::SetPosition(const glm::vec2 & position)

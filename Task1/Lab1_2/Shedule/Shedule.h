@@ -32,10 +32,10 @@ public:
 	//
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddParcticle(std::shared_ptr<CParticle> graph);
+	void		AddParcticle(std::unique_ptr<CParticle> graph);
 // Data
 public:
-	std::vector<std::shared_ptr<CParticle>>	m_particles;
+	std::vector<std::unique_ptr<CParticle>>	m_particles;
 // Methods
 private:
 

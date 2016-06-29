@@ -60,7 +60,7 @@ void CShedule::SetSize(unsigned int width, unsigned int height)
 	}
 }
 
-void CShedule::AddParcticle(std::shared_ptr<CParticle> graph)
+void CShedule::AddParcticle(std::unique_ptr<CParticle> graph)
 {
-	m_particles.push_back(graph);
+	m_particles.push_back(std::move(graph));
 }
