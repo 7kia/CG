@@ -3,18 +3,19 @@
 
 CMinus::CMinus() 
 	: CShape()
-	, CHavePosition()
 	, boost::noncopyable()
 {
+	SetOutlineColor(NEGATIVE_COLOR);
 }
 
 CMinus::CMinus(const glm::vec2 & position)
 	: CShape()
-	, CHavePosition()
 	, boost::noncopyable()
 {
 	SetPosition(position);
 	SetOrigin(position);
+
+	SetOutlineColor(NEGATIVE_COLOR);
 }
 
 CMinus::~CMinus()
@@ -28,13 +29,13 @@ void CMinus::Redraw() const
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
 
-	glVertex2f(m_position.x - WIDTH_SIGN / 2.f, m_position.y - HEIGHT_SIGN / 2.f);
+	glVertex2f(m_position.x - HEIGHT_SIGN / 2.f, m_position.y - WIDTH_SIGN / 2.f);
 	// first triangle
-	glVertex2f(m_position.x - WIDTH_SIGN / 2.f, m_position.y + HEIGHT_SIGN / 2.f);
-	glVertex2f(m_position.x + WIDTH_SIGN / 2.f, m_position.y + HEIGHT_SIGN / 2.f);
+	glVertex2f(m_position.x - HEIGHT_SIGN / 2.f, m_position.y + WIDTH_SIGN / 2.f);
+	glVertex2f(m_position.x + HEIGHT_SIGN / 2.f, m_position.y + WIDTH_SIGN / 2.f);
 	// second triangle
-	glVertex2f(m_position.x + WIDTH_SIGN / 2.f, m_position.y - HEIGHT_SIGN / 2.f);
-	glVertex2f(m_position.x + WIDTH_SIGN / 2.f, m_position.y + HEIGHT_SIGN / 2.f);
+	glVertex2f(m_position.x + HEIGHT_SIGN / 2.f, m_position.y - WIDTH_SIGN / 2.f);
+	glVertex2f(m_position.x + HEIGHT_SIGN / 2.f, m_position.y + WIDTH_SIGN / 2.f);
 
 	glEnd();
 

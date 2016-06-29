@@ -5,7 +5,6 @@
 
 class CRectangle final// was exported from third lab by OOP
 	: public CShape
-	, public CHavePosition
 	, private boost::noncopyable
 
 {

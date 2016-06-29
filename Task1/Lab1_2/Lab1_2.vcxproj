@@ -158,12 +158,13 @@
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Shape\CHavePosition.h" />
-    <ClInclude Include="Shape\CLine.h" />
     <ClInclude Include="Shape\CShape.h" />
     <ClInclude Include="Shape\CDrawable.h" />
     <ClInclude Include="Shape\IDrawable.h" />
     <ClInclude Include="Shape\IShape.h" />
+    <ClInclude Include="Shape\Minus.h" />
     <ClInclude Include="Shape\Particle.h" />
+    <ClInclude Include="Shape\Plus.h" />
     <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shedule\ArchimedeanSpiral.h" />
     <ClInclude Include="Shedule\FunctionGraph.h" />
@@ -180,11 +181,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shape\CDrawable.cpp" />
     <ClCompile Include="Shape\CHavePosition.cpp" />
-    <ClCompile Include="Shape\CLine.cpp" />
     <ClCompile Include="Shape\CShape.cpp" />
     <ClCompile Include="Shape\Minus.cpp" />
-    <ClCompile Include="Shape\Minus.h" />
     <ClCompile Include="Shape\Particle.cpp" />
+    <ClCompile Include="Shape\Plus.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shedule\ArchimedeanSpiral.cpp" />
     <ClCompile Include="Shedule\FunctionGraph.cpp" />

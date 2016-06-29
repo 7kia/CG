@@ -45,9 +45,6 @@
     <ClInclude Include="Shape\IShape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\CLine.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Rectangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
@@ -78,6 +75,12 @@
     <ClInclude Include="Shape\CHavePosition.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\Minus.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Plus.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -93,9 +96,6 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Shape\CShape.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape\CLine.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Rectangle.cpp">
@@ -122,13 +122,13 @@
     <ClCompile Include="Shedule\ArchimedeanSpiral.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\Minus.h">
+    <ClCompile Include="Shape\CHavePosition.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Minus.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\CHavePosition.cpp">
+    <ClCompile Include="Shape\Plus.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>

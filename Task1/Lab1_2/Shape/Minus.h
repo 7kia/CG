@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
-
 #include "CShape.h"
 #include "CHavePosition.h"
 
@@ -11,9 +9,8 @@ static const float WIDTH_SIGN = 5.f;
 static const float HEIGHT_SIGN = 25.f;
 
 
-class CMinus final// was exported from third lab by OOP
+class CMinus // have heir CPlus
 	: public CShape
-	, public CHavePosition
 	, private boost::noncopyable
 
 {

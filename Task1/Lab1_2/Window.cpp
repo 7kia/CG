@@ -45,6 +45,13 @@ CWindow::CWindow()
 		pParcticle->SetSign(false);
 		m_shedule.AddFunctionsGraphs(std::move(pParcticle));
 	}
+	{
+		auto pMinus = std::make_unique<CMinus>();
+
+		pMinus->SetPosition(glm::vec2(250.f, 250.f));
+
+		m_shedule.AddFunctionsGraphs(std::move(pMinus));
+	}
     SetBackgroundColor(Colors::QUIET_GREEN);
 }
 

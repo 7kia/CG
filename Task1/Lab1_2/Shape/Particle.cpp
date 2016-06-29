@@ -25,6 +25,8 @@ void CParticle::Redraw() const
 {
 	FillCircle();
 	StrokeCircle();
+
+
 }
 
 void CParticle::ChangeColor()
@@ -76,11 +78,24 @@ void CParticle::FillCircle() const
 	glEnd();
 }
 
-void CParticle::DrawPlus() const
+void CParticle::DefineCenterSign()
 {
+	std::unique_ptr<CShape> pSign;
+	if (m_isNegative)
+	{
+		pSign = std::make_unique<CMinus>();
+	}
+	else
+	{
+		pSign = std::make_unique<CPlus>();
+	}
 
+	pSign->SetPosition(m_position);
+
+	m_shapeSign.reset(pSign.get());
 
 }
+
 
 bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 {

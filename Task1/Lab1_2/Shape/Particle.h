@@ -1,12 +1,12 @@
 #pragma once
 
 #include "CShape.h"
-#include "Minus.h"// for draw plus and minus
+#include "Plus.h"// for draw plus and minus
 
 #include <vector>
+#include <memory>
 
 static const glm::vec3 INSIDE_COLOR = { 0.f, 0.f, 0.f };
-static const glm::vec3 POSITIVE_COLOR = { 1.f, 0.f, 0.f };
 
 class CParticle final
 	: public CShape
@@ -44,14 +44,13 @@ private:
 	void		StrokeCircle() const;
 	void		FillCircle() const;
 
-	void		DrawPlus() const;
-	void		DrawMinus() const;
+	void		DefineCenterSign();
 	// Constants
 private:
 	static const int AMOUNT_POINTS = 360;
 	// Data
 private:
-	std::vector<CShape>	m_shapeSign;// for draw plus and minus
+	std::unique_ptr<CShape>	m_shapeSign;// for draw plus and minus
 
 	glm::vec2	m_position;
 	float		m_radius;

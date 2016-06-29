@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IShape.h"
+#include "CHavePosition.h"
 
 namespace Colors
 {
@@ -29,6 +30,7 @@ struct SIntRect
 class CShape
 	: public IShape
 	, public CDrawable
+	, public CHavePosition
 {
 public:
 	CShape() = default;
