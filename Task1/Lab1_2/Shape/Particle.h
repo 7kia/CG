@@ -15,11 +15,7 @@ class CParticle final
 {
 public:
 	CParticle();
-	CParticle(const glm::vec2 &position
-			, float radiuse
-			, float thiknessOutline
-			, bool isNegative = false
-			);
+	CParticle(const glm::vec2 &position, bool isNegative = false);
 
 public:
 	// IShape
@@ -29,12 +25,6 @@ public:
 
 	void		SetPosition(const glm::vec2 &position);
 	glm::vec2	GetPosition() const;
-
-	void		SetRadiuse(float radius);
-	float		GetRadiuse() const;
-
-	void		SetOutlineThikness(float thikness);
-	float		GetOutlineThikness() const;
 
 	void		SetSign(bool isNegative);
 	bool		GetSign() const;
@@ -53,9 +43,6 @@ private:
 	std::unique_ptr<CShape>	m_shapeSign;// for draw plus and minus
 
 	glm::vec2	m_position;
-	float		m_radius;
-
-	float		m_thikness;
 
 	bool		m_isNegative = false;
 };

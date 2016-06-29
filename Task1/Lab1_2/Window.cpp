@@ -30,18 +30,14 @@ CWindow::CWindow()
 	{
 		auto pParcticle = std::make_unique<CParticle>();
 
-		pParcticle->SetOutlineThikness(4.f);
 		pParcticle->SetPosition(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
-		pParcticle->SetRadiuse(25.f);
 		pParcticle->SetSign(true);
 		m_shedule.AddFunctionsGraphs(std::move(pParcticle));
 	}
 	{
 		auto pParcticle = std::make_unique<CParticle>();
 
-		pParcticle->SetOutlineThikness(4.f);
 		pParcticle->SetPosition(glm::vec2(WINDOW_WIDTH / 2.f - 150.f, WINDOW_HEIGTH / 2.f));
-		pParcticle->SetRadiuse(25.f);
 		pParcticle->SetSign(false);
 		m_shedule.AddFunctionsGraphs(std::move(pParcticle));
 	}

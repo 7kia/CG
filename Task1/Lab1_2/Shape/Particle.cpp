@@ -1,20 +1,21 @@
 #include "stdafx.h"
 #include "Particle.h"
 
+namespace DEFAULT_PARTICLE
+{
+	const float	RADIUSE = 25.f;
+	const float	THIKNESS = 4.f;
+}
+
+
 CParticle::CParticle() : CShape()
 {
 	SetOrigin(m_position);
 	SetSign(false);
 }
 
-CParticle::CParticle(const glm::vec2 &position
-					, float radius
-					, float thiknessOutline
-					, bool isNegative
-					)
+CParticle::CParticle(const glm::vec2 &position, bool isNegative)
 	: m_position(position)
-	, m_radius(radius)
-	, m_thikness(thiknessOutline)
 {
 	SetOrigin(m_position);
 	SetSign(isNegative);
@@ -47,13 +48,13 @@ void CParticle::StrokeCircle() const
 	const float step = float(2 * M_PI / AMOUNT_POINTS);
 
 	glColor3f(m_outlineColor.r, m_outlineColor.g, m_outlineColor.b);
-	glLineWidth(m_thikness);
+	glLineWidth(DEFAULT_PARTICLE::THIKNESS);
 
 	glBegin(GL_LINE_STRIP);
 	for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
-		const float dx = m_radius * cosf(angle);
-		const float dy = m_radius * sinf(angle);
+		const float dx = DEFAULT_PARTICLE::RADIUSE * cosf(angle);
+		const float dy = DEFAULT_PARTICLE::RADIUSE * sinf(angle);
 		glVertex2f(dx + m_position.x, dy + m_position.y);
 	}
 	glEnd();
@@ -71,8 +72,8 @@ void CParticle::FillCircle() const
     for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
 		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
-		const float dx = m_radius * cosf(a);
-		const float dy = m_radius * sinf(a);
+		const float dx = DEFAULT_PARTICLE::RADIUSE * cosf(a);
+		const float dy = DEFAULT_PARTICLE::RADIUSE * sinf(a);
 		glVertex2f(dx + m_position.x, dy + m_position.y);
 	}
 	glEnd();
@@ -107,26 +108,6 @@ void CParticle::SetPosition(const glm::vec2 & position)
 glm::vec2 CParticle::GetPosition() const
 {
 	return m_position;
-}
-
-void CParticle::SetRadiuse(float radius)
-{
-	m_radius = radius;
-}
-
-float CParticle::GetRadiuse() const
-{
-	return m_radius;
-}
-
-void CParticle::SetOutlineThikness(float thikness)
-{
-	m_thikness = thikness;
-}
-
-float CParticle::GetOutlineThikness() const
-{
-	return m_thikness;
 }
 
 void CParticle::SetSign(bool isNegative)
