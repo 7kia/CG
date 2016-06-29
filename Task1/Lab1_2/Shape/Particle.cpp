@@ -4,7 +4,7 @@
 CParticle::CParticle() : CShape()
 {
 	SetOrigin(m_position);
-	ChangeColor();
+	SetSign(false);
 }
 
 CParticle::CParticle(const glm::vec2 &position
@@ -17,7 +17,7 @@ CParticle::CParticle(const glm::vec2 &position
 	, m_thikness(thiknessOutline)
 {
 	SetOrigin(m_position);
-	ChangeColor();
+	SetSign(isNegative);
 }
 
 
@@ -26,7 +26,7 @@ void CParticle::Redraw() const
 	FillCircle();
 	StrokeCircle();
 
-
+	m_shapeSign->Redraw();
 }
 
 void CParticle::ChangeColor()
@@ -80,20 +80,16 @@ void CParticle::FillCircle() const
 
 void CParticle::DefineCenterSign()
 {
-	std::unique_ptr<CShape> pSign;
 	if (m_isNegative)
 	{
-		pSign = std::make_unique<CMinus>();
+		m_shapeSign = std::make_unique<CMinus>();
 	}
 	else
 	{
-		pSign = std::make_unique<CPlus>();
+		m_shapeSign = std::make_unique<CPlus>();
 	}
 
-	pSign->SetPosition(m_position);
-
-	m_shapeSign.reset(pSign.get());
-
+	m_shapeSign->SetPosition(m_position);
 }
 
 
@@ -137,6 +133,7 @@ void CParticle::SetSign(bool isNegative)
 {
 	m_isNegative = isNegative;
 	ChangeColor();
+	DefineCenterSign();
 }
 
 bool CParticle::GetSign() const

@@ -11,6 +11,7 @@ namespace Colors
 	const glm::vec3 YELLOW = { 1.f, 1.f, 0.f };
 	const glm::vec4 QUIET_GREEN = { 0.f, 0.5f, 0.2f, 1.f };
 	const glm::vec3 BLACK = { 0.f, 0.f, 0.f };
+	const glm::vec4 GRAY = { 0.5f, 0.5f, 0.5f, 1.f };
 }
 
 static const float SCALE_FACTOR = 25.f;

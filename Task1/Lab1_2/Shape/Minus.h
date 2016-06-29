@@ -3,7 +3,7 @@
 #include "CShape.h"
 #include "CHavePosition.h"
 
-static const glm::vec3 NEGATIVE_COLOR = { 0.f, 0.f, 1.f };
+static const glm::vec3 NEGATIVE_COLOR = { 0.f, 0.f, 7.f };
 
 static const float WIDTH_SIGN = 5.f;
 static const float HEIGHT_SIGN = 25.f;
