@@ -10,6 +10,8 @@
 
 class IDrawable
 {
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	virtual ~IDrawable() = default;
 
@@ -17,6 +19,6 @@ public:
 
 	// TODO: Redefine in heir after CDrawable \/
 	virtual void			Redraw() const = 0;
-	virtual bool			HitTest(const glm::vec2 &point) const = 0;// TODO : might will be neccessary
-
+	virtual bool			HitTest(const glm::vec2 &point) const = 0;
+//////////////////////////////////////////////////////////////////////
 };

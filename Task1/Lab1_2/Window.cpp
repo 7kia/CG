@@ -41,7 +41,6 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 	m_shedule.Redraw();	
 }
 
-///*
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
 	auto flowers = boost::adaptors::reverse(m_shedule.m_particles);
@@ -72,8 +71,6 @@ void CWindow::OnDragEnd(const glm::vec2 &pos)
         m_draggingParticle = nullptr;
     }
 }
-
-//*/
 
 void CWindow::SetupView(const glm::ivec2 &size)
 {

@@ -4,6 +4,8 @@
 
 class IShape
 {
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	virtual ~IShape() = default;
 
@@ -12,5 +14,5 @@ public:
 
 	virtual void			SetOrigin(const glm::vec2 & origin) = 0;
 	virtual glm::vec2		GetOrigin() const = 0;
-
+//////////////////////////////////////////////////////////////////////
 };

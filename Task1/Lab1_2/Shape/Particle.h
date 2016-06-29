@@ -16,12 +16,14 @@ class CParticle final
 public:
 	CParticle();
 	CParticle(const glm::vec2 &position, bool isNegative = false);
-
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
+	//--------------------------------------------
 	// IShape
 	void		Redraw() const override;
 	bool		HitTest(const glm::vec2 &point) const override;
-	//
+	//--------------------------------------------
 
 	void		SetPosition(const glm::vec2 &position) override;
 	void		SetPosition(float x, float y) override;
@@ -30,19 +32,23 @@ public:
 
 	void		SetSign(bool isNegative);
 	bool		GetSign() const;
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 private:
 	void		ChangeColor();
 	void		StrokeCircle() const;
 	void		FillCircle() const;
 
 	void		DefineCenterSign();
-	// Constants
+//////////////////////////////////////////////////////////////////////
+// Constants
 private:
 	static const int AMOUNT_POINTS = 360;
-	// Data
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
 	std::unique_ptr<CShape>	m_shapeSign;// for draw plus and minus
 
 	bool		m_isNegative = false;
+//////////////////////////////////////////////////////////////////////
 };

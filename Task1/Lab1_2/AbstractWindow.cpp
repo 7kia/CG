@@ -18,7 +18,9 @@ public:
         : m_lastTime(std::chrono::system_clock::now())
     {
     }
-
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
     float GrabDeltaTime()
     {
         auto newTime = std::chrono::system_clock::now();
@@ -26,10 +28,13 @@ public:
         m_lastTime = newTime;
         return 0.001f * float(timePassed.count());
     }
-
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
     std::chrono::system_clock::time_point m_lastTime;
+//////////////////////////////////////////////////////////////////////
 };
+
 }
 
 class CAbstractWindow::Impl
@@ -40,7 +45,9 @@ public:
         , m_pGLContext(nullptr, SDL_GL_DeleteContext)
     {
     }
-
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
     void Show(glm::ivec2 const& size)
     {
         m_size = size;
@@ -139,7 +146,8 @@ public:
         }
         return consumed;
     }
-
+//////////////////////////////////////////////////////////////////////
+// Methods
 protected:
     void OnWindowEvent(const SDL_WindowEvent &event)
     {
@@ -161,12 +169,15 @@ protected:
             }
         });
     }
-
+//////////////////////////////////////////////////////////////////////
+// Data
+protected:
     SDLWindowPtr m_pWindow;
     SDLGLContextPtr m_pGLContext;
     glm::ivec2 m_size;
     glm::vec4 m_clearColor;
     bool m_isTerminated = false;
+//////////////////////////////////////////////////////////////////////
 };
 
 CAbstractWindow::CAbstractWindow()
@@ -202,9 +213,11 @@ void CAbstractWindow::DoGameLoop()
         }
         // Очистка буфера кадра, обновление и рисование сцены, вывод буфера кадра.
         m_pImpl->Clear();
+
         const float deltaSeconds = chronometer.GrabDeltaTime();
         OnUpdateWindow(deltaSeconds);
         OnDrawWindow(m_pImpl->GetWindowSize());
+
         m_pImpl->DumpGLErrors();
         m_pImpl->SwapBuffers();
     }

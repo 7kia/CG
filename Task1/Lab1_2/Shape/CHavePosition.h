@@ -4,6 +4,8 @@
 
 class IHavePosition
 {
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	virtual ~IHavePosition() = default;
 
@@ -12,7 +14,7 @@ public:
 	virtual glm::vec2			GetPosition() const = 0;
 
 	virtual glm::vec2			GetAbsolutePosition(const glm::vec2 & origin) const = 0;
-
+//////////////////////////////////////////////////////////////////////
 };
 
 class CHavePosition
@@ -21,6 +23,8 @@ class CHavePosition
 public:
 	CHavePosition();
 	virtual ~CHavePosition() = default;
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 
 	void				SetPosition(const glm::vec2 & position);
@@ -28,7 +32,9 @@ public:
 	glm::vec2			GetPosition() const;
 
 	glm::vec2			GetAbsolutePosition(const glm::vec2 & origin) const;
-
-protected:// see might need protected
+//////////////////////////////////////////////////////////////////////
+// Data
+protected:
 	glm::vec2			m_position;
+//////////////////////////////////////////////////////////////////////
 };

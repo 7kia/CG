@@ -15,7 +15,7 @@ CParticle::CParticle() : CShape()
 
 CParticle::CParticle(const glm::vec2 &position, bool isNegative)
 {
-	SetPosition(m_position);
+	SetPosition(position);
 	SetOrigin(m_origin);
 	SetSign(isNegative);
 }
@@ -23,21 +23,10 @@ CParticle::CParticle(const glm::vec2 &position, bool isNegative)
 
 void CParticle::Redraw() const
 {
-	// Модифицируем Model-View матрицу,
-	// теперь она задаёт перемещение на вектор (x, y, 0)
-	glm::vec3 offset = { m_position.x, m_position.y, 0.f };
-	glm::mat4 transform = glm::translate(glm::mat4(), offset);
-	// Сохраняем старую матрицу в стек матриц драйвера
-	//glPushMatrix();
-	//glLoadMatrixf(glm::value_ptr(transform));
-
 	FillCircle();
 	StrokeCircle();
 
 	m_shapeSign->Redraw();
-
-	// Извлекаем старую матрицу из стека матриц драйвера
-	//glPopMatrix();
 }
 
 void CParticle::ChangeColor()

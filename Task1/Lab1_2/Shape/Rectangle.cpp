@@ -22,7 +22,7 @@ CRectangle::CRectangle(const glm::vec2 & leftTopPoint
 	SetHeight(height);
 	SetPosition(leftTopPoint);
 
-	SetOutlineColor(outlineColor);// TODO : error if in list initialization
+	SetOutlineColor(outlineColor);
 	SetWidth(width);
 	SetHeight(height);
 }
