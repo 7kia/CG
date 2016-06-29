@@ -76,6 +76,12 @@ void CParticle::FillCircle() const
 	glEnd();
 }
 
+void CParticle::DrawPlus() const
+{
+
+
+}
+
 bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 {
 	(void)point;

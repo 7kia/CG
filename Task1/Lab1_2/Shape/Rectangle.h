@@ -1,9 +1,11 @@
 #pragma once
 
 #include "CShape.h"
+#include "CHavePosition.h"
 
 class CRectangle final// was exported from third lab by OOP
 	: public CShape
+	, public CHavePosition
 	, private boost::noncopyable
 
 {
@@ -22,10 +24,6 @@ public:
 	bool		HitTest(const glm::vec2 &point) const override;
 	//
 
-	void				SetLeftTopPoint(const glm::vec2 & leftTopPoint);
-	void				SetLeftTopPoint(float x, float y);
-	glm::vec2			GetLeftTopPoint() const;
-
 	void				SetWidth(float width);
 	float				GetWidth() const;
 
@@ -35,6 +33,7 @@ public:
 	void				SetRotate(float angle);
 	float				GetRotate() const;
 private:
-	SIntRect			m_rect;
+	float				m_width;
+	float				m_height;
 	float				m_rotation = 0;
 };
