@@ -24,13 +24,22 @@ CWindow::CWindow()
 		m_shedule.AddParcticle(std::move(pParcticle));
 	}
 
+	auto pEmitter = std::make_unique<CParticleEmitter>();
+	pEmitter->SetPosition({ 0, 600 });
+	pEmitter->SetAngleRange(0.7f * float(M_PI), 0.9f * float(M_PI));
+	pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
+	pEmitter->SetLifetimeRange(10.f, 20.f);
+	pEmitter->SetRadiusRange(40.f, 75.f);
+	pEmitter->SetSpeedRange(8.f, 15.f);
+	m_system.SetEmitter(std::move(pEmitter));
+
     SetBackgroundColor(Colors::GRAY);
 }
 
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
-    (void)deltaSeconds;
+	m_system.Advance(deltaSeconds);
 }
 
 void CWindow::OnDrawWindow(const glm::ivec2 &size)
@@ -39,6 +48,9 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 	m_shedule.SetSize(size.x, size.y);
 	m_shedule.Redraw();	
+
+	m_system.Draw();
+
 }
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)

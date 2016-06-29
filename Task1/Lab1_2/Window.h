@@ -3,8 +3,8 @@
 #include "Shedule/Shedule.h"
 #include "Shape/Rectangle.h"
 
-#include "Shape/Minus.h"
-#include "Shape/Particle.h"
+#include "Shedule/ParticleSystem.h"
+
 #include <vector>
 
 static const unsigned int WINDOW_WIDTH = 800;
@@ -31,7 +31,12 @@ protected:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-    void									SetupView(const glm::ivec2 &size);
+	void									SetupView(const glm::ivec2 &size);
+//////////////////////////////////////////////////////////////////////
+// Methods
+private:
+
+	CParticleSystem							m_system;
 
     CShedule								m_shedule;
 	CParticle*								m_draggingParticle = nullptr;

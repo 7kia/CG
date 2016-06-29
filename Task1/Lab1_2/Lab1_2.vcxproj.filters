@@ -69,6 +69,9 @@
     <ClInclude Include="Shape\Plus.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shedule\ParticleSystem.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="Shape\Plus.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\ParticleSystem.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

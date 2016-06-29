@@ -8,7 +8,7 @@
 
 static const glm::vec3 INSIDE_COLOR = { 0.f, 0.f, 0.f };
 
-class CParticle final
+class CParticle
 	: public CShape
 	, private boost::noncopyable
 
