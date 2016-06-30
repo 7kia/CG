@@ -35,11 +35,33 @@ void CParticleSystem::Advance(float dt)
     {
         pParticle->Advance(dt, GRAVITY);
     }
+
+	do
+	{
+		auto newEnd = std::remove_if(m_particles.begin(), m_particles.end(), [&](const auto &pParticle) {
+			return CheckExitFromBorder(pParticle->GetAbsolutePosition(pParticle->GetOrigin()));
+		});
+
+		/////////////////////////////////
+		// Если перетаскиваемая частица выходит зв границы очищаем указатель на неё
+		if (newEnd != m_particles.end())
+		{
+			if (m_draggingParticle == newEnd->get())
+			{
+				m_draggingParticle = nullptr;
+			}
+
+		}
+		else
+		{
+			break;
+		}
+
+		/////////////////////////////////
+		m_particles.erase(newEnd, m_particles.end());
+	} while (true);
     // Удаляем вышедшие за экран частицы
-    auto newEnd = std::remove_if(m_particles.begin(), m_particles.end(), [&](const auto &pParticle) {
-        return CheckExitFromBorder(pParticle->GetAbsolutePosition(pParticle->GetOrigin()));
-    });
-    m_particles.erase(newEnd, m_particles.end());
+   
 }
 
 void CParticleSystem::Draw() const

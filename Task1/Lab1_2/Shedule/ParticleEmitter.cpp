@@ -6,7 +6,7 @@ CParticleEmitter::CParticleEmitter()
 	std::random_device rd;
 	m_random.seed(rd());
 
-	srand(time(NULL));
+	srand(time(nullptr));
 }
 
 

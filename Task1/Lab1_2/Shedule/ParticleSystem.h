@@ -35,6 +35,7 @@ private:
 // Data
 public:
 	std::vector<std::unique_ptr<CDynamicParticle>>	m_particles;
+	CDynamicParticle*								m_draggingParticle = nullptr;
 	//////////////////////////////////////////////////////////////////////
 // Data
 private:

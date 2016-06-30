@@ -37,7 +37,6 @@ private:
 private:
     CShedule								m_shedule;
 
-	CDynamicParticle*						m_draggingParticle;
     glm::vec2								m_dragOffset;
 //////////////////////////////////////////////////////////////////////
 };

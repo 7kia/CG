@@ -36,26 +36,31 @@ void CWindow::OnDragBegin(const glm::vec2 &pos)
 	});
 	if (it != flowers.end())
 	{
-		m_draggingParticle = it->get();
-		m_dragOffset = pos - m_draggingParticle->GetPosition();
+		m_shedule.GetParticleSystem().m_draggingParticle = it->get();
+		m_dragOffset = pos - m_shedule.GetParticleSystem().m_draggingParticle->GetPosition();
+	}
+	else
+	{
+		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
+
 	}
 
 }
 
 void CWindow::OnDragMotion(const glm::vec2 &pos)
 {
-    if (m_draggingParticle)
+    if (m_shedule.GetParticleSystem().m_draggingParticle)
     {
-        m_draggingParticle->SetPosition(pos - m_dragOffset);
+		m_shedule.GetParticleSystem().m_draggingParticle->SetPosition(pos - m_dragOffset);
     }
 }
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
-    if (m_draggingParticle)
+    if (m_shedule.GetParticleSystem().m_draggingParticle)
     {
-        m_draggingParticle->SetPosition(pos - m_dragOffset);
-        m_draggingParticle = nullptr;
+		m_shedule.GetParticleSystem().m_draggingParticle->SetPosition(pos - m_dragOffset);
+		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
     }
 }
 
