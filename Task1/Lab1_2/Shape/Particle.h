@@ -8,6 +8,12 @@
 
 static const glm::vec3 INSIDE_COLOR = { 0.f, 0.f, 0.f };
 
+namespace DEFAULT_PARTICLE
+{
+	const float	RADIUSE = 25.f;
+	const float	THIKNESS = 4.f;
+}
+
 class CParticle
 	: public CShape
 	, private boost::noncopyable

@@ -5,6 +5,8 @@ void CDynamicParticle::Advance(float dt, const glm::vec2 &acceleration)
 {
 	m_velocity += dt * acceleration;
 	SetPosition(m_velocity + GetPosition());
+
+	m_velocity = glm::vec2();
 }
 
 glm::vec2 CDynamicParticle::GetVelocity() const

@@ -30,11 +30,11 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	auto flowers = boost::adaptors::reverse(m_shedule.GetParticleSystem().m_particles);
-	auto it = boost::find_if(flowers, [&](const auto &pFlower) {
+	auto particles = boost::adaptors::reverse(m_shedule.GetParticleSystem().m_particles);
+	auto it = boost::find_if(particles, [&](const auto &pFlower) {
 		return pFlower->HitTest(pos);
 	});
-	if (it != flowers.end())
+	if (it != particles.end())
 	{
 		m_shedule.GetParticleSystem().m_draggingParticle = it->get();
 		m_dragOffset = pos - m_shedule.GetParticleSystem().m_draggingParticle->GetPosition();
@@ -42,7 +42,6 @@ void CWindow::OnDragBegin(const glm::vec2 &pos)
 	else
 	{
 		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
-
 	}
 
 }

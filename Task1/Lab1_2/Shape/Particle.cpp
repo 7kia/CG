@@ -1,12 +1,6 @@
 #include "stdafx.h"
 #include "Particle.h"
 
-namespace DEFAULT_PARTICLE
-{
-	const float	RADIUSE = 25.f;
-	const float	THIKNESS = 4.f;
-}
-
 
 CParticle::CParticle() : CShape()
 {

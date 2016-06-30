@@ -4,6 +4,13 @@
 #include "NormalDistribution.h"
 #include "ParticleEmitter.h"
 
+static const float ELECTRIC_CONSTANT = 8.f;//8,85418781762·10−12 слишком мала для расчётов
+static const float K_IN_COULOMB_LAW = 1.f / (4 * M_PI * ELECTRIC_CONSTANT);
+static const float MIN_POWER_FOR_INTERACTION = 0.00000625f;
+static const float ELECTRON_MASSA = 1.f;
+static const float PROTON_MASSA = 1.f;
+
+
 class CParticleSystem
 {
 public:
@@ -23,7 +30,7 @@ public:
 
 	void											SetPosition(const glm::vec2 & position);
 
-
+	void											ProcessCollisions();
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
@@ -31,6 +38,15 @@ private:
 	size_t											GetMaxAmountParticles();
 
 	bool											CheckExitFromBorder(const glm::vec2 & particlePosition);
+
+
+	//
+	float											GetPower(std::unique_ptr<CDynamicParticle> & first
+															, std::unique_ptr<CDynamicParticle> & second);
+
+	float											GetChargeParticle(bool sign);
+	float											GetAccelerationParticle(bool sign, float power);
+
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
