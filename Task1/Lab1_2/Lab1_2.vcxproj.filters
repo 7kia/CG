@@ -72,6 +72,15 @@
     <ClInclude Include="Shedule\ParticleSystem.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
+    <ClInclude Include="Shedule\DynamicParticle.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\ParticleEmitter.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\NormalDistribution.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -115,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="Shedule\ParticleSystem.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\DynamicParticle.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\ParticleEmitter.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

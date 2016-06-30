@@ -6,12 +6,13 @@
 CWindow::CWindow()
 	: m_shedule(WINDOW_WIDTH, WINDOW_HEIGTH)
 {
+	const glm::vec2 CENTER_WINODOW = glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f);
 	{
 		auto pParcticle = std::make_unique<CParticle>();
 
 		pParcticle->SetSign(true);
 
-		pParcticle->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
+		pParcticle->SetOrigin(CENTER_WINODOW);
 		pParcticle->SetPosition(glm::vec2(0.f, 0.f));
 		m_shedule.AddParcticle(std::move(pParcticle));
 	}
@@ -19,18 +20,18 @@ CWindow::CWindow()
 		auto pParcticle = std::make_unique<CParticle>();
 
 		pParcticle->SetSign(false);
-		pParcticle->SetOrigin(glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f));
+		pParcticle->SetOrigin(CENTER_WINODOW);
 		pParcticle->SetPosition(glm::vec2(100.f, 50.f));
 		m_shedule.AddParcticle(std::move(pParcticle));
 	}
 
 	auto pEmitter = std::make_unique<CParticleEmitter>();
-	pEmitter->SetPosition({ 0, 600 });
-	pEmitter->SetAngleRange(0.7f * float(M_PI), 0.9f * float(M_PI));
-	pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
-	pEmitter->SetLifetimeRange(10.f, 20.f);
-	pEmitter->SetRadiusRange(40.f, 75.f);
-	pEmitter->SetSpeedRange(8.f, 15.f);
+	pEmitter->SetPosition(CENTER_WINODOW);
+    pEmitter->SetAngleRange(0.7f * float(M_PI), 0.9f * float(M_PI));
+    pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
+    pEmitter->SetLifetimeRange(3.f, 8.f);
+	pEmitter->SetRadiusRange(200.f, 600.f);
+	pEmitter->SetSpeedRange(80.f, 150.f);
 	m_system.SetEmitter(std::move(pEmitter));
 
     SetBackgroundColor(Colors::GRAY);
