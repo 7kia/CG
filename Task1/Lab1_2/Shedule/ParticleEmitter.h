@@ -2,6 +2,7 @@
 
 #include "DynamicParticle.h"
 #include "NormalDistribution.h"
+#include <time.h>       /* time */
 
 class CParticleEmitter
 {
@@ -11,18 +12,19 @@ public:
 	CParticleEmitter();
 
 	// @param dt - разница во времени с предыдущим вызовом Advance.
-	void								Advance(float dt);
-	bool								IsEmitReady()const;
 	std::unique_ptr<CDynamicParticle>	Emit();
 
-	void								SetPosition(const glm::vec2 &value);
+	void								SetPlaceSize(const glm::vec2 &value);
+	glm::vec2							GetPlaceSize() const;
 
-	void								SetLifetimeRange(float minValue, float maxValue);
-	void								SetRadiusRange(float minValue, float maxValue);
+	void								SetPosition(const glm::vec2 &value);
+	glm::vec2							GetPosition() const;
 
 	void								SetEmitIntervalRange(float minValue, float maxValue);
-	void								SetSpeedRange(float minValue, float maxValue);
 	void								SetAngleRange(float minValue, float maxValue);
+
+	void								SetXPositionRange(float xMin, float xMax);
+	void								SetYPositionRange(float yMin, float yMax);
 	//////////////////////////////////////////////////////////////////////
 	// Using
 private:
@@ -32,16 +34,13 @@ private:
 	//////////////////////////////////////////////////////////////////////
 	// Data
 private:
-
-	float								m_elapsedSeconds = 0;
-	float								m_nextEmitTime = 0;
 	glm::vec2							m_position;
+	glm::vec2							m_placeSize;
 
-	normal_random_float					m_lifetimeRange;
-	linear_random_float					m_radiusRange;
+	normal_random_float					m_xRange;
+	normal_random_float					m_yRange;
 
 	normal_random_float					m_emitIntervalRange;
-	normal_random_float					m_speedRange;
 	normal_random_float					m_angleRange;
 
 	std::mt19937						m_random;

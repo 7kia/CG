@@ -16,15 +16,12 @@ public:
 	// @param dt - разница во времени с предыдущим вызовом Advance.
 	// @param acceleration - ускорение, действующее на частицу.
 	void		Advance(float dt, const glm::vec2 &acceleration);
-	bool		IsAlive()const;
 
 	glm::vec2	GetVelocity() const;
 	void		SetVelocity(const glm::vec2 &GetVelocity);
-	void		SetLifetime(float lifetime);
 	//////////////////////////////////////////////////////////////////////
 	// Data
 private:
 	glm::vec2	m_velocity;
-	float		m_lifetime = 0;
 	//////////////////////////////////////////////////////////////////////
 };

@@ -5,36 +5,41 @@ CParticleEmitter::CParticleEmitter()
 {
 	std::random_device rd;
 	m_random.seed(rd());
+
+	srand(time(NULL));
 }
 
-void CParticleEmitter::Advance(float dt)
-{
-	m_elapsedSeconds += dt;
-}
-
-bool CParticleEmitter::IsEmitReady() const
-{
-	return m_elapsedSeconds > m_nextEmitTime;
-}
 
 std::unique_ptr<CDynamicParticle> CParticleEmitter::Emit()
 {
 	auto pParticle = std::make_unique<CDynamicParticle>();
 
-	// ќпредел€ем врем€ по€влени€ следующей частицы.
-	m_elapsedSeconds -= m_nextEmitTime;
-	m_nextEmitTime = m_emitIntervalRange(m_random);
-
-	const float speed = m_speedRange(m_random);
 	const float angle = m_angleRange(m_random);
 
-	const glm::vec2 velocity = { speed * sinf(angle), speed * cosf(angle) };
+	bool sign = bool(rand() % 2);
+	pParticle->SetSign(sign);
 
-	pParticle->SetLifetime(m_lifetimeRange(m_random));
-	pParticle->SetVelocity(velocity);
+
+	float x = m_xRange(m_random);
+	float y = m_yRange(m_random);
 	pParticle->SetOrigin(m_position);
+	pParticle->SetPosition(x, y);
 
 	return pParticle;
+}
+
+void CParticleEmitter::SetPlaceSize(const glm::vec2 & value)
+{
+	m_placeSize = value;
+
+	SetXPositionRange(0.f, m_placeSize.x);
+	SetYPositionRange(0.f, m_placeSize.y);
+
+}
+
+glm::vec2 CParticleEmitter::GetPlaceSize() const
+{
+	return m_placeSize;
 }
 
 void CParticleEmitter::SetPosition(const glm::vec2 &value)
@@ -42,14 +47,9 @@ void CParticleEmitter::SetPosition(const glm::vec2 &value)
 	m_position = value;
 }
 
-void CParticleEmitter::SetLifetimeRange(float minValue, float maxValue)
+glm::vec2 CParticleEmitter::GetPosition() const
 {
-	m_lifetimeRange.param(minValue, maxValue);
-}
-
-void CParticleEmitter::SetRadiusRange(float minValue, float maxValue)
-{
-	m_radiusRange.param(linear_random_float::param_type(minValue, maxValue));
+	return m_position;
 }
 
 void CParticleEmitter::SetEmitIntervalRange(float minValue, float maxValue)
@@ -57,12 +57,17 @@ void CParticleEmitter::SetEmitIntervalRange(float minValue, float maxValue)
 	m_emitIntervalRange.param(minValue, maxValue);
 }
 
-void CParticleEmitter::SetSpeedRange(float minValue, float maxValue)
-{
-	m_speedRange.param(minValue, maxValue);
-}
-
 void CParticleEmitter::SetAngleRange(float minValue, float maxValue)
 {
 	m_angleRange.param(minValue, maxValue);
+}
+
+void CParticleEmitter::SetXPositionRange(float xMin, float xMax)
+{
+	m_xRange.param(xMin, xMax);
+}
+
+void CParticleEmitter::SetYPositionRange(float yMin, float yMax)
+{
+	m_yRange.param(yMin, yMax);
 }

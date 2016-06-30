@@ -22,14 +22,23 @@ public:
 	void											Redraw() const;
 
 	void											SetPosition(const glm::vec2 & position);
-//////////////////////////////////////////////////////////////////////
-// Methods
-public:
-    std::vector<std::unique_ptr<CDynamicParticle>>	m_particles;
+
 
 //////////////////////////////////////////////////////////////////////
+// Methods
+private:
+	void											SetMaxAmountParticles(size_t amount);
+	size_t											GetMaxAmountParticles();
+
+	bool											CheckExitFromBorder(const glm::vec2 & particlePosition);
+//////////////////////////////////////////////////////////////////////
+// Data
+public:
+	std::vector<std::unique_ptr<CDynamicParticle>>	m_particles;
+	//////////////////////////////////////////////////////////////////////
 // Data
 private:
     std::unique_ptr<CParticleEmitter>				m_pEmitter;
+	size_t											m_maxAmountParticles = 2;
 //////////////////////////////////////////////////////////////////////
 };

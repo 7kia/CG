@@ -7,23 +7,7 @@ CWindow::CWindow()
 	: m_shedule(WINDOW_WIDTH, WINDOW_HEIGTH)
 {
 	const glm::vec2 CENTER_WINODOW = glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f);
-	{
-		auto pParcticle = std::make_unique<CDynamicParticle>();
-
-		pParcticle->SetSign(true);
-
-		pParcticle->SetOrigin(CENTER_WINODOW);
-		pParcticle->SetPosition(glm::vec2(0.f, 0.f));
-		m_shedule.AddParcticle(std::move(pParcticle));
-	}
-	{
-		auto pParcticle = std::make_unique<CDynamicParticle>();
-
-		pParcticle->SetSign(false);
-		pParcticle->SetOrigin(CENTER_WINODOW);
-		pParcticle->SetPosition(glm::vec2(100.f, 50.f));
-		m_shedule.AddParcticle(std::move(pParcticle));
-	}
+	
 
     SetBackgroundColor(Colors::GRAY);
 }

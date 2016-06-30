@@ -76,11 +76,10 @@ void CShedule::CreateSystem()
 {
 	auto pEmitter = std::make_unique<CParticleEmitter>();
 	pEmitter->SetPosition(glm::vec2(m_windowWidth / 2.f, m_windowHeigth / 2.f));
+	pEmitter->SetPlaceSize(glm::vec2(m_windowWidth, m_windowHeigth));
+
 	pEmitter->SetAngleRange(-2.f * float(M_PI), 2.f * float(M_PI));
 	pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
-	pEmitter->SetLifetimeRange(3.f, 8.f);
-	pEmitter->SetRadiusRange(-200.f, 200.f);
-	pEmitter->SetSpeedRange(2.f, 6.f);
 
 	m_system.SetEmitter(std::move(pEmitter));
 }
