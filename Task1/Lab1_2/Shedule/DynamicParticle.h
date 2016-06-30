@@ -5,7 +5,7 @@
 // For one constant not need
 //namespace
 //{
-	const glm::vec2 GRAVITY = { 0.f, 9.f };
+	const glm::vec2 GRAVITY = { 0.f, 0.f };
 //}
 
 class CDynamicParticle : public CParticle

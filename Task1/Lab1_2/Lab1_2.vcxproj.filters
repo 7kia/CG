@@ -129,7 +129,7 @@
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
     <ClCompile Include="Shedule\ParticleEmitter.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

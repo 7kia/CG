@@ -32,18 +32,19 @@ public:
 	//--------------------------------------------
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddParcticle(std::unique_ptr<CParticle> graph);
+	void		AddParcticle(std::unique_ptr<CDynamicParticle> graph);
 
 	//--------------------------------------------
 	// ParticleSystem
-	void		Advance(float dt);
-	void		CreateSystem();
+	void										Advance(float dt);
+	void										CreateSystem();
+
+	CParticleSystem&							GetParticleSystem();
 	//--------------------------------------------
 
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<std::unique_ptr<CParticle>>	m_particles;
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:

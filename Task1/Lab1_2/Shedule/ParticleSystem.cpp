@@ -13,6 +13,11 @@ void CParticleSystem::SetEmitter(std::unique_ptr<CParticleEmitter> &&pEmitter)
     m_pEmitter = std::move(pEmitter);
 }
 
+void CParticleSystem::AddParticles(std::unique_ptr<CDynamicParticle> particle)
+{
+	m_particles.push_back(std::move(particle));
+}
+
 void CParticleSystem::Advance(float dt)
 {
     // Генерируем новые частицы
@@ -47,5 +52,15 @@ void CParticleSystem::Redraw() const
 	for (const auto & particle : m_particles)
 	{
 		particle->Redraw();
+	}
+}
+
+void CParticleSystem::SetPosition(const glm::vec2 & position)
+{
+	m_pEmitter->SetPosition(position);
+
+	for (auto & particle : m_particles)
+	{
+		particle->SetOrigin(position);
 	}
 }

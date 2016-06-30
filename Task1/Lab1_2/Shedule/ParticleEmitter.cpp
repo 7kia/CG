@@ -32,7 +32,7 @@ std::unique_ptr<CDynamicParticle> CParticleEmitter::Emit()
 
 	pParticle->SetLifetime(m_lifetimeRange(m_random));
 	pParticle->SetVelocity(velocity);
-	pParticle->SetPosition(m_position);
+	pParticle->SetOrigin(m_position);
 
 	return pParticle;
 }

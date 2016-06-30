@@ -8,7 +8,7 @@ CWindow::CWindow()
 {
 	const glm::vec2 CENTER_WINODOW = glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f);
 	{
-		auto pParcticle = std::make_unique<CParticle>();
+		auto pParcticle = std::make_unique<CDynamicParticle>();
 
 		pParcticle->SetSign(true);
 
@@ -17,7 +17,7 @@ CWindow::CWindow()
 		m_shedule.AddParcticle(std::move(pParcticle));
 	}
 	{
-		auto pParcticle = std::make_unique<CParticle>();
+		auto pParcticle = std::make_unique<CDynamicParticle>();
 
 		pParcticle->SetSign(false);
 		pParcticle->SetOrigin(CENTER_WINODOW);
@@ -46,7 +46,7 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	auto flowers = boost::adaptors::reverse(m_shedule.m_particles);
+	auto flowers = boost::adaptors::reverse(m_shedule.GetParticleSystem().m_particles);
 	auto it = boost::find_if(flowers, [&](const auto &pFlower) {
 		return pFlower->HitTest(pos);
 	});

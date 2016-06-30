@@ -27,7 +27,7 @@ void CShedule::Draw() const
 		pShape->Draw();
 	}
 
-	for (const auto &pShape : m_particles)
+	for (const auto &pShape : m_system.m_particles)
 	{
 		pShape->Draw();
 	}
@@ -42,7 +42,7 @@ void CShedule::Redraw() const
 		pShape->Redraw();
 	}
 
-	for (auto & graph : m_particles)
+	for (auto & graph : m_system.m_particles)
 	{
 		graph->Redraw();
 	}
@@ -59,16 +59,12 @@ void CShedule::SetSize(unsigned int width, unsigned int height)
 	m_windowWidth = float(width);
 	m_windowHeigth = float(height);
 
-
-	for (auto & graph : m_particles)
-	{
-		graph->SetOrigin(glm::vec2(width / 2.f, height / 2.f));
-	}
+	m_system.SetPosition(glm::vec2(width / 2.f, height / 2.f));
 }
 
-void CShedule::AddParcticle(std::unique_ptr<CParticle> graph)
+void CShedule::AddParcticle(std::unique_ptr<CDynamicParticle> graph)
 {
-	m_particles.push_back(std::move(graph));
+	m_system.AddParticles(std::move(graph));
 }
 
 void CShedule::Advance(float dt)
@@ -80,11 +76,16 @@ void CShedule::CreateSystem()
 {
 	auto pEmitter = std::make_unique<CParticleEmitter>();
 	pEmitter->SetPosition(glm::vec2(m_windowWidth / 2.f, m_windowHeigth / 2.f));
-	pEmitter->SetAngleRange(0.7f * float(M_PI), 0.9f * float(M_PI));
+	pEmitter->SetAngleRange(-2.f * float(M_PI), 2.f * float(M_PI));
 	pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
 	pEmitter->SetLifetimeRange(3.f, 8.f);
-	pEmitter->SetRadiusRange(200.f, 600.f);
-	pEmitter->SetSpeedRange(80.f, 150.f);
+	pEmitter->SetRadiusRange(-200.f, 200.f);
+	pEmitter->SetSpeedRange(2.f, 6.f);
 
 	m_system.SetEmitter(std::move(pEmitter));
+}
+
+CParticleSystem & CShedule::GetParticleSystem()
+{
+	return m_system;
 }
