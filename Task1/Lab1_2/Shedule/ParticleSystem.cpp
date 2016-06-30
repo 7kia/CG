@@ -99,8 +99,8 @@ void CParticleSystem::ProcessCollisions()
 	{
 		for (auto & secondParticle : m_particles)
 		{
-			//if (firstParticle != secondParticle)
-			//{
+			if (firstParticle != secondParticle)
+			{
 				bool firstSign = firstParticle->GetSign();
 				bool secondSign = secondParticle->GetSign();
 
@@ -109,6 +109,8 @@ void CParticleSystem::ProcessCollisions()
 
 				glm::vec2 vectorDistance = firstParticle->GetPosition() - secondParticle->GetPosition();
 				float distance = glm::length(vectorDistance);
+
+				MIN_DISTANCE;
 
 				vectorDistance = glm::normalize(vectorDistance);
 				if ((power != std::numeric_limits<float>::infinity())
@@ -123,7 +125,11 @@ void CParticleSystem::ProcessCollisions()
 						secondAcceleration *= -1.f;
 					}
 					// Particles with diferint attraction
-					else if (firstSign != secondSign)
+					else if (firstSign == secondSign)
+					{
+						secondAcceleration *= -1.f;
+					}
+					else
 					{
 						firstAcceleration *= -1.f;
 					}
@@ -133,7 +139,7 @@ void CParticleSystem::ProcessCollisions()
 					secondParticle->SetVelocity(vectorDistance * secondAcceleration);
 
 				}
-			//}
+			}
 		}
 	}
 		
@@ -175,7 +181,7 @@ float CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
 	float distance = glm::length(vectorDistance);
 	power /= distance;// *distance;
 
-	return power;
+	return abs(power);
 }
 
 float CParticleSystem::GetChargeParticle(bool sign)
