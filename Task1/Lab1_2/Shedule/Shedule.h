@@ -3,6 +3,7 @@
 #pragma once
 
 #include "../Shape/Particle.h"
+#include "ParticleSystem.h"
 
 #include <memory>
 #include <vector>
@@ -32,6 +33,13 @@ public:
 
 	void		SetSize(unsigned int width, unsigned int height);
 	void		AddParcticle(std::unique_ptr<CParticle> graph);
+
+	//--------------------------------------------
+	// ParticleSystem
+	void		Advance(float dt);
+	void		CreateSystem();
+	//--------------------------------------------
+
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
@@ -45,6 +53,7 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
+	CParticleSystem							m_system;
 	std::vector<std::shared_ptr<CShape>>	m_gui;
 
 	float									m_windowWidth = 0;

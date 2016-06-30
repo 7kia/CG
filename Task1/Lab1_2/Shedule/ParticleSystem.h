@@ -16,7 +16,8 @@ public:
 
     // @param dt - разница во времени с предыдущим вызовом Advance.
     void											Advance(float dt);
-    void											Draw();
+    void											Draw() const;
+	void											Redraw() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

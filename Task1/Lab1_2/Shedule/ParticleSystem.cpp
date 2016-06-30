@@ -34,10 +34,18 @@ void CParticleSystem::Advance(float dt)
     m_particles.erase(newEnd, m_particles.end());
 }
 
-void CParticleSystem::Draw()
+void CParticleSystem::Draw() const
 {
     for (const auto &pParticle : m_particles)
     {
         pParticle->Draw();
     }
+}
+
+void CParticleSystem::Redraw() const
+{
+	for (const auto & particle : m_particles)
+	{
+		particle->Redraw();
+	}
 }
