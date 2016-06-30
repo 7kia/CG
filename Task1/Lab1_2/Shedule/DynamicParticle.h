@@ -1,27 +1,23 @@
 #pragma once
 
 #include "../Shape/Particle.h"
-
+#include "CHaveVelocity.h"
 // For one constant not need
 //namespace
 //{
 	const glm::vec2 GRAVITY = { 0.f, 0.f };
 //}
 
-class CDynamicParticle : public CParticle
+class CDynamicParticle 
+	: public CHaveVelocity
+	, public CParticle
 {
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	// @param dt - разница во времени с предыдущим вызовом Advance.
 	// @param acceleration - ускорение, действующее на частицу.
-	void		Advance(float dt, const glm::vec2 &acceleration);
+	void		Advance(float dt);
 
-	glm::vec2	GetVelocity() const;
-	void		SetVelocity(const glm::vec2 &GetVelocity);
-	//////////////////////////////////////////////////////////////////////
-	// Data
-private:
-	glm::vec2	m_velocity;
-	//////////////////////////////////////////////////////////////////////
+	void		ApplyAcceleration(const glm::vec2 & acceleration);
 };

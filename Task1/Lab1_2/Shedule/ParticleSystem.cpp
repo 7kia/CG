@@ -36,7 +36,7 @@ void CParticleSystem::Advance(float dt)
     // Продвигаем частицы
     for (const auto &pParticle : m_particles)
     {
-        pParticle->Advance(dt, GRAVITY);
+        pParticle->Advance(dt);
     }
 
 	do
@@ -112,7 +112,6 @@ void CParticleSystem::ProcessCollisions()
 
 				MIN_DISTANCE;
 
-				vectorDistance = glm::normalize(vectorDistance);
 				if ((power != std::numeric_limits<float>::infinity())
 					&& (power > MIN_POWER_FOR_INTERACTION))
 				{
@@ -120,23 +119,24 @@ void CParticleSystem::ProcessCollisions()
 					float secondAcceleration = GetAccelerationParticle(secondSign, power);
 
 					// very near particles repel
-					if (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
+					// and particles with diferint attraction
+					if ( (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
+						|| (firstSign == secondSign))
 					{
-						secondAcceleration *= -1.f;
-					}
-					// Particles with diferint attraction
-					else if (firstSign == secondSign)
-					{
-						secondAcceleration *= -1.f;
+						secondAcceleration *= -2.f;
+						firstAcceleration *= 2.f;
 					}
 					else
 					{
 						firstAcceleration *= -1.f;
 					}
 
+					vectorDistance = glm::normalize(vectorDistance);
 					// TODO : See is correctly name SetVelocity
-					firstParticle->SetVelocity(vectorDistance * firstAcceleration);
-					secondParticle->SetVelocity(vectorDistance * secondAcceleration);
+					// ApplyAcceleration
+					// SetVelocity нет взаиодействия с нексолькими частицами
+					firstParticle->ApplyAcceleration(vectorDistance * firstAcceleration);
+					secondParticle->ApplyAcceleration(vectorDistance * secondAcceleration);
 
 				}
 			}

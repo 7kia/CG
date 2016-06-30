@@ -5,9 +5,9 @@
 #include "ParticleEmitter.h"
 
 static const float ELECTRIC_CONSTANT = 8.f;//8,85418781762·10−12 слишком мала для расчётов
-static const float K_IN_COULOMB_LAW = 1.f / (4 * M_PI * ELECTRIC_CONSTANT);
-static const float ELECTRON_MASSA = 0.01f;
-static const float PROTON_MASSA = 0.01f;
+static const float K_IN_COULOMB_LAW = 1.f / (4.f * float(M_PI) * ELECTRIC_CONSTANT);
+static const float ELECTRON_MASSA = 0.005f;
+static const float PROTON_MASSA = 0.005f;
 
 static const float MIN_DISTANCE = 6.f * DEFAULT_PARTICLE::RADIUSE;
 static const float MIN_POWER_FOR_INTERACTION = K_IN_COULOMB_LAW 
@@ -58,6 +58,6 @@ public:
 // Data
 private:
     std::unique_ptr<CParticleEmitter>				m_pEmitter;
-	size_t											m_maxAmountParticles = 2;
+	size_t											m_maxAmountParticles = 4;
 //////////////////////////////////////////////////////////////////////
 };

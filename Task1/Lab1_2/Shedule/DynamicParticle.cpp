@@ -1,20 +1,16 @@
 #include "stdafx.h"
 #include "DynamicParticle.h"
 
-void CDynamicParticle::Advance(float dt, const glm::vec2 &acceleration)
+void CDynamicParticle::Advance(float dt)
 {
-	m_velocity += dt * acceleration;
+	m_velocity += dt * m_acceleration * 1000.f;//
 	SetPosition(m_velocity + GetPosition());
 
 	m_velocity = glm::vec2();
+	m_acceleration = glm::vec2();
 }
 
-glm::vec2 CDynamicParticle::GetVelocity() const
+void CDynamicParticle::ApplyAcceleration(const glm::vec2 & acceleration)
 {
-	return m_velocity;
-}
-
-void CDynamicParticle::SetVelocity(const glm::vec2 &velocity)
-{
-	m_velocity = velocity;
+	m_acceleration += acceleration;
 }

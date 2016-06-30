@@ -24,7 +24,6 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 	m_shedule.SetSize(size.x, size.y);
 	m_shedule.Redraw();	
-	m_shedule.Draw();
 
 }
 

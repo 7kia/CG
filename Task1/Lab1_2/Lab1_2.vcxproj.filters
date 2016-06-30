@@ -81,6 +81,9 @@
     <ClInclude Include="Shedule\NormalDistribution.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Shedule\CHaveVelocity.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -129,6 +132,9 @@
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
     <ClCompile Include="Shedule\ParticleEmitter.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\CHaveVelocity.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
   </ItemGroup>
