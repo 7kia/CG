@@ -58,6 +58,6 @@ public:
 // Data
 private:
     std::unique_ptr<CParticleEmitter>				m_pEmitter;
-	size_t											m_maxAmountParticles = 4;
+	size_t											m_maxAmountParticles = 25;
 //////////////////////////////////////////////////////////////////////
 };
