@@ -1,27 +1,27 @@
 #include "stdafx.h"
-#include "Particle.h"
+#include "Ball.h"
 
 
 
-CParticle::CParticle() : CShape()
+CBall::CBall() : CShape()
 {
 }
 
-CParticle::CParticle(const glm::vec2 &position, bool isNegative)
+CBall::CBall(const glm::vec2 &position)
 {
 	SetPosition(position);
 	SetOrigin(m_origin);
 }
 
 
-void CParticle::Redraw() const
+void CBall::Redraw() const
 {
 	FillCircle();
 	StrokeCircle();
 }
 
 // Рисуем контур эллипса
-void CParticle::StrokeCircle() const
+void CBall::StrokeCircle() const
 {
 	const float step = float(2 * M_PI / AMOUNT_POINTS);
 
@@ -41,7 +41,7 @@ void CParticle::StrokeCircle() const
 }
 
 // Рисуем закрашенный эллипс
-void CParticle::FillCircle() const
+void CBall::FillCircle() const
 {
 	const float step = float(2 * M_PI) / AMOUNT_POINTS;
 
@@ -60,7 +60,7 @@ void CParticle::FillCircle() const
 	glEnd();
 }
 
-bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
+bool CBall::HitTest(const glm::vec2 & point) const
 {
 	glm::vec2 resultShift = GetCenterPosition(m_origin) - point;
 

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ParticleSystem.h"
+#include "PhysicalSystem.h"
 
 #include <limits>
 #include <algorithm>
@@ -13,9 +13,9 @@ bool IsBetween(T value, T min, T max)
 CPhysicalSystem::CPhysicalSystem() = default;
 CPhysicalSystem::~CPhysicalSystem() = default;
 
-void CPhysicalSystem::AddParticles(std::unique_ptr<CDynamicParticle> particle)
+void CPhysicalSystem::AddShape(std::unique_ptr<CDynamicBody> particle)
 {
-	m_particles.push_back(std::move(particle));
+	m_shapes.push_back(std::move(particle));
 }
 
 void CPhysicalSystem::Advance(float dt)
@@ -25,29 +25,31 @@ void CPhysicalSystem::Advance(float dt)
 
 	// TODO : gun add balls
     // За 1 кадр может появиться несколько новых частиц.
-    //while (m_particles.size() < m_maxAmountParticles)
-    //{
-        //m_particles.emplace_back(m_pEmitter->Emit());
-    //}
-    // Продвигаем частицы
-    for (const auto &pParticle : m_particles)
+    while (m_shapes.size() < m_maxAmountBalls)
     {
-        pParticle->Advance(dt);
+        m_shapes.emplace_back(std::make_unique<CDynamicBody>());
+    }
+
+	// TODO : rewrite
+    // Продвигаем частицы
+    for (const auto &pShape : m_shapes)
+    {
+       // pShape->Advance(dt);
     }
 
 	do
 	{
-		auto newEnd = std::remove_if(m_particles.begin(), m_particles.end(), [&](const auto &pParticle) {
-			return CheckExitFromBorder(pParticle->GetCenterPosition(pParticle->GetOrigin()));
+		auto newEnd = std::remove_if(m_shapes.begin(), m_shapes.end(), [&](const auto &pShape) {
+			return CheckExitFromBorder(pShape->GetCenterPosition(pShape->GetOrigin()));
 		});
 
 		/////////////////////////////////
 		// Если перетаскиваемая частица выходит зв границы очищаем указатель на неё
-		if (newEnd != m_particles.end())
+		if (newEnd != m_shapes.end())
 		{
-			if (m_draggingParticle == newEnd->get())
+			if (m_draggingShape == newEnd->get())
 			{
-				m_draggingParticle = nullptr;
+				m_draggingShape = nullptr;
 			}
 
 		}
@@ -57,7 +59,7 @@ void CPhysicalSystem::Advance(float dt)
 		}
 
 		/////////////////////////////////
-		m_particles.erase(newEnd, m_particles.end());
+		m_shapes.erase(newEnd, m_shapes.end());
 	} while (true);
     // Удаляем вышедшие за экран частицы
    
@@ -65,25 +67,25 @@ void CPhysicalSystem::Advance(float dt)
 
 void CPhysicalSystem::Draw() const
 {
-    for (const auto &pParticle : m_particles)
+    for (const auto &pShape : m_shapes)
     {
-        pParticle->Draw();
+        pShape->Draw();
     }
 }
 
 void CPhysicalSystem::Redraw() const
 {
-	for (const auto & particle : m_particles)
+	for (const auto & shape : m_shapes)
 	{
-		particle->Redraw();
+		shape->Redraw();
 	}
 }
 
 void CPhysicalSystem::SetPosition(const glm::vec2 & position)
 {
-	for (auto & particle : m_particles)
+	for (auto & shape : m_shapes)
 	{
-		particle->SetOrigin(position);
+		shape->SetOrigin(position);
 	}
 }
 
@@ -102,14 +104,14 @@ void CPhysicalSystem::ProcessCollisions()
 	// TODO : rewrite	
 }
 
-void CPhysicalSystem::SetMaxAmountParticles(size_t amount)
+void CPhysicalSystem::SetMaxAmountBalls(size_t amount)
 {
-	m_maxAmountParticles = amount;
+	m_maxAmountBalls = amount;
 }
 
-size_t CPhysicalSystem::GetMaxAmountParticles()
+size_t CPhysicalSystem::GetMaxAmountBalls()
 {
-	return m_maxAmountParticles;
+	return m_maxAmountBalls;
 }
 
 bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)

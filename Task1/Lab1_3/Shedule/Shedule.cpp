@@ -27,7 +27,7 @@ void CShedule::Draw() const
 		pShape->Draw();
 	}
 
-	for (const auto &pShape : m_system.m_particles)
+	for (const auto &pShape : m_system.m_shapes)
 	{
 		pShape->Draw();
 	}
@@ -42,7 +42,7 @@ void CShedule::Redraw() const
 		pShape->Redraw();
 	}
 
-	for (auto & graph : m_system.m_particles)
+	for (auto & graph : m_system.m_shapes)
 	{
 		graph->Redraw();
 	}
@@ -62,9 +62,9 @@ void CShedule::SetSize(unsigned int width, unsigned int height)
 	m_system.SetPosition(glm::vec2(width / 2.f, height / 2.f));
 }
 
-void CShedule::AddParcticle(std::unique_ptr<CDynamicParticle> graph)
+void CShedule::AddParcticle(std::unique_ptr<CDynamicBody> graph)
 {
-	m_system.AddParticles(std::move(graph));
+	m_system.AddShape(std::move(graph));
 }
 
 void CShedule::Advance(float dt)
@@ -78,7 +78,7 @@ void CShedule::CreateSystem()
 	m_system.SetPlaceSize(glm::vec2(m_windowWidth, m_windowHeigth));
 }
 
-CPhysicalSystem & CShedule::GetParticleSystem()
+CPhysicalSystem & CShedule::GetPhysicSystem()
 {
 	return m_system;
 }

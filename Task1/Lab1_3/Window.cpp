@@ -34,7 +34,7 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	auto particles = boost::adaptors::reverse(m_shedule.GetParticleSystem().m_particles);
+	auto particles = boost::adaptors::reverse(m_shedule.GetParticleSystem().m_shapes);
 	auto it = boost::find_if(particles, [&](const auto &pFlower) {
 		return pFlower->HitTest(pos);
 	});

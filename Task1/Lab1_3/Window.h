@@ -3,7 +3,7 @@
 #include "Shedule/Shedule.h"
 #include "Shape/Rectangle.h"
 
-#include "Shedule/ParticleSystem.h"
+#include "Shedule/PhysicalSystem.h"
 
 #include <vector>
 

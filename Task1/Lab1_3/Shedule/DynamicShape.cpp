@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "DynamicParticle.h"
+#include "DynamicShape.h"
 
-void CDynamicParticle::Advance(float dt)
+void CDynamicBody::Advance(float dt)
 {
 	m_velocity += dt * m_acceleration * 3000.f;//
 	SetPosition(m_velocity + GetPosition());
@@ -10,7 +10,7 @@ void CDynamicParticle::Advance(float dt)
 	m_acceleration = glm::vec2();
 }
 
-void CDynamicParticle::ApplyAcceleration(const glm::vec2 & acceleration)
+void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 {
 	m_acceleration += acceleration;
 }

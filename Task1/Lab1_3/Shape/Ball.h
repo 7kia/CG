@@ -13,14 +13,14 @@ namespace DEFAULT_PARTICLE
 	const float	THIKNESS = 4.f;
 }
 
-class CParticle
+class CBall
 	: public CShape
 	, private boost::noncopyable
 
 {
 public:
-	CParticle();
-	CParticle(const glm::vec2 &position, bool isNegative = false);
+	CBall();
+	CBall(const glm::vec2 &position);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

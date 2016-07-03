@@ -51,17 +51,8 @@
     <ClInclude Include="Shape\IShape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\Particle.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Rectangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\DynamicParticle.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\ParticleSystem.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
     <ClInclude Include="Shedule\Shedule.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
@@ -71,6 +62,15 @@
     </ClInclude>
     <ClInclude Include="Features\CHaveVelocity.h">
       <Filter>Файлы исходного кода\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\PhysicalSystem.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Ball.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\DynamicShape.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,17 +95,8 @@
     <ClCompile Include="Shape\CShape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\Particle.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\Rectangle.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\DynamicParticle.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\ParticleSystem.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
     <ClCompile Include="Shedule\Shedule.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
@@ -115,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="Features\CHaveVelocity.cpp">
       <Filter>Файлы исходного кода\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\PhysicalSystem.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Ball.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\DynamicShape.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

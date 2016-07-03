@@ -6,8 +6,8 @@
 
 
 
-#include "../Shape/Particle.h"
-#include "ParticleSystem.h"
+#include "../Shape/Ball.h"
+#include "PhysicalSystem.h"
 
 #include <memory>
 #include <vector>
@@ -36,14 +36,14 @@ public:
 	//--------------------------------------------
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddParcticle(std::unique_ptr<CDynamicParticle> graph);
+	void		AddParcticle(std::unique_ptr<CDynamicBody> graph);
 
 	//--------------------------------------------
-	// ParticleSystem
+	// PhysicSystem
 	void										Advance(float dt);
 	void										CreateSystem();
 
-	CPhysicalSystem&							GetParticleSystem();
+	CPhysicalSystem&							GetPhysicSystem();
 	//--------------------------------------------
 
 //////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DynamicParticle.h"
+#include "DynamicShape.h"
 
 class CPhysicalSystem
 {
@@ -10,7 +10,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void											AddParticles(std::unique_ptr<CDynamicParticle> particle);
+	void											AddShape(std::unique_ptr<CDynamicBody> particle);
 
     // @param dt - разница во времени с предыдущим вызовом Advance.
     void											Advance(float dt);
@@ -27,19 +27,19 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
-	void											SetMaxAmountParticles(size_t amount);
-	size_t											GetMaxAmountParticles();
+	void											SetMaxAmountBalls(size_t amount);
+	size_t											GetMaxAmountBalls();
 
 	bool											CheckExitFromBorder(const glm::vec2 & particlePosition);
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<std::unique_ptr<CDynamicParticle>>	m_particles;
-	CDynamicParticle*								m_draggingParticle = nullptr;
+	std::vector<std::unique_ptr<CShape>>			m_shapes;
+	CShape*											m_draggingShape = nullptr;
 	//////////////////////////////////////////////////////////////////////
 // Data
 private:
 	glm::vec2										m_placeSize;
-	size_t											m_maxAmountParticles = 50;
+	size_t											m_maxAmountBalls = 50;
 //////////////////////////////////////////////////////////////////////
 };
