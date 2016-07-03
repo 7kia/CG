@@ -74,14 +74,8 @@ void CShedule::Advance(float dt)
 
 void CShedule::CreateSystem()
 {
-	auto pEmitter = std::make_unique<CParticleEmitter>();
-	pEmitter->SetPosition(glm::vec2(0.f, 0.f));
-	pEmitter->SetPlaceSize(glm::vec2(m_windowWidth, m_windowHeigth));
-
-	pEmitter->SetAngleRange(-2.f * float(M_PI), 2.f * float(M_PI));
-	pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
-
-	m_system.SetEmitter(std::move(pEmitter));
+	m_system.SetPosition(glm::vec2(0.f, 0.f));
+	m_system.SetPlaceSize(glm::vec2(m_windowWidth, m_windowHeigth));
 }
 
 CPhysicalSystem & CShedule::GetParticleSystem()

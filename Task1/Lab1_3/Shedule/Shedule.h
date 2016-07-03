@@ -59,7 +59,7 @@ private:
 // Data
 private:
 	CPhysicalSystem							m_system;
-	std::vector<std::shared_ptr<CShape>>	m_gui;
+	std::vector<std::shared_ptr<CShape>>	m_gui;// TODO : add button if need
 
 	float									m_windowWidth = 0;
 	float									m_windowHeigth = 0;

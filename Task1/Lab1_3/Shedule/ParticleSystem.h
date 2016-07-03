@@ -1,17 +1,6 @@
 #pragma once
 
 #include "DynamicParticle.h"
-#include "NormalDistribution.h"
-#include "ParticleEmitter.h"
-
-static const float ELECTRIC_CONSTANT = 8.f;//8,85418781762·10−12 слишком мала для расчётов
-static const float K_IN_COULOMB_LAW = 1.f / (4.f * float(M_PI) * ELECTRIC_CONSTANT);
-static const float ELECTRON_MASS = 0.005f;
-static const float PROTON_MASS = 0.005f;
-
-static const float MIN_DISTANCE = 6.f * DEFAULT_PARTICLE::RADIUSE;
-static const float MIN_POWER_FOR_INTERACTION = K_IN_COULOMB_LAW 
-												/ MIN_DISTANCE;
 
 class CPhysicalSystem
 {
@@ -21,8 +10,6 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-    void											SetEmitter(std::unique_ptr<CParticleEmitter> && pEmitter);
-
 	void											AddParticles(std::unique_ptr<CDynamicParticle> particle);
 
     // @param dt - разница во времени с предыдущим вызовом Advance.
@@ -32,6 +19,10 @@ public:
 
 	void											SetPosition(const glm::vec2 & position);
 
+	void											SetPlaceSize(const glm::vec2 &value);
+	glm::vec2										GetPlaceSize() const;
+
+
 	void											ProcessCollisions();
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -40,14 +31,6 @@ private:
 	size_t											GetMaxAmountParticles();
 
 	bool											CheckExitFromBorder(const glm::vec2 & particlePosition);
-
-
-	//
-	float											GetPower(CDynamicParticle & first, CDynamicParticle & second);
-
-	float											GetParticleCharge(bool sign);
-	float											GetAccelerationParticle(bool sign, float power);
-
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
@@ -56,7 +39,7 @@ public:
 	//////////////////////////////////////////////////////////////////////
 // Data
 private:
-    std::unique_ptr<CParticleEmitter>				m_pEmitter;
-	size_t											m_maxAmountParticles = 25;
+	glm::vec2										m_placeSize;
+	size_t											m_maxAmountParticles = 50;
 //////////////////////////////////////////////////////////////////////
 };

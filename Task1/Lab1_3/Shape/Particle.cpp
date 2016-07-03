@@ -5,14 +5,12 @@
 
 CParticle::CParticle() : CShape()
 {
-	SetNegativeCharge(false);
 }
 
 CParticle::CParticle(const glm::vec2 &position, bool isNegative)
 {
 	SetPosition(position);
 	SetOrigin(m_origin);
-	SetNegativeCharge(isNegative);
 }
 
 
@@ -20,20 +18,6 @@ void CParticle::Redraw() const
 {
 	FillCircle();
 	StrokeCircle();
-
-	m_shapeSign->Redraw();
-}
-
-void CParticle::ChangeColor()
-{
-	if (m_isNegative)
-	{
-		SetOutlineColor(NEGATIVE_COLOR);
-	}
-	else
-	{
-		SetOutlineColor(POSITIVE_COLOR);
-	}
 }
 
 // Рисуем контур эллипса
@@ -76,61 +60,10 @@ void CParticle::FillCircle() const
 	glEnd();
 }
 
-void CParticle::DefineCenterSign()
-{
-	if (m_isNegative)
-	{
-		m_shapeSign = std::make_unique<CMinus>();
-	}
-	else
-	{
-		m_shapeSign = std::make_unique<CPlus>();
-	}
-
-	m_shapeSign->SetPosition(m_position);
-	m_shapeSign->SetOrigin(m_origin);
-
-}
-
-
 bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 {
 	glm::vec2 resultShift = GetCenterPosition(m_origin) - point;
 
 	float distance = glm::length(resultShift);
 	return (distance < DEFAULT_PARTICLE::RADIUSE);
-}
-
-void CParticle::SetPosition(const glm::vec2 & position)
-{
-	CHavePosition::SetPosition(position);
-
-	m_shapeSign->SetPosition(position);
-}
-
-void CParticle::SetPosition(float x, float y)
-{
-	CHavePosition::SetPosition(x, y);
-
-	m_shapeSign->SetPosition(x, y);
-}
-
-void CParticle::SetOrigin(const glm::vec2 & origin)
-{
-	CShape::SetOrigin(origin);
-
-	m_shapeSign->SetOrigin(origin);
-}
-
-
-void CParticle::SetNegativeCharge(bool isNegative)
-{
-	m_isNegative = isNegative;
-	ChangeColor();
-	DefineCenterSign();
-}
-
-bool CParticle::IsNegativeCharge() const
-{
-	return m_isNegative;
 }

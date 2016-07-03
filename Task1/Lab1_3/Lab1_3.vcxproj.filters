@@ -51,25 +51,13 @@
     <ClInclude Include="Shape\IShape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\Minus.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Particle.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape\Plus.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Shape\Rectangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Shedule\DynamicParticle.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\NormalDistribution.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\ParticleEmitter.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
     <ClInclude Include="Shedule\ParticleSystem.h">
@@ -107,22 +95,13 @@
     <ClCompile Include="Shape\CShape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\Minus.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\Particle.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape\Plus.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Rectangle.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Shedule\DynamicParticle.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\ParticleEmitter.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
     <ClCompile Include="Shedule\ParticleSystem.cpp">
