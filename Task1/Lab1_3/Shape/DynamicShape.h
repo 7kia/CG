@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Shape/Ball.h"
+#include "../Shape/StaticShape.h"
 #include "../Features/CHaveVelocity.h"
 // For one constant not need
 //namespace
@@ -10,8 +10,10 @@
 
 class CDynamicBody 
 	: public CHaveVelocity
-	, public CBall
+	, public CStaticShape
 {
+public:
+	virtual ~CDynamicBody() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

@@ -16,7 +16,6 @@ CRectangle::CRectangle(const glm::vec2 & leftTopPoint
 						, float height
 						, float rotate
 						, const glm::vec3 & outlineColor)
-	: m_rotation(rotate)
 {
 	SetWidth(width);
 	SetHeight(height);
@@ -25,6 +24,8 @@ CRectangle::CRectangle(const glm::vec2 & leftTopPoint
 	SetOutlineColor(outlineColor);
 	SetWidth(width);
 	SetHeight(height);
+
+	SetRotation(rotate);
 }
 
 CRectangle::~CRectangle()
@@ -33,8 +34,14 @@ CRectangle::~CRectangle()
 
 void CRectangle::Redraw() const
 {
+
+	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
+	glm::mat4 transform = glm::rotate(glm::mat4(), m_rotation, offset);
+
+	// Сохраняем старую матрицу в стек матриц драйвера
 	glPushMatrix();
-	glRotatef(m_rotation, 0.f, 0.f, 1.f);
+	glLoadMatrixf(glm::value_ptr(transform));
+
 	glBegin(GL_TRIANGLE_FAN);
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
@@ -90,14 +97,4 @@ void CRectangle::SetHeight(float height)
 float CRectangle::GetHeight() const
 {
 	return m_height;
-}
-
-void CRectangle::SetRotate(float angle)
-{
-	m_rotation = angle;
-}
-
-float CRectangle::GetRotate() const
-{
-	return m_rotation;
 }

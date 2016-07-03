@@ -13,7 +13,7 @@ bool IsBetween(T value, T min, T max)
 CPhysicalSystem::CPhysicalSystem() = default;
 CPhysicalSystem::~CPhysicalSystem() = default;
 
-void CPhysicalSystem::AddShape(std::unique_ptr<CDynamicBody> particle)
+void CPhysicalSystem::AddShape(std::shared_ptr<CStaticShape> particle)
 {
 	m_shapes.push_back(std::move(particle));
 }
@@ -27,7 +27,7 @@ void CPhysicalSystem::Advance(float dt)
     // За 1 кадр может появиться несколько новых частиц.
     while (m_shapes.size() < m_maxAmountBalls)
     {
-        m_shapes.emplace_back(std::make_unique<CDynamicBody>());
+       m_shapes.emplace_back(std::make_shared<CBall>());
     }
 
 	// TODO : rewrite

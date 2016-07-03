@@ -3,7 +3,7 @@
 
 
 
-CBall::CBall() : CShape()
+CBall::CBall() : CStaticShape()
 {
 }
 

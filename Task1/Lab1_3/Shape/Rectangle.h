@@ -1,10 +1,10 @@
 #pragma once
 
 #include "CShape.h"
-#include "../Features/CHavePosition.h"
+#include "StaticShape.h"
 
 class CRectangle final
-	: public CShape
+	: public CStaticShape
 	, private boost::noncopyable
 
 {
@@ -30,14 +30,10 @@ public:
 
 	void				SetHeight(float height);
 	float				GetHeight() const;
-
-	void				SetRotate(float angle);
-	float				GetRotate() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
 	float				m_width;
 	float				m_height;
-	float				m_rotation = 0;
 //////////////////////////////////////////////////////////////////////
 };

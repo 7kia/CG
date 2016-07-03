@@ -14,6 +14,18 @@ CWindow::CWindow()
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	b2World world(gravity);
 
+	{
+		auto pRectangle = std::make_shared<CRectangle>();
+
+		pRectangle->SetHeight(100.f);
+		pRectangle->SetWidth(500.f);
+		pRectangle->SetOrigin(CENTER_WINODOW);
+		pRectangle->SetOutlineColor(Colors::RED);
+		pRectangle->SetPosition(250.f, 25.f);
+		pRectangle->SetRotation(45.f);
+
+		m_shedule.AddParcticle(pRectangle);
+	}
     SetBackgroundColor(Colors::GRAY);
 }
 
@@ -34,36 +46,36 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	auto particles = boost::adaptors::reverse(m_shedule.GetParticleSystem().m_shapes);
+	auto particles = boost::adaptors::reverse(m_shedule.GetPhysicSystem().m_shapes);
 	auto it = boost::find_if(particles, [&](const auto &pFlower) {
 		return pFlower->HitTest(pos);
 	});
 	if (it != particles.end())
 	{
-		m_shedule.GetParticleSystem().m_draggingParticle = it->get();
-		m_dragOffset = pos - m_shedule.GetParticleSystem().m_draggingParticle->GetPosition();
+		m_shedule.GetPhysicSystem().m_draggingShape = it->get();
+		m_dragOffset = pos - m_shedule.GetPhysicSystem().m_draggingShape->GetPosition();
 	}
 	else
 	{
-		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
+		m_shedule.GetPhysicSystem().m_draggingShape = nullptr;
 	}
 
 }
 
 void CWindow::OnDragMotion(const glm::vec2 &pos)
 {
-    if (m_shedule.GetParticleSystem().m_draggingParticle)
+    if (m_shedule.GetPhysicSystem().m_draggingShape)
     {
-		m_shedule.GetParticleSystem().m_draggingParticle->SetPosition(pos - m_dragOffset);
+		m_shedule.GetPhysicSystem().m_draggingShape->SetPosition(pos - m_dragOffset);
     }
 }
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
-    if (m_shedule.GetParticleSystem().m_draggingParticle)
+    if (m_shedule.GetPhysicSystem().m_draggingShape)
     {
-		m_shedule.GetParticleSystem().m_draggingParticle->SetPosition(pos - m_dragOffset);
-		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
+		m_shedule.GetPhysicSystem().m_draggingShape->SetPosition(pos - m_dragOffset);
+		m_shedule.GetPhysicSystem().m_draggingShape = nullptr;
     }
 }
 

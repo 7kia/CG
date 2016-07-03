@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CShape.h"
+#include "StaticShape.h"
 
 #include <vector>
 #include <memory>
@@ -14,7 +14,7 @@ namespace DEFAULT_PARTICLE
 }
 
 class CBall
-	: public CShape
+	: public CStaticShape
 	, private boost::noncopyable
 
 {

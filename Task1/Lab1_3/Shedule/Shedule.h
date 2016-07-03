@@ -36,7 +36,7 @@ public:
 	//--------------------------------------------
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddParcticle(std::unique_ptr<CDynamicBody> graph);
+	void		AddParcticle(std::shared_ptr<CStaticShape> graph);
 
 	//--------------------------------------------
 	// PhysicSystem

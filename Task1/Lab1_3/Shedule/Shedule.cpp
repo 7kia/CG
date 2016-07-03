@@ -62,7 +62,7 @@ void CShedule::SetSize(unsigned int width, unsigned int height)
 	m_system.SetPosition(glm::vec2(width / 2.f, height / 2.f));
 }
 
-void CShedule::AddParcticle(std::unique_ptr<CDynamicBody> graph)
+void CShedule::AddParcticle(std::shared_ptr<CStaticShape> graph)
 {
 	m_system.AddShape(std::move(graph));
 }

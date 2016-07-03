@@ -3,7 +3,7 @@
 
 void CDynamicBody::Advance(float dt)
 {
-	m_velocity += dt * m_acceleration * 3000.f;//
+	m_velocity += dt * m_acceleration;
 	SetPosition(m_velocity + GetPosition());
 
 	m_velocity = glm::vec2();

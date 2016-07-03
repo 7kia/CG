@@ -1,6 +1,11 @@
 #pragma once
 
-#include "DynamicShape.h"
+#include "../Shape/DynamicShape.h"
+#include "../Shape/Ball.h"
+#include "../Shape/Rectangle.h"
+
+#include <vector>
+#include <memory>
 
 class CPhysicalSystem
 {
@@ -10,7 +15,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void											AddShape(std::unique_ptr<CDynamicBody> particle);
+	void											AddShape(std::shared_ptr<CStaticShape> particle);
 
     // @param dt - разница во времени с предыдущим вызовом Advance.
     void											Advance(float dt);
@@ -34,7 +39,7 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<std::unique_ptr<CShape>>			m_shapes;
+	std::vector<std::shared_ptr<CStaticShape>>		m_shapes;
 	CShape*											m_draggingShape = nullptr;
 	//////////////////////////////////////////////////////////////////////
 // Data
