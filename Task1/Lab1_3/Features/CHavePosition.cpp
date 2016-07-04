@@ -29,7 +29,7 @@ glm::vec2 CHavePosition::GetCenterPosition(const glm::vec2 & origin) const
 
 glm::vec2 CHavePosition::GetCenterPosition() const
 {
-	return m_position;
+	return m_position + m_origin;
 }
 
 void CHavePosition::SetOrigin(const glm::vec2 & origin)

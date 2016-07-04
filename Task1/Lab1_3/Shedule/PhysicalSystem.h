@@ -32,6 +32,12 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
+	void											CreateWall(const glm::vec2 & leftTopPoint
+																, float width
+																, float height
+																, float rotation
+																, const glm::vec3 & outlineColor);
+
 	void											SetMaxAmountBalls(size_t amount);
 	size_t											GetMaxAmountBalls();
 

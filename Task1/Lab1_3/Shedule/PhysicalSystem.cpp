@@ -4,14 +4,108 @@
 #include <limits>
 #include <algorithm>
 
+static float BORDER_WIDTH = 50.f;
+static float BORDER_HEIGTH = 500.f;
+static float SIDE_SHIFT = 400.f;
+
+
 template<typename T>
 bool IsBetween(T value, T min, T max)
 {
 	return (min <= value) && (value <= max);
 }
 
-CPhysicalSystem::CPhysicalSystem() = default;
+CPhysicalSystem::CPhysicalSystem()
+{
+	//////////////////////////
+	// Left wall
+	glm::vec2 position = glm::vec2(-100.f, -SIDE_SHIFT / 2.f + BORDER_WIDTH);
+	float width = BORDER_WIDTH;
+	float height = BORDER_HEIGTH;
+	glm::vec3 color = Colors::RED;
+	float rotation = 0.f;
+
+	CreateWall(position
+				, width
+				, height
+				, rotation
+				, color);
+	//////////////////////////
+	// Right wall
+	position = glm::vec2(100.f, -SIDE_SHIFT / 2.f + BORDER_WIDTH);
+	width = BORDER_WIDTH;
+	height = BORDER_HEIGTH;
+	color = Colors::RED;
+	rotation = 0.f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+
+	//////////////////////////
+	// Top wall
+	position = glm::vec2(-100.f, -150.f );
+	width = 450.f;
+	height = BORDER_WIDTH;
+	color = Colors::ORANGE;
+	rotation = 0.f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+	// Left low wall
+	position = glm::vec2(-70.f, 50.f);
+	width = 200.f;
+	height = BORDER_WIDTH / 2.f;
+	color = Colors::RED;
+	rotation = 0.8f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+	// Right low wall
+	position = glm::vec2(-70.f, 50.f);
+	width = 200.f;
+	height = BORDER_WIDTH / 2.f;
+	color = Colors::RED;
+	rotation = 0.f;//2.37f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+}
+
 CPhysicalSystem::~CPhysicalSystem() = default;
+
+
+void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
+	, float width
+	, float height
+	, float rotation
+	, const glm::vec3 & color)
+{
+	auto pRectangle = std::make_shared<CRectangle>();
+
+	pRectangle->SetHeight(height);
+	pRectangle->SetWidth(width);
+	pRectangle->SetOutlineColor(color);
+	pRectangle->SetPosition(leftTopPoint);
+	pRectangle->SetRotation(rotation);
+
+	AddShape(pRectangle);
+}
 
 void CPhysicalSystem::AddShape(std::shared_ptr<CStaticShape> particle)
 {
@@ -21,7 +115,7 @@ void CPhysicalSystem::AddShape(std::shared_ptr<CStaticShape> particle)
 void CPhysicalSystem::Advance(float dt)
 {
 	ProcessCollisions();
-
+	SetPosition(m_placeSize / 2.f);
 
 	// TODO : gun add balls
     // За 1 кадр может появиться несколько новых частиц.

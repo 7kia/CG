@@ -17,15 +17,21 @@ CWindow::CWindow()
 	{
 		auto pRectangle = std::make_shared<CRectangle>();
 
-		pRectangle->SetHeight(100.f);
-		pRectangle->SetWidth(500.f);
-		pRectangle->SetOrigin(CENTER_WINODOW);
-		pRectangle->SetOutlineColor(Colors::RED);
-		pRectangle->SetPosition(250.f, 25.f);
-		pRectangle->SetRotation(45.f);
+		glm::vec2 position = glm::vec2(0.f, 0.f);
+		float width = 50.f;
+		float height = 400.f;
+		glm::vec3 color = Colors::RED;
+		float rotation = 0.f;
 
-		m_shedule.AddParcticle(pRectangle);
+		pRectangle->SetHeight(height);
+		pRectangle->SetWidth(width);
+		pRectangle->SetOutlineColor(color);
+		pRectangle->SetPosition(CENTER_WINODOW);
+		pRectangle->SetRotation(rotation);
+
+		//m_shedule.AddParcticle(pRectangle);
 	}
+	
     SetBackgroundColor(Colors::GRAY);
 }
 
