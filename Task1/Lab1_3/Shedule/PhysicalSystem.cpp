@@ -19,7 +19,7 @@ CPhysicalSystem::CPhysicalSystem()
 {
 	//////////////////////////
 	// Left wall
-	glm::vec2 position = glm::vec2(-100.f, -SIDE_SHIFT / 2.f + BORDER_WIDTH);
+	glm::vec2 position = glm::vec2(-300.f, -BORDER_HEIGTH / 2.f);
 	float width = BORDER_WIDTH;
 	float height = BORDER_HEIGTH;
 	glm::vec3 color = Colors::RED;
@@ -32,7 +32,7 @@ CPhysicalSystem::CPhysicalSystem()
 				, color);
 	//////////////////////////
 	// Right wall
-	position = glm::vec2(100.f, -SIDE_SHIFT / 2.f + BORDER_WIDTH);
+	position = glm::vec2(300.f, -BORDER_HEIGTH / 2.f );
 	width = BORDER_WIDTH;
 	height = BORDER_HEIGTH;
 	color = Colors::RED;
@@ -47,8 +47,8 @@ CPhysicalSystem::CPhysicalSystem()
 
 	//////////////////////////
 	// Top wall
-	position = glm::vec2(-100.f, -150.f );
-	width = 450.f;
+	position = glm::vec2(-BORDER_HEIGTH / 2.f - BORDER_WIDTH, -BORDER_HEIGTH / 2.f - BORDER_WIDTH);
+	width = BORDER_HEIGTH + 3.f * BORDER_WIDTH;
 	height = BORDER_WIDTH;
 	color = Colors::ORANGE;
 	rotation = 0.f;
@@ -60,11 +60,11 @@ CPhysicalSystem::CPhysicalSystem()
 		, color);
 	//////////////////////////
 	// Left low wall
-	position = glm::vec2(-70.f, 50.f);
-	width = 200.f;
+	position = glm::vec2(-250.f, 50.f);
+	width = 300.f;
 	height = BORDER_WIDTH / 2.f;
 	color = Colors::RED;
-	rotation = 0.8f;
+	rotation = 0.4f;
 
 	CreateWall(position
 		, width
@@ -73,11 +73,24 @@ CPhysicalSystem::CPhysicalSystem()
 		, color);
 	//////////////////////////
 	// Right low wall
-	position = glm::vec2(-70.f, 50.f);
-	width = 200.f;
+	position = glm::vec2(325.f, 50.f);
+	width = 300.f;
 	height = BORDER_WIDTH / 2.f;
 	color = Colors::RED;
-	rotation = 0.f;//2.37f;
+	rotation = 2.97f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+	// Rectangle wall
+	position = glm::vec2(-100.f, -150.f);
+	width = 50.f;
+	height = 100.f;
+	color = Colors::RED;
+	rotation = 1.1f;
 
 	CreateWall(position
 		, width
