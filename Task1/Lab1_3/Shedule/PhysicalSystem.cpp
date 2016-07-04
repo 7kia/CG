@@ -101,8 +101,9 @@ CPhysicalSystem::CPhysicalSystem()
 	// Gun
 
 	auto pGun = std::make_shared<CGun>();
-	m_shapes.push_back(std::move(pGun));
+	m_shapes.push_back(pGun);
 
+	m_gun = pGun;
 }
 
 CPhysicalSystem::~CPhysicalSystem() = default;
@@ -221,6 +222,17 @@ glm::vec2 CPhysicalSystem::GetPlaceSize() const
 void CPhysicalSystem::ProcessCollisions()
 {
 	// TODO : rewrite	
+}
+
+bool CPhysicalSystem::OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position)
+{
+	switch (event.keysym.sym)
+	{
+	case SDLK_SPACE:
+		m_gun.lock()->Shoot(this, position);// TODO : add GetLockPtr
+		return true;
+	}
+	return false;
 }
 
 void CPhysicalSystem::SetMaxAmountBalls(size_t amount)

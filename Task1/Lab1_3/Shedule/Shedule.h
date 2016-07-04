@@ -2,10 +2,7 @@
 
 #pragma once
 
-// Test 
-
-
-
+#include <SDL2/SDL_events.h>
 #include "../Shape/Ball.h"
 #include "PhysicalSystem.h"
 
@@ -45,6 +42,8 @@ public:
 
 	CPhysicalSystem&							GetPhysicSystem();
 	//--------------------------------------------
+	// Accept command from window
+	bool OnKeyDown(const SDL_KeyboardEvent &event, const glm::vec2 & position);
 
 //////////////////////////////////////////////////////////////////////
 // Data

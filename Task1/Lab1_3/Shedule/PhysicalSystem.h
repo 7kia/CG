@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL2/SDL_events.h>
+
 #include "../Shape/DynamicShape.h"
 #include "../Shape/Ball.h"
 #include "../Shape/Rectangle.h"
@@ -33,6 +35,11 @@ public:
 
 
 	void											ProcessCollisions();
+	//--------------------------------------------
+	// Accept command from window
+	bool											OnKeyDown(const SDL_KeyboardEvent &event, const glm::vec2 & position);
+	//--------------------------------------------
+
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
@@ -50,6 +57,7 @@ private:
 // Data
 public:
 	std::vector<std::shared_ptr<CStaticShape>>		m_shapes;
+	std::weak_ptr<CGun>								m_gun;
 	CShape*											m_draggingShape = nullptr;
 	//////////////////////////////////////////////////////////////////////
 // Data

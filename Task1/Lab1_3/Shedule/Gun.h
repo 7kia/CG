@@ -36,7 +36,7 @@ public:
 
 	void				SetOrigin(const glm::vec2 & origin) override;
 	//--------------------------------------------
-	void				Shoot(CPhysicalSystem * system, const glm::vec2 & direction);
+	void				Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
