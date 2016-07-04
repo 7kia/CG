@@ -9,12 +9,13 @@ class CRectangle final
 
 {
 public:
-	CRectangle();
+	CRectangle(b2World * world);
 	CRectangle(const glm::vec2 & leftTopPoint
 				, float width
 				, float height
 				, float rotate
-				, const glm::vec3 & outlineColor);
+				, const glm::vec3 & outlineColor
+				, b2World * world);
 	~CRectangle();
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -30,6 +31,14 @@ public:
 
 	void				SetHeight(float height);
 	float				GetHeight() const;
+//////////////////////////////////////////////////////////////////////
+// Methods
+private:
+	//--------------------------------------------
+	// CStaticShape
+	void				AddInWorld(b2World * world) override;
+	void				CreateBody() override;
+	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

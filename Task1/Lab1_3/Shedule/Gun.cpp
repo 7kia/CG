@@ -8,7 +8,7 @@ CGun::CGun(b2World * world)
 	pCircle->SetRadius(25.f);
 	m_components.push_back(pCircle);
 
-	auto pTrunk = std::make_shared<CRectangle>();
+	auto pTrunk = std::make_shared<CRectangle>(world);
 	pTrunk->SetWidth(15.f);
 	pTrunk->SetHeight(40.f);
 	pTrunk->SetPosition(-glm::vec2(7.5f, DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK));

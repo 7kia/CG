@@ -8,30 +8,6 @@ CWindow::CWindow()
 {
 	const glm::vec2 CENTER_WINODOW = glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f);
 	
-	// Define the gravity vector.
-	b2Vec2 gravity(0.0f, -10.0f);
-
-	// Construct a world object, which will hold and simulate the rigid bodies.
-	b2World world(gravity);
-
-	{
-		auto pRectangle = std::make_shared<CRectangle>();
-
-		glm::vec2 position = glm::vec2(0.f, 0.f);
-		float width = 50.f;
-		float height = 400.f;
-		glm::vec3 color = Colors::RED;
-		float rotation = 0.f;
-
-		pRectangle->SetHeight(height);
-		pRectangle->SetWidth(width);
-		pRectangle->SetOutlineColor(color);
-		pRectangle->SetPosition(CENTER_WINODOW);
-		pRectangle->SetRotation(rotation);
-
-		//m_shedule.AddParcticle(pRectangle);
-	}
-	
     SetBackgroundColor(Colors::GRAY);
 }
 

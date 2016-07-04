@@ -116,7 +116,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	, float rotation
 	, const glm::vec3 & color)
 {
-	auto pRectangle = std::make_shared<CRectangle>();
+	auto pRectangle = std::make_shared<CRectangle>(GetWorld());
 
 	pRectangle->SetHeight(height);
 	pRectangle->SetWidth(width);

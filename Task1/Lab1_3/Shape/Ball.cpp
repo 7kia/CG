@@ -91,7 +91,7 @@ void CCircle::FillCircle() const
 void CCircle::AddInWorld(b2World * world)
 {
 	m_body = world->CreateBody(&m_defBody);
-	m_defBody.type = b2_staticBody;
+	m_defBody.type = b2_dynamicBody;
 
 	CreateBody();
 }

@@ -7,16 +7,22 @@ bool IsBetween(const T& value, const T& lowerBound, const T& upperBound)
 	return (value >= lowerBound) && (value <= upperBound);
 }
 
-CRectangle::CRectangle()
+CRectangle::CRectangle(b2World * world) 
+	: CStaticShape()
 {
+	AddInWorld(world);
+
 }
 
 CRectangle::CRectangle(const glm::vec2 & leftTopPoint
 						, float width
 						, float height
 						, float rotate
-						, const glm::vec3 & outlineColor)
+						, const glm::vec3 & outlineColor
+						, b2World * world)
 {
+	AddInWorld(world);
+
 	SetWidth(width);
 	SetHeight(height);
 	SetPosition(leftTopPoint);
@@ -101,4 +107,24 @@ void CRectangle::SetHeight(float height)
 float CRectangle::GetHeight() const
 {
 	return m_height;
+}
+
+void CRectangle::AddInWorld(b2World * world)
+{
+	m_body = world->CreateBody(&m_defBody);
+	m_defBody.type = b2_staticBody;
+
+	CreateBody();
+}
+
+void CRectangle::CreateBody()
+{
+	// Define the ground box shape.
+	b2PolygonShape rectangleShape;
+
+	// The extents are the half-widths of the box.
+	rectangleShape.SetAsBox(m_width, m_height);//SetAsBox(50.0f, 10.0f);
+
+							   // Add the ground fixture to the ground body.
+	m_body->CreateFixture(&rectangleShape, 0.0f);
 }
