@@ -19,7 +19,7 @@ CPhysicalSystem::CPhysicalSystem()
 {
 	//////////////////////////
 	// Left wall
-	glm::vec2 position = glm::vec2(-300.f, -BORDER_HEIGTH / 2.f);
+	glm::vec2 position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f);
 	float width = BORDER_WIDTH;
 	float height = BORDER_HEIGTH;
 	glm::vec3 color = Colors::RED;
@@ -47,8 +47,8 @@ CPhysicalSystem::CPhysicalSystem()
 
 	//////////////////////////
 	// Top wall
-	position = glm::vec2(-BORDER_HEIGTH / 2.f - BORDER_WIDTH, -BORDER_HEIGTH / 2.f - BORDER_WIDTH);
-	width = BORDER_HEIGTH + 3.f * BORDER_WIDTH;
+	position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f - BORDER_WIDTH);
+	width = BORDER_HEIGTH + 4.f * BORDER_WIDTH;
 	height = BORDER_WIDTH;
 	color = Colors::ORANGE;
 	rotation = 0.f;
@@ -60,8 +60,8 @@ CPhysicalSystem::CPhysicalSystem()
 		, color);
 	//////////////////////////
 	// Left low wall
-	position = glm::vec2(-250.f, 50.f);
-	width = 300.f;
+	position = glm::vec2(-300.f, 50.f);
+	width = 500.f;
 	height = BORDER_WIDTH / 2.f;
 	color = Colors::RED;
 	rotation = 0.4f;
@@ -240,26 +240,13 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
 }
 
-void CGun::Redraw() const
-{
-	for (const auto & component : m_components)
-	{
-		component->Redraw();
-	}
-}
-
-bool CGun::HitTest(const glm::vec2 & point) const
-{
-	return false;
-}
-
 void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & direction)
 {
 	auto pBall = std::make_shared<CBall>();
 
 	pBall->SetOrigin(system->GetPosition());
 	pBall->SetOutlineColor(Colors::YELLOW);
-	pBall->SetPosition(GetPosition() + SHIFT_BALL * direction);
+	pBall->SetPosition(GetPosition() + DEFAULT_GUN::SHIFT_BALL * direction);
 	
 
 	system->AddShape(pBall);

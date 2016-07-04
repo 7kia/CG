@@ -7,10 +7,10 @@
 
 static const glm::vec3 INNER_COLOR = { 0.f, 0.f, 0.f };
 
-namespace DEFAULT_PARTICLE
+namespace DEFAULT_BALL
 {
 	const float	RADIUSE = 25.f;
-	const float	THIKNESS = 4.f;
+	const float	THIKNESS = 1.f;
 }
 
 class CBall
