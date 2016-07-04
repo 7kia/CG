@@ -37,7 +37,7 @@ public:
 	void											ProcessCollisions();
 	//--------------------------------------------
 	// Accept command from window
-	bool											OnKeyDown(const SDL_KeyboardEvent &event, const glm::vec2 & position);
+	bool											OnDragBegin(const glm::vec2 & position);
 	//--------------------------------------------
 
 //////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ public:
 // Data
 private:
 	glm::vec2										m_placeSize;
-	glm::vec2										m_position;
+	glm::vec2										m_position;// TODO : fix name
 	size_t											m_maxAmountBalls = 50 + AMOUNT_OBSTACLES;
 //////////////////////////////////////////////////////////////////////
 };

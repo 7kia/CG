@@ -5,11 +5,12 @@ CGun::CGun()
 	: CStaticShape()
 {
 	auto pCircle = std::make_shared<CBall>();
+	pCircle->SetRadius(25.f);
 	m_components.push_back(pCircle);
 
 	auto pTrunk = std::make_shared<CRectangle>();
 	pTrunk->SetWidth(15.f);
-	pTrunk->SetHeight(20.f);
+	pTrunk->SetHeight(40.f);
 	pTrunk->SetPosition(-glm::vec2(7.5f, DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK));
 
 	m_components.push_back(pTrunk);

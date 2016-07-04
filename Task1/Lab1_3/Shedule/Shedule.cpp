@@ -83,7 +83,7 @@ CPhysicalSystem & CShedule::GetPhysicSystem()
 	return m_system;
 }
 
-bool CShedule::OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position)
+bool CShedule::OnDragBegin(const glm::vec2 & position)
 {
-	return m_system.OnKeyDown(event, position);
+	return m_system.OnDragBegin(position);
 }

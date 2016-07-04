@@ -21,8 +21,10 @@ public:
     virtual void OnDragBegin(const glm::vec2 &pos) { (void)pos; }
     virtual void OnDragMotion(const glm::vec2 &pos) { (void)pos; }
     virtual void OnDragEnd(const glm::vec2 &pos) { (void)pos; }
-	virtual void OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position) {}
-    virtual void OnKeyUp(const SDL_KeyboardEvent & event, const glm::vec2 & position) {}
+	virtual void OnDragBegin(const SDL_KeyboardEvent & event
+							, const glm::vec2 & position) {}
+    virtual void OnKeyUp(const SDL_KeyboardEvent & event
+						, const glm::vec2 & position) {}
 //////////////////////////////////////////////////////////////////////
 };
 

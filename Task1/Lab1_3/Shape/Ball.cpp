@@ -7,7 +7,8 @@ CBall::CBall() : CStaticShape()
 {
 }
 
-CBall::CBall(const glm::vec2 &position)
+CBall::CBall(float radius, const glm::vec2 &position)
+	: m_radius(radius)
 {
 	SetPosition(position);
 	SetOrigin(m_origin);
@@ -41,8 +42,8 @@ void CBall::StrokeCircle() const
 	glBegin(GL_LINE_STRIP);
 	for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
-		const float dx = DEFAULT_BALL::RADIUSE * cosf(angle);
-		const float dy = DEFAULT_BALL::RADIUSE * sinf(angle);
+		const float dx = m_radius * cosf(angle);
+		const float dy = m_radius * sinf(angle);
 		glVertex2f(dx, dy);
 	}
 	glEnd();
@@ -73,8 +74,8 @@ void CBall::FillCircle() const
     for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
 		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
-		const float dx = DEFAULT_BALL::RADIUSE * cosf(a);
-		const float dy = DEFAULT_BALL::RADIUSE * sinf(a);
+		const float dx = m_radius * cosf(a);
+		const float dy = m_radius * sinf(a);
 		glVertex2f(dx, dy);
 	}
 	glEnd();
@@ -88,4 +89,14 @@ bool CBall::HitTest(const glm::vec2 & point) const
 
 	float distance = glm::length(resultShift);
 	return (distance < DEFAULT_BALL::RADIUSE);
+}
+
+void CBall::SetRadius(float radius)
+{
+	m_radius = radius;
+}
+
+float CBall::GetRadius() const
+{
+	return m_radius;
 }

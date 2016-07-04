@@ -19,20 +19,20 @@ void sdl::DispatchEvent(const SDL_Event &event, IInputEventAcceptor &acceptor)
 	glm::vec2 mousePosition = GetMousePosition(event.button);
     switch (event.type)
     {
-    case SDL_KEYDOWN:
-        acceptor.OnKeyDown(event.key, mousePosition);
-        break;
-    case SDL_KEYUP:
-        acceptor.OnKeyUp(event.key, mousePosition);
-        break;
-    case SDL_MOUSEBUTTONDOWN:
-        acceptor.OnDragBegin(mousePosition);
-        break;
-    case SDL_MOUSEBUTTONUP:
-        acceptor.OnDragEnd(mousePosition);
-        break;
-    case SDL_MOUSEMOTION:
-        acceptor.OnDragMotion(mousePosition);
-        break;
+	case SDL_KEYDOWN:
+		acceptor.OnDragBegin(event.key, mousePosition);
+		break;
+	case SDL_KEYUP:
+		acceptor.OnKeyUp(event.key, mousePosition);
+		break;
+	case SDL_MOUSEBUTTONDOWN:
+		acceptor.OnDragBegin(GetMousePosition(event.button));
+		break;
+	case SDL_MOUSEBUTTONUP:
+		acceptor.OnDragEnd(GetMousePosition(event.button));
+		break;
+	case SDL_MOUSEMOTION:
+		acceptor.OnDragMotion(GetMousePosition(event.motion));
+		break;
     }
 }

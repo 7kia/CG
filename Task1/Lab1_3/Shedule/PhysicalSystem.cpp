@@ -224,15 +224,15 @@ void CPhysicalSystem::ProcessCollisions()
 	// TODO : rewrite	
 }
 
-bool CPhysicalSystem::OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position)
+bool CPhysicalSystem::OnDragBegin(const glm::vec2 & position)
 {
-	switch (event.keysym.sym)
-	{
-	case SDLK_SPACE:
+	//switch (event.keysym.sym)
+	//{
+	//case SDLK_SPACE:
 		m_gun.lock()->Shoot(this, position);// TODO : add GetLockPtr
 		return true;
-	}
-	return false;
+	//}
+	//return false;
 }
 
 void CPhysicalSystem::SetMaxAmountBalls(size_t amount)
@@ -252,14 +252,23 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
 }
 
-void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & direction)
+void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
 	auto pBall = std::make_shared<CBall>();
 
+	const glm::vec2 direction = GetDirection(mousePosition);
+
 	pBall->SetOrigin(system->GetPosition());
 	pBall->SetOutlineColor(Colors::YELLOW);
-	pBall->SetPosition(GetPosition() + DEFAULT_GUN::SHIFT_BALL * direction);
+
+	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
+	pBall->SetPosition(GetPosition() + shift);
 	
 
 	system->AddShape(pBall);
+}
+
+glm::vec2 CGun::GetDirection(const glm::vec2 & point)
+{
+	return glm::normalize(point - m_origin);
 }

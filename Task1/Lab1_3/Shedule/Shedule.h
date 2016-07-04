@@ -43,7 +43,7 @@ public:
 	CPhysicalSystem&							GetPhysicSystem();
 	//--------------------------------------------
 	// Accept command from window
-	bool OnKeyDown(const SDL_KeyboardEvent &event, const glm::vec2 & position);
+	bool										OnDragBegin(const glm::vec2 & position);
 
 //////////////////////////////////////////////////////////////////////
 // Data

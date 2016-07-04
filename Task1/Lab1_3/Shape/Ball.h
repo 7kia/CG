@@ -9,7 +9,7 @@ static const glm::vec3 INNER_COLOR = { 0.f, 0.f, 0.f };
 
 namespace DEFAULT_BALL
 {
-	const float	RADIUSE = 25.f;
+	const float	RADIUSE = 10.f;
 	const float	THIKNESS = 1.f;
 }
 
@@ -20,7 +20,7 @@ class CBall
 {
 public:
 	CBall();
-	CBall(const glm::vec2 &position);
+	CBall(float radius, const glm::vec2 &position);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -29,6 +29,9 @@ public:
 	void		Redraw() const override;
 	bool		HitTest(const glm::vec2 &point) const override;
 	//--------------------------------------------
+
+	void		SetRadius(float radius);
+	float		GetRadius() const;
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
@@ -41,5 +44,6 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
+	float		m_radius = DEFAULT_BALL::RADIUSE;
 //////////////////////////////////////////////////////////////////////
 };
