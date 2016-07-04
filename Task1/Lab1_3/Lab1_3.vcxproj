@@ -169,6 +169,7 @@
     <ClInclude Include="Shape\Ball.h" />
     <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shape\StaticShape.h" />
+    <ClInclude Include="Shedule\Gun.h" />
     <ClInclude Include="Shedule\PhysicalSystem.h" />
     <ClInclude Include="Shedule\Shedule.h" />
     <ClInclude Include="stdafx.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Shape\DynamicShape.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shape\StaticShape.cpp" />
+    <ClCompile Include="Shedule\Gun.cpp" />
     <ClCompile Include="Shedule\PhysicalSystem.cpp" />
     <ClCompile Include="Shedule\Shedule.cpp" />
     <ClCompile Include="stdafx.cpp">

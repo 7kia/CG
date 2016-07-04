@@ -98,6 +98,11 @@ CPhysicalSystem::CPhysicalSystem()
 		, rotation
 		, color);
 	//////////////////////////
+	// Gun
+
+	auto pGun = std::make_shared<CGun>();
+	m_shapes.push_back(std::move(pGun));
+
 }
 
 CPhysicalSystem::~CPhysicalSystem() = default;
@@ -132,10 +137,10 @@ void CPhysicalSystem::Advance(float dt)
 
 	// TODO : gun add balls
     // За 1 кадр может появиться несколько новых частиц.
-    while (m_shapes.size() < m_maxAmountBalls)
-    {
-       m_shapes.emplace_back(std::make_shared<CBall>());
-    }
+    //while (m_shapes.size() < m_maxAmountBalls)
+    //{
+    //   m_shapes.emplace_back(std::make_shared<CBall>());
+    //}
 
 	// TODO : rewrite
     // Продвигаем частицы
@@ -194,6 +199,13 @@ void CPhysicalSystem::SetPosition(const glm::vec2 & position)
 	{
 		shape->SetOrigin(position);
 	}
+
+	m_position = position;
+}
+
+glm::vec2 CPhysicalSystem::GetPosition() const
+{
+	return m_position;
 }
 
 void CPhysicalSystem::SetPlaceSize(const glm::vec2 & value)
@@ -226,4 +238,29 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 	glm::vec2 sizeWindow = GetPlaceSize();
 	return !( IsBetween(particlePosition.x, 0.f, sizeWindow.x) 
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
+}
+
+void CGun::Redraw() const
+{
+	for (const auto & component : m_components)
+	{
+		component->Redraw();
+	}
+}
+
+bool CGun::HitTest(const glm::vec2 & point) const
+{
+	return false;
+}
+
+void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & direction)
+{
+	auto pBall = std::make_shared<CBall>();
+
+	pBall->SetOrigin(system->GetPosition());
+	pBall->SetOutlineColor(Colors::YELLOW);
+	pBall->SetPosition(GetPosition() + SHIFT_BALL * direction);
+	
+
+	system->AddShape(pBall);
 }

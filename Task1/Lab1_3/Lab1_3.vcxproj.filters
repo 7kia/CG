@@ -78,6 +78,9 @@
     <ClInclude Include="Features\CRotatable.h">
       <Filter>Файлы исходного кода\Features</Filter>
     </ClInclude>
+    <ClInclude Include="Shedule\Gun.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -127,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="Shape\StaticShape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\Gun.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

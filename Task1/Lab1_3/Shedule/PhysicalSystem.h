@@ -3,9 +3,12 @@
 #include "../Shape/DynamicShape.h"
 #include "../Shape/Ball.h"
 #include "../Shape/Rectangle.h"
+#include "Gun.h"
 
 #include <vector>
 #include <memory>
+
+static const size_t AMOUNT_OBSTACLES = 5;
 
 class CPhysicalSystem
 {
@@ -23,6 +26,7 @@ public:
 	void											Redraw() const;
 
 	void											SetPosition(const glm::vec2 & position);
+	glm::vec2										GetPosition() const;
 
 	void											SetPlaceSize(const glm::vec2 &value);
 	glm::vec2										GetPlaceSize() const;
@@ -51,6 +55,7 @@ public:
 // Data
 private:
 	glm::vec2										m_placeSize;
-	size_t											m_maxAmountBalls = 50;
+	glm::vec2										m_position;
+	size_t											m_maxAmountBalls = 50 + AMOUNT_OBSTACLES;
 //////////////////////////////////////////////////////////////////////
 };
