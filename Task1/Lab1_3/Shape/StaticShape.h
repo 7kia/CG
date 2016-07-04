@@ -13,6 +13,8 @@ public:
 // Methods
 public:
 	virtual void				AddInWorld(b2World * world) = 0;
+	virtual void				Advance(float dt) = 0;
+
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
@@ -31,6 +33,8 @@ public:
 // Data
 public:
 	void						AddInWorld(b2World * world) override;
+	void						Advance(float dt) override;
+
 //////////////////////////////////////////////////////////////////////
 // Data
 public:

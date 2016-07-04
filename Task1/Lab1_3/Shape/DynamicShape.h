@@ -19,7 +19,7 @@ public:
 public:
 	// @param dt - разница во времени с предыдущим вызовом Advance.
 	// @param acceleration - ускорение, действующее на частицу.
-	void		Advance(float dt);
+	void		Advance(float dt) override;
 
 	void		ApplyAcceleration(const glm::vec2 & acceleration);
 };

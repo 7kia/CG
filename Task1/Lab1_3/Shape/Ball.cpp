@@ -3,11 +3,11 @@
 
 
 
-CBall::CBall() : CStaticShape()
+CStaticCircle::CStaticCircle() : CDynamicBody()
 {
 }
 
-CBall::CBall(float radius, const glm::vec2 &position)
+CStaticCircle::CStaticCircle(float radius, const glm::vec2 &position)
 	: m_radius(radius)
 {
 	SetPosition(position);
@@ -15,14 +15,14 @@ CBall::CBall(float radius, const glm::vec2 &position)
 }
 
 
-void CBall::Redraw() const
+void CStaticCircle::Redraw() const
 {
 	FillCircle();
 	StrokeCircle();
 }
 
 // Рисуем контур эллипса
-void CBall::StrokeCircle() const
+void CStaticCircle::StrokeCircle() const
 {
 	const float step = float(2 * M_PI / AMOUNT_POINTS);
 
@@ -52,7 +52,7 @@ void CBall::StrokeCircle() const
 }
 
 // Рисуем закрашенный эллипс
-void CBall::FillCircle() const
+void CStaticCircle::FillCircle() const
 {
 	const float step = float(2 * M_PI) / AMOUNT_POINTS;
 
@@ -83,7 +83,7 @@ void CBall::FillCircle() const
 	glPopMatrix();
 }
 
-bool CBall::HitTest(const glm::vec2 & point) const
+bool CStaticCircle::HitTest(const glm::vec2 & point) const
 {
 	glm::vec2 resultShift = GetCenterPosition(m_origin) - point;
 
@@ -91,12 +91,12 @@ bool CBall::HitTest(const glm::vec2 & point) const
 	return (distance < DEFAULT_BALL::RADIUSE);
 }
 
-void CBall::SetRadius(float radius)
+void CStaticCircle::SetRadius(float radius)
 {
 	m_radius = radius;
 }
 
-float CBall::GetRadius() const
+float CStaticCircle::GetRadius() const
 {
 	return m_radius;
 }

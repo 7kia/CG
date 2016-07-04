@@ -4,7 +4,7 @@
 CGun::CGun()
 	: CStaticShape()
 {
-	auto pCircle = std::make_shared<CBall>();
+	auto pCircle = std::make_shared<CStaticCircle>();
 	pCircle->SetRadius(25.f);
 	m_components.push_back(pCircle);
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "StaticShape.h"
+#include "DynamicShape.h"
 
 #include <vector>
 #include <memory>
@@ -11,16 +12,18 @@ namespace DEFAULT_BALL
 {
 	const float	RADIUSE = 10.f;
 	const float	THIKNESS = 1.f;
+	const float	SPEED = 1.f;
 }
 
-class CBall
-	: public CStaticShape
+
+class CStaticCircle
+	: public CDynamicBody
 	, private boost::noncopyable
 
 {
 public:
-	CBall();
-	CBall(float radius, const glm::vec2 &position);
+	CStaticCircle();
+	CStaticCircle(float radius, const glm::vec2 &position);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

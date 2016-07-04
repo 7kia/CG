@@ -140,14 +140,14 @@ void CPhysicalSystem::Advance(float dt)
     // За 1 кадр может появиться несколько новых частиц.
     //while (m_shapes.size() < m_maxAmountBalls)
     //{
-    //   m_shapes.emplace_back(std::make_shared<CBall>());
+    //   m_shapes.emplace_back(std::make_shared<CStaticCircle>());
     //}
 
 	// TODO : rewrite
     // Продвигаем частицы
     for (const auto &pShape : m_shapes)
     {
-       // pShape->Advance(dt);
+       pShape->Advance(dt);
     }
 
 	do
@@ -254,7 +254,7 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 
 void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
-	auto pBall = std::make_shared<CBall>();
+	auto pBall = std::make_shared<CStaticCircle>();
 
 	const glm::vec2 direction = GetDirection(mousePosition);
 
@@ -263,7 +263,7 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 
 	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
 	pBall->SetPosition(GetPosition() + shift);
-	
+	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);
 
 	system->AddShape(pBall);
 }

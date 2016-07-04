@@ -22,3 +22,8 @@ void CStaticShape::AddInWorld(b2World * world)
 	//groundBody->CreateFixture(&groundBox, 0.0f);
 
 }
+
+void CStaticShape::Advance(float dt)
+{
+	(void)dt;
+}
