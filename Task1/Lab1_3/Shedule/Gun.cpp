@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Gun.h"
 
-CGun::CGun()
+CGun::CGun(b2World * world)
 	: CStaticShape()
 {
-	auto pCircle = std::make_shared<CStaticCircle>();
+	auto pCircle = std::make_shared<CCircle>(world);
 	pCircle->SetRadius(25.f);
 	m_components.push_back(pCircle);
 

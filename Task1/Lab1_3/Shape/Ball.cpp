@@ -3,26 +3,30 @@
 
 
 
-CStaticCircle::CStaticCircle() : CDynamicBody()
+CCircle::CCircle(b2World * world) : CDynamicBody()
 {
+	AddInWorld(world);
 }
 
-CStaticCircle::CStaticCircle(float radius, const glm::vec2 &position)
-	: m_radius(radius)
+CCircle::CCircle(float radius, const glm::vec2 &position, b2World * world)
+	: CDynamicBody()
+	, m_radius(radius)
+
 {
+	AddInWorld(world);
+
 	SetPosition(position);
 	SetOrigin(m_origin);
 }
 
-
-void CStaticCircle::Redraw() const
+void CCircle::Redraw() const
 {
 	FillCircle();
 	StrokeCircle();
 }
 
 // Рисуем контур эллипса
-void CStaticCircle::StrokeCircle() const
+void CCircle::StrokeCircle() const
 {
 	const float step = float(2 * M_PI / AMOUNT_POINTS);
 
@@ -52,7 +56,7 @@ void CStaticCircle::StrokeCircle() const
 }
 
 // Рисуем закрашенный эллипс
-void CStaticCircle::FillCircle() const
+void CCircle::FillCircle() const
 {
 	const float step = float(2 * M_PI) / AMOUNT_POINTS;
 
@@ -71,6 +75,7 @@ void CStaticCircle::FillCircle() const
 
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(0.f, 0.f);
+
     for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
 		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
@@ -83,7 +88,40 @@ void CStaticCircle::FillCircle() const
 	glPopMatrix();
 }
 
-bool CStaticCircle::HitTest(const glm::vec2 & point) const
+void CCircle::AddInWorld(b2World * world)
+{
+	m_body = world->CreateBody(&m_defBody);
+	m_defBody.type = b2_staticBody;
+
+	CreateBody();
+}
+
+void CCircle::CreateBody()
+{
+	// Define the ground box shape.
+	b2PolygonShape circleShape;
+
+	// TODO 
+	b2Vec2 points[AMOUNT_POINTS];
+	const float step = float(2 * M_PI / 8);
+
+	int index = 0;
+	for (float angle = 0.f; angle <= float(2 * M_PI); angle += step, index++)
+	{
+		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
+		const float dx = m_radius * cosf(a);
+		const float dy = m_radius * sinf(a);
+		points[index].Set(dx, dy);
+	}
+
+	// The extents are the half-widths of the box.
+	circleShape.Set(points, 8);//SetAsBox(50.0f, 10.0f);
+
+										   // Add the ground fixture to the ground body.
+	m_body->CreateFixture(&circleShape, 0.0f);
+}
+
+bool CCircle::HitTest(const glm::vec2 & point) const
 {
 	glm::vec2 resultShift = GetCenterPosition(m_origin) - point;
 
@@ -91,12 +129,12 @@ bool CStaticCircle::HitTest(const glm::vec2 & point) const
 	return (distance < DEFAULT_BALL::RADIUSE);
 }
 
-void CStaticCircle::SetRadius(float radius)
+void CCircle::SetRadius(float radius)
 {
 	m_radius = radius;
 }
 
-float CStaticCircle::GetRadius() const
+float CCircle::GetRadius() const
 {
 	return m_radius;
 }

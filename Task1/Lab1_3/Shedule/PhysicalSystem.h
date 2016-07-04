@@ -11,6 +11,7 @@
 #include <memory>
 
 static const size_t AMOUNT_OBSTACLES = 5;
+//static const b2Vec2 GRAVITY(0.0f, -10.f);
 
 class CPhysicalSystem
 {
@@ -33,6 +34,7 @@ public:
 	void											SetPlaceSize(const glm::vec2 &value);
 	glm::vec2										GetPlaceSize() const;
 
+	b2World*										GetWorld();// must be not constant
 
 	void											ProcessCollisions();
 	//--------------------------------------------
@@ -62,6 +64,8 @@ public:
 	//////////////////////////////////////////////////////////////////////
 // Data
 private:
+	std::shared_ptr<b2World>						m_world;
+
 	glm::vec2										m_placeSize;
 	glm::vec2										m_position;// TODO : fix name
 	size_t											m_maxAmountBalls = 50 + AMOUNT_OBSTACLES;

@@ -18,7 +18,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
-	//virtual void	CreateBody() = 0;
+	virtual void				CreateBody() = 0;
 
 };
 
@@ -30,11 +30,14 @@ public:
 	CStaticShape();
 	virtual ~CStaticShape() = default;
 //////////////////////////////////////////////////////////////////////
-// Data
+// Methods
 public:
-	void						AddInWorld(b2World * world) override;
-	void						Advance(float dt) override;
-
+	void						AddInWorld(b2World * world) override {};
+	void						Advance(float dt) override { (void)dt;  };
+//////////////////////////////////////////////////////////////////////
+// Methods
+private:
+	void						CreateBody() override {};
 //////////////////////////////////////////////////////////////////////
 // Data
 public:

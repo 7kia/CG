@@ -16,14 +16,14 @@ namespace DEFAULT_BALL
 }
 
 
-class CStaticCircle
+class CCircle
 	: public CDynamicBody
 	, private boost::noncopyable
 
 {
 public:
-	CStaticCircle();
-	CStaticCircle(float radius, const glm::vec2 &position);
+	CCircle(b2World * world);
+	CCircle(float radius, const glm::vec2 &position, b2World * world);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -32,7 +32,7 @@ public:
 	void		Redraw() const override;
 	bool		HitTest(const glm::vec2 &point) const override;
 	//--------------------------------------------
-
+	
 	void		SetRadius(float radius);
 	float		GetRadius() const;
 //////////////////////////////////////////////////////////////////////
@@ -40,6 +40,8 @@ public:
 private:
 	void		StrokeCircle() const;
 	void		FillCircle() const;
+	void		AddInWorld(b2World * world) override;
+	void		CreateBody() override;
 //////////////////////////////////////////////////////////////////////
 // Constants
 private:

@@ -17,6 +17,7 @@ bool IsBetween(T value, T min, T max)
 
 CPhysicalSystem::CPhysicalSystem()
 {
+	m_world = std::make_shared<b2World>(b2Vec2(0.0f, -10.f));
 	//////////////////////////
 	// Left wall
 	glm::vec2 position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f);
@@ -100,7 +101,7 @@ CPhysicalSystem::CPhysicalSystem()
 	//////////////////////////
 	// Gun
 
-	auto pGun = std::make_shared<CGun>();
+	auto pGun = std::make_shared<CGun>(m_world.get());
 	m_shapes.push_back(pGun);
 
 	m_gun = pGun;
@@ -140,7 +141,7 @@ void CPhysicalSystem::Advance(float dt)
     // За 1 кадр может появиться несколько новых частиц.
     //while (m_shapes.size() < m_maxAmountBalls)
     //{
-    //   m_shapes.emplace_back(std::make_shared<CStaticCircle>());
+    //   m_shapes.emplace_back(std::make_shared<CCircle>());
     //}
 
 	// TODO : rewrite
@@ -219,6 +220,11 @@ glm::vec2 CPhysicalSystem::GetPlaceSize() const
 	return m_placeSize;
 }
 
+b2World* CPhysicalSystem::GetWorld()
+{
+	return m_world.get();
+}
+
 void CPhysicalSystem::ProcessCollisions()
 {
 	// TODO : rewrite	
@@ -254,7 +260,7 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 
 void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
-	auto pBall = std::make_shared<CStaticCircle>();
+	auto pBall = std::make_shared<CCircle>(system->GetWorld());
 
 	const glm::vec2 direction = GetDirection(mousePosition);
 

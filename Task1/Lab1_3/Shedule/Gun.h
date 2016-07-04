@@ -17,7 +17,7 @@ class CGun final
 	: public CStaticShape
 {
 public:
-	CGun();
+	CGun(b2World * world);
 	~CGun();
 //////////////////////////////////////////////////////////////////////
 // Methods
