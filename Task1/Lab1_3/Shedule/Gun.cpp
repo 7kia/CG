@@ -33,6 +33,7 @@ void CGun::Redraw() const
 
 bool CGun::HitTest(const glm::vec2 & point) const
 {
+	(void)point;
 	return false;
 }
 
@@ -73,7 +74,7 @@ void CGun::SetReferenceSystemOrigin(const glm::vec2 & origin)
 
 void CGun::SetRotation(float rotation)
 {
-	CRotatable::SetRotation(rotation);
+	//CRotatable::SetRotation(rotation);
 
 	for (auto & compoenent : m_components)
 	{

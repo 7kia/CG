@@ -2,6 +2,17 @@
 
 #include <glm/vec2.hpp>
 
+static const float SCALE = 30.f;
+
+float ConvertToBoxCoordinates(const float value);
+glm::vec2 ConvertToBoxCoordinates(const glm::vec2 & value);
+
+float ConvertToNormalCoordinates(const float value);
+glm::vec2 ConvertToNormalCoordinates(const glm::vec2 & value);
+
+//
+// TODO : Coordinates accept in world coordinate system and convert to Box2d system
+//
 class IHavePosition
 {
 //////////////////////////////////////////////////////////////////////
@@ -11,16 +22,16 @@ public:
 
 	virtual void				SetPosition(const glm::vec2 & position) { (void)position;  };
 	virtual void				SetPosition(float x, float y) { (void)x; (void)y; };
-	virtual glm::vec2			GetPosition() const {};
+	virtual glm::vec2			GetPosition() const { return glm::vec2(); };
 
-	virtual glm::vec2			GetCenterPosition(const glm::vec2 & origin) const { (void)origin; };
-	virtual glm::vec2			GetCenterPosition() const {} ;
+	virtual glm::vec2			GetCenterPosition(const glm::vec2 & origin) const { (void)origin; return glm::vec2(); };
+	virtual glm::vec2			GetCenterPosition() const { return glm::vec2(); } ;
 
 	virtual void				SetReferenceSystemOrigin(const glm::vec2 & origin) { (void)origin; };
-	virtual glm::vec2			GetReferenceSystemOrigin() const {};
+	virtual glm::vec2			GetReferenceSystemOrigin() const { return glm::vec2(); };
 
 	virtual void				SetShapeOrigin(const glm::vec2 & origin) { (void)origin; };
-	virtual glm::vec2			GetShapeOrigin() const {};
+	virtual glm::vec2			GetShapeOrigin() const { return glm::vec2(); };
 
 //////////////////////////////////////////////////////////////////////
 };

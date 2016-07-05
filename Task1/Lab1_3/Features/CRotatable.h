@@ -6,7 +6,7 @@ class IRotatable
 // Methods
 public:
 	virtual void		SetRotation(float rotation) { (void)rotation;  };
-	virtual float		GetRotation() const {};
+	virtual float		GetRotation() const { return 0.f;  };
 };
 
 class CRotatable

@@ -3,14 +3,6 @@
 #include "CShape.h"
 #include <Box2D\Box2d.h>
 
-static const float SCALE = 30.f;
-
-float ConvertToBoxCoordinates(const float value);
-glm::vec2 ConvertToBoxCoordinates(const glm::vec2 & value);
-
-float ConvertToNormalCoordinates(const float value);
-glm::vec2 ConvertToNormalCoordinates(const glm::vec2 & value);
-
 class IStaticShape
 {
 public:
@@ -40,6 +32,21 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
+
+	//--------------------------------------------
+	// IShape
+	void						SetPosition(const glm::vec2 & position) override;
+	void						SetPosition(float x, float y) override;
+	glm::vec2					GetPosition() const override;
+
+	glm::vec2					GetCenterPosition(const glm::vec2 & origin) const override;
+	glm::vec2					GetCenterPosition() const override;
+	//--------------------------------------------
+	// IRotatable
+	float						GetRotation() const override;
+	void						SetRotation(float rotation) override;
+	//--------------------------------------------
+
 	void						AddInWorld(b2World * world) override { (void)world; };
 	void						Advance(float dt) override { (void)dt;  };
 //////////////////////////////////////////////////////////////////////
@@ -49,7 +56,7 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::shared_ptr<b2Body>		m_body;
+	b2Body*						m_body;
 	b2BodyDef					m_defBody;
 
 };

@@ -8,23 +8,39 @@ CStaticShape::CStaticShape()
 	m_defBody.type = b2_staticBody;
 }
 
-float ConvertToBoxCoordinates(const float value)
+void CStaticShape::SetPosition(const glm::vec2 & position)
 {
-	return value / SCALE;
+	m_defBody.position.Set(ConvertToBoxCoordinates(position.x), ConvertToBoxCoordinates(position.y));
 }
 
-glm::vec2 ConvertToBoxCoordinates(const const glm::vec2 & value)
+void CStaticShape::SetPosition(float x, float y)
 {
-	return glm::vec2(ConvertToBoxCoordinates(value.x) , ConvertToBoxCoordinates(value.y));
+	m_defBody.position.Set(ConvertToBoxCoordinates(x), ConvertToBoxCoordinates(y));
 }
 
-float ConvertToNormalCoordinates(const float value)
+glm::vec2 CStaticShape::GetPosition() const
 {
-	return value * SCALE;
+	return glm::vec2(ConvertToNormalCoordinates(m_defBody.position.x)
+					, ConvertToNormalCoordinates(m_defBody.position.y));
 }
 
-glm::vec2 ConvertToNormalCoordinates(const glm::vec2 & value)
+glm::vec2 CStaticShape::GetCenterPosition(const glm::vec2 & origin) const
 {
-	return glm::vec2(ConvertToNormalCoordinates(value.x), ConvertToNormalCoordinates(value.y));
+	return GetPosition() + ConvertToBoxCoordinates(origin);
+}
+
+glm::vec2 CStaticShape::GetCenterPosition() const
+{
+	return GetPosition() + GetReferenceSystemOrigin();
+}
+
+float CStaticShape::GetRotation() const
+{
+	return m_defBody.angle;
+}
+
+void CStaticShape::SetRotation(float rotation)
+{
+	m_defBody.angle = rotation;
 }
 

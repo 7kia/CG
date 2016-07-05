@@ -30,12 +30,12 @@ void CCircle::StrokeCircle() const
 {
 	const float step = float(2 * M_PI / AMOUNT_POINTS);
 
-
+	// TODO : dudpicate code
 	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
 
 	glm::mat4 transform = glm::translate(glm::mat4(), offset);
 	//
-	transform = glm::rotate(transform, m_rotation, glm::vec3(0.f, 0.f, 1.f));
+	transform = glm::rotate(transform, GetRotation(), glm::vec3(0.f, 0.f, 1.f));
 	// Сохраняем старую матрицу в стек матриц драйвера
 
 	glPushMatrix();
@@ -65,7 +65,7 @@ void CCircle::FillCircle() const
 
 	glm::mat4 transform = glm::translate(glm::mat4(), offset);
 	//
-	transform = glm::rotate(transform, m_rotation, glm::vec3(0.f, 0.f, 1.f));
+	transform = glm::rotate(transform, GetRotation(), glm::vec3(0.f, 0.f, 1.f));
 	// Сохраняем старую матрицу в стек матриц драйвера
 
 	glPushMatrix();
@@ -102,9 +102,9 @@ void CCircle::CreateBody()
 {
 
 	b2CircleShape circle;
-	circle.m_radius = m_radius / SCALE;
+	circle.m_radius = ConvertToBoxCoordinates(m_radius);
 
-	m_body->CreateFixture(&circle, 2);
+	m_body->CreateFixture(&circle, 2);// TODO : magic value
 }
 
 bool CCircle::HitTest(const glm::vec2 & point) const
@@ -115,27 +115,12 @@ bool CCircle::HitTest(const glm::vec2 & point) const
 	return (distance < DEFAULT_BALL::RADIUSE);
 }
 
-void CCircle::SetPosition(const glm::vec2 & position)
-{
-	m_defBody.position.Set(ConvertToBoxCoordinates(position.x), ConvertToBoxCoordinates(position.y));
-}
-
-void CCircle::SetPosition(float x, float y)
-{
-	m_defBody.position.Set(ConvertToBoxCoordinates(x), ConvertToBoxCoordinates(y));
-}
-
-glm::vec2 CCircle::GetPosition()
-{
-	return glm::vec2(ConvertToNormalCoordinates(m_defBody.position.x) , ConvertToNormalCoordinates(m_defBody.position.y));
-}
-
 void CCircle::SetRadius(float radius)
 {
-	m_radius = radius;
+	m_radius = ConvertToBoxCoordinates(radius);
 }
 
 float CCircle::GetRadius() const
 {
-	return m_radius;
+	return ConvertToNormalCoordinates(m_radius);
 }

@@ -35,22 +35,43 @@ glm::vec2 CHavePosition::GetCenterPosition() const
 
 */
 
+float ConvertToBoxCoordinates(const float value)
+{
+	return value / SCALE;
+}
+
+glm::vec2 ConvertToBoxCoordinates(const const glm::vec2 & value)
+{
+	return glm::vec2(ConvertToBoxCoordinates(value.x), ConvertToBoxCoordinates(value.y));
+}
+
+float ConvertToNormalCoordinates(const float value)
+{
+	return value * SCALE;
+}
+
+glm::vec2 ConvertToNormalCoordinates(const glm::vec2 & value)
+{
+	return glm::vec2(ConvertToNormalCoordinates(value.x), ConvertToNormalCoordinates(value.y));
+}
+
+
 void CHavePosition::SetReferenceSystemOrigin(const glm::vec2 & origin)
 {
-	m_referenceSystemOrigin = origin;
+	m_referenceSystemOrigin = ConvertToBoxCoordinates(origin);
 }
 
 glm::vec2 CHavePosition::GetReferenceSystemOrigin() const
 {
-	return m_referenceSystemOrigin;
+	return ConvertToNormalCoordinates(m_referenceSystemOrigin);
 }
 
 void CHavePosition::SetShapeOrigin(const glm::vec2 & origin)
 {
-	m_shapeOrigin = origin;
+	m_shapeOrigin = ConvertToBoxCoordinates(origin);
 }
 
 glm::vec2 CHavePosition::GetShapeOrigin() const
 {
-	return m_shapeOrigin;
+	return ConvertToNormalCoordinates(m_shapeOrigin);
 }
