@@ -1,12 +1,22 @@
 #pragma once
 
-class CRotatable
+class IRotatable
 {
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	float		GetRotation() const;
-	void		SetRotation(float rotation);
+	virtual float		GetRotation() const = 0;
+	virtual void		SetRotation(float rotation) = 0;
+};
+
+class CRotatable
+	: public IRotatable
+{
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	float		GetRotation() const override;
+	void		SetRotation(float rotation) override;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

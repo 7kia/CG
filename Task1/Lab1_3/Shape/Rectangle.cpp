@@ -42,10 +42,12 @@ void CRectangle::Redraw() const
 {
 
 	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
+	glm::vec3 shapeOrigin = { GetShapeOrigin().x, GetShapeOrigin().y, 0.f };
 
-	glm::mat4 transform = glm::translate(glm::mat4(), offset);
+	glm::mat4 transform = glm::translate(glm::mat4(), offset + shapeOrigin);
 	//
 	transform = glm::rotate(transform, m_rotation, glm::vec3(0.f, 0.f, 1.f));
+	transform = glm::translate(transform, -shapeOrigin);
 	// Сохраняем старую матрицу в стек матриц драйвера
 
 	glPushMatrix();

@@ -34,11 +34,19 @@ public:
 	glm::vec2			GetCenterPosition(const glm::vec2 & origin) const override;
 	glm::vec2			GetCenterPosition() const override;
 
-	void				SetOrigin(const glm::vec2 & origin) override;
+	void				SetReferenceSystemOrigin(const glm::vec2 & origin) override;
 	//--------------------------------------------
+	// IRotatable
+	void				SetRotation(float rotation) override;
+	//--------------------------------------------
+
 
 	void				Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition);
 	glm::vec2			GetDirection(const glm::vec2 & point);
+//////////////////////////////////////////////////////////////////////
+// Methods
+private:
+	void				Rotate(const glm::vec2 & mousePosition);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

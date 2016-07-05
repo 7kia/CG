@@ -29,15 +29,25 @@ glm::vec2 CHavePosition::GetCenterPosition(const glm::vec2 & origin) const
 
 glm::vec2 CHavePosition::GetCenterPosition() const
 {
-	return m_position + m_origin;
+	return m_position + m_referenceSystemOrigin;
 }
 
-void CHavePosition::SetOrigin(const glm::vec2 & origin)
+void CHavePosition::SetReferenceSystemOrigin(const glm::vec2 & origin)
 {
-	m_origin = origin;
+	m_referenceSystemOrigin = origin;
 }
 
-glm::vec2 CHavePosition::GetOrigin() const
+glm::vec2 CHavePosition::GetReferenceSystemOrigin() const
 {
-	return m_origin;
+	return m_referenceSystemOrigin;
+}
+
+void CHavePosition::SetShapeOrigin(const glm::vec2 & origin)
+{
+	m_shapeOrigin = origin;
+}
+
+glm::vec2 CHavePosition::GetShapeOrigin() const
+{
+	return m_shapeOrigin;
 }

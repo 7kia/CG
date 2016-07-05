@@ -9,9 +9,12 @@ CGun::CGun(b2World * world)
 	m_components.push_back(pCircle);
 
 	auto pTrunk = std::make_shared<CRectangle>(world);
-	pTrunk->SetWidth(15.f);
-	pTrunk->SetHeight(40.f);
-	pTrunk->SetPosition(-glm::vec2(7.5f, DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK));
+	pTrunk->SetWidth(40.f);
+	pTrunk->SetHeight(15.f);
+	pTrunk->SetPosition(glm::vec2(DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK 
+									, -pTrunk->GetHeight() / 2.f));
+	pTrunk->SetShapeOrigin(glm::vec2(-pTrunk->GetPosition().x
+									, pTrunk->GetHeight() / 2.f));
 
 	m_components.push_back(pTrunk);
 }
@@ -39,7 +42,7 @@ void CGun::SetPosition(const glm::vec2 & position)
 
 	for (auto & component : m_components)
 	{
-		component->SetOrigin(position + m_origin);
+		component->SetReferenceSystemOrigin(position + m_referenceSystemOrigin);
 	}
 }
 
@@ -55,15 +58,25 @@ glm::vec2 CGun::GetCenterPosition(const glm::vec2 & origin) const// TODO : rewri
 
 glm::vec2 CGun::GetCenterPosition() const
 {
-	return GetPosition() + m_origin;
+	return GetPosition() + m_referenceSystemOrigin;
 }
 
-void CGun::SetOrigin(const glm::vec2 & origin)
+void CGun::SetReferenceSystemOrigin(const glm::vec2 & origin)
 {
-	CHavePosition::SetOrigin(origin);
+	CHavePosition::SetReferenceSystemOrigin(origin);
 
 	for (auto & component : m_components)
 	{
-		component->SetOrigin(origin);
+		component->SetReferenceSystemOrigin(origin);
+	}
+}
+
+void CGun::SetRotation(float rotation)
+{
+	CRotatable::SetRotation(rotation);
+
+	for (auto & compoenent : m_components)
+	{
+		compoenent->SetRotation(rotation);
 	}
 }

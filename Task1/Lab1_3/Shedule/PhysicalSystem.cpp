@@ -154,7 +154,7 @@ void CPhysicalSystem::Advance(float dt)
 	do
 	{
 		auto newEnd = std::remove_if(m_shapes.begin(), m_shapes.end(), [&](const auto &pShape) {
-			return CheckExitFromBorder(pShape->GetCenterPosition(pShape->GetOrigin()));
+			return CheckExitFromBorder(pShape->GetCenterPosition(pShape->GetReferenceSystemOrigin()));
 		});
 
 		/////////////////////////////////
@@ -199,7 +199,7 @@ void CPhysicalSystem::SetPosition(const glm::vec2 & position)
 {
 	for (auto & shape : m_shapes)
 	{
-		shape->SetOrigin(position);
+		shape->SetReferenceSystemOrigin(position);
 	}
 
 	m_position = position;
@@ -262,11 +262,12 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
 	auto pBall = std::make_shared<CCircle>(system->GetWorld());
 
-	const glm::vec2 direction = GetDirection(mousePosition);
+	Rotate(mousePosition);// TODO : when fix mouse event transfer to other place
 
-	pBall->SetOrigin(system->GetPosition());
+	pBall->SetReferenceSystemOrigin(system->GetPosition());
 	pBall->SetOutlineColor(Colors::YELLOW);
 
+	const glm::vec2 direction = GetDirection(mousePosition);
 	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
 	pBall->SetPosition(GetPosition() + shift);
 	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);
@@ -276,5 +277,15 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 
 glm::vec2 CGun::GetDirection(const glm::vec2 & point)
 {
-	return glm::normalize(point - m_origin);
+	return glm::normalize(point - m_referenceSystemOrigin);
+}
+
+void CGun::Rotate(const glm::vec2 & mousePosition)
+{
+	const glm::vec2 direction = GetDirection(mousePosition);
+
+	const float dotProduct = glm::dot(direction, glm::vec2(1.f, 0.f));
+
+	const float angle = acos(dotProduct);
+	SetRotation(direction.y > 0 ? angle : -angle);
 }

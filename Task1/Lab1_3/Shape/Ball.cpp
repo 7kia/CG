@@ -16,7 +16,7 @@ CCircle::CCircle(float radius, const glm::vec2 &position, b2World * world)
 	AddInWorld(world);
 
 	SetPosition(position);
-	SetOrigin(m_origin);
+	SetReferenceSystemOrigin(m_referenceSystemOrigin);
 }
 
 void CCircle::Redraw() const
@@ -118,12 +118,24 @@ void CCircle::CreateBody()
 	circleShape.Set(points, 8);//SetAsBox(50.0f, 10.0f);
 
 										   // Add the ground fixture to the ground body.
-	m_body->CreateFixture(&circleShape, 0.0f);
+
+	// Define the dynamic body fixture.
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &circleShape;
+
+	// Set the box density to be non-zero, so it will be dynamic.
+	fixtureDef.density = 1.0f;
+
+	// Override the default friction.
+	fixtureDef.friction = 0.3f;
+
+	// Add the shape to the body.
+	m_body->CreateFixture(&fixtureDef);
 }
 
 bool CCircle::HitTest(const glm::vec2 & point) const
 {
-	glm::vec2 resultShift = GetCenterPosition(m_origin) - point;
+	glm::vec2 resultShift = GetCenterPosition(m_referenceSystemOrigin) - point;
 
 	float distance = glm::length(resultShift);
 	return (distance < DEFAULT_BALL::RADIUSE);

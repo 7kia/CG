@@ -32,7 +32,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void						AddInWorld(b2World * world) override {};
+	void						AddInWorld(b2World * world) override { (void)world; };
 	void						Advance(float dt) override { (void)dt;  };
 //////////////////////////////////////////////////////////////////////
 // Methods

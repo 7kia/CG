@@ -16,8 +16,8 @@ public:
 	virtual glm::vec2			GetCenterPosition(const glm::vec2 & origin) const = 0;
 	virtual glm::vec2			GetCenterPosition() const = 0;
 
-	virtual void				SetOrigin(const glm::vec2 & origin) = 0;
-	virtual glm::vec2			GetOrigin() const = 0;
+	virtual void				SetReferenceSystemOrigin(const glm::vec2 & origin) = 0;
+	virtual glm::vec2			GetReferenceSystemOrigin() const = 0;
 //////////////////////////////////////////////////////////////////////
 };
 
@@ -38,12 +38,17 @@ public:
 	glm::vec2			GetCenterPosition(const glm::vec2 & origin) const;
 	glm::vec2			GetCenterPosition() const;
 
-	void				SetOrigin(const glm::vec2 & origin);
-	glm::vec2			GetOrigin() const;
+	void				SetReferenceSystemOrigin(const glm::vec2 & origin);
+	glm::vec2			GetReferenceSystemOrigin() const;
+
+	void				SetShapeOrigin(const glm::vec2 & origin);
+	glm::vec2			GetShapeOrigin() const;
+
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
 	glm::vec2			m_position;
-	glm::vec2			m_origin;
+	glm::vec2			m_referenceSystemOrigin;
+	glm::vec2			m_shapeOrigin;
 //////////////////////////////////////////////////////////////////////
 };
