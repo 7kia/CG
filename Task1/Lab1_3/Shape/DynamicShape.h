@@ -5,7 +5,7 @@
 // For one constant not need
 //namespace
 //{
-	const glm::vec2 GRAVITY = { 0.f, 0.f };
+	const glm::vec2 GRAVITY = { 0.f, -10.f };
 //}
 
 class CDynamicBody 
@@ -13,6 +13,7 @@ class CDynamicBody
 	, public CStaticShape
 {
 public:
+	CDynamicBody();
 	virtual ~CDynamicBody() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods

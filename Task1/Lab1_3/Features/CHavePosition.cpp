@@ -6,6 +6,7 @@ CHavePosition::CHavePosition()
 {
 }
 
+/*
 void CHavePosition::SetPosition(const glm::vec2 & position)
 {
 	m_position = position;
@@ -31,6 +32,8 @@ glm::vec2 CHavePosition::GetCenterPosition() const
 {
 	return m_position + m_referenceSystemOrigin;
 }
+
+*/
 
 void CHavePosition::SetReferenceSystemOrigin(const glm::vec2 & origin)
 {

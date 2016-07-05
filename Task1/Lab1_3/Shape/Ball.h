@@ -12,7 +12,7 @@ namespace DEFAULT_BALL
 {
 	const float	RADIUSE = 10.f;
 	const float	THIKNESS = 1.f;
-	const float	SPEED = 1.f;
+	const float	SPEED = 0.0f;
 }
 
 
@@ -33,6 +33,16 @@ public:
 	bool		HitTest(const glm::vec2 &point) const override;
 	//--------------------------------------------
 	
+	//--------------------------------------------
+	// IShape
+
+	void				SetPosition(const glm::vec2 & position) override;
+	void				SetPosition(float x, float y) override;
+	glm::vec2			GetPosition();
+
+	glm::vec2			GetCenterPosition(const glm::vec2 & origin) const override;
+	glm::vec2			GetCenterPosition() const override;
+	//--------------------------------------------
 	void		SetRadius(float radius);
 	float		GetRadius() const;
 //////////////////////////////////////////////////////////////////////

@@ -30,6 +30,7 @@ void CCircle::StrokeCircle() const
 {
 	const float step = float(2 * M_PI / AMOUNT_POINTS);
 
+
 	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
 
 	glm::mat4 transform = glm::translate(glm::mat4(), offset);
@@ -90,47 +91,20 @@ void CCircle::FillCircle() const
 
 void CCircle::AddInWorld(b2World * world)
 {
-	m_body = world->CreateBody(&m_defBody);
 	m_defBody.type = b2_dynamicBody;
+
+	m_body = world->CreateBody(&m_defBody);
 
 	CreateBody();
 }
 
 void CCircle::CreateBody()
 {
-	// Define the ground box shape.
-	b2PolygonShape circleShape;
 
-	// TODO 
-	b2Vec2 points[AMOUNT_POINTS];
-	const float step = float(2 * M_PI / 8);
+	b2CircleShape circle;
+	circle.m_radius = m_radius / SCALE;
 
-	int index = 0;
-	for (float angle = 0.f; angle <= float(2 * M_PI); angle += step, index++)
-	{
-		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
-		const float dx = m_radius * cosf(a);
-		const float dy = m_radius * sinf(a);
-		points[index].Set(dx, dy);
-	}
-
-	// The extents are the half-widths of the box.
-	circleShape.Set(points, 8);//SetAsBox(50.0f, 10.0f);
-
-										   // Add the ground fixture to the ground body.
-
-	// Define the dynamic body fixture.
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &circleShape;
-
-	// Set the box density to be non-zero, so it will be dynamic.
-	fixtureDef.density = 1.0f;
-
-	// Override the default friction.
-	fixtureDef.friction = 0.3f;
-
-	// Add the shape to the body.
-	m_body->CreateFixture(&fixtureDef);
+	m_body->CreateFixture(&circle, 2);
 }
 
 bool CCircle::HitTest(const glm::vec2 & point) const
@@ -139,6 +113,21 @@ bool CCircle::HitTest(const glm::vec2 & point) const
 
 	float distance = glm::length(resultShift);
 	return (distance < DEFAULT_BALL::RADIUSE);
+}
+
+void CCircle::SetPosition(const glm::vec2 & position)
+{
+	m_defBody.position.Set(ConvertToBoxCoordinates(position.x), ConvertToBoxCoordinates(position.y));
+}
+
+void CCircle::SetPosition(float x, float y)
+{
+	m_defBody.position.Set(ConvertToBoxCoordinates(x), ConvertToBoxCoordinates(y));
+}
+
+glm::vec2 CCircle::GetPosition()
+{
+	return glm::vec2(ConvertToNormalCoordinates(m_defBody.position.x) , ConvertToNormalCoordinates(m_defBody.position.y));
 }
 
 void CCircle::SetRadius(float radius)

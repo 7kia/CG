@@ -3,6 +3,14 @@
 #include "CShape.h"
 #include <Box2D\Box2d.h>
 
+static const float SCALE = 30.f;
+
+float ConvertToBoxCoordinates(const float value);
+glm::vec2 ConvertToBoxCoordinates(const glm::vec2 & value);
+
+float ConvertToNormalCoordinates(const float value);
+glm::vec2 ConvertToNormalCoordinates(const glm::vec2 & value);
+
 class IStaticShape
 {
 public:
@@ -41,7 +49,7 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	b2Body*						m_body;
+	std::shared_ptr<b2Body>		m_body;
 	b2BodyDef					m_defBody;
 
 };

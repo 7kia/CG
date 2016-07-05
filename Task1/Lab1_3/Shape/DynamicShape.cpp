@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "DynamicShape.h"
 
+CDynamicBody::CDynamicBody()
+	: CHaveVelocity()
+	, CStaticShape()
+{
+	m_defBody.type = b2_dynamicBody;
+}
+
 void CDynamicBody::Advance(float dt)
 {
 	m_velocity += dt * m_acceleration;

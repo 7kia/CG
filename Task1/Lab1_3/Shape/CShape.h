@@ -33,7 +33,7 @@ class CShape
 	: public IShape
 	, public CDrawable
 	, public CHavePosition
-	, public CRotatable
+	, public IRotatable
 
 {
 public:

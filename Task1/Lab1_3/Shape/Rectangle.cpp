@@ -125,8 +125,8 @@ void CRectangle::CreateBody()
 	b2PolygonShape rectangleShape;
 
 	// The extents are the half-widths of the box.
-	rectangleShape.SetAsBox(m_width, m_height);//SetAsBox(50.0f, 10.0f);
+	rectangleShape.SetAsBox(m_width / SCALE, m_height / SCALE);//SetAsBox(50.0f, 10.0f);
 
 							   // Add the ground fixture to the ground body.
-	m_body->CreateFixture(&rectangleShape, 0.0f);
+	m_body->CreateFixture(&rectangleShape, 2.f);
 }

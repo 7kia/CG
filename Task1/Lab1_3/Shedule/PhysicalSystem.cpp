@@ -235,10 +235,14 @@ bool CPhysicalSystem::OnDragBegin(const glm::vec2 & position)
 	//switch (event.keysym.sym)
 	//{
 	//case SDLK_SPACE:
+	if (m_shapes.size() < m_maxAmountBalls)
+	{
 		m_gun.lock()->Shoot(this, position);// TODO : add GetLockPtr
 		return true;
+
+	}
 	//}
-	//return false;
+	return false;
 }
 
 void CPhysicalSystem::SetMaxAmountBalls(size_t amount)
