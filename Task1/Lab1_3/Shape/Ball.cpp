@@ -100,11 +100,22 @@ void CCircle::AddInWorld(b2World * world)
 
 void CCircle::CreateBody()
 {
+	std::shared_ptr<b2CircleShape> circleShape(new b2CircleShape());
+	circleShape->m_radius = ConvertToBoxCoordinates(m_radius);
 
-	b2CircleShape circle;
-	circle.m_radius = ConvertToBoxCoordinates(m_radius);
+	b2FixtureDef circle;
+	circle.shape = circleShape.get();
 
-	m_body->CreateFixture(&circle, 2);// TODO : magic value
+	// Set the box density to be non-zero, so it will be dynamic.
+	circle.density = 1.0f;
+
+	// Override the default friction.
+	circle.friction = 0.3f;
+
+	// Add the shape to the body.
+	m_body->CreateFixture(&circle);// TODO : magic value
+
+	//m_body->CreateFixture(&circle, 2);
 }
 
 bool CCircle::HitTest(const glm::vec2 & point) const

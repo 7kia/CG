@@ -9,7 +9,7 @@
 //}
 
 class CDynamicBody 
-	: public CHaveVelocity
+	: public IHaveVelocity
 	, public CStaticShape
 {
 public:
@@ -20,7 +20,16 @@ public:
 public:
 	// @param dt - разница во времени с предыдущим вызовом Advance.
 	// @param acceleration - ускорение, действующее на частицу.
-	void		Advance(float dt) override;
+	//--------------------------------------------
+	// IStaticShape
 
+	void		Advance(float dt) override;
+	//--------------------------------------------
+	// IHaveVelocity
+	glm::vec2	GetVelocity() const override;
+	void		SetVelocity(const glm::vec2 &GetVelocity) override;
+	//--------------------------------------------
 	void		ApplyAcceleration(const glm::vec2 & acceleration);
+
+
 };

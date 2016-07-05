@@ -12,7 +12,7 @@ namespace DEFAULT_BALL
 {
 	const float	RADIUSE = 10.f;
 	const float	THIKNESS = 1.f;
-	const float	SPEED = 0.0f;
+	const float	SPEED = 0.3f;
 }
 
 

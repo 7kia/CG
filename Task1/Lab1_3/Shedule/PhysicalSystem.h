@@ -13,6 +13,9 @@
 static const size_t AMOUNT_OBSTACLES = 7;
 //static const b2Vec2 GRAVITY(0.0f, -10.f);
 
+//static b2World						m_world(b2Vec2(0.0f, -10.f));
+
+
 class CPhysicalSystem
 {
 public:
@@ -36,7 +39,7 @@ public:
 
 	b2World*										GetWorld();// must be not constant
 
-	void											ProcessCollisions();
+	void											ProcessCollisions(float dt);
 	//--------------------------------------------
 	// Accept command from window
 	bool											OnDragBegin(const glm::vec2 & position);

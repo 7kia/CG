@@ -101,7 +101,7 @@ CPhysicalSystem::CPhysicalSystem()
 	//////////////////////////
 	// Gun
 
-	auto pGun = std::make_shared<CGun>(m_world.get());
+	auto pGun = std::make_shared<CGun>(m_world.get());//
 	m_shapes.push_back(pGun);
 
 	m_gun = pGun;
@@ -134,7 +134,7 @@ void CPhysicalSystem::AddShape(std::shared_ptr<CStaticShape> particle)
 
 void CPhysicalSystem::Advance(float dt)
 {
-	ProcessCollisions();
+	ProcessCollisions(dt);
 	SetPosition(m_placeSize / 2.f);
 
 	// TODO : gun add balls
@@ -225,9 +225,17 @@ b2World* CPhysicalSystem::GetWorld()
 	return m_world.get();
 }
 
-void CPhysicalSystem::ProcessCollisions()
+void CPhysicalSystem::ProcessCollisions(float dt)
 {
 	// TODO : rewrite	
+	m_world->Step(dt, 8, 3);
+
+	// Now print the position and angle of the body.
+	auto position = m_shapes.back()->GetPosition();
+	//float32 angle = body->GetAngle();
+
+	printf("%4.2f %4.2f \n", position.x, position.y);
+
 }
 
 bool CPhysicalSystem::OnDragBegin(const glm::vec2 & position)

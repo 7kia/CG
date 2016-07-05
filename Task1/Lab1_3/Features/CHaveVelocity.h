@@ -2,16 +2,34 @@
 
 #include "glm/vec2.hpp"
 
-class CHaveVelocity
+class IHaveVelocity
 {
+public:
+	virtual ~IHaveVelocity() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	glm::vec2	GetVelocity() const;
-	void		SetVelocity(const glm::vec2 &GetVelocity);
+	virtual glm::vec2	GetVelocity() const { return glm::vec2(); };
+	virtual void		SetVelocity(const glm::vec2 &value) { (void)value; };
 
-	glm::vec2	GetAcceleration() const;
-	void		SetAcceleration(const glm::vec2 &acceleration);
+	//virtual glm::vec2	GetAcceleration() const { return glm::vec2(); };
+	//virtual void		SetAcceleration(const glm::vec2 &acceleration) {};
+};
+
+class CHaveVelocity
+	: public IHaveVelocity
+{
+public:
+	CHaveVelocity();
+	virtual ~CHaveVelocity() = default;
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	glm::vec2	GetVelocity() const override;
+	void		SetVelocity(const glm::vec2 &GetVelocity) override;
+
+	//glm::vec2	GetAcceleration() const override;
+	//void		SetAcceleration(const glm::vec2 &acceleration) override;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
