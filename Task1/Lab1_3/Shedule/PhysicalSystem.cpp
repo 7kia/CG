@@ -281,7 +281,7 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 
 glm::vec2 CGun::GetDirection(const glm::vec2 & point)
 {
-	return glm::normalize(point - m_referenceSystemOrigin);
+	return glm::normalize(point - GetReferenceSystemOrigin());
 }
 
 void CGun::Rotate(const glm::vec2 & mousePosition)
@@ -289,7 +289,7 @@ void CGun::Rotate(const glm::vec2 & mousePosition)
 	const glm::vec2 direction = GetDirection(mousePosition);
 
 	const float dotProduct = glm::dot(direction, glm::vec2(1.f, 0.f));
-
-	const float angle = acos(dotProduct);
+	const float lengthDirectionVector = glm::length(direction);
+	const float angle = acos(dotProduct) / lengthDirectionVector;
 	SetRotation(direction.y > 0 ? angle : -angle);
 }
