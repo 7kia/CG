@@ -47,8 +47,8 @@ void CCircle::StrokeCircle() const
 	glBegin(GL_LINE_STRIP);
 	for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
-		const float dx = m_radius * cosf(angle);
-		const float dy = m_radius * sinf(angle);
+		const float dx = GetRadius() * cosf(angle);
+		const float dy = GetRadius() * sinf(angle);
 		glVertex2f(dx, dy);
 	}
 	glEnd();
@@ -80,8 +80,8 @@ void CCircle::FillCircle() const
     for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
 		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
-		const float dx = m_radius * cosf(a);
-		const float dy = m_radius * sinf(a);
+		const float dx = GetRadius() * cosf(a);
+		const float dy = GetRadius() * sinf(a);
 		glVertex2f(dx, dy);
 	}
 	glEnd();

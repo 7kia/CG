@@ -154,7 +154,7 @@ void CPhysicalSystem::Advance(float dt)
 	do
 	{
 		auto newEnd = std::remove_if(m_shapes.begin(), m_shapes.end(), [&](const auto &pShape) {
-			return CheckExitFromBorder(pShape->GetCenterPosition(pShape->GetReferenceSystemOrigin()));
+			return CheckExitFromBorder(pShape->GetCenterPosition());
 		});
 
 		/////////////////////////////////
@@ -273,6 +273,7 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 
 	const glm::vec2 direction = GetDirection(mousePosition);
 	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
+	const glm::vec2 boxShift = ConvertToBoxCoordinates(shift);
 	pBall->SetPosition(GetPosition() + shift);
 	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);
 

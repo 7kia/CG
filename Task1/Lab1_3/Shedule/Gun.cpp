@@ -39,7 +39,7 @@ bool CGun::HitTest(const glm::vec2 & point) const
 
 void CGun::SetPosition(const glm::vec2 & position)
 {
-	CHavePosition::SetPosition(position);
+	CStaticShape::SetPosition(position);
 
 	for (auto & component : m_components)
 	{
