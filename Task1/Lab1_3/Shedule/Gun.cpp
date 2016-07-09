@@ -13,7 +13,7 @@ CGun::CGun(b2World * world)
 	
 
 	/*
-	m_body->GetFixtureList()
+	//m_body->GetFixtureList()
 
 	auto pCircle = std::make_shared<CCircle>(world);
 	pCircle->SetRadius(25.f);
@@ -29,7 +29,7 @@ CGun::CGun(b2World * world)
 
 	m_components.push_back(pTrunk);
 
-	*/
+	//*/
 }
 
 CGun::~CGun()
@@ -88,6 +88,7 @@ void CGun::SetReferenceSystemOrigin(const glm::vec2 & origin)
 void CGun::SetRotation(float rotation)
 {
 	//CRotatable::SetRotation(rotation);
+	m_body->SetFixedRotation(rotation);
 
 	for (auto & compoenent : m_components)
 	{
@@ -123,7 +124,11 @@ void CGun::CreateBody(float trunkWidth
 					, float trunkHeigth
 					, float baseRadius)
 {
-	CRectangle::AddRectangleToBody(m_body, trunkWidth, trunkHeigth);
+	CRectangle::AddRectangleToBody(m_body
+									, SSize(trunkWidth, trunkHeigth) 
+									, 0.f
+									, glm::vec2(DEFAULT_BALL::RADIUSE - DEFAULT_GUN::SHIFT_TRUNK// - trunkWidth
+												, 0.f) );
 
 	CCircle::AddCircleToBody(m_body, baseRadius);
 }

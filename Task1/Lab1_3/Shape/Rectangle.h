@@ -3,6 +3,14 @@
 #include "CShape.h"
 #include "StaticShape.h"
 
+struct SSize
+{
+	SSize();
+	SSize(float width, float height);
+	float width = 0.f;
+	float height = 0.f;
+};
+
 class CRectangle final
 	: public CStaticShape
 	, private boost::noncopyable
@@ -11,8 +19,7 @@ class CRectangle final
 public:
 	CRectangle(b2World * world);
 	CRectangle(const glm::vec2 & leftTopPoint
-				, float width
-				, float height
+				, SSize size
 				, float rotate
 				, const glm::vec3 & outlineColor
 				, b2World * world);
@@ -32,7 +39,10 @@ public:
 	void				SetHeight(float height);
 	float				GetHeight() const;
 
-	static void			AddRectangleToBody(b2Body *body, float width, float height);// TODO : see need transfer
+	static void			AddRectangleToBody(b2Body *body
+											, SSize size
+											, float rotatation
+											, const glm::vec2 & shapeOrigin);// TODO : see need transfer
 	//--------------------------------------------
 	// IStaticShape
 	void				AddToWorld(b2World * world) override;

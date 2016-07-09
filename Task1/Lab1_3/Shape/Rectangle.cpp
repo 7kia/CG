@@ -13,21 +13,18 @@ CRectangle::CRectangle(b2World * world)
 }
 
 CRectangle::CRectangle(const glm::vec2 & leftTopPoint
-						, float width
-						, float height
+						, SSize size
 						, float rotate
 						, const glm::vec3 & outlineColor
 						, b2World * world)
 	: CStaticShape(world)
 
 {
-	SetWidth(width);
-	SetHeight(height);
+	SetWidth(size.width);
+	SetHeight(size.height);
 	SetPosition(leftTopPoint);
 
 	SetOutlineColor(outlineColor);
-	SetWidth(width);
-	SetHeight(height);
 
 	SetRotation(rotate);
 }
@@ -113,12 +110,18 @@ void CRectangle::AddToWorld(b2World * world)
 {
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
-	AddRectangleToBody(m_body, m_width, m_height);
+	AddRectangleToBody(m_body
+				, SSize(m_width, m_height)
+				, GetRotation()
+				, GetShapeOrigin());
 }
 
-void CRectangle::AddRectangleToBody(b2Body *body, float width, float height)
+void CRectangle::AddRectangleToBody(b2Body *body
+									, SSize size
+									, float rotation
+									, const glm::vec2 & shapeOrigin)
 {
-	if ((width < 0.f) || (height < 0.f))
+	if ((size.width < 0.f) || (size.height < 0.f))
 	{
 		throw std::runtime_error("Size will be more zero!!!");
 	}
@@ -127,7 +130,10 @@ void CRectangle::AddRectangleToBody(b2Body *body, float width, float height)
 	b2PolygonShape rectangleShape;
 
 	// The extents are the half-widths of the box.
-	rectangleShape.SetAsBox(ConvertToBoxCoordinates(width), ConvertToBoxCoordinates(height));//SetAsBox(50.0f, 10.0f);
+	const glm::vec2 shiftOrigin = { ConvertToBoxCoordinates(size.width) / 2.f, ConvertToBoxCoordinates(size.height) / 2.f };
+	rectangleShape.SetAsBox(ConvertToBoxCoordinates(size.width) /2.f, ConvertToBoxCoordinates(size.height) / 2.f
+							, b2Vec2(shapeOrigin.x + shiftOrigin.x, shapeOrigin.y + shiftOrigin.y)
+							, 0.f);//SetAsBox(50.0f, 10.0f);
 
 	body->CreateFixture(&rectangleShape, 2.f);
 }
@@ -146,4 +152,14 @@ void CRectangle::CheckParametres()
 	{
 		throw std::runtime_error("Not define rectangle height!!!");
 	}
+}
+
+SSize::SSize()
+{
+}
+
+SSize::SSize(float width, float height)
+	: width(width)
+	, height(height)
+{
 }

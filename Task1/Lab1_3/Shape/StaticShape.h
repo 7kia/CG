@@ -67,7 +67,7 @@ protected:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	b2Body*						m_body;
+	b2Body*						m_body = nullptr;
 	b2BodyDef					m_defBody;
 
 };

@@ -80,7 +80,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	width = 300.f;
 	height = BORDER_WIDTH / 2.f;
 	color = Colors::RED;
-	rotation = 2.97f;
+	rotation = 2.97f;// 2.97f
 
 	CreateWall(position
 		, width
@@ -93,7 +93,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	width = 50.f;
 	height = 100.f;
 	color = Colors::RED;
-	rotation = 1.1f;
+	rotation = 1.4f;
 
 	CreateWall(position
 		, width

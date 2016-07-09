@@ -45,12 +45,26 @@ glm::vec2 CStaticShape::GetCenterPosition() const
 
 float CStaticShape::GetRotation() const
 {
-	return m_defBody.angle;
+	if (m_body)
+	{
+		m_body->GetAngle();
+	}
+	else
+	{
+		return m_defBody.angle;
+	}
 }
 
 void CStaticShape::SetRotation(float rotation)
 {
-	m_defBody.angle = rotation;
+	if (m_body)
+	{
+		m_body->SetFixedRotation(rotation);
+	}
+	else
+	{
+		m_defBody.angle = rotation;
+	}
 }
 
 void CStaticShape::AddToWorld(b2World * world)

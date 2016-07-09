@@ -108,7 +108,7 @@ void CCircle::AddCircleToBody(b2Body *body, float radius)
 	// Override the default friction.
 	circle.friction = 0.3f;
 
-	circle.restitution = 1.f;
+	circle.restitution = 0.5f;
 
 	// Add the shape to the body.
 	body->CreateFixture(&circle);// TODO : magic value
