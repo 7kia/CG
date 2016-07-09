@@ -123,6 +123,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	pRectangle->SetOutlineColor(color);
 	pRectangle->SetPosition(leftTopPoint);
 	pRectangle->SetRotation(rotation);
+	pRectangle->AddToWorld(GetWorld());
 
 	AddShape(pRectangle);
 }
@@ -230,6 +231,14 @@ void CPhysicalSystem::ProcessCollisions(float dt)
 	// TODO : rewrite	
 	m_world->Step(dt, 8, 3);
 
+
+	for (b2Body* it = m_world->GetBodyList(); it != 0; it = it->GetNext())
+	{
+		it->SetBullet(true);
+		//for (b2Fixture *f = it->GetFixtureList(); f != 0; f = f->GetNext())
+			//if (f->TestPoint(pos))  onGround = true;
+
+	}
 	// Now print the position and angle of the body.
 	auto position = m_shapes.back()->GetPosition();
 	//float32 angle = body->GetAngle();
@@ -280,10 +289,11 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 	pBall->SetOutlineColor(Colors::YELLOW);
 
 	const glm::vec2 direction = GetDirection(mousePosition);
-	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
+	const glm::vec2 shift = 1.5f *DEFAULT_GUN::SHIFT_BALL * direction;
 	const glm::vec2 boxShift = ConvertToBoxCoordinates(shift);
 	pBall->SetPosition(GetPosition() + shift);
 	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);
+	pBall->AddToWorld(system->GetWorld());
 
 	system->AddShape(pBall);
 }

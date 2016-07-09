@@ -8,10 +8,8 @@ bool IsBetween(const T& value, const T& lowerBound, const T& upperBound)
 }
 
 CRectangle::CRectangle(b2World * world) 
-	: CStaticShape()
+	: CStaticShape(world)
 {
-	AddInWorld(world);
-
 }
 
 CRectangle::CRectangle(const glm::vec2 & leftTopPoint
@@ -20,9 +18,9 @@ CRectangle::CRectangle(const glm::vec2 & leftTopPoint
 						, float rotate
 						, const glm::vec3 & outlineColor
 						, b2World * world)
-{
-	AddInWorld(world);
+	: CStaticShape(world)
 
+{
 	SetWidth(width);
 	SetHeight(height);
 	SetPosition(leftTopPoint);
@@ -111,11 +109,9 @@ float CRectangle::GetHeight() const
 	return m_height;
 }
 
-void CRectangle::AddInWorld(b2World * world)
+void CRectangle::AddToWorld(b2World * world)
 {
-	m_body = world->CreateBody(&m_defBody);
-	m_defBody.type = b2_staticBody;
-
+	CheckParametres();
 	CreateBody();
 }
 
@@ -129,4 +125,20 @@ void CRectangle::CreateBody()
 
 							   // Add the ground fixture to the ground body.
 	m_body->CreateFixture(&rectangleShape, 2.f);
+}
+
+void CRectangle::CheckParametres()
+{
+	CStaticShape::CheckParametres();
+
+	if (m_width == NONE_VALUE::FLOAT)
+	{
+		throw std::runtime_error("Not define rectangle width!!!");
+
+	}
+		
+	if (m_height == NONE_VALUE::FLOAT)
+	{
+		throw std::runtime_error("Not define rectangle height!!!");
+	}
 }

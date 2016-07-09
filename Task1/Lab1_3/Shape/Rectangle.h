@@ -31,18 +31,23 @@ public:
 
 	void				SetHeight(float height);
 	float				GetHeight() const;
+
+	//--------------------------------------------
+	// IStaticShape
+	void				AddToWorld(b2World * world) override;
+	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
 	//--------------------------------------------
-	// CStaticShape
-	void				AddInWorld(b2World * world) override;
+	// IStaticShape
 	void				CreateBody() override;
+	void				CheckParametres() override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	float				m_width;
-	float				m_height;
+	float				m_width = NONE_VALUE::FLOAT;
+	float				m_height = NONE_VALUE::FLOAT;
 //////////////////////////////////////////////////////////////////////
 };

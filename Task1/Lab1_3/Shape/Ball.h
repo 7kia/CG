@@ -35,13 +35,20 @@ public:
 	
 	void		SetRadius(float radius);
 	float		GetRadius() const;
+	//--------------------------------------------
+	// IstaticShape
+	void		AddToWorld(b2World * world) override;
+	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
 	void		StrokeCircle() const;
 	void		FillCircle() const;
-	void		AddInWorld(b2World * world) override;
+	//--------------------------------------------
+	// IStaticShape
 	void		CreateBody() override;
+	void		CheckParametres() override;
+	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Constants
 private:

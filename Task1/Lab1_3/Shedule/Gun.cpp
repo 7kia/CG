@@ -2,8 +2,43 @@
 #include "Gun.h"
 
 CGun::CGun(b2World * world)
-	: CStaticShape()
+	: CStaticShape(world)
 {
+	//m_defBody.type = b2_dynamicBody;
+
+	//m_body = world->CreateBody(&m_defBody);
+
+	// Rectangle
+	// Define the ground box shape.
+	b2PolygonShape rectangleShape;
+
+	// The extents are the half-widths of the box.
+	rectangleShape.SetAsBox(40.f / SCALE, 15.f / SCALE);//SetAsBox(50.0f, 10.0f);
+
+															   // Add the ground fixture to the ground body.
+	m_body->CreateFixture(&rectangleShape, 2.f);
+
+
+
+	// Circle
+	b2CircleShape circleShape;
+	circleShape.m_radius = ConvertToBoxCoordinates(25.f / SCALE);
+
+	b2FixtureDef circle;
+	circle.shape = &circleShape;
+
+	// Set the box density to be non-zero, so it will be dynamic.
+	circle.density = 1.0f;
+
+	// Override the default friction.
+	circle.friction = 0.3f;
+
+	// Add the shape to the body.
+	m_body->CreateFixture(&circle);// TODO : magic value
+
+	/*
+	m_body->GetFixtureList()
+
 	auto pCircle = std::make_shared<CCircle>(world);
 	pCircle->SetRadius(25.f);
 	m_components.push_back(pCircle);
@@ -17,6 +52,8 @@ CGun::CGun(b2World * world)
 									, pTrunk->GetHeight() / 2.f));
 
 	m_components.push_back(pTrunk);
+
+	*/
 }
 
 CGun::~CGun()

@@ -13,7 +13,7 @@ class CDynamicBody
 	, public CStaticShape
 {
 public:
-	CDynamicBody();
+	CDynamicBody(b2World * world);
 	virtual ~CDynamicBody() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -30,6 +30,14 @@ public:
 	void		SetVelocity(const glm::vec2 &GetVelocity) override;
 	//--------------------------------------------
 	void		ApplyAcceleration(const glm::vec2 & acceleration);
+//////////////////////////////////////////////////////////////////////
+// Methods
+protected:
+
+	//--------------------------------------------
+	// IStaticShape
+	void						CheckParametres() override;
+	//--------------------------------------------
 
 
 };

@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "DynamicShape.h"
 
-CDynamicBody::CDynamicBody()
+CDynamicBody::CDynamicBody(b2World * world)
 	: IHaveVelocity()
-	, CStaticShape()
+	, CStaticShape(world)
 {
 	m_defBody.type = b2_dynamicBody;
+
+	m_defBody.linearVelocity.x = NONE_VALUE::FLOAT;
+	m_defBody.linearVelocity.y = NONE_VALUE::FLOAT;
 }
 
 void CDynamicBody::Advance(float dt)
@@ -30,11 +33,21 @@ void CDynamicBody::SetVelocity(const glm::vec2 & value)
 {
 	m_defBody.linearVelocity.x = ConvertToBoxCoordinates(value.x);
 	m_defBody.linearVelocity.y = ConvertToBoxCoordinates(value.y);
-	ApplyAcceleration(ConvertToBoxCoordinates(value));
+	//ApplyAcceleration(ConvertToBoxCoordinates(value));
 }
 
 void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 {
 	const glm::vec2 convertAcceleration = ConvertToBoxCoordinates(acceleration);
 	m_body->ApplyForceToCenter(b2Vec2(convertAcceleration.x, convertAcceleration.y), true);// TODO : what is wake?
+}
+
+void CDynamicBody::CheckParametres()
+{
+	if ((m_defBody.linearVelocity.x == NONE_VALUE::FLOAT)
+		&&
+		(m_defBody.linearVelocity.y == NONE_VALUE::FLOAT))
+	{
+		throw std::runtime_error("Not define velocity!!!");
+	}
 }

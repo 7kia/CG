@@ -3,18 +3,16 @@
 
 
 
-CCircle::CCircle(b2World * world) : CDynamicBody()
+CCircle::CCircle(b2World * world) 
+	: CDynamicBody(world)
 {
-	AddInWorld(world);
 }
 
 CCircle::CCircle(float radius, const glm::vec2 &position, b2World * world)
-	: CDynamicBody()
+	: CDynamicBody(world)
 	, m_radius(radius)
 
 {
-	AddInWorld(world);
-
 	SetPosition(position);
 	SetReferenceSystemOrigin(m_referenceSystemOrigin);
 }
@@ -89,22 +87,19 @@ void CCircle::FillCircle() const
 	glPopMatrix();
 }
 
-void CCircle::AddInWorld(b2World * world)
-{
-	m_defBody.type = b2_dynamicBody;
-
-	m_body = world->CreateBody(&m_defBody);
-
+void CCircle::AddToWorld(b2World * world)
+{	
+	CheckParametres();
 	CreateBody();
 }
 
 void CCircle::CreateBody()
 {
-	std::shared_ptr<b2CircleShape> circleShape(new b2CircleShape());
-	circleShape->m_radius = ConvertToBoxCoordinates(m_radius);
+	b2CircleShape circleShape;
+	circleShape.m_radius = ConvertToBoxCoordinates(m_radius);
 
 	b2FixtureDef circle;
-	circle.shape = circleShape.get();
+	circle.shape = &circleShape;
 
 	// Set the box density to be non-zero, so it will be dynamic.
 	circle.density = 1.0f;
@@ -116,6 +111,20 @@ void CCircle::CreateBody()
 	m_body->CreateFixture(&circle);// TODO : magic value
 
 	//m_body->CreateFixture(&circle, 2);
+}
+
+void CCircle::CheckParametres()
+{
+	CStaticShape::CheckParametres();
+	CDynamicBody::CheckParametres();
+
+	/*
+	if (m_radius == NONE_VALUE::FLOAT)
+	{
+		throw std::runtime_error("Not define circle radius!!!")
+	}
+	*/
+	
 }
 
 bool CCircle::HitTest(const glm::vec2 & point) const

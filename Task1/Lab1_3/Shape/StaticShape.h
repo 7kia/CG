@@ -3,6 +3,14 @@
 #include "CShape.h"
 #include <Box2D\Box2d.h>
 
+#include <stdexcept>
+
+namespace NONE_VALUE
+{
+	const float FLOAT = std::numeric_limits<float>::min();
+	const glm::vec2 GLM_VEC2 = glm::vec2(FLOAT, FLOAT);
+}
+
 class IStaticShape
 {
 public:
@@ -12,14 +20,14 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	virtual void				AddInWorld(b2World * world) = 0;
+	virtual void				AddToWorld(b2World * world) = 0;
 	virtual void				Advance(float dt) = 0;
 
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
-	virtual void				CreateBody() = 0;
-
+	virtual void				CreateBody() {};
+	virtual void				CheckParametres() {};
 };
 
 class CStaticShape
@@ -27,7 +35,7 @@ class CStaticShape
 	, public CShape
 {
 public:
-	CStaticShape();
+	CStaticShape(b2World * world);
 	virtual ~CStaticShape() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -47,12 +55,16 @@ public:
 	void						SetRotation(float rotation) override;
 	//--------------------------------------------
 
-	void						AddInWorld(b2World * world) override { (void)world; };
+	void						AddToWorld(b2World * world) override { (void)world; };
 	void						Advance(float dt) override { (void)dt;  };
 //////////////////////////////////////////////////////////////////////
 // Methods
-private:
-	void						CreateBody() override {};
+protected:
+	//--------------------------------------------
+	// IStaticShape
+	void						CheckParametres() override;
+	//--------------------------------------------
+
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
