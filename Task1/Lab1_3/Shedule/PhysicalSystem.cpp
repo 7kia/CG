@@ -19,7 +19,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 {
 	SetPosition(glm::vec2(windowWidth, windowHeight));
 
-	m_world = std::make_shared<b2World>(b2Vec2(0.0f, -10.f));
+	m_world = std::make_shared<b2World>(b2Vec2(0.0f, 10.f));
 	//////////////////////////
 	// Left wall
 	glm::vec2 position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f);

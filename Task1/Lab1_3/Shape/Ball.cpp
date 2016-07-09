@@ -108,6 +108,8 @@ void CCircle::CreateBody()
 	// Override the default friction.
 	circle.friction = 0.3f;
 
+	circle.restitution = 1.f;
+
 	// Add the shape to the body.
 	m_body->CreateFixture(&circle);// TODO : magic value
 
