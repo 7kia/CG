@@ -10,31 +10,7 @@ CGun::CGun(b2World * world)
 
 	// Rectangle
 	// Define the ground box shape.
-	b2PolygonShape rectangleShape;
-
-	// The extents are the half-widths of the box.
-	rectangleShape.SetAsBox(40.f / SCALE, 15.f / SCALE);//SetAsBox(50.0f, 10.0f);
-
-															   // Add the ground fixture to the ground body.
-	m_body->CreateFixture(&rectangleShape, 2.f);
-
-
-
-	// Circle
-	b2CircleShape circleShape;
-	circleShape.m_radius = ConvertToBoxCoordinates(25.f / SCALE);
-
-	b2FixtureDef circle;
-	circle.shape = &circleShape;
-
-	// Set the box density to be non-zero, so it will be dynamic.
-	circle.density = 1.0f;
-
-	// Override the default friction.
-	circle.friction = 0.3f;
-
-	// Add the shape to the body.
-	m_body->CreateFixture(&circle);// TODO : magic value
+	
 
 	/*
 	m_body->GetFixtureList()
@@ -117,4 +93,57 @@ void CGun::SetRotation(float rotation)
 	{
 		compoenent->SetRotation(rotation);
 	}
+}
+
+void CGun::Rotate(const glm::vec2 & mousePosition)
+{
+	const glm::vec2 direction = GetDirection(mousePosition);
+
+	const float dotProduct = glm::dot(direction, glm::vec2(1.f, 0.f));
+	const float lengthDirectionVector = glm::length(direction);
+	const float angle = acos(dotProduct) / lengthDirectionVector;
+	SetRotation(direction.y > 0 ? angle : -angle);
+}
+
+void CGun::AddToWorld(b2World * world)
+{
+	CheckParametres();
+	CStaticShape::AddToWorld(world);
+	CreateBody();
+}
+
+
+void CGun::CheckParametres()
+{
+	CStaticShape::CheckParametres();
+
+}
+
+void CGun::CreateBody()
+{
+	b2PolygonShape rectangleShape;
+
+	// The extents are the half-widths of the box.
+	rectangleShape.SetAsBox(40.f / SCALE, 15.f / SCALE);//SetAsBox(50.0f, 10.0f);
+
+														// Add the ground fixture to the ground body.
+	m_body->CreateFixture(&rectangleShape, 2.f);
+
+
+
+	// Circle
+	b2CircleShape circleShape;
+	circleShape.m_radius = ConvertToBoxCoordinates(25.f / SCALE);
+
+	b2FixtureDef circle;
+	circle.shape = &circleShape;
+
+	// Set the box density to be non-zero, so it will be dynamic.
+	circle.density = 1.0f;
+
+	// Override the default friction.
+	circle.friction = 0.3f;
+
+	// Add the shape to the body.
+	m_body->CreateFixture(&circle);// TODO : magic value
 }

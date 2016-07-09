@@ -19,7 +19,7 @@ static const size_t AMOUNT_OBSTACLES = 7;
 class CPhysicalSystem
 {
 public:
-    CPhysicalSystem();
+    CPhysicalSystem(float windowWidth, float windowHeight);
     ~CPhysicalSystem();
 //////////////////////////////////////////////////////////////////////
 // Methods

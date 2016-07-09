@@ -53,6 +53,11 @@ void CStaticShape::SetRotation(float rotation)
 	m_defBody.angle = rotation;
 }
 
+void CStaticShape::AddToWorld(b2World * world)
+{
+	m_body = world->CreateBody(&m_defBody);
+}
+
 void CStaticShape::CheckParametres()
 {
 	if ((m_defBody.position.x == NONE_VALUE::FLOAT)

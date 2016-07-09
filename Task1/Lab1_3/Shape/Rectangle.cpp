@@ -112,6 +112,7 @@ float CRectangle::GetHeight() const
 void CRectangle::AddToWorld(b2World * world)
 {
 	CheckParametres();
+	CStaticShape::AddToWorld(world);
 	CreateBody();
 }
 

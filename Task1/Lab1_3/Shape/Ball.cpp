@@ -90,6 +90,7 @@ void CCircle::FillCircle() const
 void CCircle::AddToWorld(b2World * world)
 {	
 	CheckParametres();
+	CStaticShape::AddToWorld(world);
 	CreateBody();
 }
 

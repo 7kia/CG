@@ -38,6 +38,7 @@ public:
 	//--------------------------------------------
 	// IRotatable
 	void				SetRotation(float rotation) override;
+	void				AddToWorld(b2World * world) override;
 	//--------------------------------------------
 
 
@@ -47,6 +48,13 @@ public:
 // Methods
 private:
 	void				Rotate(const glm::vec2 & mousePosition);
+
+	//--------------------------------------------
+	// IStaticShape
+	void				CreateBody() override;
+	void				CheckParametres() override;
+	//--------------------------------------------
+
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

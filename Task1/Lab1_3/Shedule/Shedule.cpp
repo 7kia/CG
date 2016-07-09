@@ -9,6 +9,7 @@ static const float						ARROW_HEIGTH = 25;
 CShedule::CShedule(unsigned int width, unsigned int height)
 	: m_windowWidth(float(width))
 	, m_windowHeigth(float(height))
+	, m_system(float(width), float(height))
 {
 	CreateSystem();
 }

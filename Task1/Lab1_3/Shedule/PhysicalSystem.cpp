@@ -15,8 +15,10 @@ bool IsBetween(T value, T min, T max)
 	return (min <= value) && (value <= max);
 }
 
-CPhysicalSystem::CPhysicalSystem()
+CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 {
+	SetPosition(glm::vec2(windowWidth, windowHeight));
+
 	m_world = std::make_shared<b2World>(b2Vec2(0.0f, -10.f));
 	//////////////////////////
 	// Left wall
@@ -102,6 +104,9 @@ CPhysicalSystem::CPhysicalSystem()
 	// Gun
 
 	auto pGun = std::make_shared<CGun>(m_world.get());//
+	pGun->SetReferenceSystemOrigin(GetPosition());
+	pGun->SetPosition(glm::vec2());
+	pGun->AddToWorld(GetWorld());
 	m_shapes.push_back(pGun);
 
 	m_gun = pGun;
@@ -123,6 +128,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	pRectangle->SetOutlineColor(color);
 	pRectangle->SetPosition(leftTopPoint);
 	pRectangle->SetRotation(rotation);
+	pRectangle->SetReferenceSystemOrigin(GetPosition());
 	pRectangle->AddToWorld(GetWorld());
 
 	AddShape(pRectangle);
@@ -301,14 +307,4 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 glm::vec2 CGun::GetDirection(const glm::vec2 & point)
 {
 	return glm::normalize(point - GetReferenceSystemOrigin());
-}
-
-void CGun::Rotate(const glm::vec2 & mousePosition)
-{
-	const glm::vec2 direction = GetDirection(mousePosition);
-
-	const float dotProduct = glm::dot(direction, glm::vec2(1.f, 0.f));
-	const float lengthDirectionVector = glm::length(direction);
-	const float angle = acos(dotProduct) / lengthDirectionVector;
-	SetRotation(direction.y > 0 ? angle : -angle);
 }

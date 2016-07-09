@@ -55,7 +55,7 @@ public:
 	void						SetRotation(float rotation) override;
 	//--------------------------------------------
 
-	void						AddToWorld(b2World * world) override { (void)world; };
+	void						AddToWorld(b2World * world) override;
 	void						Advance(float dt) override { (void)dt;  };
 //////////////////////////////////////////////////////////////////////
 // Methods
