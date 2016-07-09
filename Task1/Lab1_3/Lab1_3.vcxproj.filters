@@ -81,6 +81,18 @@
     <ClInclude Include="Shedule\Gun.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\Circle.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CircleView.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Wall.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\RectangleView.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -133,6 +145,18 @@
     </ClCompile>
     <ClCompile Include="Shedule\Gun.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Wall.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Circle.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\CircleView.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\RectangleView.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

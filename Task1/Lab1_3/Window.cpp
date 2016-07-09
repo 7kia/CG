@@ -45,7 +45,8 @@ bool ShouldTrackKeyPressed(const SDL_Keysym &key)
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	m_shedule.OnDragBegin(pos + glm::vec2());// TODO : fix origin + glm::vec2()
+	/*
+		m_shedule.OnDragBegin(pos + glm::vec2());// TODO : fix origin + glm::vec2()
 
 
 	auto particles = boost::adaptors::reverse(m_shedule.GetPhysicSystem().m_shapes);
@@ -62,23 +63,31 @@ void CWindow::OnDragBegin(const glm::vec2 &pos)
 		m_shedule.GetPhysicSystem().m_draggingShape = nullptr;
 	}
 
+	*/
+
 }
 
 void CWindow::OnDragMotion(const glm::vec2 &pos)
 {
-    if (m_shedule.GetPhysicSystem().m_draggingShape)
+	/*
+	    if (m_shedule.GetPhysicSystem().m_draggingShape)
     {
 		m_shedule.GetPhysicSystem().m_draggingShape->SetPosition(pos - m_dragOffset);
     }
+
+	*/
 }
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
-    if (m_shedule.GetPhysicSystem().m_draggingShape)
+	/*
+	    if (m_shedule.GetPhysicSystem().m_draggingShape)
     {
 		m_shedule.GetPhysicSystem().m_draggingShape->SetPosition(pos - m_dragOffset);
 		m_shedule.GetPhysicSystem().m_draggingShape = nullptr;
     }
+
+	*/
 }
 
 //void CWindow::OnKeyDown(const SDL_KeyboardEvent & event

@@ -4,7 +4,7 @@
 
 #include "../Shape/DynamicShape.h"
 #include "../Shape/Ball.h"
-#include "../Shape/Rectangle.h"
+#include "../Shape/Wall.h"
 #include "Gun.h"
 
 #include <vector>
@@ -61,7 +61,7 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<std::shared_ptr<CStaticShape>>		m_shapes;
+	std::vector<std::shared_ptr<CDrawable>>		m_shapes;//CStaticShape
 	std::weak_ptr<CGun>								m_gun;
 	CShape*											m_draggingShape = nullptr;
 	//////////////////////////////////////////////////////////////////////

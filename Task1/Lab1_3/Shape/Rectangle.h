@@ -11,53 +11,45 @@ struct SSize
 	float height = 0.f;
 };
 
-class CRectangle final
-	: public CStaticShape
-	, private boost::noncopyable
-
+class IRectangle
 {
 public:
-	CRectangle(b2World * world);
-	CRectangle(const glm::vec2 & leftTopPoint
-				, SSize size
-				, float rotate
-				, const glm::vec3 & outlineColor
-				, b2World * world);
-	~CRectangle();
+	virtual ~IRectangle() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	//--------------------------------------------
-	// IShape
-	void				Redraw() const override;
-	bool				HitTest(const glm::vec2 &point) const override;
-	//--------------------------------------------
+	virtual void				SetWidth(float width) = 0;
+	virtual float				GetWidth() const = 0;
 
+	virtual void				SetHeight(float height) = 0;
+	virtual float				GetHeight() const = 0;
+};
+
+
+class CRectangle
+	: public IRectangle
+{
+public:
+	CRectangle();
+	CRectangle(SSize size);
+	CRectangle(float width, float height);
+
+	virtual ~CRectangle() = default;
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
 	void				SetWidth(float width);
 	float				GetWidth() const;
 
 	void				SetHeight(float height);
 	float				GetHeight() const;
-
-	static void			AddRectangleToBody(b2Body *body
-											, SSize size
-											, float rotatation
-											, const glm::vec2 & shapeOrigin);// TODO : see need transfer
-	//--------------------------------------------
-	// IStaticShape
-	void				AddToWorld(b2World * world) override;
-	//--------------------------------------------
-//////////////////////////////////////////////////////////////////////
-// Methods
-private:
-	//--------------------------------------------
-	// IStaticShape
-	void				CheckParametres() override;
-	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Data
-private:
+protected:
 	float				m_width = NONE_VALUE::FLOAT;
 	float				m_height = NONE_VALUE::FLOAT;
 //////////////////////////////////////////////////////////////////////
+
+
 };
+

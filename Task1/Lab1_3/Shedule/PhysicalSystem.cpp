@@ -121,7 +121,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	, float rotation
 	, const glm::vec3 & color)
 {
-	auto pRectangle = std::make_shared<CRectangle>(GetWorld());
+	auto pRectangle = std::make_shared<CWall>(GetWorld());
 
 	pRectangle->SetHeight(height);
 	pRectangle->SetWidth(width);
@@ -148,7 +148,7 @@ void CPhysicalSystem::Advance(float dt)
     // За 1 кадр может появиться несколько новых частиц.
     //while (m_shapes.size() < m_maxAmountBalls)
     //{
-    //   m_shapes.emplace_back(std::make_shared<CCircle>());
+    //   m_shapes.emplace_back(std::make_shared<CBall>());
     //}
 
 	// TODO : rewrite
@@ -272,7 +272,7 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 
 void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
-	auto pBall = std::make_shared<CCircle>(system->GetWorld());
+	auto pBall = std::make_shared<CBall>(system->GetWorld());
 
 	Rotate(mousePosition);// TODO : when fix mouse event transfer to other place
 
@@ -282,6 +282,7 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 	const glm::vec2 direction = GetDirection(mousePosition);
 	const glm::vec2 shift = 1.5f *DEFAULT_GUN::SHIFT_BALL * direction;
 	const glm::vec2 boxShift = ConvertToBoxCoordinates(shift);
+	//pBall->SetShapeOrigin()
 	pBall->SetPosition(GetPosition() + shift);
 	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);
 	pBall->AddToWorld(system->GetWorld());

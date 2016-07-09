@@ -8,6 +8,7 @@ class CDrawable
 {
 public:
 	CDrawable() = default;
+	virtual ~CDrawable() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

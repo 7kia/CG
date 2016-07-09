@@ -1,38 +1,46 @@
 #pragma once
 
-#include "CircleView.h"
+#include "RectangleView.h"
 
-class CBall
-	: public CDynamicBody
+class CWall final
+	: public CStaticShape
 	, public CDrawable
-	, public CCircle
+	, public CRectangle
 	, private boost::noncopyable
-
 {
 public:
-	CBall(b2World * world);
-	CBall(float radius, const glm::vec2 &position, b2World * world);
+	CWall(b2World * world);
+	CWall(const glm::vec2 & leftTopPoint
+		, SSize size
+		, float rotate
+		, const glm::vec3 & outlineColor
+		, b2World * world);
+	virtual ~CWall() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	static void		AddCircleToBody(b2Body *body, float radiuse);// TODO : see need transfer
+	static void			AddRectangleToBody(b2Body *body
+											, SSize size
+											, float rotatation
+											, const glm::vec2 & shapeOrigin);// TODO : see need transfer
 	//--------------------------------------------
 	// IStaticShape
-	void			AddToWorld(b2World * world) override;
+	void				AddToWorld(b2World * world) override;
 	//--------------------------------------------
 	// CDrawable
-	void			Redraw() const;
-	bool			HitTest(const glm::vec2 &point) const;
+	void				Redraw() const;
+	bool				HitTest(const glm::vec2 &point) const;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
 	//--------------------------------------------
 	// IStaticShape
-	void			CheckParametres() override;
+	void				CheckParametres() override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	CCircleView		m_visual;
+	CRectangleView		m_visual;
+
 };

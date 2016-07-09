@@ -15,11 +15,11 @@ CGun::CGun(b2World * world)
 	/*
 	//m_body->GetFixtureList()
 
-	auto pCircle = std::make_shared<CCircle>(world);
+	auto pCircle = std::make_shared<CBall>(world);
 	pCircle->SetRadius(25.f);
 	m_components.push_back(pCircle);
 
-	auto pTrunk = std::make_shared<CRectangle>(world);
+	auto pTrunk = std::make_shared<CWall>(world);
 	pTrunk->SetWidth(40.f);
 	pTrunk->SetHeight(15.f);
 	pTrunk->SetPosition(glm::vec2(DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK 
@@ -124,11 +124,11 @@ void CGun::CreateBody(float trunkWidth
 					, float trunkHeigth
 					, float baseRadius)
 {
-	CRectangle::AddRectangleToBody(m_body
+	CWall::AddRectangleToBody(m_body
 									, SSize(trunkWidth, trunkHeigth) 
 									, 0.f
 									, glm::vec2(DEFAULT_BALL::RADIUSE - DEFAULT_GUN::SHIFT_TRUNK// - trunkWidth
 												, 0.f) );
 
-	CCircle::AddCircleToBody(m_body, baseRadius);
+	CBall::AddCircleToBody(m_body, baseRadius);
 }

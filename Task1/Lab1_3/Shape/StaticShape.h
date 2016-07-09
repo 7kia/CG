@@ -12,6 +12,8 @@ namespace NONE_VALUE
 }
 
 class IStaticShape
+	: public CHavePosition
+	, public IRotatable
 {
 public:
 	virtual ~IStaticShape() = default;
@@ -21,7 +23,7 @@ public:
 // Methods
 public:
 	virtual void				AddToWorld(b2World * world) = 0;
-	virtual void				Advance(float dt) = 0;
+	virtual void				Advance(float dt) = 0;// TODO : see need this
 
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -31,7 +33,6 @@ protected:
 
 class CStaticShape
 	: public IStaticShape
-	, public CShape
 {
 public:
 	CStaticShape(b2World * world);
@@ -41,7 +42,7 @@ public:
 public:
 
 	//--------------------------------------------
-	// IShape
+	// IHavePosition
 	void						SetPosition(const glm::vec2 & position) override;
 	void						SetPosition(float x, float y) override;
 	glm::vec2					GetPosition() const override;
@@ -53,9 +54,10 @@ public:
 	float						GetRotation() const override;
 	void						SetRotation(float rotation) override;
 	//--------------------------------------------
-
+	// IStaticShape
 	void						AddToWorld(b2World * world) override;
 	void						Advance(float dt) override { (void)dt;  };
+	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
@@ -69,5 +71,4 @@ protected:
 public:
 	b2Body*						m_body = nullptr;
 	b2BodyDef					m_defBody;
-
 };

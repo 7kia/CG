@@ -15,6 +15,7 @@ namespace DEFAULT_GUN
 
 class CGun final
 	: public CStaticShape
+	, public CShape
 {
 public:
 	CGun(b2World * world);

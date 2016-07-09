@@ -19,21 +19,6 @@ CShedule::~CShedule()
 	CreateSystem();
 }
 
-void CShedule::Draw() const
-{
-	m_system.Draw();
-
-	for (const auto &pShape : m_gui)
-	{
-		pShape->Draw();
-	}
-
-	for (const auto &pShape : m_system.m_shapes)
-	{
-		pShape->Draw();
-	}
-}
-
 void CShedule::Redraw() const
 {
 	m_system.Redraw();
