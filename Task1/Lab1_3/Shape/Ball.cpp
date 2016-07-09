@@ -4,15 +4,17 @@
 CBall::CBall(b2World * world) 
 	: CDynamicBody(world)
 	, CDrawable()
+	, IShape()
 	, CCircle()
 {
 	//SetShapeOrigin(glm::vec2(DEFAULT_BALL::RADIUSE / 2.f, DEFAULT_BALL::RADIUSE / 2.f));
 }
 
 CBall::CBall(float radius, const glm::vec2 &position, b2World * world)
-	: CCircle(radius)
-	, CDynamicBody(world)
+	: CDynamicBody(world)
 	, CDrawable()
+	, IShape()
+	, CCircle(radius)
 {
 	//SetShapeOrigin(glm::vec2(-m_radius, -m_radius));
 	//SetReferenceSystemOrigin(m_referenceSystemOrigin);
@@ -22,7 +24,14 @@ void CBall::AddToWorld(b2World * world)
 {	
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
+
+	SetVisual();
 	AddCircleToBody(m_body, m_radius);
+}
+
+void CBall::SetVisual()
+{
+	m_visual.SetRadius(m_radius);
 }
 
 void CBall::Redraw() const
@@ -33,6 +42,16 @@ void CBall::Redraw() const
 bool CBall::HitTest(const glm::vec2 & point) const
 {
 	return m_visual.HitTest(point);
+}
+
+void CBall::SetOutlineColor(const glm::vec3 & color)
+{
+	m_visual.SetOutlineColor(color);
+}
+
+glm::vec3 CBall::GetOutlineColor() const
+{
+	return m_visual.GetOutlineColor();
 }
 
 void CBall::AddCircleToBody(b2Body *body, float radius)

@@ -25,7 +25,7 @@ public:
 // Methods
 public:
 
-	void		Draw() const override;
+	void		Draw() const override {};
 	//--------------------------------------------
 	// CDrawable
 	void		Redraw() const override;
@@ -33,7 +33,7 @@ public:
 	//--------------------------------------------
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddParcticle(std::shared_ptr<CStaticShape> graph);
+	void		AddParcticle(std::shared_ptr<CDrawable> graph);
 
 	//--------------------------------------------
 	// PhysicSystem

@@ -4,6 +4,7 @@
 CWall::CWall(b2World * world)
 	: CStaticShape(world)
 	, CDrawable()
+	, IShape()
 	, CRectangle()
 
 {
@@ -16,6 +17,7 @@ CWall::CWall(const glm::vec2 & leftTopPoint
 			, b2World * world)
 	: CStaticShape(world)
 	, CDrawable()
+	, IShape()
 	, CRectangle(size)
 
 {
@@ -26,18 +28,24 @@ CWall::CWall(const glm::vec2 & leftTopPoint
 	SetRotation(rotate);
 }
 
-CWall::~CWall()
-{
-}
-
 void CWall::AddToWorld(b2World * world)
 {
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
+
+	SetVisual();
 	AddRectangleToBody(m_body
 		, SSize(m_width, m_height)
 		, GetRotation()
 		, GetShapeOrigin());
+}
+
+void CWall::SetVisual()
+{
+	m_visual.SetWidth(m_width);
+	m_visual.SetHeight(m_height);
+	m_visual.SetRotation(GetRotation());
+	m_visual.SetShapeOrigin(GetShapeOrigin());
 }
 
 void CWall::Redraw() const
@@ -48,6 +56,16 @@ void CWall::Redraw() const
 bool CWall::HitTest(const glm::vec2 & point) const
 {
 	return m_visual.HitTest(point);
+}
+
+void CWall::SetOutlineColor(const glm::vec3 & color)
+{
+	m_visual.SetOutlineColor(color);
+}
+
+glm::vec3 CWall::GetOutlineColor() const
+{
+	return m_visual.GetOutlineColor();
 }
 
 void CWall::AddRectangleToBody(b2Body *body

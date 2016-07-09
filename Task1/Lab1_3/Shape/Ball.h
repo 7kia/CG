@@ -5,6 +5,7 @@
 class CBall
 	: public CDynamicBody
 	, public CDrawable
+	, public IShape
 	, public CCircle
 	, private boost::noncopyable
 
@@ -19,10 +20,15 @@ public:
 	//--------------------------------------------
 	// IStaticShape
 	void			AddToWorld(b2World * world) override;
+	void			SetVisual() override;
 	//--------------------------------------------
 	// CDrawable
 	void			Redraw() const;
 	bool			HitTest(const glm::vec2 &point) const;
+	//--------------------------------------------
+	// IShape
+	void			SetOutlineColor(const glm::vec3 &color) override;
+	glm::vec3		GetOutlineColor() const override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Methods

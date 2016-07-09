@@ -24,7 +24,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void											AddShape(std::shared_ptr<CStaticShape> particle);
+	void											AddShape(std::shared_ptr<CDrawable> particle);
 
     // @param dt - разница во времени с предыдущим вызовом Advance.
     void											Advance(float dt);
@@ -61,7 +61,7 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<std::shared_ptr<CDrawable>>		m_shapes;//CStaticShape
+	std::vector<std::shared_ptr<CDrawable>>			m_shapes;//CStaticShape
 	std::weak_ptr<CGun>								m_gun;
 	CShape*											m_draggingShape = nullptr;
 	//////////////////////////////////////////////////////////////////////

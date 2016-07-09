@@ -2,7 +2,7 @@
 
 #include "../Shape/StaticShape.h"
 #include "../Shape/Ball.h"
-#include "../Shape/Rectangle.h"
+#include "../Shape/Wall.h"
 
 class CPhysicalSystem;
 
@@ -15,7 +15,7 @@ namespace DEFAULT_GUN
 
 class CGun final
 	: public CStaticShape
-	, public CShape
+	, public CDrawable
 {
 public:
 	CGun(b2World * world);
@@ -61,5 +61,5 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	std::vector<std::shared_ptr<CStaticShape>>		m_components;
+	std::vector<std::shared_ptr<CShape>>		m_components;//CStaticShape
 };

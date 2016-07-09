@@ -134,7 +134,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	AddShape(pRectangle);
 }
 
-void CPhysicalSystem::AddShape(std::shared_ptr<CStaticShape> particle)
+void CPhysicalSystem::AddShape(std::shared_ptr<CDrawable> particle)
 {
 	m_shapes.push_back(std::move(particle));
 }
@@ -151,21 +151,19 @@ void CPhysicalSystem::Advance(float dt)
     //   m_shapes.emplace_back(std::make_shared<CBall>());
     //}
 
-	// TODO : rewrite
-    // Продвигаем частицы
-    for (const auto &pShape : m_shapes)
-    {
-       pShape->Advance(dt);
-    }
-
+	// TODO : see need drag and drop
+	/*
+	// Удаляем вышедшие за экран частицы
 	do
 	{
 		auto newEnd = std::remove_if(m_shapes.begin(), m_shapes.end(), [&](const auto &pShape) {
-			return CheckExitFromBorder(pShape->GetCenterPosition());
+			return CheckExitFromBorder(dynamic_cast<CStaticShape*>(pShape.get())->GetCenterPosition());
 		});
 
 		/////////////////////////////////
 		// Если перетаскиваемая частица выходит зв границы очищаем указатель на неё
+		// TODO : see need drag and drop
+		/
 		if (newEnd != m_shapes.end())
 		{
 			if (m_draggingShape == newEnd->get())
@@ -178,11 +176,13 @@ void CPhysicalSystem::Advance(float dt)
 		{
 			break;
 		}
-
-		/////////////////////////////////
+		
+		
 		m_shapes.erase(newEnd, m_shapes.end());
 	} while (true);
-    // Удаляем вышедшие за экран частицы
+	*/
+
+	
    
 }
 
@@ -206,7 +206,7 @@ void CPhysicalSystem::SetPosition(const glm::vec2 & position)
 {
 	for (auto & shape : m_shapes)
 	{
-		shape->SetReferenceSystemOrigin(position);
+		dynamic_cast<CStaticShape*>(shape.get())->SetReferenceSystemOrigin(position);
 	}
 
 	m_position = position;

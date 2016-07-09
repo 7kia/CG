@@ -29,6 +29,7 @@ public:
 // Methods
 protected:
 	virtual void				CheckParametres() {};
+	virtual void				SetVisual() {};
 };
 
 class CStaticShape
