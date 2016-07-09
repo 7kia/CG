@@ -51,7 +51,9 @@ private:
 
 	//--------------------------------------------
 	// IStaticShape
-	void				CreateBody() override;
+	void				CreateBody(float trunkWidth
+									, float trunkHeigth
+									, float baseRadius);
 	void				CheckParametres() override;
 	//--------------------------------------------
 

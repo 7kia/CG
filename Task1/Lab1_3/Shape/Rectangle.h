@@ -32,6 +32,7 @@ public:
 	void				SetHeight(float height);
 	float				GetHeight() const;
 
+	static void			AddRectangleToBody(b2Body *body, float width, float height);// TODO : see need transfer
 	//--------------------------------------------
 	// IStaticShape
 	void				AddToWorld(b2World * world) override;
@@ -41,7 +42,6 @@ public:
 private:
 	//--------------------------------------------
 	// IStaticShape
-	void				CreateBody() override;
 	void				CheckParametres() override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////

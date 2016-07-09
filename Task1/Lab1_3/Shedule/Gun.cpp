@@ -109,7 +109,7 @@ void CGun::AddToWorld(b2World * world)
 {
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
-	CreateBody();
+	CreateBody(40.f, 15.f, 25.f);
 }
 
 
@@ -119,31 +119,11 @@ void CGun::CheckParametres()
 
 }
 
-void CGun::CreateBody()
+void CGun::CreateBody(float trunkWidth
+					, float trunkHeigth
+					, float baseRadius)
 {
-	b2PolygonShape rectangleShape;
+	CRectangle::AddRectangleToBody(m_body, trunkWidth, trunkHeigth);
 
-	// The extents are the half-widths of the box.
-	rectangleShape.SetAsBox(40.f / SCALE, 15.f / SCALE);//SetAsBox(50.0f, 10.0f);
-
-														// Add the ground fixture to the ground body.
-	m_body->CreateFixture(&rectangleShape, 2.f);
-
-
-
-	// Circle
-	b2CircleShape circleShape;
-	circleShape.m_radius = ConvertToBoxCoordinates(25.f / SCALE);
-
-	b2FixtureDef circle;
-	circle.shape = &circleShape;
-
-	// Set the box density to be non-zero, so it will be dynamic.
-	circle.density = 1.0f;
-
-	// Override the default friction.
-	circle.friction = 0.3f;
-
-	// Add the shape to the body.
-	m_body->CreateFixture(&circle);// TODO : magic value
+	CCircle::AddCircleToBody(m_body, baseRadius);
 }

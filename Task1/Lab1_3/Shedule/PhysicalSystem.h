@@ -71,6 +71,6 @@ private:
 
 	glm::vec2										m_placeSize;
 	glm::vec2										m_position;// TODO : fix name
-	size_t											m_maxAmountBalls = 3 + AMOUNT_OBSTACLES;
+	size_t											m_maxAmountBalls = 50 + AMOUNT_OBSTACLES;
 //////////////////////////////////////////////////////////////////////
 };

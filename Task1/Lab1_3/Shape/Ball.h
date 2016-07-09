@@ -35,6 +35,8 @@ public:
 	
 	void		SetRadius(float radius);
 	float		GetRadius() const;
+
+	static void		AddCircleToBody(b2Body *body, float radiuse);// TODO : see need transfer
 	//--------------------------------------------
 	// IstaticShape
 	void		AddToWorld(b2World * world) override;
@@ -44,9 +46,9 @@ public:
 private:
 	void		StrokeCircle() const;
 	void		FillCircle() const;
+
 	//--------------------------------------------
 	// IStaticShape
-	void		CreateBody() override;
 	void		CheckParametres() override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////

@@ -113,19 +113,23 @@ void CRectangle::AddToWorld(b2World * world)
 {
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
-	CreateBody();
+	AddRectangleToBody(m_body, m_width, m_height);
 }
 
-void CRectangle::CreateBody()
+void CRectangle::AddRectangleToBody(b2Body *body, float width, float height)
 {
+	if ((width < 0.f) || (height < 0.f))
+	{
+		throw std::runtime_error("Size will be more zero!!!");
+	}
+
 	// Define the ground box shape.
 	b2PolygonShape rectangleShape;
 
 	// The extents are the half-widths of the box.
-	rectangleShape.SetAsBox(m_width / SCALE, m_height / SCALE);//SetAsBox(50.0f, 10.0f);
+	rectangleShape.SetAsBox(ConvertToBoxCoordinates(width), ConvertToBoxCoordinates(height));//SetAsBox(50.0f, 10.0f);
 
-							   // Add the ground fixture to the ground body.
-	m_body->CreateFixture(&rectangleShape, 2.f);
+	body->CreateFixture(&rectangleShape, 2.f);
 }
 
 void CRectangle::CheckParametres()

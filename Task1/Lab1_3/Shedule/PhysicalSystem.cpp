@@ -234,22 +234,7 @@ b2World* CPhysicalSystem::GetWorld()
 
 void CPhysicalSystem::ProcessCollisions(float dt)
 {
-	// TODO : rewrite	
 	m_world->Step(dt, 8, 3);
-
-
-	for (b2Body* it = m_world->GetBodyList(); it != 0; it = it->GetNext())
-	{
-		it->SetBullet(true);
-		//for (b2Fixture *f = it->GetFixtureList(); f != 0; f = f->GetNext())
-			//if (f->TestPoint(pos))  onGround = true;
-
-	}
-	// Now print the position and angle of the body.
-	auto position = m_shapes.back()->GetPosition();
-	//float32 angle = body->GetAngle();
-
-	printf("%4.2f %4.2f \n", position.x, position.y);
 
 }
 

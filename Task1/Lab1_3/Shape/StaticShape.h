@@ -26,7 +26,6 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
-	virtual void				CreateBody() {};
 	virtual void				CheckParametres() {};
 };
 

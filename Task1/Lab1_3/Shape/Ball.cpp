@@ -91,13 +91,13 @@ void CCircle::AddToWorld(b2World * world)
 {	
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
-	CreateBody();
+	AddCircleToBody(m_body, m_radius);
 }
 
-void CCircle::CreateBody()
+void CCircle::AddCircleToBody(b2Body *body, float radius)
 {
 	b2CircleShape circleShape;
-	circleShape.m_radius = ConvertToBoxCoordinates(m_radius);
+	circleShape.m_radius = ConvertToBoxCoordinates(radius);
 
 	b2FixtureDef circle;
 	circle.shape = &circleShape;
@@ -111,7 +111,7 @@ void CCircle::CreateBody()
 	circle.restitution = 1.f;
 
 	// Add the shape to the body.
-	m_body->CreateFixture(&circle);// TODO : magic value
+	body->CreateFixture(&circle);// TODO : magic value
 
 	//m_body->CreateFixture(&circle, 2);
 }
