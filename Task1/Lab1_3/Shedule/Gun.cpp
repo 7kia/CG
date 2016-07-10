@@ -17,7 +17,7 @@ CGun::CGun(b2World * world)
 
 	auto pCircle = std::make_shared<CBall>(world);
 	pCircle->SetRadius(25.f);
-	m_components.push_back(pCircle);
+	m_visual.push_back(pCircle);
 
 	auto pTrunk = std::make_shared<CWall>(world);
 	pTrunk->SetWidth(40.f);
@@ -27,7 +27,7 @@ CGun::CGun(b2World * world)
 	pTrunk->SetOrigin(glm::vec2(-pTrunk->GetPosition().x
 									, pTrunk->GetHeight() / 2.f));
 
-	m_components.push_back(pTrunk);
+	m_visual.push_back(pTrunk);
 
 	//*/
 }
@@ -38,7 +38,7 @@ CGun::~CGun()
 
 void CGun::Redraw() const
 {
-	for (const auto & component : m_components)
+	for (const auto & component : m_visual)
 	{
 		component->Redraw();
 	}
@@ -54,7 +54,7 @@ void CGun::SetPosition(const glm::vec2 & position)
 {
 	CStaticShape::SetPosition(position);
 
-	for (auto & component : m_components)
+	for (auto & component : m_visual)
 	{
 		component->SetReferenceSystemOrigin(position + m_referenceSystemOrigin);
 	}
@@ -79,7 +79,7 @@ void CGun::SetReferenceSystemOrigin(const glm::vec2 & origin)
 {
 	CHaveOrigin::SetReferenceSystemOrigin(origin);
 
-	for (auto & component : m_components)
+	for (auto & component : m_visual)
 	{
 		component->SetReferenceSystemOrigin(origin);
 	}
@@ -88,12 +88,17 @@ void CGun::SetReferenceSystemOrigin(const glm::vec2 & origin)
 void CGun::SetRotation(float rotation)
 {
 	//CRotatable::SetRotation(rotation);
-	m_body->SetFixedRotation(rotation);
+	m_body->SetTransform(b2Vec2(GetPosition().x, GetPosition().y), rotation);
 
-	for (auto & compoenent : m_components)
+	for (auto & compoenent : m_visual)
 	{
 		compoenent->SetRotation(rotation);
 	}
+}
+
+float CGun::GetRotation() const
+{
+	return m_body->GetAngle();
 }
 
 void CGun::Rotate(const glm::vec2 & mousePosition)
@@ -110,7 +115,18 @@ void CGun::AddToWorld(b2World * world)
 {
 	CheckParametres();
 	CStaticShape::AddToWorld(world);
+
+	SetVisual();
 	CreateBody(40.f, 15.f, 25.f);
+}
+
+void CGun::Advance(float dt)
+{
+	for (auto & component : m_visual)
+	{
+		component->SetRotation(GetRotation());
+		component->SetReferenceSystemOrigin(GetReferenceSystemOrigin());
+	}
 }
 
 
@@ -127,8 +143,36 @@ void CGun::CreateBody(float trunkWidth
 	CWall::AddRectangleToBody(m_body
 									, SSize(trunkWidth, trunkHeigth) 
 									, 0.f
-									, glm::vec2(DEFAULT_BALL::RADIUSE - DEFAULT_GUN::SHIFT_TRUNK// - trunkWidth
-												, 0.f) );
+									, ConvertToBoxCoordinates( glm::vec2(DEFAULT_BALL::RADIUSE + trunkHeigth * (0.5f) - DEFAULT_GUN::SHIFT_TRUNK
+										, -trunkHeigth / 2.f)) );
 
 	CBall::AddCircleToBody(m_body, baseRadius);
+}
+
+
+void CGun::SetVisual()
+{
+	std::shared_ptr<CCircleView> pCircle = std::make_shared<CCircleView>();
+
+	pCircle->SetRadius(25.f);
+	pCircle->SetPosition(glm::vec2());
+	pCircle->SetOutlineColor(Colors::BLACK);
+	pCircle->SetReferenceSystemOrigin(GetReferenceSystemOrigin());
+
+	m_visual.push_back(std::move(pCircle));
+
+	std::shared_ptr<CRectangleView> pTrunk = std::make_shared<CRectangleView>();
+
+	pTrunk->SetHeight(15.f);
+	pTrunk->SetWidth(40.f);
+	pTrunk->SetPosition(glm::vec2(DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK
+									, -pTrunk->GetHeight() / 2.f));
+	pTrunk->SetOrigin(glm::vec2(-pTrunk->GetPosition().x
+					, pTrunk->GetHeight() / 2.f));
+
+	pTrunk->SetOutlineColor(Colors::BLACK);
+	pTrunk->SetReferenceSystemOrigin(GetReferenceSystemOrigin());
+
+	m_visual.push_back(std::move(pTrunk));
+
 }

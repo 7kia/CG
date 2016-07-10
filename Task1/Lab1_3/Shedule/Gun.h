@@ -39,7 +39,16 @@ public:
 	//--------------------------------------------
 	// IRotatable
 	void				SetRotation(float rotation) override;
+	float				GetRotation() const override;
+	//--------------------------------------------
+	// IStaticShape
 	void				AddToWorld(b2World * world) override;
+
+	// Update visual part
+	void				Advance(float dt) override;
+	// Set visual part before create body, because view can have
+	// different from body
+	void				SetVisual() override;
 	//--------------------------------------------
 
 
@@ -61,5 +70,5 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	std::vector<std::shared_ptr<CShape>>		m_components;//CStaticShape
+	std::vector<std::shared_ptr<CShape>>		m_visual;
 };
