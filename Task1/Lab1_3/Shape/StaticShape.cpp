@@ -3,6 +3,7 @@
 
 CStaticShape::CStaticShape(b2World * world) 
 	: IStaticShape()
+	, CDrawable()
 {
 	m_defBody.type = b2_staticBody;
 

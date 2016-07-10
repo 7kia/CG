@@ -14,13 +14,6 @@ CDynamicBody::CDynamicBody(b2World * world)
 void CDynamicBody::Advance(float dt)
 {
 	(void)dt;
-	//m_velocity += dt * m_acceleration;
-	//SetPosition(m_velocity + GetPosition());
-
-	// TODO : this work do Step()
-
-	//m_velocity = glm::vec2();// TODO : see need reset this
-	//m_acceleration = glm::vec2();
 }
 
 glm::vec2 CDynamicBody::GetVelocity() const

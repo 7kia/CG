@@ -24,7 +24,7 @@ CGun::CGun(b2World * world)
 	pTrunk->SetHeight(15.f);
 	pTrunk->SetPosition(glm::vec2(DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK 
 									, -pTrunk->GetHeight() / 2.f));
-	pTrunk->SetShapeOrigin(glm::vec2(-pTrunk->GetPosition().x
+	pTrunk->SetOrigin(glm::vec2(-pTrunk->GetPosition().x
 									, pTrunk->GetHeight() / 2.f));
 
 	m_components.push_back(pTrunk);
@@ -77,7 +77,7 @@ glm::vec2 CGun::GetCenterPosition() const
 
 void CGun::SetReferenceSystemOrigin(const glm::vec2 & origin)
 {
-	CHavePosition::SetReferenceSystemOrigin(origin);
+	CHaveOrigin::SetReferenceSystemOrigin(origin);
 
 	for (auto & component : m_components)
 	{

@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="DispatchEvent.h" />
+    <ClInclude Include="Features\CHaveOrigin.h" />
     <ClInclude Include="Features\CHavePosition.h" />
     <ClInclude Include="Features\CHaveVelocity.h" />
     <ClInclude Include="Features\CRotatable.h" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
+    <ClCompile Include="Features\CHaveOrigin.cpp" />
     <ClCompile Include="Features\CHavePosition.cpp" />
     <ClCompile Include="Features\CHaveVelocity.cpp" />
     <ClCompile Include="Features\CRotatable.cpp" />

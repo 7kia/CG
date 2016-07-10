@@ -48,7 +48,7 @@ void CShedule::SetSize(unsigned int width, unsigned int height)
 	m_system.SetPosition(glm::vec2(width / 2.f, height / 2.f));
 }
 
-void CShedule::AddParcticle(std::shared_ptr<CDrawable> graph)
+void CShedule::AddParcticle(std::shared_ptr<CStaticShape> graph)
 {
 	m_system.AddShape(std::move(graph));
 }
@@ -60,7 +60,7 @@ void CShedule::Advance(float dt)
 
 void CShedule::CreateSystem()
 {
-	m_system.SetPosition(glm::vec2(0.f, 0.f));
+	m_system.SetPosition(glm::vec2(m_windowWidth / 2.f, m_windowHeigth / 2.f));
 	m_system.SetPlaceSize(glm::vec2(m_windowWidth, m_windowHeigth));
 }
 

@@ -37,7 +37,14 @@ void CWall::AddToWorld(b2World * world)
 	AddRectangleToBody(m_body
 		, SSize(m_width, m_height)
 		, GetRotation()
-		, GetShapeOrigin());
+		, GetOrigin());
+}
+
+void CWall::Advance(float dt)
+{
+	m_visual.SetPosition(GetPosition());
+	m_visual.SetRotation(GetRotation());
+
 }
 
 void CWall::SetVisual()
@@ -45,7 +52,9 @@ void CWall::SetVisual()
 	m_visual.SetWidth(m_width);
 	m_visual.SetHeight(m_height);
 	m_visual.SetRotation(GetRotation());
-	m_visual.SetShapeOrigin(GetShapeOrigin());
+	m_visual.SetOrigin(GetOrigin());
+	m_visual.SetReferenceSystemOrigin(GetReferenceSystemOrigin());
+	m_visual.SetPosition(GetPosition());
 }
 
 void CWall::Redraw() const

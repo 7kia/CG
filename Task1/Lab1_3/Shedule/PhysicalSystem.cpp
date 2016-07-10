@@ -17,12 +17,12 @@ bool IsBetween(T value, T min, T max)
 
 CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 {
-	SetPosition(glm::vec2(windowWidth, windowHeight));
+	SetPosition(glm::vec2(windowWidth / 2.f, windowHeight / 2.f));
 
 	m_world = std::make_shared<b2World>(b2Vec2(0.0f, 10.f));
 	//////////////////////////
 	// Left wall
-	glm::vec2 position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f);
+	glm::vec2 position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f);//-350.f, -BORDER_HEIGTH / 2.f
 	float width = BORDER_WIDTH;
 	float height = BORDER_HEIGTH;
 	glm::vec3 color = Colors::RED;
@@ -134,7 +134,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	AddShape(pRectangle);
 }
 
-void CPhysicalSystem::AddShape(std::shared_ptr<CDrawable> particle)
+void CPhysicalSystem::AddShape(std::shared_ptr<CStaticShape> particle)
 {
 	m_shapes.push_back(std::move(particle));
 }
@@ -144,26 +144,23 @@ void CPhysicalSystem::Advance(float dt)
 	ProcessCollisions(dt);
 	SetPosition(m_placeSize / 2.f);
 
-	// TODO : gun add balls
-    // За 1 кадр может появиться несколько новых частиц.
-    //while (m_shapes.size() < m_maxAmountBalls)
-    //{
-    //   m_shapes.emplace_back(std::make_shared<CBall>());
-    //}
-
+	for (auto & shape : m_shapes)
+	{
+		shape->Advance(dt);
+	}
 	// TODO : see need drag and drop
-	/*
+	///*
 	// Удаляем вышедшие за экран частицы
 	do
 	{
 		auto newEnd = std::remove_if(m_shapes.begin(), m_shapes.end(), [&](const auto &pShape) {
-			return CheckExitFromBorder(dynamic_cast<CStaticShape*>(pShape.get())->GetCenterPosition());
+			return CheckExitFromBorder(pShape->GetCenterPosition());
 		});
 
 		/////////////////////////////////
 		// Если перетаскиваемая частица выходит зв границы очищаем указатель на неё
 		// TODO : see need drag and drop
-		/
+		//
 		if (newEnd != m_shapes.end())
 		{
 			if (m_draggingShape == newEnd->get())
@@ -180,7 +177,7 @@ void CPhysicalSystem::Advance(float dt)
 		
 		m_shapes.erase(newEnd, m_shapes.end());
 	} while (true);
-	*/
+	//*/
 
 	
    
@@ -206,7 +203,7 @@ void CPhysicalSystem::SetPosition(const glm::vec2 & position)
 {
 	for (auto & shape : m_shapes)
 	{
-		dynamic_cast<CStaticShape*>(shape.get())->SetReferenceSystemOrigin(position);
+		shape->SetReferenceSystemOrigin(position);
 	}
 
 	m_position = position;
@@ -282,7 +279,7 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 	const glm::vec2 direction = GetDirection(mousePosition);
 	const glm::vec2 shift = 1.5f *DEFAULT_GUN::SHIFT_BALL * direction;
 	const glm::vec2 boxShift = ConvertToBoxCoordinates(shift);
-	//pBall->SetShapeOrigin()
+	//pBall->SetOrigin()
 	pBall->SetPosition(GetPosition() + shift);
 	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);
 	pBall->AddToWorld(system->GetWorld());

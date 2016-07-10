@@ -33,7 +33,7 @@ public:
 	//--------------------------------------------
 
 	void		SetSize(unsigned int width, unsigned int height);
-	void		AddParcticle(std::shared_ptr<CDrawable> graph);
+	void		AddParcticle(std::shared_ptr<CStaticShape> graph);
 
 	//--------------------------------------------
 	// PhysicSystem

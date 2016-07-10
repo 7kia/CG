@@ -93,6 +93,9 @@
     <ClInclude Include="Shape\RectangleView.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Features\CHaveOrigin.h">
+      <Filter>Файлы исходного кода\Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -157,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="Shape\RectangleView.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\CHaveOrigin.cpp">
+      <Filter>Файлы исходного кода\Features</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

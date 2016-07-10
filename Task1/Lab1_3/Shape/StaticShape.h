@@ -12,7 +12,8 @@ namespace NONE_VALUE
 }
 
 class IStaticShape
-	: public CHavePosition
+	: public CHaveOrigin
+	, public IHavePosition
 	, public IRotatable
 {
 public:
@@ -34,6 +35,7 @@ protected:
 
 class CStaticShape
 	: public IStaticShape
+	, public CDrawable// need only for draw
 {
 public:
 	CStaticShape(b2World * world);

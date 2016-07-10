@@ -7,7 +7,7 @@ CBall::CBall(b2World * world)
 	, IShape()
 	, CCircle()
 {
-	//SetShapeOrigin(glm::vec2(DEFAULT_BALL::RADIUSE / 2.f, DEFAULT_BALL::RADIUSE / 2.f));
+	//SetOrigin(glm::vec2(DEFAULT_BALL::RADIUSE / 2.f, DEFAULT_BALL::RADIUSE / 2.f));
 }
 
 CBall::CBall(float radius, const glm::vec2 &position, b2World * world)
@@ -16,7 +16,7 @@ CBall::CBall(float radius, const glm::vec2 &position, b2World * world)
 	, IShape()
 	, CCircle(radius)
 {
-	//SetShapeOrigin(glm::vec2(-m_radius, -m_radius));
+	//SetOrigin(glm::vec2(-m_radius, -m_radius));
 	//SetReferenceSystemOrigin(m_referenceSystemOrigin);
 }
 
@@ -29,9 +29,17 @@ void CBall::AddToWorld(b2World * world)
 	AddCircleToBody(m_body, m_radius);
 }
 
+void CBall::Advance(float dt)
+{
+	m_visual.SetPosition(GetPosition());
+	m_visual.SetRotation(GetRotation());
+}
+
 void CBall::SetVisual()
 {
 	m_visual.SetRadius(m_radius);
+	m_visual.SetPosition(GetPosition());
+	m_visual.SetRotation(GetRotation());
 }
 
 void CBall::Redraw() const

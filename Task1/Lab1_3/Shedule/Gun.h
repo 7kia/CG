@@ -28,7 +28,7 @@ public:
 	void				Redraw() const override;
 	bool				HitTest(const glm::vec2 &point) const override;
 	//--------------------------------------------
-	// CHavePosition
+	// CHaveOrigin
 	void				SetPosition(const glm::vec2 & position) override;
 	void				SetPosition(float x, float y) override;
 

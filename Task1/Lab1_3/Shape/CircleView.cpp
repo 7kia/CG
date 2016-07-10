@@ -26,7 +26,7 @@ void CCircleView::StrokeCircle() const
 
 	// TODO : dudpicate code
 	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
-	glm::vec3 shapeOrigin = { GetShapeOrigin().x, GetShapeOrigin().y, 0.f };
+	glm::vec3 shapeOrigin = { GetOrigin().x, GetOrigin().y, 0.f };
 
 	glm::mat4 transform = glm::translate(glm::mat4(), offset + shapeOrigin);
 	//
@@ -57,7 +57,7 @@ void CCircleView::FillCircle() const
 	const float step = float(2 * M_PI) / AMOUNT_POINTS;
 
 	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
-	glm::vec3 shapeOrigin = { GetShapeOrigin().x, GetShapeOrigin().y, 0.f };
+	glm::vec3 shapeOrigin = { GetOrigin().x, GetOrigin().y, 0.f };
 
 	glm::mat4 transform = glm::translate(glm::mat4(), offset + shapeOrigin);
 	//

@@ -2,6 +2,7 @@
 
 #include "IShape.h"
 #include "../Features/CHavePosition.h"
+#include "../Features/CHaveOrigin.h"
 #include "../Features/CRotatable.h"
 
 namespace Colors
@@ -32,8 +33,8 @@ struct SIntRect
 class CShape
 	: public IShape
 	, public CDrawable
-	, public CHavePosition
-	, public IRotatable
+	, public CHavePositionAndOrigin
+	, public CRotatable
 
 {
 public:

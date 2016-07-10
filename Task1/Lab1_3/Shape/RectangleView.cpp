@@ -17,7 +17,7 @@ void CRectangleView::Redraw() const
 {
 
 	glm::vec3 offset = { GetCenterPosition().x, GetCenterPosition().y, 0.f };
-	glm::vec3 shapeOrigin = { GetShapeOrigin().x, GetShapeOrigin().y, 0.f };
+	glm::vec3 shapeOrigin = { GetOrigin().x, GetOrigin().y, 0.f };
 
 	glm::mat4 transform = glm::translate(glm::mat4(), offset + shapeOrigin);
 	//

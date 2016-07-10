@@ -5,7 +5,8 @@
 CShape::CShape()
 	: IShape()
 	, CDrawable()
-	, CHavePosition()
+	, CHavePositionAndOrigin()
+	, CRotatable()
 {
 }
 
