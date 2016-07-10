@@ -235,19 +235,30 @@ void CPhysicalSystem::ProcessCollisions(float dt)
 
 }
 
-bool CPhysicalSystem::OnDragBegin(const glm::vec2 & position)
+bool CPhysicalSystem::OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position)
 {
-	//switch (event.keysym.sym)
-	//{
-	//case SDLK_SPACE:
-	if (m_shapes.size() < m_maxAmountBalls)
+	m_gun.lock()->Rotate(position);
+	switch (event.keysym.sym)
 	{
-		m_gun.lock()->Shoot(this, position);// TODO : add GetLockPtr
-		return true;
-
+	case SDLK_SPACE:
+		if (m_shapes.size() < m_maxAmountBalls)
+		{
+			m_gun.lock()->Shoot(this, position);// TODO : add GetLockPtr
+			return true;
+		}
+		break;
 	}
-	//}
 	return false;
+}
+
+void CPhysicalSystem::OnDragMotion(const glm::vec2 & position)
+{
+	m_gun.lock()->Rotate(position);
+}
+
+void CPhysicalSystem::OnDragBegin(const glm::vec2 & position)
+{
+	m_gun.lock()->Rotate(position);
 }
 
 void CPhysicalSystem::SetMaxAmountBalls(size_t amount)
@@ -270,8 +281,6 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
 	auto pBall = std::make_shared<CBall>(system->GetWorld());
-
-	Rotate(mousePosition);// TODO : when fix mouse event transfer to other place
 
 	pBall->SetReferenceSystemOrigin(system->GetPosition());
 	pBall->SetOutlineColor(Colors::YELLOW);

@@ -42,7 +42,9 @@ public:
 	void											ProcessCollisions(float dt);
 	//--------------------------------------------
 	// Accept command from window
-	bool											OnDragBegin(const glm::vec2 & position);
+	bool											OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position);
+	void											OnDragMotion(const glm::vec2 & position);
+	void											OnDragBegin(const glm::vec2 & position);
 	//--------------------------------------------
 
 //////////////////////////////////////////////////////////////////////

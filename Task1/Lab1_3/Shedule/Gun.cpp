@@ -140,11 +140,12 @@ void CGun::CreateBody(float trunkWidth
 					, float trunkHeigth
 					, float baseRadius)
 {
+	const float byXShift = DEFAULT_BALL::RADIUSE + trunkHeigth * (0.5f) - DEFAULT_GUN::SHIFT_TRUNK;
+	const float byYShift = -trunkHeigth / 2.f;
 	CWall::AddRectangleToBody(m_body
-									, SSize(trunkWidth, trunkHeigth) 
-									, 0.f
-									, ConvertToBoxCoordinates( glm::vec2(DEFAULT_BALL::RADIUSE + trunkHeigth * (0.5f) - DEFAULT_GUN::SHIFT_TRUNK
-										, -trunkHeigth / 2.f)) );
+							, SSize(trunkWidth, trunkHeigth) 
+							, 0.f
+							, ConvertToBoxCoordinates(glm::vec2(byXShift, byYShift)) );
 
 	CBall::AddCircleToBody(m_body, baseRadius);
 }

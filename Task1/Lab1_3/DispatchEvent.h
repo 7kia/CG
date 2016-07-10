@@ -32,6 +32,12 @@ public:
 		(void)event;
 		(void)position;
 	}
+	virtual void OnKeyDown(const SDL_KeyboardEvent & event
+		, const glm::vec2 & position)
+	{
+		(void)event;
+		(void)position;
+	}
 //////////////////////////////////////////////////////////////////////
 };
 

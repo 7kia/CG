@@ -27,7 +27,7 @@ protected:
     void									OnDragBegin(const glm::vec2 &pos) override;
     void									OnDragMotion(const glm::vec2 &pos) override;
     void									OnDragEnd(const glm::vec2 &pos) override;
-	//void									OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position) override;
+	void									OnKeyDown(const SDL_KeyboardEvent & event, const glm::vec2 & position) override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Data

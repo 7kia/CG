@@ -51,14 +51,13 @@ public:
 	void				SetVisual() override;
 	//--------------------------------------------
 
+	void				Rotate(const glm::vec2 & mousePosition);
 
 	void				Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition);
 	glm::vec2			GetDirection(const glm::vec2 & point);
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
-	void				Rotate(const glm::vec2 & mousePosition);
-
 	//--------------------------------------------
 	// IStaticShape
 	void				CreateBody(float trunkWidth

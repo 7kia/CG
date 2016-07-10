@@ -16,11 +16,14 @@ glm::vec2 GetMousePosition(const SDL_MouseMotionEvent &event)
 
 void sdl::DispatchEvent(const SDL_Event &event, IInputEventAcceptor &acceptor)
 {
-	glm::vec2 mousePosition = GetMousePosition(event.button);
+	int x, y;
+	SDL_GetMouseState(&x, &y);
+	glm::vec2 mousePosition = { float(x), float(y) };
+
     switch (event.type)
     {
 	case SDL_KEYDOWN:
-		acceptor.OnDragBegin(event.key, mousePosition);
+		acceptor.OnKeyDown(event.key, mousePosition);
 		break;
 	case SDL_KEYUP:
 		acceptor.OnKeyUp(event.key, mousePosition);
