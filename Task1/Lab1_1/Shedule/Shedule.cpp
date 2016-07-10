@@ -163,7 +163,10 @@ void CShedule::UpdateDivisionsProperties()
 		{
 			auto pDivision = dynamic_cast<CRectangle*>(m_coordinateSystem[amountDivisions + 2 + (index * AMOUNT_DIVISIONS)].get());
 
-			pDivision->SetLeftTopPoint(position.x, position.y + SHIFT_DIVISION);
+			const float xPos = (pDivision->GetRotate() > 0.f ? position.x - 1.64f * SHIFT_DIVISION : position.x);
+			const float yPos = (pDivision->GetRotate() > 0.f ? position.y : position.y + 0.35f * SHIFT_DIVISION);
+
+			pDivision->SetLeftTopPoint(xPos, yPos);
 
 			position += PARAMETERS_DIVISIONS_AXIS[index].first;
 		}
@@ -179,6 +182,7 @@ void CShedule::AddListDivisions(const glm::vec2 & shift, float rotate)
 	for (size_t amountDivisions = 0; amountDivisions < AMOUNT_DIVISIONS; ++amountDivisions)
 	{
 		auto pDivision = CreateDivision();
+
 		pDivision->SetLeftTopPoint(position.x, position.y + SHIFT_DIVISION);
 		pDivision->SetRotate(rotate);
 		m_coordinateSystem.push_back(std::move(pDivision));

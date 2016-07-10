@@ -19,7 +19,10 @@ CArchimedeanSpiral::CArchimedeanSpiral(glm::vec2 origin
 
 void CArchimedeanSpiral::Redraw() const
 {
+	glLineWidth(4.f);
+
 	glBegin(GL_LINE_STRIP);
+
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
 	float step = (m_end - m_start) / AMOUNT_POINTS;

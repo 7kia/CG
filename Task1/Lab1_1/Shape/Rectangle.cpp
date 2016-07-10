@@ -34,19 +34,27 @@ CRectangle::~CRectangle()
 
 void CRectangle::Redraw() const
 {
+	glm::vec3 offset = { m_rect.x, m_rect.y, 0.f };
+
+	glm::mat4 transform = glm::translate(glm::mat4(), offset );
+	//
+	transform = glm::rotate(transform, m_rotation, glm::vec3(0.f, 0.f, 1.f));
+	// Сохраняем старую матрицу в стек матриц драйвера
+
 	glPushMatrix();
-	glRotatef(m_rotation, 0.f, 0.f, 1.f);
+
+	glLoadMatrixf(glm::value_ptr(transform));
 	glBegin(GL_TRIANGLE_FAN);
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
 
-	glVertex2f(m_rect.x, m_rect.y);
+	glVertex2f(0.f, 0.f);
 	// first triangle
-	glVertex2f(m_rect.x, m_rect.y + m_rect.h);
-	glVertex2f(m_rect.x + m_rect.w, m_rect.y + m_rect.h);
+	glVertex2f(0.f, 0.f + m_rect.h);
+	glVertex2f(0.f + m_rect.w, 0.f + m_rect.h);
 	// second triangle
-	glVertex2f(m_rect.x + m_rect.w, m_rect.y);
-	glVertex2f(m_rect.x + m_rect.w, m_rect.y + m_rect.h);
+	glVertex2f(0.f + m_rect.w, 0.f);
+	glVertex2f(0.f + m_rect.w, 0.f + m_rect.h);
 
 	glEnd();
 	glPopMatrix();

@@ -6,7 +6,9 @@
 CWindow::CWindow()
 	: m_shedule(WINDOW_WIDTH, WINDOW_HEIGTH)
 {
-    
+    /*
+	
+	*/
     {
 		auto pFunctionGraph = std::make_unique<CLimitFunction>();
 

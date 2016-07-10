@@ -45,14 +45,14 @@ private:
 	void									AddListDivisions(const glm::vec2 & shift, float rotate);
 // Constants
 private:
-	static const int						AMOUNT_DIVISIONS = 10;
+	static const int						AMOUNT_DIVISIONS = 20;
 
 	static const int						THIKNESS_LINES = 3;
 	static const int						ARROW_WIDTH = 3;
 	static const int						ARROW_HEIGTH = 25;
 
-	static const int						DIVISION_WIDTH = 3;
-	static const int						DIVISION_HEIGTH = 6;
+	static const int						DIVISION_WIDTH = 4;
+	static const int						DIVISION_HEIGTH = 11;
 	const float								SHIFT_DIVISION = -DIVISION_HEIGTH / 2.f;
 
 	const float								ARROW_ANGLE = 35;// TODO : ask why not be static const float
@@ -62,8 +62,8 @@ private:
 													{ glm::vec2(SCALE_FACTOR, 0.f), 0.f}
 													, { glm::vec2(-SCALE_FACTOR, 0.f) , 0.f}
 
-													, { glm::vec2(0.f, SCALE_FACTOR), 0.f}
-													, { glm::vec2(0.f, -SCALE_FACTOR), 0.f}
+													, { glm::vec2(0.f, SCALE_FACTOR), 1.57f}
+													, { glm::vec2(0.f, -SCALE_FACTOR), 1.57f}
 												};
 
 // Data

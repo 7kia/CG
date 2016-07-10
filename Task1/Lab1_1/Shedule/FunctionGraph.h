@@ -22,7 +22,7 @@ public:
 
 // Constants
 protected:
-	const float	AMOUNT_POINTS = 40.f;
+	const float	AMOUNT_POINTS = 140.f;
 	const float	EPSILON = 1e-4;
 
 // Data
