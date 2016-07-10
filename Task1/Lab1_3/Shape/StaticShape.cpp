@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "StaticShape.h"
 
-CStaticShape::CStaticShape(b2World * world) 
+CStaticShape::CStaticShape() 
 	: IStaticShape()
 	, CDrawable()
 {
@@ -19,23 +19,23 @@ CStaticShape::CStaticShape(b2World * world)
 
 void CStaticShape::SetPosition(const glm::vec2 & position)
 {
-	m_defBody.position.Set(ConvertToBoxCoordinates(position.x), ConvertToBoxCoordinates(position.y));
+	m_defBody.position.Set(Convert::ToBox(position.x), Convert::ToBox(position.y));
 }
 
 void CStaticShape::SetPosition(float x, float y)
 {
-	m_defBody.position.Set(ConvertToBoxCoordinates(x), ConvertToBoxCoordinates(y));
+	m_defBody.position.Set(Convert::ToBox(x), Convert::ToBox(y));
 }
 
 glm::vec2 CStaticShape::GetPosition() const
 {
-	return glm::vec2(ConvertToNormalCoordinates(m_body->GetPosition().x)
-					, ConvertToNormalCoordinates(m_body->GetPosition().y) );
+	return glm::vec2(Convert::ToNormal(m_body->GetPosition().x)
+					, Convert::ToNormal(m_body->GetPosition().y) );
 }
 
 glm::vec2 CStaticShape::GetCenterPosition(const glm::vec2 & origin) const
 {
-	return GetPosition() + ConvertToBoxCoordinates(origin);
+	return GetPosition() + Convert::ToBox(origin);
 }
 
 glm::vec2 CStaticShape::GetCenterPosition() const
@@ -47,7 +47,7 @@ float CStaticShape::GetRotation() const
 {
 	if (m_body)
 	{
-		m_body->GetAngle();
+		return m_body->GetAngle();
 	}
 	else
 	{
@@ -57,11 +57,7 @@ float CStaticShape::GetRotation() const
 
 void CStaticShape::SetRotation(float rotation)
 {
-	if (m_body)
-	{
-		m_body->SetFixedRotation(rotation);
-	}
-	else
+	if (!m_body)
 	{
 		m_defBody.angle = rotation;
 	}

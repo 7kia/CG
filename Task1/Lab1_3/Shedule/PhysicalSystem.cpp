@@ -103,7 +103,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	//////////////////////////
 	// Gun
 
-	auto pGun = std::make_shared<CGun>(m_world.get());//
+	auto pGun = std::make_shared<CGun>();//
 	pGun->SetReferenceSystemOrigin(GetPosition());
 	pGun->SetPosition(glm::vec2());
 	pGun->AddToWorld(GetWorld());
@@ -121,7 +121,7 @@ void CPhysicalSystem::CreateWall(const glm::vec2 & leftTopPoint
 	, float rotation
 	, const glm::vec3 & color)
 {
-	auto pRectangle = std::make_shared<CWall>(GetWorld());
+	auto pRectangle = std::make_shared<CWall>();
 
 	pRectangle->SetHeight(height);
 	pRectangle->SetWidth(width);
@@ -280,14 +280,14 @@ bool CPhysicalSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 
 void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 {
-	auto pBall = std::make_shared<CBall>(system->GetWorld());
+	auto pBall = std::make_shared<CBall>();
 
 	pBall->SetReferenceSystemOrigin(system->GetPosition());
 	pBall->SetOutlineColor(Colors::YELLOW);
 
 	const glm::vec2 direction = GetDirection(mousePosition);
 	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
-	const glm::vec2 boxShift = ConvertToBoxCoordinates(shift);
+	const glm::vec2 boxShift = Convert::ToBox(shift);
 	//pBall->SetOrigin()
 	pBall->SetPosition(GetPosition() + shift);
 	pBall->SetVelocity(DEFAULT_BALL::SPEED * direction);

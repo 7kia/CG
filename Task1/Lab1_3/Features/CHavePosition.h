@@ -4,11 +4,14 @@
 
 static const float SCALE = 30.f;
 
-float ConvertToBoxCoordinates(const float value);
-glm::vec2 ConvertToBoxCoordinates(const glm::vec2 & value);
+namespace Convert
+{
+	float ToBox(const float value);
+	glm::vec2 ToBox(const glm::vec2 & value);
 
-float ConvertToNormalCoordinates(const float value);
-glm::vec2 ConvertToNormalCoordinates(const glm::vec2 & value);
+	float ToNormal(const float value);
+	glm::vec2 ToNormal(const glm::vec2 & value);
+}
 
 //
 // TODO : Coordinates accept in world coordinate system and convert to Box2d system

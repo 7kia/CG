@@ -14,11 +14,11 @@ CCircle::CCircle(float radius)
 
 void CCircle::SetRadius(float radius)
 {
-	m_radius = ConvertToBoxCoordinates(radius);
+	m_radius = Convert::ToBox(radius);
 }
 
 float CCircle::GetRadius() const
 {
-	return ConvertToNormalCoordinates(m_radius);
+	return Convert::ToNormal(m_radius);
 }
 

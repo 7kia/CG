@@ -1,23 +1,20 @@
 #include "stdafx.h"
 #include "Ball.h"
 
-CBall::CBall(b2World * world) 
-	: CDynamicBody(world)
-	, CDrawable()
+CBall::CBall() 
+	: CDynamicBody()
 	, IShape()
 	, CCircle()
 {
 	//SetOrigin(glm::vec2(DEFAULT_BALL::RADIUSE / 2.f, DEFAULT_BALL::RADIUSE / 2.f));
 }
 
-CBall::CBall(float radius, const glm::vec2 &position, b2World * world)
-	: CDynamicBody(world)
-	, CDrawable()
+CBall::CBall(float radius, const glm::vec2 &position)
+	: CDynamicBody()
 	, IShape()
 	, CCircle(radius)
 {
-	//SetOrigin(glm::vec2(-m_radius, -m_radius));
-	//SetReferenceSystemOrigin(m_referenceSystemOrigin);
+	SetPosition(position);
 }
 
 void CBall::AddToWorld(b2World * world)
@@ -31,6 +28,7 @@ void CBall::AddToWorld(b2World * world)
 
 void CBall::Advance(float dt)
 {
+	(void)dt;
 	m_visual.SetPosition(GetPosition());
 	m_visual.SetRotation(GetRotation());
 
@@ -73,7 +71,7 @@ glm::vec3 CBall::GetOutlineColor() const
 void CBall::AddCircleToBody(b2Body *body, float radius)
 {
 	b2CircleShape circleShape;
-	circleShape.m_radius = ConvertToBoxCoordinates(radius);
+	circleShape.m_radius = Convert::ToBox(radius);
 
 	b2FixtureDef circle;
 	circle.shape = &circleShape;

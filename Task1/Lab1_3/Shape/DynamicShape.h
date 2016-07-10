@@ -13,7 +13,7 @@ class CDynamicBody
 	, public CStaticShape
 {
 public:
-	CDynamicBody(b2World * world);
+	CDynamicBody();
 	virtual ~CDynamicBody() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods

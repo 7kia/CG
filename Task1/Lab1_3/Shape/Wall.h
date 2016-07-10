@@ -4,25 +4,23 @@
 
 class CWall final
 	: public CStaticShape
-	, public CDrawable
 	, public IShape
 	, public CRectangle
 	, private boost::noncopyable
 {
 public:
-	CWall(b2World * world);
+	CWall();
 	CWall(const glm::vec2 & leftTopPoint
 		, SSize size
 		, float rotate
 		, const glm::vec3 & outlineColor
-		, b2World * world);
+		);
 	virtual ~CWall() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
 	static void			AddRectangleToBody(b2Body *body
 											, SSize size
-											, float rotatation
 											, const glm::vec2 & shapeOrigin);// TODO : see need transfer
 	//--------------------------------------------
 	// IStaticShape

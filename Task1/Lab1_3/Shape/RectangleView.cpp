@@ -11,6 +11,7 @@ CRectangleView::CRectangleView(SSize size, const glm::vec2 & position)
 	: CShape()
 	, CRectangle(size)
 {
+	SetPosition(position);
 }
 
 void CRectangleView::Redraw() const

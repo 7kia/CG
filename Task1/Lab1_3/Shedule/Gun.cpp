@@ -1,35 +1,9 @@
 #include "stdafx.h"
 #include "Gun.h"
 
-CGun::CGun(b2World * world)
-	: CStaticShape(world)
+CGun::CGun()
+	: CStaticShape()
 {
-	//m_defBody.type = b2_dynamicBody;
-
-	//m_body = world->CreateBody(&m_defBody);
-
-	// Rectangle
-	// Define the ground box shape.
-	
-
-	/*
-	//m_body->GetFixtureList()
-
-	auto pCircle = std::make_shared<CBall>(world);
-	pCircle->SetRadius(25.f);
-	m_visual.push_back(pCircle);
-
-	auto pTrunk = std::make_shared<CWall>(world);
-	pTrunk->SetWidth(40.f);
-	pTrunk->SetHeight(15.f);
-	pTrunk->SetPosition(glm::vec2(DEFAULT_BALL::RADIUSE + pTrunk->GetHeight() - DEFAULT_GUN::SHIFT_TRUNK 
-									, -pTrunk->GetHeight() / 2.f));
-	pTrunk->SetOrigin(glm::vec2(-pTrunk->GetPosition().x
-									, pTrunk->GetHeight() / 2.f));
-
-	m_visual.push_back(pTrunk);
-
-	//*/
 }
 
 CGun::~CGun()
@@ -122,6 +96,7 @@ void CGun::AddToWorld(b2World * world)
 
 void CGun::Advance(float dt)
 {
+	(void)dt;
 	for (auto & component : m_visual)
 	{
 		component->SetRotation(GetRotation());
@@ -144,8 +119,7 @@ void CGun::CreateBody(float trunkWidth
 	const float byYShift = -trunkHeigth / 2.f;
 	CWall::AddRectangleToBody(m_body
 							, SSize(trunkWidth, trunkHeigth) 
-							, 0.f
-							, ConvertToBoxCoordinates(glm::vec2(byXShift, byYShift)) );
+							, Convert::ToBox(glm::vec2(byXShift, byYShift)) );
 
 	CBall::AddCircleToBody(m_body, baseRadius);
 }

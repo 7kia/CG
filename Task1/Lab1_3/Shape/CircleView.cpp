@@ -11,6 +11,7 @@ CCircleView::CCircleView(float radius, const glm::vec2 & position)
 	: CShape()
 	, CCircle(radius)
 {
+	SetPosition(position);
 }
 
 void CCircleView::Redraw() const

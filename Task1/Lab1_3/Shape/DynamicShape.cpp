@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "DynamicShape.h"
 
-CDynamicBody::CDynamicBody(b2World * world)
+CDynamicBody::CDynamicBody()
 	: IHaveVelocity()
-	, CStaticShape(world)
+	, CStaticShape()
 {
 	m_defBody.type = b2_dynamicBody;
 
@@ -18,20 +18,20 @@ void CDynamicBody::Advance(float dt)
 
 glm::vec2 CDynamicBody::GetVelocity() const
 {
-	return glm::vec2(ConvertToNormalCoordinates(m_defBody.linearVelocity.x)
-					, ConvertToNormalCoordinates(m_defBody.linearVelocity.x) );
+	return glm::vec2(Convert::ToNormal(m_defBody.linearVelocity.x)
+					, Convert::ToNormal(m_defBody.linearVelocity.x) );
 }
 
 void CDynamicBody::SetVelocity(const glm::vec2 & value)
 {
-	m_defBody.linearVelocity.x = ConvertToBoxCoordinates(value.x);
-	m_defBody.linearVelocity.y = ConvertToBoxCoordinates(value.y);
-	//ApplyAcceleration(ConvertToBoxCoordinates(value));
+	m_defBody.linearVelocity.x = Convert::ToBox(value.x);
+	m_defBody.linearVelocity.y = Convert::ToBox(value.y);
+	//ApplyAcceleration(ToBox(value));
 }
 
 void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 {
-	const glm::vec2 convertAcceleration = ConvertToBoxCoordinates(acceleration);
+	const glm::vec2 convertAcceleration = Convert::ToBox(acceleration);
 	m_body->ApplyForceToCenter(b2Vec2(convertAcceleration.x, convertAcceleration.y), true);// TODO : what is wake?
 }
 

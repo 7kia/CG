@@ -38,7 +38,7 @@ class CStaticShape
 	, public CDrawable// need only for draw
 {
 public:
-	CStaticShape(b2World * world);
+	CStaticShape();
 	virtual ~CStaticShape() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods

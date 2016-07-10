@@ -82,6 +82,7 @@ void CWindow::OnDragMotion(const glm::vec2 &pos)
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
+	(void)pos;
 	/*
 	    if (m_shedule.GetPhysicSystem().m_draggingShape)
     {

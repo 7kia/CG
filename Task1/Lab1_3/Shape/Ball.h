@@ -4,15 +4,14 @@
 
 class CBall
 	: public CDynamicBody
-	, public CDrawable
 	, public IShape
 	, public CCircle
 	, private boost::noncopyable
 
 {
 public:
-	CBall(b2World * world);
-	CBall(float radius, const glm::vec2 &position, b2World * world);
+	CBall();
+	CBall(float radius, const glm::vec2 &position);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
