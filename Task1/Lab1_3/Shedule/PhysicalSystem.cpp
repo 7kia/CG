@@ -25,7 +25,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	glm::vec2 position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f);//-350.f, -BORDER_HEIGTH / 2.f
 	float width = BORDER_WIDTH;
 	float height = BORDER_HEIGTH;
-	glm::vec3 color = Colors::RED;
+	glm::vec3 color = Colors::BLUE;
 	float rotation = 0.f;
 
 	CreateWall(position
@@ -38,7 +38,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	position = glm::vec2(300.f, -BORDER_HEIGTH / 2.f );
 	width = BORDER_WIDTH;
 	height = BORDER_HEIGTH;
-	color = Colors::RED;
+	color = Colors::BLUE;
 	rotation = 0.f;
 
 	CreateWall(position
@@ -53,7 +53,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	position = glm::vec2(-350.f, -BORDER_HEIGTH / 2.f - BORDER_WIDTH);
 	width = BORDER_HEIGTH + 4.f * BORDER_WIDTH;
 	height = BORDER_WIDTH;
-	color = Colors::ORANGE;
+	color = Colors::BLUE;
 	rotation = 0.f;
 
 	CreateWall(position
@@ -66,7 +66,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	position = glm::vec2(-300.f, 50.f);
 	width = 500.f;
 	height = BORDER_WIDTH / 2.f;
-	color = Colors::RED;
+	color = Colors::BLUE;
 	rotation = 0.4f;
 
 	CreateWall(position
@@ -79,7 +79,7 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 	position = glm::vec2(325.f, 50.f);
 	width = 300.f;
 	height = BORDER_WIDTH / 2.f;
-	color = Colors::RED;
+	color = Colors::BLUE;
 	rotation = 2.97f;// 2.97f
 
 	CreateWall(position
@@ -88,12 +88,38 @@ CPhysicalSystem::CPhysicalSystem(float windowWidth, float windowHeight)
 		, rotation
 		, color);
 	//////////////////////////
-	// Rectangle wall
+	// First rectangle wall
 	position = glm::vec2(-100.f, -150.f);
 	width = 50.f;
 	height = 100.f;
 	color = Colors::RED;
 	rotation = 1.4f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+	// Second rectangle wall
+	position = glm::vec2(100.f, -150.f);
+	width = 50.f;
+	height = 100.f;
+	color = Colors::ORANGE;
+	rotation = -1.4f;
+
+	CreateWall(position
+		, width
+		, height
+		, rotation
+		, color);
+	//////////////////////////
+	// Third rectangle wall
+	position = glm::vec2(-100.f, 0.f);
+	width = 75.f;
+	height = 50.f;
+	color = Colors::BLUE;
+	rotation = 2.f;
 
 	CreateWall(position
 		, width
