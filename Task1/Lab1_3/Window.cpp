@@ -45,10 +45,10 @@ bool ShouldTrackKeyPressed(const SDL_Keysym &key)
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
 {
-	/*
+	
 		m_shedule.OnDragBegin(pos + glm::vec2());// TODO : fix origin + glm::vec2()
 
-
+/*
 	auto particles = boost::adaptors::reverse(m_shedule.GetPhysicSystem().m_shapes);
 	auto it = boost::find_if(particles, [&](const auto &pFlower) {
 		return pFlower->HitTest(pos);

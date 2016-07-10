@@ -33,6 +33,10 @@ void CBall::Advance(float dt)
 {
 	m_visual.SetPosition(GetPosition());
 	m_visual.SetRotation(GetRotation());
+
+	m_visual.SetOrigin(GetOrigin());
+	m_visual.SetReferenceSystemOrigin(GetReferenceSystemOrigin());
+
 }
 
 void CBall::SetVisual()
@@ -40,6 +44,10 @@ void CBall::SetVisual()
 	m_visual.SetRadius(m_radius);
 	m_visual.SetPosition(GetPosition());
 	m_visual.SetRotation(GetRotation());
+
+	m_visual.SetOrigin(GetOrigin());
+	m_visual.SetReferenceSystemOrigin(GetReferenceSystemOrigin());
+
 }
 
 void CBall::Redraw() const

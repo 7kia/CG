@@ -277,7 +277,7 @@ void CGun::Shoot(CPhysicalSystem * system, const glm::vec2 & mousePosition)
 	pBall->SetOutlineColor(Colors::YELLOW);
 
 	const glm::vec2 direction = GetDirection(mousePosition);
-	const glm::vec2 shift = 1.5f *DEFAULT_GUN::SHIFT_BALL * direction;
+	const glm::vec2 shift = DEFAULT_GUN::SHIFT_BALL * direction;
 	const glm::vec2 boxShift = ConvertToBoxCoordinates(shift);
 	//pBall->SetOrigin()
 	pBall->SetPosition(GetPosition() + shift);
