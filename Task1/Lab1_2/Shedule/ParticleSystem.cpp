@@ -104,39 +104,44 @@ void CParticleSystem::ProcessCollisions()
 				bool firstSign = firstParticle->GetSign();
 				bool secondSign = secondParticle->GetSign();
 
-				float power = GetPower(firstParticle, secondParticle);
+				const glm::vec2 power = GetPower(firstParticle, secondParticle);
 
 
 				glm::vec2 vectorDistance = firstParticle->GetPosition() - secondParticle->GetPosition();
 				float distance = glm::length(vectorDistance);
 
-				MIN_DISTANCE;
-
-				if ((power != std::numeric_limits<float>::infinity())
-					&& (power > MIN_POWER_FOR_INTERACTION))
+				if ( (distance < MIN_DISTANCE)
+					&& 
+					(glm::length(power) > MIN_POWER_FOR_INTERACTION) )
 				{
-					float firstAcceleration = GetAccelerationParticle(firstSign, power);
-					float secondAcceleration = GetAccelerationParticle(secondSign, power);
+					glm::vec2 firstAcceleration = GetAccelerationParticle(firstSign, power);
+					glm::vec2 secondAcceleration = GetAccelerationParticle(secondSign, power);
 
 					// very near particles repel
 					// and particles with diferint attraction
-					if ( (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
+					if ((distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
 						|| (firstSign == secondSign))
 					{
-						secondAcceleration *= -2.f;
-						firstAcceleration *= 2.f;
+						secondAcceleration *= -1.f;
+						firstAcceleration *= 1.f;
 					}
 					else
 					{
-						firstAcceleration *= -1.f;
+						secondAcceleration *= -1.f;
+					}
+
+					if (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
+					{
+						firstAcceleration *= distance;
+						secondAcceleration *= -distance;
 					}
 
 					vectorDistance = glm::normalize(vectorDistance);
 					// TODO : See is correctly name SetVelocity
 					// ApplyAcceleration
 					// SetVelocity нет взаиодействия с нексолькими частицами
-					firstParticle->ApplyAcceleration(vectorDistance * firstAcceleration);
-					secondParticle->ApplyAcceleration(vectorDistance * secondAcceleration);
+					firstParticle->ApplyAcceleration(firstAcceleration);
+					secondParticle->ApplyAcceleration(secondAcceleration);
 
 				}
 			}
@@ -162,7 +167,7 @@ bool CParticleSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
 }
 
-float CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
+glm::vec2 CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
 								, std::unique_ptr<CDynamicParticle> & second)
 {
 	bool firstSign = first->GetSign();
@@ -171,42 +176,26 @@ float CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
 	float firstCharge = GetChargeParticle(firstSign);
 	float secondCharge = GetChargeParticle(secondSign);
 
-	float power = K_IN_COULOMB_LAW;
-	power *= firstCharge * secondCharge;
 
 	// see might need absolute position
 	glm::vec2 vectorDistance = first->GetAbsolutePosition(first->GetOrigin());
 	vectorDistance -= second->GetAbsolutePosition(second->GetOrigin());
 
 	float distance = glm::length(vectorDistance);
-	power /= distance;// *distance;
+	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge
+						/ pow(distance, 2.f);
 
-	return abs(power);
+
+	const glm::vec2 result = power * vectorDistance;
+	return result;
 }
 
 float CParticleSystem::GetChargeParticle(bool sign)
 {
-	// заряд одного элекстрона 1.60217662 * 10e-19
-	// для расчётов слишком маленькое число
-	float charge = 1.f;
-
-	if (sign)
-	{
-		charge *= -1.f;
-	}
-	return charge;
+	return (sign ? ELECTRON_CHARGE : PROTON_CHARGE);
 }
 
-float CParticleSystem::GetAccelerationParticle(bool sign, float power)
+glm::vec2 CParticleSystem::GetAccelerationParticle(bool sign, const glm::vec2 & power)
 {
-	float massa = 0.f;
-	if (sign)
-	{
-		massa = ELECTRON_MASSA;
-	}
-	else
-	{
-		massa = PROTON_MASSA;
-	}
-	return power / massa;
+	return power / (sign ? ELECTRON_MASSA : PROTON_MASSA);
 }
