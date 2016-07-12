@@ -124,16 +124,19 @@ void CParticleSystem::ProcessCollisions()
 					{
 						secondAcceleration *= -1.f;
 						firstAcceleration *= 1.f;
+
+						
 					}
-					else
+					else if(firstSign != secondSign)
 					{
 						secondAcceleration *= -1.f;
 					}
 
-					if (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
+					if ((firstSign != secondSign) 
+						&& (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f)) )
 					{
-						firstAcceleration *= distance;
-						secondAcceleration *= -distance;
+						secondAcceleration *= -1.f;
+						firstAcceleration *= -1.f;
 					}
 
 					vectorDistance = glm::normalize(vectorDistance);
@@ -182,6 +185,10 @@ glm::vec2 CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
 	vectorDistance -= second->GetAbsolutePosition(second->GetOrigin());
 
 	float distance = glm::length(vectorDistance);
+	if (distance < DEFAULT_PARTICLE::RADIUSE * 2.f)
+	{
+		distance = DEFAULT_PARTICLE::RADIUSE * 2.f;
+	}
 	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge
 						/ pow(distance, 2.f);
 
