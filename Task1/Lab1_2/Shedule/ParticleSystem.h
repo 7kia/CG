@@ -16,7 +16,7 @@ static const float MIN_DISTANCE = 6.f * DEFAULT_PARTICLE::RADIUSE;
 static const float ABOUT_ZERO = 0.1f;// TODO : fix name
 static const float MIN_POWER_FOR_INTERACTION = K_IN_COULOMB_LAW * ELECTRON_MASSA * PROTON_MASSA
 												/ (MIN_DISTANCE * MIN_DISTANCE);
-
+static const float EPSILON = 2.f;
 class CParticleSystem
 {
 public:

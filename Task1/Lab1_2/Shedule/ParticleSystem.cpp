@@ -143,8 +143,19 @@ void CParticleSystem::ProcessCollisions()
 					// TODO : See is correctly name SetVelocity
 					// ApplyAcceleration
 					// SetVelocity нет взаиодействия с нексолькими частицами
-					firstParticle->ApplyAcceleration(firstAcceleration);
-					secondParticle->ApplyAcceleration(secondAcceleration);
+
+					// For lack shake equal sign particle
+					if (! ((firstSign != secondSign)
+						&&
+						IsBetween(distance
+							, DEFAULT_PARTICLE::RADIUSE * 2.f - EPSILON
+							, DEFAULT_PARTICLE::RADIUSE * 2.f + EPSILON))
+						)
+					{
+						firstParticle->ApplyAcceleration(firstAcceleration);
+						secondParticle->ApplyAcceleration(secondAcceleration);
+
+					}
 
 				}
 			}
