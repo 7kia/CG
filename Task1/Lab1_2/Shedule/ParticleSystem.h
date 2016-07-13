@@ -13,10 +13,11 @@ static const float ELECTRON_MASSA = 0.0001f;//1.60217662e-19f
 static const float PROTON_MASSA = 0.0001f;//1.60217662e-19f
 
 static const float MIN_DISTANCE = 6.f * DEFAULT_PARTICLE::RADIUSE;
-static const float ABOUT_ZERO = 0.1f;// TODO : fix name
 static const float MIN_POWER_FOR_INTERACTION = K_IN_COULOMB_LAW * ELECTRON_MASSA * PROTON_MASSA
 												/ (MIN_DISTANCE * MIN_DISTANCE);
-static const float EPSILON = 2.f;
+static const float EPSILON_DISTANCE = 2.f;
+static const float MIN_DISTANCE_BETWEEN_PARTICLE = DEFAULT_PARTICLE::RADIUSE * 2.f;
+
 class CParticleSystem
 {
 public:

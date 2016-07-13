@@ -101,9 +101,6 @@ void CParticleSystem::ProcessCollisions()
 		{
 			if (firstParticle != secondParticle)
 			{
-				bool firstSign = firstParticle->GetSign();
-				bool secondSign = secondParticle->GetSign();
-
 				const glm::vec2 power = GetPower(firstParticle, secondParticle);
 
 
@@ -111,45 +108,39 @@ void CParticleSystem::ProcessCollisions()
 				float distance = glm::length(vectorDistance);
 
 				if ( (distance < MIN_DISTANCE)
-					&& 
+						&& 
 					(glm::length(power) > MIN_POWER_FOR_INTERACTION) )
 				{
+					bool firstSign = firstParticle->GetSign();
+					bool secondSign = secondParticle->GetSign();
+
 					glm::vec2 firstAcceleration = GetAccelerationParticle(firstSign, power);
-					glm::vec2 secondAcceleration = GetAccelerationParticle(secondSign, power);
+					glm::vec2 secondAcceleration = GetAccelerationParticle(secondSign, power);					
 
-					// very near particles repel
-					// and particles with diferint attraction
-					if ((distance < (DEFAULT_PARTICLE::RADIUSE * 2.f))
-						|| (firstSign == secondSign))
+					if (distance < MIN_DISTANCE_BETWEEN_PARTICLE)
 					{
-						secondAcceleration *= -1.f;
-						firstAcceleration *= 1.f;
-
-						
+						if (firstSign == secondSign)
+						{
+							secondAcceleration *= -1.f;
+						}
+						else
+						{
+							firstAcceleration *= -1.f;
+						}
 					}
-					else if(firstSign != secondSign)
+					else
 					{
 						secondAcceleration *= -1.f;
-					}
-
-					if ((firstSign != secondSign) 
-						&& (distance < (DEFAULT_PARTICLE::RADIUSE * 2.f)) )
-					{
-						secondAcceleration *= -1.f;
-						firstAcceleration *= -1.f;
 					}
 
 					vectorDistance = glm::normalize(vectorDistance);
-					// TODO : See is correctly name SetVelocity
-					// ApplyAcceleration
-					// SetVelocity нет взаиодействия с нексолькими частицами
 
 					// For lack shake equal sign particle
 					if (! ((firstSign != secondSign)
 						&&
 						IsBetween(distance
-							, DEFAULT_PARTICLE::RADIUSE * 2.f - EPSILON
-							, DEFAULT_PARTICLE::RADIUSE * 2.f + EPSILON))
+							, MIN_DISTANCE_BETWEEN_PARTICLE - EPSILON_DISTANCE
+							, MIN_DISTANCE_BETWEEN_PARTICLE + EPSILON_DISTANCE))
 						)
 					{
 						firstParticle->ApplyAcceleration(firstAcceleration);
@@ -158,6 +149,8 @@ void CParticleSystem::ProcessCollisions()
 					}
 
 				}
+
+
 			}
 		}
 	}
@@ -196,9 +189,9 @@ glm::vec2 CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
 	vectorDistance -= second->GetAbsolutePosition(second->GetOrigin());
 
 	float distance = glm::length(vectorDistance);
-	if (distance < DEFAULT_PARTICLE::RADIUSE * 2.f)
+	if (distance < MIN_DISTANCE_BETWEEN_PARTICLE)
 	{
-		distance = DEFAULT_PARTICLE::RADIUSE * 2.f;
+		distance = MIN_DISTANCE_BETWEEN_PARTICLE;
 	}
 	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge
 						/ pow(distance, 2.f);
