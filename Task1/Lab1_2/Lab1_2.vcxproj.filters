@@ -78,9 +78,6 @@
     <ClInclude Include="Shedule\ParticleEmitter.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
-    <ClInclude Include="Shedule\CHaveVelocity.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
     <ClInclude Include="Shedule\NormalDistribution.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
@@ -138,9 +135,6 @@
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
     <ClCompile Include="Shedule\ParticleEmitter.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\CHaveVelocity.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
     <ClCompile Include="Features\CHaveOrigin.cpp">

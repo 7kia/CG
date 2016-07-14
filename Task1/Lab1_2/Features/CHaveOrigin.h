@@ -4,11 +4,10 @@
 
 class IHaveOrigin
 {
+	virtual ~IHaveOrigin() = default;
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:
-	virtual ~IHaveOrigin() = default;
-
 	virtual glm::vec2			GetCenterPosition(const glm::vec2 & origin) const { (void)origin; return glm::vec2(); };
 	virtual glm::vec2			GetCenterPosition() const { return glm::vec2(); };
 
@@ -25,7 +24,6 @@ class CHaveOrigin
 {
 public:
 	CHaveOrigin();
-	virtual ~CHaveOrigin() = default;
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:

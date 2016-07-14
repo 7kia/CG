@@ -2,7 +2,7 @@
 
 #include "DynamicParticle.h"
 #include "NormalDistribution.h"
-#include <time.h>       /* time */
+#include <time.h>
 
 class CParticleEmitter
 {

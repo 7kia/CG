@@ -17,7 +17,7 @@ class CMinus // have heir CPlus
 public:
 	CMinus();
 	CMinus(const glm::vec2 & position);
-	~CMinus();
+	virtual ~CMinus() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

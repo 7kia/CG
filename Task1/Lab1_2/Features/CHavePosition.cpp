@@ -8,18 +8,18 @@ CHavePosition::CHavePosition()
 
 void CHavePosition::SetPosition(const glm::vec2 & position)
 {
-	m_position = Convert::ToBox(position);
+	m_position = position;////Convert::ToBox()
 }
 
 void CHavePosition::SetPosition(float x, float y)
 {
-	m_position.x = Convert::ToBox(x);
-	m_position.y = Convert::ToBox(y);
+	m_position.x = x;
+	m_position.y = y;
 }
 
 glm::vec2 CHavePosition::GetPosition() const
 {
-	return Convert::ToNormal(m_position);
+	return m_position;
 }
 
 float Convert::ToBox(const float value)

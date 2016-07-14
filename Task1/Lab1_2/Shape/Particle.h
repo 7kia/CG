@@ -22,6 +22,8 @@ class CParticle
 public:
 	CParticle();
 	CParticle(const glm::vec2 &position, bool isNegative = false);
+
+	virtual ~CParticle() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

@@ -27,12 +27,12 @@ void CParticleSystem::Advance(float dt)
 {
 	ProcessCollisions();
 
-
     // За 1 кадр может появиться несколько новых частиц.
     while (m_particles.size() < m_maxAmountParticles)
     {
         m_particles.emplace_back(m_pEmitter->Emit());
     }
+
     // Продвигаем частицы
     for (const auto &pParticle : m_particles)
     {
@@ -59,12 +59,9 @@ void CParticleSystem::Advance(float dt)
 		{
 			break;
 		}
-
 		/////////////////////////////////
 		m_particles.erase(newEnd, m_particles.end());
-	} while (true);
-    // Удаляем вышедшие за экран частицы
-   
+	} while (true);   
 }
 
 void CParticleSystem::Draw() const
@@ -113,8 +110,8 @@ void CParticleSystem::ProcessCollisions()
 					bool firstSign = firstParticle->GetSign();
 					bool secondSign = secondParticle->GetSign();
 
-					glm::vec2 firstAcceleration = GetAccelerationParticle(firstSign, power);
-					glm::vec2 secondAcceleration = GetAccelerationParticle(secondSign, power);					
+					glm::vec2 firstAcceleration = GetParticleAcceleration(firstSign, power);
+					glm::vec2 secondAcceleration = GetParticleAcceleration(secondSign, power);					
 
 					if (distance < MIN_DISTANCE_BETWEEN_PARTICLE)
 					{
@@ -143,7 +140,6 @@ void CParticleSystem::ProcessCollisions()
 					{
 						firstParticle->ApplyAcceleration(firstAcceleration);
 						secondParticle->ApplyAcceleration(secondAcceleration);
-
 					}
 
 				}
@@ -172,39 +168,27 @@ bool CParticleSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
 }
 
-glm::vec2 CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
+glm::vec2 GetPower(std::unique_ptr<CDynamicParticle> & first
 								, std::unique_ptr<CDynamicParticle> & second)
 {
-	bool firstSign = first->GetSign();
-	bool secondSign = second->GetSign();
-
-	float firstCharge = GetChargeParticle(firstSign);
-	float secondCharge = GetChargeParticle(secondSign);
-
+	const float firstCharge = GetParticleCharge(first->GetSign());
+	const float secondCharge = GetParticleCharge(second->GetSign());
 
 	// see might need absolute position
-	glm::vec2 vectorDistance = first->GetCenterPosition();
-	vectorDistance -= second->GetCenterPosition();
+	const glm::vec2 distanceVector = first->GetCenterPosition() - second->GetCenterPosition();
 
-	float distance = glm::length(vectorDistance);
-	if (distance < MIN_DISTANCE_BETWEEN_PARTICLE)
-	{
-		distance = MIN_DISTANCE_BETWEEN_PARTICLE;
-	}
-	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge
-						/ pow(distance, 2.f);
+	const float distance = std::max(glm::length(distanceVector), MIN_DISTANCE_BETWEEN_PARTICLE);
+	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge / pow(distance, 2.f);
 
-
-	const glm::vec2 result = power * vectorDistance;
-	return result;
+	return power * glm::normalize(distanceVector);
 }
 
-float CParticleSystem::GetChargeParticle(bool sign)
+float GetParticleCharge(bool sign)
 {
 	return (sign ? ELECTRON_CHARGE : PROTON_CHARGE);
 }
 
-glm::vec2 CParticleSystem::GetAccelerationParticle(bool sign, const glm::vec2 & power)
+glm::vec2 GetParticleAcceleration(bool sign, const glm::vec2 & power)
 {
-	return power / (sign ? ELECTRON_MASSA : PROTON_MASSA);
+	return power / (sign ? ELECTRON_MASS : PROTON_MASS);
 }

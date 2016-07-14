@@ -18,11 +18,6 @@ CMinus::CMinus(const glm::vec2 & position)
 	SetOutlineColor(NEGATIVE_COLOR);
 }
 
-CMinus::~CMinus()
-{
-}
-
-
 void CMinus::Redraw() const
 {
 	glBegin(GL_TRIANGLE_FAN);

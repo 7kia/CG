@@ -1,17 +1,14 @@
 #pragma once
 
 #include "../Shape/Particle.h"
-#include "CHaveVelocity.h"
-// For one constant not need
-//namespace
-//{
-	const glm::vec2 GRAVITY = { 0.f, 0.f };
-//}
+#include "../Features/CHaveVelocity.h"
 
 class CDynamicParticle 
 	: public CHaveVelocity
 	, public CParticle
 {
+	CDynamicParticle();
+	virtual ~CDynamicParticle() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

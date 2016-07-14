@@ -168,7 +168,6 @@
     <ClInclude Include="Shape\Particle.h" />
     <ClInclude Include="Shape\Plus.h" />
     <ClInclude Include="Shape\Rectangle.h" />
-    <ClInclude Include="Shedule\CHaveVelocity.h" />
     <ClInclude Include="Shedule\DynamicParticle.h" />
     <ClInclude Include="Shedule\NormalDistribution.h" />
     <ClInclude Include="Shedule\ParticleEmitter.h" />
@@ -191,7 +190,6 @@
     <ClCompile Include="Shape\Particle.cpp" />
     <ClCompile Include="Shape\Plus.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
-    <ClCompile Include="Shedule\CHaveVelocity.cpp" />
     <ClCompile Include="Shedule\DynamicParticle.cpp" />
     <ClCompile Include="Shedule\ParticleEmitter.cpp" />
     <ClCompile Include="Shedule\ParticleSystem.cpp" />

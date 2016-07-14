@@ -8,7 +8,6 @@ CWindow::CWindow()
 {
 	const glm::vec2 CENTER_WINODOW = glm::vec2(WINDOW_WIDTH / 2.f, WINDOW_HEIGTH / 2.f);
 	
-
     SetBackgroundColor(Colors::GRAY);
 }
 
@@ -24,7 +23,6 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 
 	m_shedule.SetSize(size.x, size.y);
 	m_shedule.Redraw();	
-
 }
 
 void CWindow::OnDragBegin(const glm::vec2 &pos)
