@@ -157,7 +157,9 @@
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="DispatchEvent.h" />
-    <ClInclude Include="Shape\CHavePosition.h" />
+    <ClInclude Include="Features\CHaveOrigin.h" />
+    <ClInclude Include="Features\CHavePosition.h" />
+    <ClInclude Include="Features\CHaveVelocity.h" />
     <ClInclude Include="Shape\CShape.h" />
     <ClInclude Include="Shape\CDrawable.h" />
     <ClInclude Include="Shape\IDrawable.h" />
@@ -179,9 +181,11 @@
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
+    <ClCompile Include="Features\CHaveOrigin.cpp" />
+    <ClCompile Include="Features\CHavePosition.cpp" />
+    <ClCompile Include="Features\CHaveVelocity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shape\CDrawable.cpp" />
-    <ClCompile Include="Shape\CHavePosition.cpp" />
     <ClCompile Include="Shape\CShape.cpp" />
     <ClCompile Include="Shape\Minus.cpp" />
     <ClCompile Include="Shape\Particle.cpp" />

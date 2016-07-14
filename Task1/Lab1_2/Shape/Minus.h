@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CShape.h"
-#include "CHavePosition.h"
 
 // Not blue because green more visible // TODO : see need the color
 static const glm::vec3 NEGATIVE_COLOR = { 0.f, 1.0f, 0.f };//{ 0.f, 0.f, 7.f };

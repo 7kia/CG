@@ -19,6 +19,9 @@
     <Filter Include="Файлы исходного кода\Shedule">
       <UniqueIdentifier>{5ea36aa6-f255-4f0a-9496-573e9110ee98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\Features">
+      <UniqueIdentifier>{7b9ce4b4-cd1d-4c19-9411-42e9903df0be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,9 +63,6 @@
     <ClInclude Include="Shape\Particle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\CHavePosition.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Minus.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
@@ -78,11 +78,20 @@
     <ClInclude Include="Shedule\ParticleEmitter.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
     </ClInclude>
-    <ClInclude Include="Shedule\NormalDistribution.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Shedule\CHaveVelocity.h">
       <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\NormalDistribution.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\CHaveOrigin.h">
+      <Filter>Файлы исходного кода\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\CHavePosition.h">
+      <Filter>Файлы исходного кода\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\CHaveVelocity.h">
+      <Filter>Файлы исходного кода\Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +125,6 @@
     <ClCompile Include="Shape\Particle.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\CHavePosition.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\Minus.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
@@ -136,6 +142,15 @@
     </ClCompile>
     <ClCompile Include="Shedule\CHaveVelocity.cpp">
       <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\CHaveOrigin.cpp">
+      <Filter>Файлы исходного кода\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\CHavePosition.cpp">
+      <Filter>Файлы исходного кода\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\CHaveVelocity.cpp">
+      <Filter>Файлы исходного кода\Features</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

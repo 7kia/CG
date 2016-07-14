@@ -42,7 +42,7 @@ void CParticleSystem::Advance(float dt)
 	do
 	{
 		auto newEnd = std::remove_if(m_particles.begin(), m_particles.end(), [&](const auto &pParticle) {
-			return CheckExitFromBorder(pParticle->GetAbsolutePosition(pParticle->GetOrigin()));
+			return CheckExitFromBorder(pParticle->GetCenterPosition());
 		});
 
 		/////////////////////////////////
@@ -103,13 +103,12 @@ void CParticleSystem::ProcessCollisions()
 			{
 				const glm::vec2 power = GetPower(firstParticle, secondParticle);
 
-
 				glm::vec2 vectorDistance = firstParticle->GetPosition() - secondParticle->GetPosition();
 				float distance = glm::length(vectorDistance);
 
-				if ( (distance < MIN_DISTANCE)
-						&& 
-					(glm::length(power) > MIN_POWER_FOR_INTERACTION) )
+				if ((distance < MIN_DISTANCE)
+					&& 
+					(glm::length(power) > MIN_POWER_FOR_INTERACTION))
 				{
 					bool firstSign = firstParticle->GetSign();
 					bool secondSign = secondParticle->GetSign();
@@ -136,12 +135,11 @@ void CParticleSystem::ProcessCollisions()
 					vectorDistance = glm::normalize(vectorDistance);
 
 					// For lack shake equal sign particle
-					if (! ((firstSign != secondSign)
-						&&
-						IsBetween(distance
-							, MIN_DISTANCE_BETWEEN_PARTICLE - EPSILON_DISTANCE
-							, MIN_DISTANCE_BETWEEN_PARTICLE + EPSILON_DISTANCE))
-						)
+					if (!((firstSign != secondSign)
+							&&
+							IsBetween(distance
+									, MIN_DISTANCE_BETWEEN_PARTICLE - EPSILON_DISTANCE
+									, MIN_DISTANCE_BETWEEN_PARTICLE + EPSILON_DISTANCE)))
 					{
 						firstParticle->ApplyAcceleration(firstAcceleration);
 						secondParticle->ApplyAcceleration(secondAcceleration);
@@ -185,8 +183,8 @@ glm::vec2 CParticleSystem::GetPower(std::unique_ptr<CDynamicParticle> & first
 
 
 	// see might need absolute position
-	glm::vec2 vectorDistance = first->GetAbsolutePosition(first->GetOrigin());
-	vectorDistance -= second->GetAbsolutePosition(second->GetOrigin());
+	glm::vec2 vectorDistance = first->GetCenterPosition();
+	vectorDistance -= second->GetCenterPosition();
 
 	float distance = glm::length(vectorDistance);
 	if (distance < MIN_DISTANCE_BETWEEN_PARTICLE)

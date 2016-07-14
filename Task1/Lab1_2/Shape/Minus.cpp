@@ -29,7 +29,7 @@ void CMinus::Redraw() const
 
 	glColor3f(m_outlineColor.x, m_outlineColor.y, m_outlineColor.z);
 
-	const glm::vec2 absolutePosition = GetAbsolutePosition(m_origin);
+	const glm::vec2 absolutePosition = GetCenterPosition();
 
 	glVertex2f(absolutePosition.x - HEIGHT_SIGN / 2.f, absolutePosition.y - WIDTH_SIGN / 2.f);
 	// first triangle

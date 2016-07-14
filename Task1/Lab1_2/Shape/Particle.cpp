@@ -10,7 +10,6 @@ CParticle::CParticle() : CShape()
 CParticle::CParticle(const glm::vec2 &position, bool isNegative)
 {
 	SetPosition(position);
-	SetOrigin(m_origin);
 	SetSign(isNegative);
 }
 
@@ -43,7 +42,7 @@ void CParticle::StrokeCircle() const
 	glColor3f(m_outlineColor.r, m_outlineColor.g, m_outlineColor.b);
 	glLineWidth(DEFAULT_PARTICLE::THIKNESS);
 
-	const glm::vec2 absolutePosition = GetAbsolutePosition(m_origin);
+	const glm::vec2 absolutePosition = GetCenterPosition();
 
 	glBegin(GL_LINE_STRIP);
 	for (float angle = 0; angle <= float(2 * M_PI); angle += step)
@@ -61,7 +60,7 @@ void CParticle::FillCircle() const
 	const float step = float(2 * M_PI) / AMOUNT_POINTS;
 
 	glColor3f(INSIDE_COLOR.r, INSIDE_COLOR.g, INSIDE_COLOR.b);
-	const glm::vec2 absolutePosition = GetAbsolutePosition(m_origin);
+	const glm::vec2 absolutePosition = GetCenterPosition();
 
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(absolutePosition.x, absolutePosition.y);
@@ -87,14 +86,14 @@ void CParticle::DefineCenterSign()
 	}
 
 	m_shapeSign->SetPosition(m_position);
-	m_shapeSign->SetOrigin(m_origin);
+	m_shapeSign->SetOrigin(GetOrigin());
 
 }
 
 
 bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 {
-	glm::vec2 resultShift = GetAbsolutePosition(m_origin) - point;
+	glm::vec2 resultShift = GetCenterPosition() - point;
 
 	float distance = glm::length(resultShift);
 	return (distance < DEFAULT_PARTICLE::RADIUSE);

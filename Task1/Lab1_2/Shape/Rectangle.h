@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CShape.h"
-#include "CHavePosition.h"
 
 class CRectangle final
 	: public CShape

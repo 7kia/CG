@@ -30,11 +30,13 @@ public:
 	void		Redraw() const override;
 	bool		HitTest(const glm::vec2 &point) const override;
 	//--------------------------------------------
-
+	// CHavePosition
 	void		SetPosition(const glm::vec2 &position) override;
 	void		SetPosition(float x, float y) override;
-
+	//--------------------------------------------
+	// CHaveOrigin
 	void		SetOrigin(const glm::vec2 & origin) override;
+	//--------------------------------------------
 
 	void		SetSign(bool isNegative);
 	bool		GetSign() const;
@@ -55,6 +57,6 @@ private:
 private:
 	std::unique_ptr<CShape>	m_shapeSign;// for draw plus and minus
 
-	bool		m_isNegative = false;
+	bool					m_isNegative = false;
 //////////////////////////////////////////////////////////////////////
 };
