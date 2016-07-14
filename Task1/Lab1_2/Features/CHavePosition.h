@@ -15,6 +15,7 @@ namespace Convert
 
 class IHavePosition
 {
+public:
 	virtual ~IHavePosition() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -31,7 +32,6 @@ class CHavePosition
 public:
 	CHavePosition();
 	virtual ~CHavePosition() = default;
-
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

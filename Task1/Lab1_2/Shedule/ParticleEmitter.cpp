@@ -6,9 +6,8 @@ CParticleEmitter::CParticleEmitter()
 	std::random_device rd;
 	m_random.seed(rd());
 
-	srand(time(nullptr));
+	srand(unsigned(time(nullptr)));
 }
-
 
 std::unique_ptr<CDynamicParticle> CParticleEmitter::Emit()
 {
@@ -18,7 +17,6 @@ std::unique_ptr<CDynamicParticle> CParticleEmitter::Emit()
 
 	bool sign = bool(rand() % 2);
 	pParticle->SetSign(sign);
-
 
 	float x = m_xRange(m_random);
 	float y = m_yRange(m_random);
@@ -34,7 +32,6 @@ void CParticleEmitter::SetPlaceSize(const glm::vec2 & value)
 
 	SetXPositionRange(0.f, m_placeSize.x);
 	SetYPositionRange(0.f, m_placeSize.y);
-
 }
 
 glm::vec2 CParticleEmitter::GetPlaceSize() const

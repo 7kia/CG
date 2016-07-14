@@ -7,6 +7,7 @@ class CDynamicParticle
 	: public CHaveVelocity
 	, public CParticle
 {
+public:
 	CDynamicParticle();
 	virtual ~CDynamicParticle() = default;
 //////////////////////////////////////////////////////////////////////
