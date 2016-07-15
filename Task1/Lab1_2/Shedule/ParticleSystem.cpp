@@ -98,6 +98,7 @@ void CParticleSystem::ProcessCollisions()
 		{
 			if (firstParticle != secondParticle)
 			{
+				// TODO : 
 				const glm::vec2 power = GetPower(firstParticle, secondParticle);
 
 				glm::vec2 vectorDistance = firstParticle->GetPosition() - secondParticle->GetPosition();
@@ -107,8 +108,8 @@ void CParticleSystem::ProcessCollisions()
 					&& 
 					(glm::length(power) > MIN_POWER_FOR_INTERACTION))
 				{
-					bool firstSign = firstParticle->GetSign();
-					bool secondSign = secondParticle->GetSign();
+					const bool firstSign = firstParticle->GetSign();
+					const bool secondSign = secondParticle->GetSign();
 
 					glm::vec2 firstAcceleration = GetParticleAcceleration(firstSign, power);
 					glm::vec2 secondAcceleration = GetParticleAcceleration(secondSign, power);					
@@ -117,16 +118,16 @@ void CParticleSystem::ProcessCollisions()
 					{
 						if (firstSign == secondSign)
 						{
-							secondAcceleration *= -1.f;
+							secondAcceleration *= -0.5f;
 						}
 						else
 						{
-							firstAcceleration *= -1.f;
+							firstAcceleration *= -0.5f;
 						}
 					}
 					else
 					{
-						secondAcceleration *= -1.f;
+						secondAcceleration *= -0.5f;
 					}
 
 					vectorDistance = glm::normalize(vectorDistance);

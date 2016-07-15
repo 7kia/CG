@@ -4,13 +4,13 @@
 #include "NormalDistribution.h"
 #include "ParticleEmitter.h"
 
-static const float ELECTRIC_CONSTANT = 8.85418781762e-0f;//8,85418781762·10−12 слишком мала для расчётов
+static const float ELECTRIC_CONSTANT = 10*8.85418781762e-0f;//8,85418781762·10−12 слишком мала для расчётов
 static const float K_IN_COULOMB_LAW = 1.f / (4.f * float(M_PI) * ELECTRIC_CONSTANT);
 
-static const float ELECTRON_CHARGE = -1.f;// 1.60217662e-19
-static const float PROTON_CHARGE = 1.f;
-static const float ELECTRON_MASS = 1.60217662e-7f;//1.60217662e-19f
-static const float PROTON_MASS = 1.60217662e-7f;//1.60217662e-19f
+static const float ELECTRON_CHARGE = -2.f;// 1.60217662e-19
+static const float PROTON_CHARGE = 2.f;
+static const float ELECTRON_MASS = 1.60217662e-9f;//1.60217662e-19f
+static const float PROTON_MASS = 1.60217662e-9f;//1.60217662e-19f
 
 static const float MIN_DISTANCE = 6.f * DEFAULT_PARTICLE::RADIUSE;
 static const float MIN_POWER_FOR_INTERACTION = K_IN_COULOMB_LAW * ELECTRON_MASS * PROTON_MASS
