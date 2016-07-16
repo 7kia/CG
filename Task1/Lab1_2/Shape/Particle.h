@@ -7,6 +7,8 @@
 #include <memory>
 
 static const glm::vec3 INSIDE_COLOR = { 0.f, 0.f, 0.f };
+static const float ELECTRON_MASS = 1.60217662e-9f;//1.60217662e-19f
+static const float PROTON_MASS = 1.60217662e-9f;//1.60217662e-19f
 
 namespace DEFAULT_PARTICLE
 {
@@ -42,6 +44,8 @@ public:
 
 	void		SetSign(bool isNegative);
 	bool		GetSign() const;
+
+	float		GetMass() const;
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:

@@ -18,7 +18,7 @@ void CParticleSystem::SetEmitter(std::unique_ptr<CParticleEmitter> &&pEmitter)
     m_pEmitter = std::move(pEmitter);
 }
 
-void CParticleSystem::AddParticles(std::unique_ptr<CDynamicParticle> particle)
+void CParticleSystem::AddParticles(std::shared_ptr<CDynamicParticle> particle)
 {
 	m_particles.push_back(std::move(particle));
 }
@@ -49,10 +49,14 @@ void CParticleSystem::Advance(float dt)
 		// Если перетаскиваемая частица выходит зв границы очищаем указатель на неё
 		if (newEnd != m_particles.end())
 		{
-			if (m_draggingParticle == newEnd->get())
+			if (!m_draggingParticle.expired())
 			{
-				m_draggingParticle = nullptr;
+				//if (Lock(m_draggingParticle).get() == newEnd->get())
+				//{
+					m_draggingParticle.reset();
+				//}
 			}
+			
 
 		}
 		else
@@ -118,16 +122,16 @@ void CParticleSystem::ProcessCollisions()
 					{
 						if (firstSign == secondSign)
 						{
-							secondAcceleration *= -0.5f;
+							secondAcceleration *= -1.f;
 						}
 						else
 						{
-							firstAcceleration *= -0.5f;
+							firstAcceleration *= -1.f;
 						}
 					}
 					else
 					{
-						secondAcceleration *= -0.5f;
+						secondAcceleration *= -1.f;
 					}
 
 					vectorDistance = glm::normalize(vectorDistance);
@@ -169,8 +173,8 @@ bool CParticleSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
 }
 
-glm::vec2 GetPower(std::unique_ptr<CDynamicParticle> & first
-								, std::unique_ptr<CDynamicParticle> & second)
+glm::vec2 GetPower(std::shared_ptr<CDynamicParticle> & first
+								, std::shared_ptr<CDynamicParticle> & second)
 {
 	const float firstCharge = GetParticleCharge(first->GetSign());
 	const float secondCharge = GetParticleCharge(second->GetSign());
@@ -179,7 +183,7 @@ glm::vec2 GetPower(std::unique_ptr<CDynamicParticle> & first
 	const glm::vec2 distanceVector = first->GetCenterPosition() - second->GetCenterPosition();
 
 	const float distance = std::max(glm::length(distanceVector), MIN_DISTANCE_BETWEEN_PARTICLE);
-	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge / pow(distance, 2.f);
+	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge / pow(distance, 3.f);
 
 	return power * glm::normalize(distanceVector);
 }
@@ -192,4 +196,9 @@ float GetParticleCharge(bool sign)
 glm::vec2 GetParticleAcceleration(bool sign, const glm::vec2 & power)
 {
 	return power / (sign ? ELECTRON_MASS : PROTON_MASS);
+}
+
+std::shared_ptr<CDynamicParticle> Lock(std::weak_ptr<CDynamicParticle> pointer)
+{
+	return pointer.lock();
 }

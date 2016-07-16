@@ -33,30 +33,31 @@ void CWindow::OnDragBegin(const glm::vec2 &pos)
 	});
 	if (it != particles.end())
 	{
-		m_shedule.GetParticleSystem().m_draggingParticle = it->get();
-		m_dragOffset = pos - m_shedule.GetParticleSystem().m_draggingParticle->GetPosition();
+		auto p = std::shared_ptr<CDynamicParticle>(it->get());
+		m_shedule.GetParticleSystem().m_draggingParticle._Reset(p);
+		m_dragOffset = pos - Lock(m_shedule.GetParticleSystem().m_draggingParticle)->GetPosition();
 	}
 	else
 	{
-		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
+		Lock(m_shedule.GetParticleSystem().m_draggingParticle).reset();
 	}
 
 }
 
 void CWindow::OnDragMotion(const glm::vec2 &pos)
 {
-    if (m_shedule.GetParticleSystem().m_draggingParticle)
+    if (!m_shedule.GetParticleSystem().m_draggingParticle.expired())
     {
-		m_shedule.GetParticleSystem().m_draggingParticle->SetPosition(pos - m_dragOffset);
+		m_shedule.GetParticleSystem().m_draggingParticle.lock()->SetPosition(pos - m_dragOffset);
     }
 }
 
 void CWindow::OnDragEnd(const glm::vec2 &pos)
 {
-    if (m_shedule.GetParticleSystem().m_draggingParticle)
+    if (!m_shedule.GetParticleSystem().m_draggingParticle.expired())
     {
-		m_shedule.GetParticleSystem().m_draggingParticle->SetPosition(pos - m_dragOffset);
-		m_shedule.GetParticleSystem().m_draggingParticle = nullptr;
+		Lock(m_shedule.GetParticleSystem().m_draggingParticle)->SetPosition(pos - m_dragOffset);
+		m_shedule.GetParticleSystem().m_draggingParticle.reset();
     }
 }
 

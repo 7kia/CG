@@ -132,3 +132,8 @@ bool CParticle::GetSign() const
 {
 	return m_isNegative;
 }
+
+float CParticle::GetMass() const
+{
+	return m_isNegative ? ELECTRON_MASS : PROTON_MASS;
+}
