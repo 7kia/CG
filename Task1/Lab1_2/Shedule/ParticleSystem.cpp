@@ -139,7 +139,7 @@ void CParticleSystem::ProcessCollisions()
 					// For lack shake equal sign particle
 					if (!((firstSign != secondSign)
 							&&
-							IsBetween(distance
+						IsBetween(distance
 									, MIN_DISTANCE_BETWEEN_PARTICLE - EPSILON_DISTANCE
 									, MIN_DISTANCE_BETWEEN_PARTICLE + EPSILON_DISTANCE)))
 					{
@@ -182,8 +182,24 @@ glm::vec2 GetPower(std::shared_ptr<CDynamicParticle> & first
 	// see might need absolute position
 	const glm::vec2 distanceVector = first->GetCenterPosition() - second->GetCenterPosition();
 
-	const float distance = std::max(glm::length(distanceVector), MIN_DISTANCE_BETWEEN_PARTICLE);
-	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge / pow(distance, 3.f);
+	const float distance = glm::length(distanceVector);// , MIN_DISTANCE_BETWEEN_PARTICLE);
+
+	std::function<float(float)> forWeak = [](float distance)
+	{
+		const float shift = -51.f;
+		const float x = distance + shift;
+		return (abs(x * 2) / (powf(x, 2.f) + x * 1.5f + 1)) * 100000.f;
+	};
+	std::function<float(float)> forStrong = [](float distance)
+	{
+		const float shift = -49.9f;
+		const float x = distance + shift;
+		return (1.f / (x)) * 100.f;
+	};
+	const float denumerator = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? forWeak(distance) : pow(distance, 3.f);//
+	
+	const float df = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? forWeak(distance) : pow(distance, 3.f);
+	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge / denumerator;
 
 	return power * glm::normalize(distanceVector);
 }
