@@ -10,12 +10,11 @@ CDynamicParticle::CDynamicParticle()
 void CDynamicParticle::Advance(float dt)
 {
 
-	m_velocity += dt * m_acceleration * 5.f;
+	m_velocity += dt * m_acceleration * 1.f;
 
 
 	
 	
-	SetPosition(m_velocity + GetPosition());
 
 	if (glm::length(m_velocity) < MIN_VELOCITY)
 	{
@@ -23,9 +22,14 @@ void CDynamicParticle::Advance(float dt)
 	}
 	else
 	{
-		m_velocity -= 0.05f * m_velocity;
+		//const glm::vec2 acceleration = GetFrictionPower(m_velocity) / GetMass();
+		//m_velocity += dt * acceleration;
+		m_velocity *= 0.8;
 	}
-	m_velocity = glm::vec2();
+
+	SetPosition(m_velocity + GetPosition());
+
+	//m_velocity = glm::vec2();
 	m_acceleration = glm::vec2();
 }
 
