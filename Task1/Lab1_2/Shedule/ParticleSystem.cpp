@@ -108,9 +108,9 @@ void CParticleSystem::ProcessCollisions()
 				glm::vec2 vectorDistance = firstParticle->GetPosition() - secondParticle->GetPosition();
 				float distance = glm::length(vectorDistance);
 
-				if ((distance < MIN_DISTANCE)
-					&& 
-					(glm::length(power) > MIN_POWER_FOR_INTERACTION))
+				if (distance < MIN_DISTANCE)
+				//&& 
+					//..(glm::length(power) > MIN_POWER_FOR_INTERACTION))
 				{
 					const bool firstSign = firstParticle->GetSign();
 					const bool secondSign = secondParticle->GetSign();
@@ -131,17 +131,18 @@ void CParticleSystem::ProcessCollisions()
 					}
 					else
 					{
-						secondAcceleration *= -1.f;
+						secondAcceleration *= -5.f;
+						firstAcceleration *= 5.f;
 					}
 
 					vectorDistance = glm::normalize(vectorDistance);
 
 					// For lack shake equal sign particle
-					if (!((firstSign != secondSign)
-							&&
-						IsBetween(distance
-									, MIN_DISTANCE_BETWEEN_PARTICLE - EPSILON_DISTANCE
-									, MIN_DISTANCE_BETWEEN_PARTICLE + EPSILON_DISTANCE)))
+					//if (!((firstSign != secondSign)
+						//	&&
+						//IsBetween(distance
+						//			, MIN_DISTANCE_BETWEEN_PARTICLE - EPSILON_DISTANCE
+						//			, MIN_DISTANCE_BETWEEN_PARTICLE + EPSILON_DISTANCE)))
 					{
 						firstParticle->ApplyAcceleration(firstAcceleration);
 						secondParticle->ApplyAcceleration(secondAcceleration);
@@ -194,7 +195,7 @@ glm::vec2 GetPower(std::shared_ptr<CDynamicParticle> & first
 	{
 		const float shift = -49.9f;
 		const float x = distance + shift;
-		return (1.f / (x)) * 100.f;
+		return (1.f / (x * x)) * 100.f;
 	};
 	const float denumerator = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? forWeak(distance) : pow(distance, 3.f);//
 	

@@ -11,7 +11,7 @@ static const float K_IN_COULOMB_LAW = 1.f / (4.f * float(M_PI) * ELECTRIC_CONSTA
 static const float ELECTRON_CHARGE = -2.f;// 1.60217662e-19
 static const float PROTON_CHARGE = 2.f;
 
-static const float MIN_DISTANCE = 6.f * DEFAULT_PARTICLE::RADIUSE;
+static const float MIN_DISTANCE = 60.f * DEFAULT_PARTICLE::RADIUSE;
 static const float MIN_POWER_FOR_INTERACTION = K_IN_COULOMB_LAW * ELECTRON_MASS * PROTON_MASS
 												/ (MIN_DISTANCE * MIN_DISTANCE * MIN_DISTANCE);
 
