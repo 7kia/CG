@@ -7,10 +7,6 @@
 
 #include <vector>
 
-static const unsigned int WINDOW_WIDTH = 800;
-static const unsigned int WINDOW_HEIGTH = 600;
-
-
 class CWindow : public CAbstractInputControlWindow
 {
 public:

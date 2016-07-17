@@ -14,15 +14,15 @@ CParticleSystem::CParticleSystem()
 {
 	std::function<glm::vec2(float, glm::vec2)> sinus = [](float dt, glm::vec2 position)
 	{
-		position.x += dt * 15.f;
-		position.y = sin(position.x - 400.f) * 10.f + 300.f;
+		position.x += dt * 50.f;
+		position.y = sin((position.x - WINDOW_WIDTH / 2.f) / 2.f) * 50.f + WINDOW_HEIGTH / 2.f;
 
 		return position;
 	};
 
 	auto particle = std::make_shared<CStaticParticle>();
 	particle->SetMoveFunction(sinus);
-	particle->SetPosition(glm::vec2(0.f, 0.f));
+	particle->SetPosition(glm::vec2(20.f, 0.f));
 	m_particles.push_back(std::move(particle));
 }
 
