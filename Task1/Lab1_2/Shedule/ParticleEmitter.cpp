@@ -9,19 +9,44 @@ CParticleEmitter::CParticleEmitter()
 	srand(unsigned(time(nullptr)));
 }
 
-std::unique_ptr<CDynamicParticle> CParticleEmitter::Emit()
+std::shared_ptr<CStaticParticle> CParticleEmitter::Emit()
 {
-	auto pParticle = std::make_unique<CDynamicParticle>();
-
-	const float angle = m_angleRange(m_random);
-
-	bool sign = bool(rand() % 2);
-	pParticle->SetSign(sign);
+	std::shared_ptr<CStaticParticle> pParticle;
 
 	float x = m_xRange(m_random);
 	float y = m_yRange(m_random);
-	pParticle->SetOrigin(m_position);
-	pParticle->SetPosition(x, y);
+	bool sign = bool(rand() % 2);
+
+	if ((rand() % 2) == 1)
+	{
+		pParticle = std::make_shared<CDynamicParticle>();
+
+		pParticle->SetSign(sign);
+
+		pParticle->SetOrigin(m_position);
+		pParticle->SetPosition(x, y);
+
+	}
+	else
+	{
+		pParticle = std::make_shared<CStaticParticle>();
+
+		std::function<glm::vec2(float, glm::vec2)> sinus = [&](float dt, glm::vec2 position)
+		{
+			position.x += dt * 50.f;
+			position.y = sin((position.x - WINDOW_WIDTH / 2.f - x) / 20.f) * 50.f + WINDOW_HEIGTH / 2.f + y;
+
+			return position;
+		};
+
+		pParticle->SetMoveFunction(sinus);
+		pParticle->SetSign(sign);
+
+		pParticle->SetOrigin(m_position);
+		pParticle->SetPosition(x, y);
+
+		
+	}
 
 	return pParticle;
 }

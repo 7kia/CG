@@ -5,8 +5,6 @@
 #include "ParticleEmitter.h"
 #include <functional>
 
-static const unsigned int WINDOW_WIDTH = 800;
-static const unsigned int WINDOW_HEIGTH = 600;
 
 
 static const float ELECTRIC_CONSTANT = 10*8.85418781762e-0f;//8,85418781762·10−12 слишком мала для расчётов

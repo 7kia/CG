@@ -12,7 +12,7 @@ public:
 	CParticleEmitter();
 
 	// @param dt - разница во времени с предыдущим вызовом Advance.
-	std::unique_ptr<CDynamicParticle>	Emit();
+	std::shared_ptr<CStaticParticle>	Emit();
 
 	void								SetPlaceSize(const glm::vec2 &value);
 	glm::vec2							GetPlaceSize() const;

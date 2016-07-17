@@ -5,6 +5,11 @@
 #include "../Features/CHaveVelocity.h"
 #include <functional>
 
+// TODO : see might need trensfer to other place
+static const unsigned int WINDOW_WIDTH = 800;
+static const unsigned int WINDOW_HEIGTH = 600;
+
+
 class CStaticParticle
 	: public CParticle
 	, public IAdvancable
