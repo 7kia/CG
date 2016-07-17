@@ -90,6 +90,12 @@
     <ClInclude Include="Features\CHaveVelocity.h">
       <Filter>Файлы исходного кода\Features</Filter>
     </ClInclude>
+    <ClInclude Include="Shedule\StaticParticle.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Advancable.h">
+      <Filter>Файлы исходного кода\Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -145,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Features\CHaveVelocity.cpp">
       <Filter>Файлы исходного кода\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\StaticParticle.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

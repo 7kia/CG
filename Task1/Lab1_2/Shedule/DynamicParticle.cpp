@@ -2,19 +2,13 @@
 #include "DynamicParticle.h"
 
 CDynamicParticle::CDynamicParticle()
-	: CHaveVelocity()
-	, CParticle()
+	: CStaticParticle()
 {
 }
 
 void CDynamicParticle::Advance(float dt)
 {
-
 	m_velocity += dt * m_acceleration * 1.f;
-
-
-	
-	
 
 	if (glm::length(m_velocity) < MIN_VELOCITY)
 	{
@@ -35,7 +29,7 @@ void CDynamicParticle::Advance(float dt)
 
 void CDynamicParticle::ApplyAcceleration(const glm::vec2 & acceleration)
 {
-	m_acceleration += acceleration;
+	CHaveVelocity::ApplyAcceleration(acceleration);
 }
 
 glm::vec2 GetFrictionPower(const glm::vec2 & velocity)

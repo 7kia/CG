@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="DispatchEvent.h" />
+    <ClInclude Include="Features\Advancable.h" />
     <ClInclude Include="Features\CHaveOrigin.h" />
     <ClInclude Include="Features\CHavePosition.h" />
     <ClInclude Include="Features\CHaveVelocity.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Shape\Plus.h" />
     <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shedule\DynamicParticle.h" />
+    <ClInclude Include="Shedule\StaticParticle.h" />
     <ClInclude Include="Shedule\NormalDistribution.h" />
     <ClInclude Include="Shedule\ParticleEmitter.h" />
     <ClInclude Include="Shedule\ParticleSystem.h" />
@@ -194,6 +196,7 @@
     <ClCompile Include="Shedule\ParticleEmitter.cpp" />
     <ClCompile Include="Shedule\ParticleSystem.cpp" />
     <ClCompile Include="Shedule\Shedule.cpp" />
+    <ClCompile Include="Shedule\StaticParticle.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

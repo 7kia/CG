@@ -10,7 +10,23 @@ bool IsBetween(T value, T min, T max)
 	return (min <= value) && (value <= max);
 }
 
-CParticleSystem::CParticleSystem() = default;
+CParticleSystem::CParticleSystem()
+{
+	std::function<glm::vec2(float, glm::vec2)> sinus = [](float dt, glm::vec2 position)
+	{
+		position.x += dt * 15.f;
+		position.y = sin(position.x - 400.f) * 10.f + 300.f;
+
+		return position;
+	};
+
+	auto particle = std::make_shared<CStaticParticle>();
+	particle->SetMoveFunction(sinus);
+	particle->SetPosition(glm::vec2(0.f, 0.f));
+	m_particles.push_back(std::move(particle));
+}
+
+
 CParticleSystem::~CParticleSystem() = default;
 
 void CParticleSystem::SetEmitter(std::unique_ptr<CParticleEmitter> &&pEmitter)
@@ -18,7 +34,7 @@ void CParticleSystem::SetEmitter(std::unique_ptr<CParticleEmitter> &&pEmitter)
     m_pEmitter = std::move(pEmitter);
 }
 
-void CParticleSystem::AddParticles(std::shared_ptr<CDynamicParticle> particle)
+void CParticleSystem::AddParticles(std::shared_ptr<CStaticParticle> particle)
 {
 	m_particles.push_back(std::move(particle));
 }
@@ -108,9 +124,9 @@ void CParticleSystem::ProcessCollisions()
 				glm::vec2 vectorDistance = firstParticle->GetPosition() - secondParticle->GetPosition();
 				float distance = glm::length(vectorDistance);
 
-				if (distance < MIN_DISTANCE)
-				//&& 
-					//..(glm::length(power) > MIN_POWER_FOR_INTERACTION))
+				if ( (distance < MIN_DISTANCE)
+					&& 
+					(glm::length(power) > MIN_POWER_FOR_INTERACTION))
 				{
 					const bool firstSign = firstParticle->GetSign();
 					const bool secondSign = secondParticle->GetSign();
@@ -174,8 +190,8 @@ bool CParticleSystem::CheckExitFromBorder(const glm::vec2 & particlePosition)
 			  && IsBetween(particlePosition.y, 0.f, sizeWindow.y) );
 }
 
-glm::vec2 GetPower(std::shared_ptr<CDynamicParticle> & first
-								, std::shared_ptr<CDynamicParticle> & second)
+glm::vec2 GetPower(std::shared_ptr<CStaticParticle> & first
+								, std::shared_ptr<CStaticParticle> & second)
 {
 	const float firstCharge = GetParticleCharge(first->GetSign());
 	const float secondCharge = GetParticleCharge(second->GetSign());
@@ -215,7 +231,7 @@ glm::vec2 GetParticleAcceleration(bool sign, const glm::vec2 & power)
 	return power / (sign ? ELECTRON_MASS : PROTON_MASS);
 }
 
-std::shared_ptr<CDynamicParticle> Lock(std::weak_ptr<CDynamicParticle> pointer)
+std::shared_ptr<CStaticParticle> Lock(std::weak_ptr<CStaticParticle> pointer)
 {
 	return pointer.lock();
 }

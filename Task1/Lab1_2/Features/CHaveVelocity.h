@@ -14,6 +14,9 @@ public:
 
 	virtual glm::vec2	GetAcceleration() const { return glm::vec2(); };
 	virtual void		SetAcceleration(const glm::vec2 &acceleration) { (void)acceleration; };
+
+	virtual void		ApplyAcceleration(const glm::vec2 & acceleration) { (void)acceleration; };
+
 };
 
 class CHaveVelocity
@@ -30,6 +33,8 @@ public:
 
 	glm::vec2	GetAcceleration() const override;
 	void		SetAcceleration(const glm::vec2 &acceleration) override;
+
+	void		ApplyAcceleration(const glm::vec2 & acceleration) override;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

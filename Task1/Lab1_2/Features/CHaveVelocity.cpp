@@ -26,3 +26,8 @@ void CHaveVelocity::SetAcceleration(const glm::vec2 & acceleration)
 {
 	m_acceleration = acceleration;
 }
+
+void CHaveVelocity::ApplyAcceleration(const glm::vec2 & acceleration)
+{
+	m_acceleration += acceleration;
+}

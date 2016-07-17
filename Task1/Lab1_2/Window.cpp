@@ -33,7 +33,7 @@ void CWindow::OnDragBegin(const glm::vec2 &pos)
 	});
 	if (it != particles.end())
 	{
-		auto p = std::shared_ptr<CDynamicParticle>(it->get());
+		auto p = std::shared_ptr<CStaticParticle>(it->get());
 		m_shedule.GetParticleSystem().m_draggingParticle._Reset(p);
 		m_dragOffset = pos - Lock(m_shedule.GetParticleSystem().m_draggingParticle)->GetPosition();
 	}
