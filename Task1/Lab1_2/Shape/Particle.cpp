@@ -47,8 +47,8 @@ void CParticle::StrokeCircle() const
 	glBegin(GL_LINE_STRIP);
 	for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
-		const float dx = DEFAULT_PARTICLE::RADIUSE * cosf(angle);
-		const float dy = DEFAULT_PARTICLE::RADIUSE * sinf(angle);
+		const float dx = DEFAULT_PARTICLE::RADIUS * cosf(angle);
+		const float dy = DEFAULT_PARTICLE::RADIUS * sinf(angle);
 		glVertex2f(dx + absolutePosition.x, dy + absolutePosition.y);
 	}
 	glEnd();
@@ -67,8 +67,8 @@ void CParticle::FillCircle() const
     for (float angle = 0; angle <= float(2 * M_PI); angle += step)
 	{
 		float a = (fabsf(angle - float(2 * M_PI)) < 0.00001f) ? 0.f : angle;
-		const float dx = DEFAULT_PARTICLE::RADIUSE * cosf(a);
-		const float dy = DEFAULT_PARTICLE::RADIUSE * sinf(a);
+		const float dx = DEFAULT_PARTICLE::RADIUS * cosf(a);
+		const float dy = DEFAULT_PARTICLE::RADIUS * sinf(a);
 		glVertex2f(dx + absolutePosition.x, dy + absolutePosition.y);
 	}
 	glEnd();
@@ -96,7 +96,7 @@ bool CParticle::HitTest(const glm::vec2 & point) const// TODO : rewrite if need
 	glm::vec2 resultShift = GetCenterPosition() - point;
 
 	float distance = glm::length(resultShift);
-	return (distance < DEFAULT_PARTICLE::RADIUSE);
+	return (distance < DEFAULT_PARTICLE::RADIUS);
 }
 
 void CParticle::SetPosition(const glm::vec2 & position)

@@ -26,7 +26,6 @@ void CDynamicBody::SetVelocity(const glm::vec2 & value)
 {
 	m_defBody.linearVelocity.x = Convert::ToBox(value.x);
 	m_defBody.linearVelocity.y = Convert::ToBox(value.y);
-	//ApplyAcceleration(ToBox(value));
 }
 
 void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
@@ -38,9 +37,8 @@ void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 void CDynamicBody::CheckParametres()
 {
 	if ((m_defBody.linearVelocity.x == NONE_VALUE::FLOAT)
-		&&
-		(m_defBody.linearVelocity.y == NONE_VALUE::FLOAT))
+		&& (m_defBody.linearVelocity.y == NONE_VALUE::FLOAT))
 	{
-		throw std::runtime_error("Not define velocity!!!");
+		throw std::runtime_error("Undefined velocity");
 	}
 }

@@ -10,7 +10,7 @@ void CStaticParticle::Advance(float dt)
 {
 	if (m_moveFunction != nullptr)
 	{
-		SetPosition(m_moveFunction(dt, GetPosition()));
+		SetPosition(m_moveFunction->operator()(dt, GetPosition()) );
 	}
 	else
 	{
@@ -18,7 +18,7 @@ void CStaticParticle::Advance(float dt)
 	}
 }
 
-void CStaticParticle::SetMoveFunction(std::function<glm::vec2(float, glm::vec2)> function)
+void CStaticParticle::SetMoveFunction(std::shared_ptr<MoveFunction> function)
 {
 	m_moveFunction = function;
 }

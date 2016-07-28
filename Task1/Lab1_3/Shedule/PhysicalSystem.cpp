@@ -217,6 +217,7 @@ void CPhysicalSystem::Draw() const
     }
 }
 
+// TODO: remove Redraw
 void CPhysicalSystem::Redraw() const
 {
 	for (const auto & shape : m_shapes)

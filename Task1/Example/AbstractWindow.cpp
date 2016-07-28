@@ -77,7 +77,7 @@ public:
     {
         // Заливка кадра цветом фона средствами OpenGL
         glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void SwapBuffers()const
@@ -117,7 +117,7 @@ public:
                 message = "error in some GL extension (framebuffers, shaders, etc)";
                 break;
             }
-            std::cerr << "OpenGL error: " << message.c_str() << std::endl;
+            std::cerr << "OpenGL error: " << message << std::endl;
 #ifdef _WIN32
             __debugbreak();
 #endif
@@ -181,6 +181,7 @@ CAbstractWindow::~CAbstractWindow()
 void CAbstractWindow::Show(const glm::ivec2 &size)
 {
     m_pImpl->Show(size);
+    OnWindowInit(size);
 }
 
 void CAbstractWindow::DoGameLoop()

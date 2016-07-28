@@ -12,8 +12,8 @@ static const float PROTON_MASS = 1.60217662e-9f;//1.60217662e-19f
 
 namespace DEFAULT_PARTICLE
 {
-	const float	RADIUSE = 25.f;
-	const float	THIKNESS = 4.f;
+	const float	RADIUS = 15.f;
+	const float	THIKNESS = 1.5f;
 }
 
 class CParticle

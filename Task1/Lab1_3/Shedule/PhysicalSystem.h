@@ -11,9 +11,6 @@
 #include <memory>
 
 static const size_t AMOUNT_OBSTACLES = 7;
-//static const b2Vec2 GRAVITY(0.0f, -10.f);
-
-//static b2World						m_world(b2Vec2(0.0f, -10.f));
 
 
 class CPhysicalSystem

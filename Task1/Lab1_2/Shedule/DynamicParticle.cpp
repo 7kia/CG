@@ -34,6 +34,6 @@ void CDynamicParticle::ApplyAcceleration(const glm::vec2 & acceleration)
 
 glm::vec2 GetFrictionPower(const glm::vec2 & velocity)
 {
-	float valueVelocity = glm::length(velocity);
+	//float valueVelocity = glm::length(velocity);
 	return -COEFICIENT_FRICTION * velocity * velocity;// valueVelocity * valueVelocity * glm::normalize(velocity) / 2.f;
 }

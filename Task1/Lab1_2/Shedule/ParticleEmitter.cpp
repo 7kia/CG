@@ -15,6 +15,7 @@ std::shared_ptr<CStaticParticle> CParticleEmitter::Emit()
 
 	float x = m_xRange(m_random);
 	float y = m_yRange(m_random);
+
 	bool sign = bool(rand() % 2);
 
 	if ((rand() % 2) == 1)
@@ -31,15 +32,19 @@ std::shared_ptr<CStaticParticle> CParticleEmitter::Emit()
 	{
 		pParticle = std::make_shared<CStaticParticle>();
 
-		std::function<glm::vec2(float, glm::vec2)> sinus = [&](float dt, glm::vec2 position)
+		float amplitude = m_amplitude(m_random);
+		float frequency = m_frequency(m_random);
+
+
+		MoveFunction sinus = [&](float dt, glm::vec2 position)
 		{
-			position.x += dt * 50.f;
-			position.y = sin((position.x - WINDOW_WIDTH / 2.f - x) / 20.f) * 50.f + WINDOW_HEIGTH / 2.f + y;
+			position.x += dt * 75.f;
+			position.y = sin((position.x - WINDOW_WIDTH / 2.f - x) * 100.f/*frequency*/) * 45.f/*amplitude*/ + WINDOW_HEIGTH / 2.f + y;
 
 			return position;
 		};
 
-		pParticle->SetMoveFunction(sinus);
+		pParticle->SetMoveFunction(std::make_shared<MoveFunction>(sinus));
 		pParticle->SetSign(sign);
 
 		pParticle->SetOrigin(m_position);
@@ -92,4 +97,14 @@ void CParticleEmitter::SetXPositionRange(float xMin, float xMax)
 void CParticleEmitter::SetYPositionRange(float yMin, float yMax)
 {
 	m_yRange.param(yMin, yMax);
+}
+
+void CParticleEmitter::SetAmplitude(float min, float max)
+{
+	m_amplitude.param(min, max);
+}
+
+void CParticleEmitter::SetFrequency(float min, float max)
+{
+	m_frequency.param(min, max);
 }

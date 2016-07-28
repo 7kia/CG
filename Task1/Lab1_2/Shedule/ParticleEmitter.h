@@ -25,6 +25,9 @@ public:
 
 	void								SetXPositionRange(float xMin, float xMax);
 	void								SetYPositionRange(float yMin, float yMax);
+
+	void								SetAmplitude(float min, float max);
+	void								SetFrequency(float min, float max);
 	//////////////////////////////////////////////////////////////////////
 	// Using
 private:
@@ -42,6 +45,10 @@ private:
 
 	normal_random_float					m_emitIntervalRange;
 	normal_random_float					m_angleRange;
+
+	normal_random_float					m_amplitude;
+	normal_random_float					m_frequency;
+
 
 	std::mt19937						m_random;
 	//////////////////////////////////////////////////////////////////////

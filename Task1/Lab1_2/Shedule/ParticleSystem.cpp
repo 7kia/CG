@@ -189,21 +189,21 @@ glm::vec2 GetPower(std::shared_ptr<CStaticParticle> & first
 
 	const float distance = glm::length(distanceVector);// , MIN_DISTANCE_BETWEEN_PARTICLE);
 
-	std::function<float(float)> forWeak = [](float distance)
+	auto getWeakImpactPower = [](float distance)
 	{
 		const float shift = -51.f;
 		const float x = distance + shift;
 		return (abs(x * 2) / (powf(x, 2.f) + x * 1.5f + 1)) * 200000.f;
 	};
-	std::function<float(float)> forStrong = [](float distance)
+	auto getCoulombPower = [](float distance)
 	{
 		const float shift = -49.9f;
 		const float x = distance + shift;
 		return (1.f / (x * x)) * 100.f;
 	};
-	const float denumerator = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? forWeak(distance) : pow(distance, 3.f);//
+	const float denumerator = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? getWeakImpactPower(distance) : pow(distance, 3.f);//
 	
-	const float df = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? forWeak(distance) : pow(distance, 3.f);
+	const float df = (distance < MIN_DISTANCE_BETWEEN_PARTICLE) ? getCoulombPower(distance) : pow(distance, 3.f);
 	const float power = K_IN_COULOMB_LAW * firstCharge * secondCharge / denumerator;
 
 	return power * glm::normalize(distanceVector);

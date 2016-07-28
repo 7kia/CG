@@ -81,6 +81,8 @@ void CShedule::CreateSystem()
 	pEmitter->SetAngleRange(-2.f * float(M_PI), 2.f * float(M_PI));
 	pEmitter->SetEmitIntervalRange(0.04f, 0.12f);
 
+	pEmitter->SetFrequency(1.f, 5.f);
+	pEmitter->SetAmplitude(1.f, 4.f);
 	m_system.SetEmitter(std::move(pEmitter));
 }
 
