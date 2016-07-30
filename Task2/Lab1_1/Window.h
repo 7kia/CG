@@ -1,6 +1,6 @@
 #pragma once
 #include "DispatchEvent.h"
-#include "IBody.h"
+#include "Shape/IShape.h"
 #include "Camera.h"
 #include "Lights.h"
 #include <vector>

@@ -152,33 +152,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
-    <ClInclude Include="Bodies.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Decorators\AbstractShapeDecorator.h" />
     <ClInclude Include="Decorators\AnimatedShapeDecorator.h" />
     <ClInclude Include="Decorators\Decorators.h" />
     <ClInclude Include="Decorators\TransformShapeDecorator.h" />
     <ClInclude Include="DispatchEvent.h" />
-    <ClInclude Include="IBody.h" />
     <ClInclude Include="Lights.h" />
-    <ClInclude Include="Shape\CLine.h" />
-    <ClInclude Include="Shape\CShape.h" />
-    <ClInclude Include="Shape\CDrawable.h" />
-    <ClInclude Include="Shape\IDrawable.h" />
+    <ClInclude Include="Mixin\Drawable.h" />
+    <ClInclude Include="Mixin\HaveFaceColor.h" />
+    <ClInclude Include="Shape\Bodies.h" />
+    <ClInclude Include="Shape\Cube.h" />
     <ClInclude Include="Shape\IShape.h" />
     <ClInclude Include="Shape\Rectangle.h" />
-    <ClInclude Include="Shedule\ArchimedeanSpiral.h" />
-    <ClInclude Include="Shedule\FunctionGraph.h" />
-    <ClInclude Include="Shedule\IFunctionGraph.h" />
-    <ClInclude Include="Shedule\LimitFunction.h" />
-    <ClInclude Include="Shedule\Shedule.h" />
+    <ClInclude Include="Shape\Tetrahedron.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp" />
-    <ClCompile Include="Bodies.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Decorators\AbstractShapeDecorator.cpp" />
     <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp" />
@@ -186,13 +179,11 @@
     <ClCompile Include="DispatchEvent.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Shape\CDrawable.cpp" />
-    <ClCompile Include="Shape\CLine.cpp" />
-    <ClCompile Include="Shape\CShape.cpp" />
+    <ClCompile Include="Mixin\HaveFaceColor.cpp" />
+    <ClCompile Include="Shape\Bodies.cpp" />
+    <ClCompile Include="Shape\Cube.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
-    <ClCompile Include="Shedule\FunctionGraph.cpp" />
-    <ClCompile Include="Shedule\LimitFunction.cpp" />
-    <ClCompile Include="Shedule\Shedule.cpp" />
+    <ClCompile Include="Shape\Tetraheadron.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

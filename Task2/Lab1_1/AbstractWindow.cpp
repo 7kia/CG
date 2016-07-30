@@ -117,7 +117,7 @@ public:
                 message = "error in some GL extension (framebuffers, shaders, etc)";
                 break;
             }
-            std::cerr << "OpenGL error: " << message << std::endl;
+            std::cerr << "OpenGL error: " << message.c_str() << std::endl;
 #ifdef _WIN32
             __debugbreak();
 #endif

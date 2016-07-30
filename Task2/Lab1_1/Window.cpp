@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Window.h"
-#include "Bodies.h"
+#include "Shape/Bodies.h"
 #include "Decorators/Decorators.h"
 #include <boost/range/algorithm/find_if.hpp>
 #include <boost/range/adaptor/reversed.hpp>
+
+using namespace CubeSpace;
 
 namespace
 {
@@ -170,7 +172,7 @@ void CWindow::InitBodies()
     }
     const glm::vec4 RED_RGBA = {1, 0, 0, 1};
     {
-        auto pTetrahedron = std::make_unique<CIdentityTetrahedron>();
+        auto pTetrahedron = std::make_unique<CTetrahedron>();
         pTetrahedron->SetColor(RED_RGBA);
         m_opaqueBodies.emplace_back(std::move(pTetrahedron));
     }

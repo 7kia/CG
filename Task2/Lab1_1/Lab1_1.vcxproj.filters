@@ -16,11 +16,11 @@
     <Filter Include="Файлы исходного кода\Shape">
       <UniqueIdentifier>{f13ed15f-639f-4614-8298-4e6a7b2f9a91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы исходного кода\Shedule">
-      <UniqueIdentifier>{5ea36aa6-f255-4f0a-9496-573e9110ee98}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы исходного кода\Decorators">
       <UniqueIdentifier>{b2e23195-006f-4a1b-bb47-81476d4968bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Mixin">
+      <UniqueIdentifier>{b4dd5869-6e45-4bfe-a65b-ce4c54489ab5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,52 +33,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\CShape.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape\IShape.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape\CLine.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Rectangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shedule\Shedule.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape\IDrawable.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape\CDrawable.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\FunctionGraph.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\IFunctionGraph.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\LimitFunction.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
-    <ClInclude Include="Shedule\ArchimedeanSpiral.h">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractWindow.h">
-      <Filter>Файлы исходного кода</Filter>
-    </ClInclude>
-    <ClInclude Include="Bodies.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
     <ClInclude Include="DispatchEvent.h">
-      <Filter>Файлы исходного кода</Filter>
-    </ClInclude>
-    <ClInclude Include="IBody.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
     <ClInclude Include="Lights.h">
@@ -99,33 +63,30 @@
     <ClInclude Include="Decorators\Decorators.h">
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\Drawable.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Cube.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\IShape.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\HaveFaceColor.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Tetrahedron.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Bodies.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Shape\CShape.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape\CLine.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\Rectangle.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\CDrawable.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\Shedule.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\FunctionGraph.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClCompile>
-    <ClCompile Include="Shedule\LimitFunction.cpp">
-      <Filter>Файлы исходного кода\Shedule</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractWindow.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Bodies.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -154,6 +115,18 @@
     </ClCompile>
     <ClCompile Include="Decorators\TransformShapeDecorator.cpp">
       <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Cube.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HaveFaceColor.cpp">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Tetraheadron.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Bodies.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
