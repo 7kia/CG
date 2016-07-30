@@ -130,9 +130,9 @@ void CWindow::OnKeyUp(const SDL_KeyboardEvent &event)
 
 void CWindow::InitBodies()
 {
-    const glm::vec3 YELLOW = {1.f, 1.f, 0.f};
-    const glm::vec3 ORANGE = {1.f, 0.5f, 0.f};
-    const glm::vec3 PINK = {1.f, 0.3f, 0.3f};
+    const glm::vec4 YELLOW = { 1.f, 1.f, 0.f, Colors::DEFAULT_ALPHA};
+    const glm::vec4 ORANGE = { 1.f, 0.5f, 0.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 PINK = { 1.f, 0.3f, 0.3f, Colors::DEFAULT_ALPHA };
     {
         auto pCube = std::make_unique<CIdentityCube>();
         pCube->SetAlpha(0.7f);
@@ -148,9 +148,9 @@ void CWindow::InitBodies()
         pTransform->SetChild(std::move(pCube));
         m_transparentBodies.emplace_back(std::move(pTransform));
     }
-    const glm::vec3 RED = {1.f, 0.f, 0.f};
-    const glm::vec3 GREEN = {0.f, 1.f, 0.f};
-    const glm::vec3 BLUE = {0.f, 0.f, 1.f};
+    const glm::vec4 RED = {1.f, 0.f, 0.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 GREEN = {0.f, 1.f, 0.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 BLUE = {0.f, 0.f, 1.f, Colors::DEFAULT_ALPHA };
     {
         auto pCube = std::make_unique<CIdentityCube>();
         pCube->SetAlpha(0.7f);
@@ -170,15 +170,15 @@ void CWindow::InitBodies()
 
         m_transparentBodies.emplace_back(std::move(pTransform));
     }
-    const glm::vec4 RED_RGBA = {1, 0, 0, 1};
+    const glm::vec4 RED_RGBA = {1, 0, 0, Colors::DEFAULT_ALPHA };
     {
         auto pTetrahedron = std::make_unique<CTetrahedron>();
-        pTetrahedron->SetColor(RED_RGBA);
+        pTetrahedron->SetFaceColor(RED_RGBA);
         m_opaqueBodies.emplace_back(std::move(pTetrahedron));
     }
     {
         auto pSphere = std::make_unique<CSphereQuadric>();
-        pSphere->SetColor(BLUE);
+        pSphere->SetFaceColor(BLUE);
 
         auto pTransform = std::make_unique<CTransformShapeDecorator>();
         pTransform->SetTransform(glm::translate(glm::mat4(), {1.f, 0.f, 0.f}));
@@ -188,7 +188,7 @@ void CWindow::InitBodies()
     }
     {
         auto pConoid = std::make_unique<CConoidQuadric>();
-        pConoid->SetColor(YELLOW);
+        pConoid->SetFaceColor(YELLOW);
 
         auto pTransform = std::make_unique<CTransformShapeDecorator>();
         pTransform->SetTransform(glm::translate(glm::mat4(), {-2.f, 1.5f, -0.01f}));

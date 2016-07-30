@@ -161,6 +161,8 @@
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Mixin\Drawable.h" />
     <ClInclude Include="Mixin\HaveFaceColor.h" />
+    <ClInclude Include="Mixin\TransparentShape.h" />
+    <ClInclude Include="Mixin\Updatable.h" />
     <ClInclude Include="Shape\Bodies.h" />
     <ClInclude Include="Shape\Cube.h" />
     <ClInclude Include="Shape\IShape.h" />
@@ -179,9 +181,11 @@
     <ClCompile Include="DispatchEvent.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mixin\TransparentShape.cpp" />
     <ClCompile Include="Mixin\HaveFaceColor.cpp" />
     <ClCompile Include="Shape\Bodies.cpp" />
     <ClCompile Include="Shape\Cube.cpp" />
+    <ClCompile Include="Shape\IShape.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shape\Tetraheadron.cpp" />
     <ClCompile Include="stdafx.cpp" />

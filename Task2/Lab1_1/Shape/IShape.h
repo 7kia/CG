@@ -9,6 +9,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "../Mixin/Drawable.h"
+#include "../Mixin/Updatable.h"
 #include "../Mixin/HaveFaceColor.h"
 
 namespace
@@ -25,11 +26,12 @@ namespace
 }
 
 class IShape
+	: public IDrawable
+	, public IUpdatable
 {
 public:
+	IShape();
     virtual ~IShape() = default;
-    virtual void Update(float deltaTime) = 0;
-    virtual void Draw()const = 0;
 };
 
 using IBodyUniquePtr = std::unique_ptr<IShape>;

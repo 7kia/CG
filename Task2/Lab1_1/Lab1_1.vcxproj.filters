@@ -81,6 +81,12 @@
     <ClInclude Include="Shape\Bodies.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\Updatable.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\TransparentShape.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shape\Rectangle.cpp">
@@ -127,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="Shape\Bodies.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\IShape.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\TransparentShape.cpp">
+      <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

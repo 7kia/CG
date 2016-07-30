@@ -16,38 +16,48 @@
 class CSphereQuadric final
         : public IShape
         , private boost::noncopyable
+		, public CHaveFaceColor
 {
 public:
     CSphereQuadric();
     ~CSphereQuadric();
-
-    void Update(float) final {}
-    void Draw()const final;
-
-    void SetColor(const glm::vec3 &color);
-
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	//--------------------------------------------
+	// IShape
+	//void Update(float) override final;
+    void Draw()const override final;
+	//--------------------------------------------
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
     GLUquadric *m_quadric = nullptr;
-    glm::vec3 m_color;
 };
 
 class CConoidQuadric final
         : public IShape
         , private boost::noncopyable
+		, public CHaveFaceColor
 {
 public:
     CConoidQuadric();
     ~CConoidQuadric();
-
-    void Update(float) final {}
-    void Draw()const final;
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	//--------------------------------------------
+	// IShape
+    void			Update(float) final {}
+    void			Draw()const final;
+	//--------------------------------------------
 
     /// @param value - in range [0..1]
-    void SetTopRadius(double value);
-    void SetColor(const glm::vec3 &color);
-
+    void			SetTopRadius(double value);
+    //void			SetColor(const glm::vec3 &color);
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
-    GLUquadric *m_quadric = nullptr;
-    double m_topRadius = 1.;
-    glm::vec3 m_color;
+    GLUquadric*		m_quadric = nullptr;
+    double			m_topRadius = 1.;
 };

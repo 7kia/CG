@@ -24,28 +24,17 @@ namespace
 }
 
 
+CTetrahedron::CTetrahedron()
+	: CTransparentShape()
+{
+}
+
 void CTetrahedron::Update(float deltaTime)
 {
 	(void)deltaTime;
 }
 
-void CTetrahedron::Draw() const
-{
-	if (m_color.a < 0.99f)
-	{
-		glFrontFace(GL_CW);
-		OutputFaces();
-		glFrontFace(GL_CCW);
-	}
-	OutputFaces();
-}
-
-void CTetrahedron::SetColor(const glm::vec4 &color)
-{
-	m_color = color;
-}
-
-void CTetrahedron::OutputFaces() const
+void CTetrahedron::DrawOutputFaces() const
 {
 	// менее оптимальный способ рисования: прямая отправка данных
 	// могла бы работать быстрее, чем множество вызовов glColor/glVertex.
@@ -58,7 +47,7 @@ void CTetrahedron::OutputFaces() const
 		const Vertex &v3 = TETRAHEDRON_VERTICES[face.vertexIndex3];
 		glm::vec3 normal = glm::normalize(glm::cross(v2 - v1, v3 - v1));
 
-		glColor4fv(glm::value_ptr(m_color));
+		glColor4fv(glm::value_ptr(GetFaceColor()));
 		glNormal3fv(glm::value_ptr(normal));
 		glVertex3fv(glm::value_ptr(v1));
 		glVertex3fv(glm::value_ptr(v2));

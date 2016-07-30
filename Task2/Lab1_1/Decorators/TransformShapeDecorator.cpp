@@ -4,14 +4,14 @@
 
 void CTransformShapeDecorator::Update(float deltaTime)
 {
-	UpdateChild(deltaTime);
+	CAbstractShapeDecorator::Update(deltaTime);
 }
 
 void CTransformShapeDecorator::Draw() const
 {
 	glPushMatrix();
 	glMultMatrixf(glm::value_ptr(m_transform));
-	DrawChild();
+	CAbstractShapeDecorator::Draw();
 	glPopMatrix();
 }
 

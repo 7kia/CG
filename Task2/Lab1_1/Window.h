@@ -9,7 +9,6 @@ class CWindow : public CAbstractInputControlWindow
 {
 public:
     CWindow();
-
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:

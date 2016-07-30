@@ -3,8 +3,8 @@
 #include <stdint.h>
 
 CSphereQuadric::CSphereQuadric()
-    : m_quadric(gluNewQuadric())
-    , m_color({1, 1, 1})
+    : CHaveFaceColor()
+	, m_quadric(gluNewQuadric())
 {
 }
 
@@ -18,18 +18,13 @@ void CSphereQuadric::Draw() const
     const double radius = 1;
     const int slices = 20;
     const int stacks = 20;
-    glColor3fv(glm::value_ptr(m_color));
+    glColor4fv(glm::value_ptr(GetFaceColor()));
     gluSphere(m_quadric, radius, slices, stacks);
 }
 
-void CSphereQuadric::SetColor(const glm::vec3 &color)
-{
-    m_color = color;
-}
-
 CConoidQuadric::CConoidQuadric()
-    : m_quadric(gluNewQuadric())
-    , m_color({1, 1, 1})
+    : CHaveFaceColor()
+	, m_quadric(gluNewQuadric())
 {
 }
 
@@ -46,7 +41,7 @@ void CConoidQuadric::Draw() const
     const double height = 2;
     const int slices = 20;
     const int stacks = 1;
-    glColor3fv(glm::value_ptr(m_color));
+    glColor4fv(glm::value_ptr(GetFaceColor()));
     glPushMatrix();
     glTranslatef(0, 0, -1);
     gluCylinder(m_quadric, baseRadius, m_topRadius, height, slices, stacks);
@@ -61,9 +56,4 @@ void CConoidQuadric::Draw() const
 void CConoidQuadric::SetTopRadius(double value)
 {
     m_topRadius = glm::clamp(value, 0.0, 1.0);
-}
-
-void CConoidQuadric::SetColor(const glm::vec3 &color)
-{
-    m_color = color;
 }

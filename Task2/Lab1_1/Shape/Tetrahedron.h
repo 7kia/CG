@@ -1,17 +1,18 @@
 #pragma once
 
 #include "IShape.h"
+#include "../Mixin/TransparentShape.h"
 
-class CTetrahedron final : public IShape
+class CTetrahedron final 
+	: public CTransparentShape
+	, public IUpdatable
 {
 public:
-	void Update(float deltaTime) final;
-	void Draw()const final;
-
-	void SetColor(const glm::vec4 &color);
-
+	CTetrahedron();
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	void Update(float deltaTime) override final;
 private:
-	void OutputFaces()const;
-
-	glm::vec4 m_color;
+	void DrawOutputFaces()const;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IShape.h"
-
+#include "../Mixin/TransparentShape.h"
 
 namespace CubeSpace
 {
@@ -50,20 +50,29 @@ const Vertex CUBE_VERTICIES[] = {
 
 }
 
-class CIdentityCube final : public IShape
+class CIdentityCube final 
+	: public CTransparentShape
+	, public IUpdatable
 {
 public:
 	CIdentityCube();
-	void Update(float deltaTime) final;
-	void Draw()const final;
-
-	void SetFaceColor(CubeSpace::CubeFace face, const glm::vec3 &color);
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	//--------------------------------------------
+	// IShape
+	void Update(float deltaTime) override final;
+	//--------------------------------------------
+	// Color
+	void SetFaceColor(CubeSpace::CubeFace face, const glm::vec4 &color);// TODO : see can this rewrite by help mixin
 	void SetAlpha(float alpha);
-
+	//--------------------------------------------
 private:
-	void OutputFaces()const;
-
+	void DrawOutputFaces()const;
+//////////////////////////////////////////////////////////////////////
+// Data
+private:
 	static const size_t COLORS_COUNT = static_cast<size_t>(CubeSpace::CubeFace::NumFaces);
-	glm::vec3 m_colors[COLORS_COUNT];
+	glm::vec4 m_colors[COLORS_COUNT];
 	float m_alpha;
 };

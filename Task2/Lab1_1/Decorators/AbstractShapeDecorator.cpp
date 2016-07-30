@@ -7,13 +7,13 @@ void CAbstractShapeDecorator::SetChild(IBodyUniquePtr &&pChild)
 	m_pChild = std::move(pChild);
 }
 
-void CAbstractShapeDecorator::UpdateChild(float deltaTime)
+void CAbstractShapeDecorator::Update(float deltaTime)
 {
 	assert(m_pChild.get());
 	m_pChild->Update(deltaTime);
 }
 
-void CAbstractShapeDecorator::DrawChild() const
+void CAbstractShapeDecorator::Draw() const
 {
 	assert(m_pChild.get());
 	m_pChild->Draw();

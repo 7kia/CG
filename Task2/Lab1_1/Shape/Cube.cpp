@@ -4,14 +4,15 @@
 using namespace CubeSpace;
 
 CIdentityCube::CIdentityCube()
-	: m_alpha(1)
+	: CTransparentShape()
+	, m_alpha(1)
 {
 	// Используем белый цвет по умолчанию.
-	for (glm::vec3 &color : m_colors)
+	for (glm::vec4 &color : m_colors)
 	{
-		color.x = 1;
-		color.y = 1;
-		color.z = 1;
+		color.r = 1;
+		color.g = 1;
+		color.b = 1;
 	}
 }
 
@@ -20,18 +21,8 @@ void CIdentityCube::Update(float deltaTime)
 	(void)deltaTime;
 }
 
-void CIdentityCube::Draw() const
-{
-	if (m_alpha < 0.99f)
-	{
-		glFrontFace(GL_CW);
-		OutputFaces();
-		glFrontFace(GL_CCW);
-	}
-	OutputFaces();
-}
 
-void CIdentityCube::SetFaceColor(CubeFace face, const glm::vec3 &color)
+void CIdentityCube::SetFaceColor(CubeFace face, const glm::vec4 &color)
 {
 	const size_t index = static_cast<size_t>(face);
 	assert(index < COLORS_COUNT);
@@ -43,7 +34,7 @@ void CIdentityCube::SetAlpha(float alpha)
 	m_alpha = alpha;
 }
 
-void CIdentityCube::OutputFaces() const
+void CIdentityCube::DrawOutputFaces() const
 {
 	// менее оптимальный способ рисования: прямая отправка данных
 	// могла бы работать быстрее, чем множество вызовов glColor/glVertex.
@@ -55,7 +46,7 @@ void CIdentityCube::OutputFaces() const
 		const Vertex &v2 = CUBE_VERTICIES[face.vertexIndex2];
 		const Vertex &v3 = CUBE_VERTICIES[face.vertexIndex3];
 		glm::vec3 normal = glm::normalize(glm::cross(v2 - v1, v3 - v1));
-		glm::vec3 color = m_colors[face.colorIndex];
+		glm::vec4 color = m_colors[face.colorIndex];
 
 		glColor4f(color.x, color.y, color.z, m_alpha);
 		glNormal3fv(glm::value_ptr(normal));

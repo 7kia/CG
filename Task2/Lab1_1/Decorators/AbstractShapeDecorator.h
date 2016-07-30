@@ -24,11 +24,14 @@ public:
 // Methods
 public:
 	void SetChild(IBodyUniquePtr && pChild);
-
 protected:
-	void UpdateChild(float deltaTime);
-	void DrawChild()const;
-
+	//--------------------------------------------
+	// IShape
+	void Update(float deltaTime) override;
+	void Draw() const override;
+	//--------------------------------------------
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
 	IBodyUniquePtr m_pChild;
 };

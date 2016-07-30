@@ -22,7 +22,7 @@ void CAnimatedShapeDecorator::Update(float deltaTime)
 			break;
 		}
 	}
-	UpdateChild(deltaTime);
+	CAbstractShapeDecorator::Update(deltaTime);
 }
 
 void CAnimatedShapeDecorator::Draw() const
@@ -30,7 +30,7 @@ void CAnimatedShapeDecorator::Draw() const
 	const glm::mat4 matrix = GetAnimationTransform();
 	glPushMatrix();
 	glMultMatrixf(glm::value_ptr(matrix));
-	DrawChild();
+	CAbstractShapeDecorator::Draw();
 	glPopMatrix();
 }
 
