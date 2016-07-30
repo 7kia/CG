@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Shape">
+      <UniqueIdentifier>{f13ed15f-639f-4614-8298-4e6a7b2f9a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Shedule">
+      <UniqueIdentifier>{5ea36aa6-f255-4f0a-9496-573e9110ee98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Decorators">
+      <UniqueIdentifier>{b2e23195-006f-4a1b-bb47-81476d4968bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CShape.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\IShape.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CLine.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Rectangle.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\Shedule.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\IDrawable.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CDrawable.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\FunctionGraph.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\IFunctionGraph.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\LimitFunction.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="Shedule\ArchimedeanSpiral.h">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractWindow.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="Bodies.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="DispatchEvent.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="IBody.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorators\AbstractShapeDecorator.h">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorators\TransformShapeDecorator.h">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorators\AnimatedShapeDecorator.h">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorators\Decorators.h">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Shape\CShape.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\CLine.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Rectangle.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\CDrawable.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\Shedule.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\FunctionGraph.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="Shedule\LimitFunction.cpp">
+      <Filter>Файлы исходного кода\Shedule</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractWindow.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Bodies.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="DispatchEvent.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorators\AbstractShapeDecorator.cpp">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorators\TransformShapeDecorator.cpp">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
