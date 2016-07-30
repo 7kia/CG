@@ -8,9 +8,9 @@ namespace
 	// расстояние от центра грани до вершины равно 1.
 	const Vertex TETRAHEDRON_VERTICES[] = {
 		{ 0.f, 0.f, -1.0f },
-		{ sqrtf(1.5f), 0.f, 0.5f },
-		{ -sqrtf(1.5f), 0.f, 0.5f },
-		{ 0.f, sqrtf(2.f), 0.f },
+		{ 0.f, 0.f , 0.f },//{ 0.f, 0.f , 0.f },
+		{ 0.5f, -sqrtf(3.f) / 2.f, 0.f },//{ 0.5f, -sqrtf(3.f) / 2.f, 0.f },
+		{ -0.5f, -sqrtf(3.f) / 2.f, 0.f },//{ -0.5f, -sqrtf(3.f) / 2.f, 0.f }
 	};
 
 
