@@ -22,5 +22,14 @@
 #include <type_traits>
 #include <iostream>
 #include <mutex>
+#include <exception>
+#include <array>
 #include <memory>
 #include <vector>
+
+// TODO : transfer to other place
+template <typename T>
+bool IsBetween(const T& value, const T& lowerBound, const T& upperBound)
+{
+	return (value >= lowerBound) && (value <= upperBound);
+}

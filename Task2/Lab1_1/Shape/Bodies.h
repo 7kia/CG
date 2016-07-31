@@ -10,6 +10,7 @@
 #include "IShape.h"
 #include "Cube.h"
 #include "Tetrahedron.h"
+#include "Triangle.h"
 
 
 

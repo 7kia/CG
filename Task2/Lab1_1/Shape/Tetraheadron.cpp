@@ -1,4 +1,5 @@
-﻿#include "stdafx.h"
+﻿//#include "../stdafx.h"
+#include "stdafx.h"
 #include "Tetrahedron.h"
 
 namespace
@@ -26,6 +27,7 @@ namespace
 
 CTetrahedron::CTetrahedron()
 	: CTransparentShape()
+	, IUpdatable()
 {
 }
 

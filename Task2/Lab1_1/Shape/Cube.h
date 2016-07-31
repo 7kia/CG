@@ -68,7 +68,10 @@ public:
 	void SetAlpha(float alpha);
 	//--------------------------------------------
 private:
-	void DrawOutputFaces()const;
+	//--------------------------------------------
+	// CTransparentShape
+	void DrawOutputFaces() const override final;
+	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

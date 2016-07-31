@@ -174,8 +174,13 @@ void CWindow::InitBodies()
     {
         auto pTetrahedron = std::make_unique<CTetrahedron>();
         pTetrahedron->SetFaceColor(RED_RGBA);
-        m_opaqueBodies.emplace_back(std::move(pTetrahedron));
+        //m_opaqueBodies.emplace_back(std::move(pTetrahedron));
     }
+	{
+		auto pTriangle = std::make_unique<CTriangle>();
+		pTriangle->SetFaceColor(RED_RGBA);
+		m_opaqueBodies.emplace_back(std::move(pTriangle));
+	}
     {
         auto pSphere = std::make_unique<CSphereQuadric>();
         pSphere->SetFaceColor(BLUE);

@@ -11,8 +11,12 @@ public:
 	CTetrahedron();
 //////////////////////////////////////////////////////////////////////
 // Methods
+	//--------------------------------------------
+	// CTransparentShape
 public:
 	void Update(float deltaTime) override final;
 private:
-	void DrawOutputFaces()const;
+	
+	void DrawOutputFaces() const override final;
+	//--------------------------------------------
 };
