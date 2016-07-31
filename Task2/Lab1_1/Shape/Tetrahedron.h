@@ -5,7 +5,6 @@
 
 class CTetrahedron final 
 	: public CTransparentShape
-	, public IUpdatable
 {
 public:
 	CTetrahedron();

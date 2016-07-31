@@ -27,7 +27,6 @@ namespace
 
 CTetrahedron::CTetrahedron()
 	: CTransparentShape()
-	, IUpdatable()
 {
 }
 

@@ -52,7 +52,6 @@ const Vertex CUBE_VERTICIES[] = {
 
 class CIdentityCube final 
 	: public CTransparentShape
-	, public IUpdatable
 {
 public:
 	CIdentityCube();

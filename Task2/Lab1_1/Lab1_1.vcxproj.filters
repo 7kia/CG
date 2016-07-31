@@ -90,6 +90,9 @@
     <ClInclude Include="Shape\Triangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\HaveVertex.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shape\Rectangle.cpp">
@@ -144,7 +147,10 @@
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Triangle.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HaveVertex.cpp">
+      <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

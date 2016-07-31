@@ -5,7 +5,6 @@ using namespace CubeSpace;
 
 CIdentityCube::CIdentityCube()
 	: CTransparentShape()
-	, IUpdatable()
 	, m_alpha(1)
 {
 	// Используем белый цвет по умолчанию.
