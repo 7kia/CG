@@ -1,7 +1,5 @@
 #pragma once
 #include <glm/vec3.hpp>
-#include "HaveFaceColor.h"
-#include "../Shape/IShape.h"
 
 class IDrawable
 {

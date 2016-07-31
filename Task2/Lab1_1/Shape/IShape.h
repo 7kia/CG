@@ -25,6 +25,7 @@ namespace
 	};
 }
 
+
 class IShape
 	: public IDrawable
 	, public IUpdatable
@@ -34,4 +35,18 @@ public:
     virtual ~IShape() = default;
 };
 
-using IBodyUniquePtr = std::unique_ptr<IShape>;
+class CShape
+	: public CHaveFaceColor
+	, public IShape
+{
+public:
+	CShape();
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	void			Draw() const override;
+protected:
+	virtual void	DrawOutputFaces() const = 0;
+};
+
+using IBodyUniquePtr = std::unique_ptr<CShape>;

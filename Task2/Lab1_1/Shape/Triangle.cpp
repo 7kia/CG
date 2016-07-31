@@ -1,10 +1,9 @@
 ﻿//#include "../stdafx.h"
 #include "stdafx.h"
-
 #include "Triangle.h"
 
 CTriangle::CTriangle()
-	: CTransparentShape()
+	: CShape()
 	, CHaveVertex(3u)
 {
 	const float shift = 0.66f;// origin int triangle center

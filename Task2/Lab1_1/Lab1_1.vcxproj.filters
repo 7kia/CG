@@ -63,9 +63,6 @@
     <ClInclude Include="Decorators\Decorators.h">
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClInclude>
-    <ClInclude Include="Mixin\Drawable.h">
-      <Filter>Файлы исходного кода\Mixin</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Cube.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
@@ -84,13 +81,19 @@
     <ClInclude Include="Mixin\Updatable.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClInclude>
-    <ClInclude Include="Mixin\TransparentShape.h">
-      <Filter>Файлы исходного кода\Mixin</Filter>
-    </ClInclude>
     <ClInclude Include="Shape\Triangle.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Mixin\HaveVertex.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\CompositeShape.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\Drawable.h">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\Transformable.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,17 +143,17 @@
     <ClCompile Include="Shape\Bodies.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\IShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\TransparentShape.cpp">
-      <Filter>Файлы исходного кода\Mixin</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\Triangle.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\HaveVertex.cpp">
       <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\CompositeShape.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\IShape.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

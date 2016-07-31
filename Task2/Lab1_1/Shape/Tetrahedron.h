@@ -1,21 +1,18 @@
 #pragma once
 
 #include "IShape.h"
-#include "../Mixin/TransparentShape.h"
+#include "../Mixin/CompositeShape.h"
+#include "Triangle.h"
 
 class CTetrahedron final 
-	: public CTransparentShape
+	: public ÑCompositeShape
 {
 public:
 	CTetrahedron();
 //////////////////////////////////////////////////////////////////////
 // Methods
-	//--------------------------------------------
-	// CTransparentShape
 public:
-	void Update(float deltaTime) override final;
-private:
-	
-	void DrawOutputFaces() const override final;
 	//--------------------------------------------
+	// ÑCompositeShape
+	void Update(float deltaTime) override final;
 };

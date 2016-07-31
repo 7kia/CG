@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IShape.h"
-#include "../Mixin/TransparentShape.h"
 
 namespace CubeSpace
 {
@@ -51,7 +50,7 @@ const Vertex CUBE_VERTICIES[] = {
 }
 
 class CIdentityCube final 
-	: public CTransparentShape
+	: public CShape
 {
 public:
 	CIdentityCube();
@@ -68,7 +67,7 @@ public:
 	//--------------------------------------------
 private:
 	//--------------------------------------------
-	// CTransparentShape
+	// CShape
 	void DrawOutputFaces() const override final;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////

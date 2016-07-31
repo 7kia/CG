@@ -4,7 +4,7 @@
 using namespace CubeSpace;
 
 CIdentityCube::CIdentityCube()
-	: CTransparentShape()
+	: CShape()
 	, m_alpha(1)
 {
 	// Используем белый цвет по умолчанию.

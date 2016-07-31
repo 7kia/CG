@@ -17,9 +17,12 @@ public:
 
 };
 
-class CAbstractShapeDecorator : public IShape
+class CAbstractShapeDecorator 
+	: public CShape
+	//, public IAbstractShapeDecorator
 {
 public:
+	CAbstractShapeDecorator();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

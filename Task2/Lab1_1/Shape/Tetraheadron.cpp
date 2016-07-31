@@ -26,8 +26,20 @@ namespace
 
 
 CTetrahedron::CTetrahedron()
-	: CTransparentShape()
+	: СCompositeShape()
 {
+	for (const STriangleFace &face : TETRAHEDRON_FACES)
+	{
+		auto triangle = std::make_unique<CTriangle>();
+
+		triangle->SetVertex(0u, TETRAHEDRON_VERTICES[face.vertexIndex1]);
+		triangle->SetVertex(1u, TETRAHEDRON_VERTICES[face.vertexIndex2]);
+		triangle->SetVertex(2u, TETRAHEDRON_VERTICES[face.vertexIndex3]);
+
+		m_shapes.emplace_back(std::move(triangle));
+
+
+	}
 }
 
 void CTetrahedron::Update(float deltaTime)
@@ -35,6 +47,8 @@ void CTetrahedron::Update(float deltaTime)
 	(void)deltaTime;
 }
 
+
+/*
 void CTetrahedron::DrawOutputFaces() const
 {
 	// менее оптимальный способ рисования: прямая отправка данных
@@ -56,3 +70,5 @@ void CTetrahedron::DrawOutputFaces() const
 	}
 	glEnd();
 }
+
+*/

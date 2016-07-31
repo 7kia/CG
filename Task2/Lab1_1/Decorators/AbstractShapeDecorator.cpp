@@ -2,6 +2,11 @@
 #include "AbstractShapeDecorator.h"
 
 
+CAbstractShapeDecorator::CAbstractShapeDecorator()
+	: IShape()
+{
+}
+
 void CAbstractShapeDecorator::SetChild(IBodyUniquePtr &&pChild)
 {
 	m_pChild = std::move(pChild);
