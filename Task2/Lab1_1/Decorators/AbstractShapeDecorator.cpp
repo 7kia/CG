@@ -3,7 +3,7 @@
 
 
 CAbstractShapeDecorator::CAbstractShapeDecorator()
-	: CShape()
+	: IShape()
 {
 }
 
@@ -22,4 +22,24 @@ void CAbstractShapeDecorator::Draw() const
 {
 	assert(m_pChild.get());
 	m_pChild->Draw();
+}
+
+void CAbstractShapeDecorator::SetFaceColor(const glm::vec4 & color)
+{
+	m_pChild->SetFaceColor(color);
+}
+
+glm::vec4 CAbstractShapeDecorator::GetFaceColor() const
+{
+	return m_pChild->GetFaceColor();
+}
+
+void CAbstractShapeDecorator::SetAlpha(float alpha)
+{
+	m_pChild->SetAlpha(alpha);
+}
+
+float CAbstractShapeDecorator::GetAlpha() const
+{
+	return m_pChild->GetAlpha();
 }

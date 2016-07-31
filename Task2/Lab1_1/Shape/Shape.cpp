@@ -8,15 +8,13 @@ IShape::IShape()
 }
 
 CShape::CShape()
-	: CHaveFaceColor()
-	, IShape()
+	: IShape()
 {
 }
 
 void CShape::Draw() const
 {
 	glPushMatrix();
-	glMultMatrixf(glm::value_ptr(m_transform));
 
 	if (GetFaceColor().a < 0.99f)
 	{
@@ -28,4 +26,24 @@ void CShape::Draw() const
 
 	glPopMatrix();
 
+}
+
+void CShape::SetFaceColor(const glm::vec4 & color)
+{
+	m_faceColor = color;
+}
+
+glm::vec4 CShape::GetFaceColor() const
+{
+	return m_faceColor;
+}
+
+void CShape::SetAlpha(float alpha)
+{
+	m_faceColor.a = alpha;
+}
+
+float CShape::GetAlpha() const
+{
+	return m_faceColor.a;
 }

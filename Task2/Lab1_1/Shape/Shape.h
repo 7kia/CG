@@ -30,6 +30,7 @@ namespace
 class IShape
 	: public IDrawable
 	, public IUpdatable
+	, public IHaveFaceColor
 {
 public:
 	IShape();
@@ -37,18 +38,32 @@ public:
 };
 
 class CShape
-	: public CHaveFaceColor
-	, public IShape
-	, public CTransformable
+	: public IShape
 {
 public:
 	CShape();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
+	//--------------------------------------------
+	// IDrawable
 	void			Draw() const override;
+	//--------------------------------------------
+	// IHaveFaceColor
+	void					SetFaceColor(const glm::vec4 &color) override;
+	glm::vec4				GetFaceColor() const override;
+
+	void					SetAlpha(float alpha) override;
+	float					GetAlpha() const override;
+	//--------------------------------------------
+
 protected:
 	virtual void	DrawOutputFaces() const {};
+//////////////////////////////////////////////////////////////////////
+// Data
+protected:
+	glm::vec4				m_faceColor;
+
 };
 
-using IBodyUniquePtr = std::unique_ptr<CShape>;
+using IBodyUniquePtr = std::unique_ptr<IShape>;

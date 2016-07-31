@@ -30,9 +30,10 @@ void CAnimatedShapeDecorator::Draw() const
 	const glm::mat4 matrix = GetAnimationTransform();
 	glPushMatrix();
 	glMultMatrixf(glm::value_ptr(matrix));
-	CAbstractShapeDecorator::Draw();
+	m_pChild->Draw();
 	glPopMatrix();
 }
+
 
 // Документация по функциям для модификации матриц:
 // http://glm.g-truc.net/0.9.2/api/a00245.html

@@ -156,6 +156,7 @@
     <ClInclude Include="Decorators\AbstractShapeDecorator.h" />
     <ClInclude Include="Decorators\AnimatedShapeDecorator.h" />
     <ClInclude Include="Decorators\Decorators.h" />
+    <ClInclude Include="Decorators\TransformShapeDecorator.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Mixin\CompositeShape.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Decorators\AbstractShapeDecorator.cpp" />
     <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp" />
+    <ClCompile Include="Decorators\TransformShapeDecorator.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />

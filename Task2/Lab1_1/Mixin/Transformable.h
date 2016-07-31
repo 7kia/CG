@@ -10,6 +10,7 @@ public:
 // Methods
 public:
 	virtual void SetTransform(const glm::mat4 &transform) = 0;
+	virtual glm::mat4 GetTransform() const = 0;
 };
 
 class CTransformable : public ITransformable
@@ -20,6 +21,8 @@ public:
 // Methods
 public:
 	void		SetTransform(const glm::mat4 &transform) override;// TODO : see might would need "final"
+	glm::mat4	GetTransform() const override;
+
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

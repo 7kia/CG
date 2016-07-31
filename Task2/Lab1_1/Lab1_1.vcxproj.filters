@@ -93,6 +93,9 @@
     <ClInclude Include="Shape\Shape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Decorators\TransformShapeDecorator.h">
+      <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shape\Rectangle.cpp">
@@ -151,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Shape\Shape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorators\TransformShapeDecorator.cpp">
+      <Filter>Файлы исходного кода\Decorators</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

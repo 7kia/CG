@@ -59,8 +59,8 @@ class CAnimatedShapeDecorator : public CAbstractShapeDecorator
 public:
 	//--------------------------------------------
 	// IShape
-	void Update(float deltaTime);
-	void Draw()const;
+	void			Update(float deltaTime);
+	void			Draw()const;
 	//--------------------------------------------
 private:
 	enum Animation
@@ -70,10 +70,10 @@ private:
 		Bounce,
 	};
 
-	glm::mat4 GetAnimationTransform() const;
+	glm::mat4		GetAnimationTransform() const;
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
-	Animation m_animation = Rotating;
-	float m_animationPhase = 0;
+	Animation		m_animation = Rotating;
+	float			m_animationPhase = 0;
 };
