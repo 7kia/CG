@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Drawable.h"
-#include "../Shape/IShape.h"
+#include "../Shape/Shape.h"
 #include <vector>
 
 

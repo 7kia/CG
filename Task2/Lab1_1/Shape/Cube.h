@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IShape.h"
+#include "Shape.h"
 
 namespace CubeSpace
 {

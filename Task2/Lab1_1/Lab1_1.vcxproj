@@ -156,7 +156,6 @@
     <ClInclude Include="Decorators\AbstractShapeDecorator.h" />
     <ClInclude Include="Decorators\AnimatedShapeDecorator.h" />
     <ClInclude Include="Decorators\Decorators.h" />
-    <ClInclude Include="Decorators\TransformShapeDecorator.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Mixin\CompositeShape.h" />
@@ -167,7 +166,7 @@
     <ClInclude Include="Mixin\Updatable.h" />
     <ClInclude Include="Shape\Bodies.h" />
     <ClInclude Include="Shape\Cube.h" />
-    <ClInclude Include="Shape\IShape.h" />
+    <ClInclude Include="Shape\Shape.h" />
     <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shape\Tetrahedron.h" />
     <ClInclude Include="Shape\Triangle.h" />
@@ -180,16 +179,16 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Decorators\AbstractShapeDecorator.cpp" />
     <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp" />
-    <ClCompile Include="Decorators\TransformShapeDecorator.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mixin\CompositeShape.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
     <ClCompile Include="Mixin\HaveFaceColor.cpp" />
+    <ClCompile Include="Mixin\Transformable.cpp" />
     <ClCompile Include="Shape\Bodies.cpp" />
     <ClCompile Include="Shape\Cube.cpp" />
-    <ClCompile Include="Shape\IShape.cpp" />
+    <ClCompile Include="Shape\Shape.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shape\Tetraheadron.cpp" />
     <ClCompile Include="Shape\Triangle.cpp" />

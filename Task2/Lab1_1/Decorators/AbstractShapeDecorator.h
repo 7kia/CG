@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Shape/IShape.h"
+#include "../Shape/Shape.h"
 #include <glm/fwd.hpp>
 #include <glm/mat4x4.hpp>
 

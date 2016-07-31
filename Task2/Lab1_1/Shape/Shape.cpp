@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "IShape.h"
+#include "Shape.h"
 
 IShape::IShape()
 	: IDrawable()
@@ -15,6 +15,9 @@ CShape::CShape()
 
 void CShape::Draw() const
 {
+	glPushMatrix();
+	glMultMatrixf(glm::value_ptr(m_transform));
+
 	if (GetFaceColor().a < 0.99f)
 	{
 		glFrontFace(GL_CW);
@@ -22,4 +25,7 @@ void CShape::Draw() const
 		glFrontFace(GL_CCW);
 	}
 	DrawOutputFaces();
+
+	glPopMatrix();
+
 }

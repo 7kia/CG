@@ -143,10 +143,9 @@ void CWindow::InitBodies()
         pCube->SetFaceColor(CubeFace::Front, PINK);
         pCube->SetFaceColor(CubeFace::Back, PINK);
 
-        auto pTransform = std::make_unique<CTransformShapeDecorator>();
-        pTransform->SetTransform(glm::translate(glm::mat4(), {-2.5f, 0.f, 0.f}));
-        pTransform->SetChild(std::move(pCube));
-        m_transparentBodies.emplace_back(std::move(pTransform));
+		pCube->SetTransform(glm::translate(glm::mat4(), {-2.5f, 0.f, 0.f}));
+
+		m_transparentBodies.emplace_back(std::move(pCube));
     }
     const glm::vec4 RED = {1.f, 0.f, 0.f, Colors::DEFAULT_ALPHA };
     const glm::vec4 GREEN = {0.f, 1.f, 0.f, Colors::DEFAULT_ALPHA };
@@ -161,14 +160,13 @@ void CWindow::InitBodies()
         pCube->SetFaceColor(CubeFace::Front, BLUE);
         pCube->SetFaceColor(CubeFace::Back, BLUE);
 
+		// TODO : might need swap animate to transform
+		pCube->SetTransform(glm::translate(glm::mat4(), { 2.5f, 0.f, 0.f }));
+
         auto pAnimator = std::make_unique<CAnimatedShapeDecorator>();
         pAnimator->SetChild(std::move(pCube));
 
-        auto pTransform = std::make_unique<CTransformShapeDecorator>();
-        pTransform->SetTransform(glm::translate(glm::mat4(), {2.5f, 0.f, 0.f}));
-        pTransform->SetChild(std::move(pAnimator));
-
-        m_transparentBodies.emplace_back(std::move(pTransform));
+        m_transparentBodies.emplace_back(std::move(pAnimator));
     }
     const glm::vec4 RED_RGBA = {1, 0, 0, Colors::DEFAULT_ALPHA };
     {
@@ -184,21 +182,15 @@ void CWindow::InitBodies()
     {
         auto pSphere = std::make_unique<CSphereQuadric>();
         pSphere->SetFaceColor(BLUE);
-
-        auto pTransform = std::make_unique<CTransformShapeDecorator>();
-        pTransform->SetTransform(glm::translate(glm::mat4(), {4.f, 0.f, 0.f}));
-        pTransform->SetChild(std::move(pSphere));
-
-        m_opaqueBodies.emplace_back(std::move(pTransform));
+		pSphere->SetTransform(glm::translate(glm::mat4(), { 4.f, 0.f, 0.f }));
+        
+        m_opaqueBodies.emplace_back(std::move(pSphere));
     }
     {
         auto pConoid = std::make_unique<CConoidQuadric>();
         pConoid->SetFaceColor(YELLOW);
+		pConoid->SetTransform(glm::translate(glm::mat4(), { -3.f, 1.5f, -0.01f }));
 
-        auto pTransform = std::make_unique<CTransformShapeDecorator>();
-        pTransform->SetTransform(glm::translate(glm::mat4(), {-3.f, 1.5f, -0.01f}));
-        pTransform->SetChild(std::move(pConoid));
-
-        m_opaqueBodies.emplace_back(std::move(pTransform));
+        m_opaqueBodies.emplace_back(std::move(pConoid));
     }
 }

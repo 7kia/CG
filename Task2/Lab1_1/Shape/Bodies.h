@@ -7,7 +7,7 @@
 #include <boost/noncopyable.hpp>
 
 
-#include "IShape.h"
+#include "Shape.h"
 #include "Cube.h"
 #include "Tetrahedron.h"
 #include "Triangle.h"
@@ -15,9 +15,8 @@
 
 
 class CSphereQuadric final
-        : public IShape
+        : public CShape
         , private boost::noncopyable
-		, public CHaveFaceColor
 {
 public:
     CSphereQuadric();
@@ -37,9 +36,8 @@ private:
 };
 
 class CConoidQuadric final
-        : public IShape
+        : public CShape
         , private boost::noncopyable
-		, public CHaveFaceColor
 {
 public:
     CConoidQuadric();

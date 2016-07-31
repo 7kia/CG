@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IShape.h"
+#include "Shape.h"
 #include "../Mixin/CompositeShape.h"
 #include "Triangle.h"
 

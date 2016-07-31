@@ -3,8 +3,7 @@
 #include <stdint.h>
 
 CSphereQuadric::CSphereQuadric()
-    : CHaveFaceColor()
-	, m_quadric(gluNewQuadric())
+    : m_quadric(gluNewQuadric())
 {
 }
 
@@ -23,8 +22,7 @@ void CSphereQuadric::Draw() const
 }
 
 CConoidQuadric::CConoidQuadric()
-    : CHaveFaceColor()
-	, m_quadric(gluNewQuadric())
+    : m_quadric(gluNewQuadric())
 {
 }
 

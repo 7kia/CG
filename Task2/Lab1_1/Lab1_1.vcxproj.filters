@@ -54,9 +54,6 @@
     <ClInclude Include="Decorators\AbstractShapeDecorator.h">
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClInclude>
-    <ClInclude Include="Decorators\TransformShapeDecorator.h">
-      <Filter>Файлы исходного кода\Decorators</Filter>
-    </ClInclude>
     <ClInclude Include="Decorators\AnimatedShapeDecorator.h">
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClInclude>
@@ -64,9 +61,6 @@
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClInclude>
     <ClInclude Include="Shape\Cube.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape\IShape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Mixin\HaveFaceColor.h">
@@ -95,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="Mixin\Transformable.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Shape.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +125,6 @@
     <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp">
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClCompile>
-    <ClCompile Include="Decorators\TransformShapeDecorator.cpp">
-      <Filter>Файлы исходного кода\Decorators</Filter>
-    </ClCompile>
     <ClCompile Include="Shape\Cube.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
@@ -152,7 +146,10 @@
     <ClCompile Include="Mixin\CompositeShape.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Shape\IShape.cpp">
+    <ClCompile Include="Mixin\Transformable.cpp">
+      <Filter>Файлы исходного кода\Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Shape.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>

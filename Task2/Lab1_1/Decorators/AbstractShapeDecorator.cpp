@@ -3,7 +3,7 @@
 
 
 CAbstractShapeDecorator::CAbstractShapeDecorator()
-	: IShape()
+	: CShape()
 {
 }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TransformShapeDecorator.h"
+#include "AbstractShapeDecorator.h"
 
 namespace
 {

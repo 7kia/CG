@@ -11,6 +11,7 @@
 #include "../Mixin/Drawable.h"
 #include "../Mixin/Updatable.h"
 #include "../Mixin/HaveFaceColor.h"
+#include "../Mixin/Transformable.h"
 
 namespace
 {
@@ -38,6 +39,7 @@ public:
 class CShape
 	: public CHaveFaceColor
 	, public IShape
+	, public CTransformable
 {
 public:
 	CShape();
@@ -46,7 +48,7 @@ public:
 public:
 	void			Draw() const override;
 protected:
-	virtual void	DrawOutputFaces() const = 0;
+	virtual void	DrawOutputFaces() const {};
 };
 
 using IBodyUniquePtr = std::unique_ptr<CShape>;
