@@ -174,12 +174,33 @@ void CWindow::InitBodies()
     {
         auto pTetrahedron = std::make_unique<CTetrahedron>();
         pTetrahedron->SetFaceColor(RED_RGBA);
-        //m_opaqueBodies.emplace_back(std::move(pTetrahedron));
+        m_opaqueBodies.emplace_back(std::move(pTetrahedron));
     }
 	{
 		auto pTriangle = std::make_unique<CTriangle>();
 		pTriangle->SetFaceColor(RED_RGBA);
-		m_opaqueBodies.emplace_back(std::move(pTriangle));
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		pTransform->SetTransform(glm::translate(glm::mat4(), { 0.f, 0.f, 2.5f }));
+		pTransform->SetChild(std::move(pTriangle));
+
+
+		m_opaqueBodies.emplace_back(std::move(pTransform));
+	}
+	{
+		auto pRectangle = std::make_unique<CRectangle>();
+		pRectangle->SetFaceColor(RED_RGBA);
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		//pTransform->SetTransform();
+
+		const glm::mat4 translate = glm::translate(glm::mat4(), { 0.f, 0.5f, 2.5f });
+
+		pTransform->SetTransform(glm::rotate(translate, 45.f, { 0.f, 2.5f, 0.f }));
+		pTransform->SetChild(std::move(pRectangle));
+
+
+		m_opaqueBodies.emplace_back(std::move(pTransform));
 	}
 
 }

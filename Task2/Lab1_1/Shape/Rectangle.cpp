@@ -132,36 +132,28 @@ float CRectangle::GetRotate() const
 */
 
 CRectangle::CRectangle()
-	: CShape()
+	: СCompositeShape()
 {
+	{
+		auto FirstTriangle = std::make_unique<CTriangle>();
+		FirstTriangle->SetVertex(0u, glm::vec3(-1.f, 1.f, 0.f));
+		FirstTriangle->SetVertex(1u, glm::vec3(1.f, 1.f, 0.f));
+		FirstTriangle->SetVertex(2u, glm::vec3(-1.f, -1.f, 0.f));
+
+		m_shapes.emplace_back(std::move(FirstTriangle));
+	}
+	{
+		auto SecondTriangle = std::make_unique<CTriangle>();
+		SecondTriangle->SetVertex(0u, glm::vec3(1.f, 1.f, 0.f));
+		SecondTriangle->SetVertex(1u, glm::vec3(1.f, -1.f, 0.f));
+		SecondTriangle->SetVertex(2u, glm::vec3(-1.f, -1.f, 0.f));
+
+		m_shapes.emplace_back(std::move(SecondTriangle));
+	}
 }
 
 
 void CRectangle::Update(float deltaTime)
 {
 	(void)deltaTime;
-}
-
-
-void CRectangle::DrawOutputFaces() const
-{
-	/*
-		// менее оптимальный способ рисования: прямая отправка данных
-	// могла бы работать быстрее, чем множество вызовов glColor/glVertex.
-	glBegin(GL_TRIANGLES);
-
-	const Vertex &v1 = m_vertex[0];
-	const Vertex &v2 = m_vertex[1];
-	const Vertex &v3 = m_vertex[2];
-	glm::vec3 normal = glm::normalize(glm::cross(v2 - v1, v3 - v1));
-
-	glColor4fv(glm::value_ptr(GetFaceColor()));
-	glNormal3fv(glm::value_ptr(normal));
-	glVertex3fv(glm::value_ptr(v1));
-	glVertex3fv(glm::value_ptr(v2));
-	glVertex3fv(glm::value_ptr(v3));
-
-	glEnd();
-	*/
-
 }

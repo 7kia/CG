@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Shape.h"
+#include "CompositeShape.h"
 #include "../Mixin/HaveVertex.h"
+#include "Triangle.h"
 
 class CRectangle final
-	: public CShape
+	: public ÑCompositeShape
 {
 public:
 	CRectangle();
@@ -14,7 +15,5 @@ public:
 	//--------------------------------------------
 	// CShape
 	void					Update(float deltaTime) override final;
-private:
-	void					DrawOutputFaces() const override final;
 	//--------------------------------------------
 };

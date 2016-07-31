@@ -11,3 +11,4 @@
 #include "Cube.h"
 #include "Tetrahedron.h"
 #include "Triangle.h"
+#include "Rectangle.h"

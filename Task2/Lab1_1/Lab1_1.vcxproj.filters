@@ -81,9 +81,6 @@
     <ClInclude Include="Mixin\HaveVertex.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClInclude>
-    <ClInclude Include="Mixin\CompositeShape.h">
-      <Filter>Файлы исходного кода\Mixin</Filter>
-    </ClInclude>
     <ClInclude Include="Mixin\Drawable.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClInclude>
@@ -95,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="Decorators\TransformShapeDecorator.h">
       <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\CompositeShape.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -146,9 +146,6 @@
     <ClCompile Include="Mixin\HaveVertex.cpp">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
-    <ClCompile Include="Mixin\CompositeShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Mixin\Transformable.cpp">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
@@ -157,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Decorators\TransformShapeDecorator.cpp">
       <Filter>Файлы исходного кода\Decorators</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\CompositeShape.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
