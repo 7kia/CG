@@ -96,6 +96,9 @@
     <ClInclude Include="Shape\CompositeShape.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Shape\Pentagon.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shape\Rectangle.cpp">
@@ -156,6 +159,9 @@
       <Filter>Файлы исходного кода\Decorators</Filter>
     </ClCompile>
     <ClCompile Include="Shape\CompositeShape.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Pentagon.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>

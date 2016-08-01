@@ -167,6 +167,7 @@
     <ClInclude Include="Shape\Bodies.h" />
     <ClInclude Include="Shape\CompositeShape.h" />
     <ClInclude Include="Shape\Cube.h" />
+    <ClInclude Include="Shape\Pentagon.h" />
     <ClInclude Include="Shape\Shape.h" />
     <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shape\Tetrahedron.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="Shape\Bodies.cpp" />
     <ClCompile Include="Shape\CompositeShape.cpp" />
     <ClCompile Include="Shape\Cube.cpp" />
+    <ClCompile Include="Shape\Pentagon.cpp" />
     <ClCompile Include="Shape\Shape.cpp" />
     <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shape\Tetraheadron.cpp" />

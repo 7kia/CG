@@ -202,5 +202,20 @@ void CWindow::InitBodies()
 
 		m_opaqueBodies.emplace_back(std::move(pTransform));
 	}
+	{
+		auto pPentagon = std::make_unique<CPentagon>();
+		pPentagon->SetFaceColor(YELLOW);
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		//pTransform->SetTransform();
+
+		const glm::mat4 translate = glm::translate(glm::mat4(), { 0.5f, 0.75f, 2.0f });
+
+		pTransform->SetTransform(translate);
+		pTransform->SetChild(std::move(pPentagon));
+
+
+		m_opaqueBodies.emplace_back(std::move(pTransform));
+	}
 
 }

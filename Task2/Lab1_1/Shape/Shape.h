@@ -58,7 +58,7 @@ public:
 	//--------------------------------------------
 
 protected:
-	virtual void	DrawOutputFaces() const {};
+	virtual void			DrawOutputFaces() const {};
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
