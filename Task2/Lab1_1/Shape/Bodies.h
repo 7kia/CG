@@ -13,3 +13,4 @@
 #include "Triangle.h"
 #include "Rectangle.h"
 #include "Pentagon.h"
+#include "Dodecahedron.h"

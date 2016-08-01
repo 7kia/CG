@@ -97,7 +97,10 @@
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Shape\Pentagon.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Dodecahedron.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Shape\Pentagon.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Dodecahedron.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,13 +2,16 @@
 #include "Pentagon.h"
 #include "../Decorators/TransformShapeDecorator.h"
 
+using namespace PentagonSpace;
+
 CPentagon::CPentagon()
+	: ÑCompositeShape()
 {
 	{
 		auto FirstTriangle = std::make_unique<CTriangle>();
 		FirstTriangle->SetVertex(0u, glm::vec3(0.f, 0.f, 0.f));
-		FirstTriangle->SetVertex(1u, glm::vec3(0.5877852f, -0.80901f, 0.f));
-		FirstTriangle->SetVertex(2u, glm::vec3(-0.5877852f, -0.80901f, 0.f));
+		FirstTriangle->SetVertex(1u, glm::vec3(SIDE / 2.f, -HEIGHT_TRIANGLE, 0.f));
+		FirstTriangle->SetVertex(2u, glm::vec3(-SIDE / 2.f, -HEIGHT_TRIANGLE, 0.f));
 
 		m_shapes.emplace_back(std::move(FirstTriangle));
 	}

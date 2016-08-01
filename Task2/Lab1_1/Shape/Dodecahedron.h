@@ -2,19 +2,13 @@
 
 #include "CompositeShape.h"
 #include "../Mixin/HaveVertex.h"
-#include "Triangle.h"
+#include "Pentagon.h"
 
-namespace PentagonSpace
-{
-	const float HEIGHT_TRIANGLE = 0.80901f;
-	const float SIDE = 1.1755164f;
-}
-
-class CPentagon final
+class CDodecahedron final
 	: public ÑCompositeShape
 {
 public:
-	CPentagon();
+	CDodecahedron();
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:
