@@ -133,6 +133,13 @@ void CWindow::InitBodies()
     const glm::vec4 YELLOW = { 1.f, 1.f, 0.f, Colors::DEFAULT_ALPHA};
     const glm::vec4 ORANGE = { 1.f, 0.5f, 0.f, Colors::DEFAULT_ALPHA };
     const glm::vec4 PINK = { 1.f, 0.3f, 0.3f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 RED = {1.f, 0.f, 0.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 GREEN = {0.f, 1.f, 0.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 BLUE = {0.f, 0.f, 1.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 RED_RGBA = {1, 0, 0, Colors::DEFAULT_ALPHA };
+
+	/*
+
     {
         auto pCube = std::make_unique<CIdentityCube>();
         pCube->SetAlpha(0.7f);
@@ -148,9 +155,6 @@ void CWindow::InitBodies()
         pTransform->SetChild(std::move(pCube));
         m_transparentBodies.emplace_back(std::move(pTransform));
     }
-    const glm::vec4 RED = {1.f, 0.f, 0.f, Colors::DEFAULT_ALPHA };
-    const glm::vec4 GREEN = {0.f, 1.f, 0.f, Colors::DEFAULT_ALPHA };
-    const glm::vec4 BLUE = {0.f, 0.f, 1.f, Colors::DEFAULT_ALPHA };
     {
         auto pCube = std::make_unique<CIdentityCube>();
         pCube->SetAlpha(0.7f);
@@ -170,7 +174,6 @@ void CWindow::InitBodies()
 
         m_transparentBodies.emplace_back(std::move(pTransform));
     }
-    const glm::vec4 RED_RGBA = {1, 0, 0, Colors::DEFAULT_ALPHA };
     {
         auto pTetrahedron = std::make_unique<CTetrahedron>();
         pTetrahedron->SetFaceColor(RED_RGBA);
@@ -202,14 +205,29 @@ void CWindow::InitBodies()
 
 		m_opaqueBodies.emplace_back(std::move(pTransform));
 	}
+	
 	{
 		auto pPentagon = std::make_unique<CPentagon>();
 		pPentagon->SetFaceColor(YELLOW);
 
-		auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		//pTransform->SetTransform();
+		std::array<glm::vec3, 6> points;
+		points[0] = { 1.248f, -0.771f, 0.f };
+		points[1] = { -1.547, 0.634f, 0.f };
+		points[2] = { -0.969f, 0.991f, 0.934f };
+		points[3] = { -0.035f, 1.568f, 0.557f };
+		points[4] = { -0.035f, 1.568f, -0.577f };
+		points[5] = { -0.969f, 0.991f, -0.934f };
 
-		const glm::mat4 translate = glm::translate(glm::mat4(), { 0.5f, 0.75f, 2.0f });
+		for (size_t index = 0; index < 6; ++index)
+		{
+			pPentagon->SetVertex(index, points[index]);
+		}
+
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		pTransform->SetTransform();
+
+		const glm::mat4 translate = glm::translate(glm::mat4(), glm::vec3());//{ 0.5f, 0.75f, 2.0f }
 
 		pTransform->SetTransform(translate);
 		pTransform->SetChild(std::move(pPentagon));
@@ -217,14 +235,16 @@ void CWindow::InitBodies()
 
 		m_opaqueBodies.emplace_back(std::move(pTransform));
 	}
+
+	*/
 	{
 		auto pPentagon = std::make_unique<CDodecahedron>();
-		pPentagon->SetFaceColor(YELLOW);
+		pPentagon->SetFaceColor(GREEN);
 
 		auto pTransform = std::make_unique<CTransformShapeDecorator>();
 		//pTransform->SetTransform();
 
-		const glm::mat4 translate = glm::translate(glm::mat4(), { 0.f, 0.0f, -2.0f });
+		const glm::mat4 translate = glm::translate(glm::mat4(), { 0.f, 0.0f, 0.0f });
 
 		pTransform->SetTransform(translate);
 		pTransform->SetChild(std::move(pPentagon));

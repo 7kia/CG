@@ -168,7 +168,7 @@
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Dodecahedron.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

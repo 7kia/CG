@@ -19,3 +19,10 @@ void CTransformShapeDecorator::SetTransform(const glm::mat4 &transform)
 {
 	m_transform = transform;
 }
+
+void CTransformShapeDecorator::ApplyTrasformToVertex(size_t index)
+{
+
+}
+
+

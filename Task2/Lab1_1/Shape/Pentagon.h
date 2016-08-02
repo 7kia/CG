@@ -12,12 +12,18 @@ namespace PentagonSpace
 
 class CPentagon final
 	: public ÑCompositeShape
+	, public CHaveReferenceVertex
 {
 public:
 	CPentagon();
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
+	//--------------------------------------------
+	// CHaveReferenceVertex
+	void					SetVertex(int index, const Vertex & value) override;
+	void					UpdateReference() override final;
+
 	//--------------------------------------------
 	// CShape
 	void					Update(float deltaTime) override final;

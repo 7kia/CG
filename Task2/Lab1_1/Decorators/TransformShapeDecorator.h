@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AbstractShapeDecorator.h"
+#include <glm/mat3x3.hpp>
 
 class CTransformShapeDecorator : public CAbstractShapeDecorator
 {
@@ -14,6 +15,7 @@ public:
 	//--------------------------------------------
 
 	void SetTransform(const glm::mat4 &transform);
+	void ApplyTrasformToVertex(size_t index);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

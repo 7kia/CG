@@ -5,54 +5,41 @@
 CDodecahedron::CDodecahedron()
 	: ÑCompositeShape()
 {
-	{
-		auto pPentagon = std::make_unique<CPentagon>();
+	//              Y     Z   x
+	std::array<glm::vec3, 6> points;
+	points[0] = { 0.f, 1.192f, 0.736f };
+	points[1] = { -0.577f, 0.0f, 1.512f };
+	points[2] = { 0.577f, 0.0f, 1.512f };
+	points[3] = { 0.934f, 0.934f, 0.934f };
+	points[4] = { 0.0f, 1.512f, 0.577f };
+	points[5] = { -0.934f, 0.934f, 0.934f };
 
-		m_shapes.emplace_back(std::move(pPentagon));
+	CreatePentagon(points);
 
-		auto pPentagon2 = std::make_unique<CPentagon>();
+	points[0] = { 0.f, -1.192f, 0.736f };
+	points[1] = { -0.934f, -0.934f, 0.934f };
+	points[2] = { 0.0f, -1.512f, 0.577f };
+	points[3] = { 0.934f, -0.934f, 0.934f };
+	points[4] = { 0.577f, 0.0f, 1.512f };
+	points[5] = { -0.577f, 0.0f, 1.512f };
 
-		auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		pTransform->SetChild(std::move(pPentagon2));
-
-
-		const glm::mat4 rotationMatrix = glm::rotate(glm::mat4(), ToDegree(180.f), { 1.f, 0.f, 0.f });
-		const glm::mat4 translateMatrix = glm::translate(glm::mat4(), { 0.f, 0.f, 0.f });
-
-		const glm::mat4 resultTransformation = rotationMatrix * translateMatrix;
-
-		pTransform->SetTransform(resultTransformation);
-
-		m_shapes.emplace_back(std::move(pTransform));
-	}
-	{
-		for (int index = 1; index <= 1; index++)
-		{
-			auto pPentagon = std::make_unique<CPentagon>();
-
-			auto pTransform = std::make_unique<CTransformShapeDecorator>();
-			pTransform->SetChild(std::move(pPentagon));
-
-
-			const glm::mat4 rotationMatrix = glm::rotate(glm::mat4(), ToDegree(90.f * index), { 1.f, 0.f, 0.f });
-			const glm::mat4 translateMatrix = glm::translate(glm::mat4(), { 0.f, PentagonSpace::HEIGHT_TRIANGLE, PentagonSpace::HEIGHT_TRIANGLE });
-
-			const glm::mat4 resultTransformation = rotationMatrix * translateMatrix;
-
-			pTransform->SetTransform(resultTransformation);
-
-			m_shapes.emplace_back(std::move(pTransform));
-
-			/*
-			
-			*/
-		}
-
-
-	}
+	CreatePentagon(points);
 }
 
 void CDodecahedron::Update(float deltaTime)
 {
 	(void)deltaTime;
+}
+
+void CDodecahedron::CreatePentagon(const std::array<glm::vec3, 6> & points)
+{	
+	auto pPentagon = std::make_unique<CPentagon>();	
+	m_shapes.emplace_back(std::move(pPentagon));
+
+	CPentagon* addShape = dynamic_cast<CPentagon*>(m_shapes.back().get());
+	for (size_t index = 0; index < 6; ++index)
+	{
+		addShape->SetVertex(index, points[index]);
+	}
+
 }

@@ -10,7 +10,9 @@ CRectangle::CRectangle()
 		FirstTriangle->SetVertex(1u, glm::vec3(1.f, 1.f, 0.f));
 		FirstTriangle->SetVertex(2u, glm::vec3(-1.f, -1.f, 0.f));
 
+
 		m_shapes.emplace_back(std::move(FirstTriangle));
+
 	}
 	{
 		auto SecondTriangle = std::make_unique<CTriangle>();
