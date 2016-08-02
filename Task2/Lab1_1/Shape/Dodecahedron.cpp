@@ -89,6 +89,33 @@ CDodecahedron::CDodecahedron()
 	points[5] = { -1.512f, 0.577f, 0.f };
 
 	CreatePentagon(points);
+
+	points[0] = { 0.676f, 1.094f, 0.f };
+	points[5] = { 0.934f, 0.934f, 0.934f };
+	points[4] = { 0.0f, 1.512f, 0.577f };
+	points[3] = { 0.f, 1.512f, -0.577f };
+	points[2] = { 0.934f, 0.934f, -0.934f };
+	points[1] = { 1.512f, 0.577f, 0.f };
+
+	CreatePentagon(points);
+	/////
+	points[0] = { -0.676f, -1.094f, 0.f };
+	points[5] = { -0.934f, -0.934f, 0.934f };
+	points[4] = { 0.0f, -1.512f, 0.577f };
+	points[3] = { 0.f, -1.512f, -0.577f };
+	points[2] = { -0.934f, -0.934f, -0.934f };
+	points[1] = { -1.512f, -0.577f, 0.f };
+
+	CreatePentagon(points);
+
+	points[0] = { 0.676f, -1.094f, 0.f };
+	points[1] = { 0.934f, -0.934f, 0.934f };
+	points[2] = { 0.0f, -1.512f, 0.577f };
+	points[3] = { 0.f, -1.512f, -0.577f };
+	points[4] = { 0.934f, -0.934f, -0.934f };
+	points[5] = { 1.512f, -0.577f, 0.f };
+
+	CreatePentagon(points);
 }
 
 void CDodecahedron::Update(float deltaTime)

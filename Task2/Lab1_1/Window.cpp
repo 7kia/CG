@@ -239,19 +239,28 @@ void CWindow::InitBodies()
 	*/
 	{
 		auto pDodecahedron = std::make_unique<CDodecahedron>();
+		pDodecahedron->SetFaceColor(RED);
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		pTransform->SetTransform(glm::translate(glm::mat4(), { 0.f, 0.0f, 1.5f }));
+		pTransform->SetChild(std::move(pDodecahedron));
+
+
+		m_opaqueBodies.emplace_back(std::move(pTransform));
+	}
+	{
+		auto pDodecahedron = std::make_unique<CDodecahedron>();
 		pDodecahedron->SetFaceColor(GREEN);
 
-		//auto pAnimator = std::make_unique<CAnimatedShapeDecorator>();
-		//pAnimator->SetChild(std::move(pDodecahedron));
+		auto pAnimator = std::make_unique<CAnimatedShapeDecorator>();
+		pAnimator->SetChild(std::move(pDodecahedron));
 
-		//auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		//pTransform->SetTransform(glm::translate(glm::mat4(), { 0.f, 0.f, 0.f }));
-		//pTransform->SetChild(std::move(pAnimator));
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		pTransform->SetTransform(glm::translate(glm::mat4(), { 0.f, 0.f, -1.5f }));
+		pTransform->SetChild(std::move(pAnimator));
 
 
-		//m_opaqueBodies.emplace_back(std::move(pTransform));
-		//m_opaqueBodies.emplace_back(std::move(pAnimator));
-		m_opaqueBodies.emplace_back(std::move(pDodecahedron));
+		m_opaqueBodies.emplace_back(std::move(pTransform));
 	}
 
 }
