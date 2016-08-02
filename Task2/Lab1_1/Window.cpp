@@ -238,19 +238,20 @@ void CWindow::InitBodies()
 
 	*/
 	{
-		auto pPentagon = std::make_unique<CDodecahedron>();
-		pPentagon->SetFaceColor(GREEN);
+		auto pDodecahedron = std::make_unique<CDodecahedron>();
+		pDodecahedron->SetFaceColor(GREEN);
 
-		auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		//pTransform->SetTransform();
+		//auto pAnimator = std::make_unique<CAnimatedShapeDecorator>();
+		//pAnimator->SetChild(std::move(pDodecahedron));
 
-		const glm::mat4 translate = glm::translate(glm::mat4(), { 0.f, 0.0f, 0.0f });
+		//auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		//pTransform->SetTransform(glm::translate(glm::mat4(), { 0.f, 0.f, 0.f }));
+		//pTransform->SetChild(std::move(pAnimator));
 
-		pTransform->SetTransform(translate);
-		pTransform->SetChild(std::move(pPentagon));
 
-
-		m_opaqueBodies.emplace_back(std::move(pTransform));
+		//m_opaqueBodies.emplace_back(std::move(pTransform));
+		//m_opaqueBodies.emplace_back(std::move(pAnimator));
+		m_opaqueBodies.emplace_back(std::move(pDodecahedron));
 	}
 
 }
