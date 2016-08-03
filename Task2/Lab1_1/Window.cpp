@@ -134,7 +134,7 @@ void CWindow::InitBodies()
     const glm::vec4 ORANGE = { 1.f, 0.5f, 0.f, Colors::DEFAULT_ALPHA };
     const glm::vec4 PINK = { 1.f, 0.3f, 0.3f, Colors::DEFAULT_ALPHA };
     const glm::vec4 RED = {1.f, 0.f, 0.f, Colors::DEFAULT_ALPHA };
-    const glm::vec4 GREEN = {0.f, 1.f, 0.f, Colors::DEFAULT_ALPHA };
+    const glm::vec4 GREEN = {0.f, 1.f, 0.f, 0.5f };
     const glm::vec4 BLUE = {0.f, 0.f, 1.f, Colors::DEFAULT_ALPHA };
     const glm::vec4 RED_RGBA = {1, 0, 0, Colors::DEFAULT_ALPHA };
 
@@ -260,7 +260,7 @@ void CWindow::InitBodies()
 		pTransform->SetChild(std::move(pAnimator));
 
 
-		m_opaqueBodies.emplace_back(std::move(pTransform));
+		m_transparentBodies.emplace_back(std::move(pTransform));
 	}
 
 }
