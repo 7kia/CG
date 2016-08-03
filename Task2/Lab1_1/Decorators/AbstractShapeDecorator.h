@@ -19,7 +19,6 @@ public:
 
 class CAbstractShapeDecorator 
 	: public IShape
-	//, public IAbstractShapeDecorator
 {
 public:
 	CAbstractShapeDecorator();
@@ -30,8 +29,8 @@ public:
 protected:
 	//--------------------------------------------
 	// IShape
-	void Update(float deltaTime) override;
-	void Draw() const override;
+	void					Update(float deltaTime) override;
+	void					Draw() const override;
 	//--------------------------------------------
 	// IHaveFaceColor
 	void					SetFaceColor(const glm::vec4 &color) override;
@@ -44,5 +43,5 @@ protected:
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-	IBodyUniquePtr m_pChild;
+	IBodyUniquePtr			m_pChild;
 };

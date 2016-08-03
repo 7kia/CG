@@ -3,6 +3,8 @@
 #include "../Shape/Shape.h"
 #include <vector>
 
+typedef unsigned int uint;
+
 class IHaveVertex
 {
 public:
@@ -10,28 +12,28 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	virtual void					SetVertex(int index, const Vertex & value) = 0;
-	virtual Vertex					GetVertex(int index) const = 0;
+	virtual void					SetVertex(uint index, const Vertex & value) = 0;
+	virtual Vertex					GetVertex(uint index) const = 0;
 	virtual Vertex*					GetReferenceToVertex(int index) = 0;
 	virtual std::vector<Vertex>		GetVertexes() const = 0;
 
-	virtual void					CheckIndex(int index) const = 0;;// TODO : see need transfer to other place												  
+	virtual void					CheckIndex(uint index) const = 0;;// TODO : see need transfer to other place												  
 };
 
-class CHaveVertex : public IHaveVertex
+class CHaveThreeVertex : public IHaveVertex
 {
 public:
-	CHaveVertex(size_t amountVertex);// TODO: delete parametr
+	CHaveThreeVertex();// TODO: delete parametr
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:
-	void							SetVertex(int index, const Vertex & value) override final;
-	Vertex							GetVertex(int index) const override final;
+	void							SetVertex(uint index, const Vertex & value) override final;
+	Vertex							GetVertex(uint index) const override final;
 	Vertex*							GetReferenceToVertex(int index) override final;;
 
 	std::vector<Vertex>				GetVertexes() const override final;//
 
-	void							CheckIndex(int index) const override final;;// TODO : see need transfer to other place												  
+	void							CheckIndex(uint index) const override final;;// TODO : see need transfer to other place												  
 	// Data
 protected:
 	std::vector<Vertex>				m_vertex;
@@ -44,15 +46,15 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void										SetVertex(int index, const Vertex & value) override;
-	Vertex										GetVertex(int index) const override;
+	void										SetVertex(uint index, const Vertex & value) override;
+	Vertex										GetVertex(uint index) const override;
 	Vertex*										GetReferenceToVertex(int index) override final;;
 
 	std::vector<Vertex>							GetVertexes() const override final;//
 
-	void										CheckIndex(int index) const override final;// TODO : see need transfer to other place
+	void										CheckIndex(uint index) const override final;// TODO : see need transfer to other place
 protected:
-	void										AddReferenceVertex(int index, Vertex * value);
+	void										AddReferenceVertex(uint index, Vertex * value);
 	virtual void								UpdateReference() {};// TODO : = 0;
 //////////////////////////////////////////////////////////////////////
 // Data

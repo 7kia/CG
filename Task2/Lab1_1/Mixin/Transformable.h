@@ -9,8 +9,8 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	virtual void SetTransform(const glm::mat4 &transform) = 0;
-	virtual glm::mat4 GetTransform() const = 0;
+	virtual void		SetTransform(const glm::mat4 &transform) = 0;
+	virtual glm::mat4	GetTransform() const = 0;
 };
 
 class CTransformable : public ITransformable

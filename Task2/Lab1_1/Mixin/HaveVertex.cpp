@@ -1,33 +1,33 @@
 #include "stdafx.h"
 #include "HaveVertex.h"
 
-CHaveVertex::CHaveVertex(size_t amountVertex)
+CHaveThreeVertex::CHaveThreeVertex()
 	: IHaveVertex()
-	, m_vertex(amountVertex)
+	, m_vertex(3)
 {
 }
 
-void CHaveVertex::SetVertex(int index, const Vertex & value)
+void CHaveThreeVertex::SetVertex(uint index, const Vertex & value)
 {
 	CheckIndex(index);
 	m_vertex[index] = value;
 }
 
 
-Vertex CHaveVertex::GetVertex(int index) const
+Vertex CHaveThreeVertex::GetVertex(uint index) const
 {
 	CheckIndex(index);
 	return m_vertex[index];
 }
 
-Vertex * CHaveVertex::GetReferenceToVertex(int index)
+Vertex * CHaveThreeVertex::GetReferenceToVertex(int index)
 {
 	CheckIndex(index);
 	return &m_vertex[index];
 }
 
 
-std::vector<Vertex> CHaveVertex::GetVertexes() const
+std::vector<Vertex> CHaveThreeVertex::GetVertexes() const
 {
 	std::vector<Vertex> result;
 	for (size_t index = 0; index < 3; ++index)
@@ -38,9 +38,9 @@ std::vector<Vertex> CHaveVertex::GetVertexes() const
 }
 
 
-void CHaveVertex::CheckIndex(int index) const
+void CHaveThreeVertex::CheckIndex(uint index) const
 {
-	if (!IsBetween(index, 0, int(m_vertex.size())))
+	if (!IsBetween(index, 0u, uint(m_vertex.size())))
 	{
 		throw std::runtime_error("Vertex have the index not exist");
 	}
@@ -53,7 +53,7 @@ CHaveReferenceVertex::CHaveReferenceVertex(size_t amountVertex)
 {
 }
 
-void CHaveReferenceVertex::SetVertex(int index, const Vertex & value)
+void CHaveReferenceVertex::SetVertex(uint index, const Vertex & value)
 {
 	CheckIndex(index);
 
@@ -65,7 +65,7 @@ void CHaveReferenceVertex::SetVertex(int index, const Vertex & value)
 }
 
 
-Vertex CHaveReferenceVertex::GetVertex(int index) const
+Vertex CHaveReferenceVertex::GetVertex(uint index) const
 {
 	CheckIndex(index);
 	return *m_pVertex[index][0];
@@ -89,15 +89,15 @@ std::vector<Vertex> CHaveReferenceVertex::GetVertexes() const
 }
 
 
-void CHaveReferenceVertex::CheckIndex(int index) const
+void CHaveReferenceVertex::CheckIndex(uint index) const
 {
-	if (!IsBetween(index, 0, int(m_pVertex.size())))
+	if (!IsBetween(index, 0u, uint(m_pVertex.size())))
 	{
 		throw std::runtime_error("Vertex have the index not exist");
 	}
 }
 
-void CHaveReferenceVertex::AddReferenceVertex(int index, Vertex * value)
+void CHaveReferenceVertex::AddReferenceVertex(uint index, Vertex * value)
 {
 	CheckIndex(index);
 

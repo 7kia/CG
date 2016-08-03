@@ -5,7 +5,7 @@
 
 class CTriangle final
 	: public CShape
-	, public CHaveVertex
+	, public CHaveThreeVertex
 {
 public:
 	CTriangle();

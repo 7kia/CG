@@ -69,9 +69,6 @@
     <ClInclude Include="Shape\Tetrahedron.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape\Bodies.h">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Mixin\Updatable.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClInclude>
@@ -100,6 +97,9 @@
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
     <ClInclude Include="Shape\Dodecahedron.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Shapes.h">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClInclude>
   </ItemGroup>
@@ -141,9 +141,6 @@
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Tetraheadron.cpp">
-      <Filter>Файлы исходного кода\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape\Bodies.cpp">
       <Filter>Файлы исходного кода\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Triangle.cpp">

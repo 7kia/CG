@@ -52,7 +52,7 @@ CPentagon::CPentagon()
 	UpdateReference();
 }
 
-void CPentagon::SetVertex(int index, const Vertex & value)
+void CPentagon::SetVertex(uint index, const Vertex & value)
 {
 	CHaveReferenceVertex::CheckIndex(index);
 

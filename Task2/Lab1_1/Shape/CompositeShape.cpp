@@ -12,6 +12,7 @@ void ÑCompositeShape::SetFaceColor(const glm::vec4 & color)
 	{
 		shape->SetFaceColor(color);
 	}
+	CShape::SetFaceColor(color);
 }
 
 void ÑCompositeShape::SetAlpha(float alpha)

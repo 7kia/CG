@@ -4,7 +4,7 @@
 
 CTriangle::CTriangle()
 	: CShape()
-	, CHaveVertex(3u)
+	, CHaveThreeVertex()
 {
 	const float shift = 0.66f;// origin int triangle center
 	SetVertex(0u, glm::vec3(0.f, shift, 0.f));

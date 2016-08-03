@@ -15,7 +15,6 @@ public:
 	//--------------------------------------------
 
 	void SetTransform(const glm::mat4 &transform);
-	void ApplyTrasformToVertex(size_t index);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

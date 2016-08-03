@@ -129,7 +129,7 @@ void CDodecahedron::CreatePentagon(const std::array<glm::vec3, 6> & points)
 	m_shapes.emplace_back(std::move(pPentagon));
 
 	CPentagon* addShape = dynamic_cast<CPentagon*>(m_shapes.back().get());
-	for (size_t index = 0; index < 6; ++index)
+	for (uint index = 0; index < 6; ++index)
 	{
 		addShape->SetVertex(index, points[index]);
 	}

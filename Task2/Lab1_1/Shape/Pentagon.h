@@ -21,7 +21,7 @@ public:
 public:
 	//--------------------------------------------
 	// CHaveReferenceVertex
-	void					SetVertex(int index, const Vertex & value) override;
+	void					SetVertex(uint index, const Vertex & value) override;
 	void					UpdateReference() override final;
 
 	//--------------------------------------------

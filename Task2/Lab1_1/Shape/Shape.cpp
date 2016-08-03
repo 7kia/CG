@@ -4,6 +4,7 @@
 IShape::IShape()
 	: IDrawable()
 	, IUpdatable()
+	, IHaveFaceColor()
 {
 }
 

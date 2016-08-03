@@ -16,8 +16,6 @@ CTetrahedron::CTetrahedron()
 		triangle->SetVertex(2u, TETRAHEDRON_VERTICES[face.vertexIndex3]);
 
 		m_shapes.emplace_back(std::move(triangle));
-
-
 	}
 }
 
