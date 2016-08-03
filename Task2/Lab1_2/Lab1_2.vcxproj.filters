@@ -147,7 +147,7 @@
       <Filter>Mixin</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\Material\HaveShininess.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Mixin\Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

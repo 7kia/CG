@@ -14,14 +14,17 @@ glm::vec3 GetPosition(const Function2D &fn, float x, float z)
 
 // вычисляет нормали численным методом,
 // с помощью векторного произведения.
-void CalculateNormals(std::vector<SVertexP3N> &vertices,
-                      const Function2D &fn, float step)
+void CalculateNormals(std::vector<SVertexP3N> &vertices
+					, const Function2D &xFunction
+					, const Function2D &yFunction
+					, const Function2D &zFunction
+					, float step)
 {
     for (SVertexP3N &v : vertices)
     {
         const glm::vec3 &position = v.position;
-        glm::vec3 dir1 = GetPosition(fn, position.x, position.z + step) - position;
-        glm::vec3 dir2 = GetPosition(fn, position.x + step, position.z) - position;
+        glm::vec3 dir1 = glm::vec3(position.y, position.x, position.z + step) - position;
+        glm::vec3 dir2 = glm::vec3(position.y, position.x + step, position.z) - position;
         v.normal = glm::normalize(glm::cross(dir1, dir2));
     }
 }
@@ -49,28 +52,39 @@ void DoWithBindedArrays(const std::vector<SVertexP3N> &vertices, T && callback)
 }
 }
 
-CSolidFunctionSurface::CSolidFunctionSurface(const Function2D &fn)
-    : m_fn(fn)
+CSolidFunctionSurface::CSolidFunctionSurface(const Function2D &xFunction
+											, const Function2D &yFunction
+											, const Function2D &zFunction)
+    : m_xFunction(xFunction)
+	, m_yFunction(yFunction)
+	, m_zFunction(zFunction)
 {
 }
 
-void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeX, const glm::vec2 &rangeZ, float step)
+void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
+									, const glm::vec2 &rangeV
+									, float step) 
+
 {
     m_vertices.clear();
-    const unsigned columnCount = unsigned((rangeX.y - rangeX.x) / step);
-    const unsigned rowCount = unsigned((rangeZ.y - rangeZ.x) / step);
+    const unsigned columnCount = unsigned((rangeU.y - rangeU.x) / step);
+    const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step);
 
     // вычисляем позиции вершин.
     for (unsigned ci = 0; ci < columnCount; ++ci)
     {
-        const float x = rangeX.x + step * float(ci);
+        const float U = rangeU.x + step * float(ci);
         for (unsigned ri = 0; ri < rowCount; ++ri)
         {
-            const float z = rangeZ.x + step * float(ri);
-            m_vertices.push_back(SVertexP3N(GetPosition(m_fn, x, z)));
+            const float V = rangeV.x + step * float(ri);
+			m_vertices.push_back(SVertexP3N( glm::vec3(m_xFunction(U, V), m_yFunction(U, V), m_zFunction(U, V))));
         }
     }
-    CalculateNormals(m_vertices, m_fn, step);
+    CalculateNormals(m_vertices
+					, m_xFunction
+					, m_yFunction
+					, m_zFunction
+					, step);
     // вычисляем индексы вершин.
     for (unsigned ci = 0; ci < columnCount - 1; ++ci)
     {
@@ -102,3 +116,4 @@ void CSolidFunctionSurface::Draw() const
                        GL_UNSIGNED_INT, m_indicies.data());
     });
 }
+

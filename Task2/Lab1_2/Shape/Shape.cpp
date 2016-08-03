@@ -15,7 +15,7 @@ CShape::CShape()
 
 void CShape::Draw() const
 {
-	glPushMatrix();
+	glPushMatrix();// TODO : see neew this method rewrite
 
 	if (GetFaceColor().a < 0.99f)
 	{

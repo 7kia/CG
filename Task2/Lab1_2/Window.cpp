@@ -35,10 +35,26 @@ float GetSincFromXY(float x, float y)
     }
     return sinf(radius) / radius;
 }
+
+float GetXKleinBottle(float U, float V)
+{
+	return (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U);
+}
+
+float GetYKleinBottle(float U, float V)
+{
+	return (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U);
+}
+
+float GetZKleinBottle(float U, float V)
+{
+	return V / 2.f * sinf(U / 2.f);
+}
+
 }
 
 CWindow::CWindow()
-    : m_surface(GetSincFromXY)
+    : m_surface(GetXKleinBottle, GetYKleinBottle, GetZKleinBottle)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
 {
@@ -50,7 +66,7 @@ CWindow::CWindow()
     m_material.SetSpecular(FADED_WHITE_RGBA);
     m_material.SetShininess(MATERIAL_SHININESS);
 
-    m_surface.Tesselate({-10, 10}, {-10, 10}, 0.5f);
+    m_surface.Tesselate({-0.f, 2.f * M_PI}, {-1.f, 1.f }, 0.1f);
 
     m_sunlight.SetDirection(SUNLIGHT_DIRECTION);
     m_sunlight.SetDiffuse(WHITE_RGBA);

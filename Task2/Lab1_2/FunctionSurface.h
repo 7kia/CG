@@ -21,22 +21,34 @@ struct SVertexP3N
     }
 };
 
-class CSolidFunctionSurface final : public CShape
+
+class CSolidFunctionSurface final 
+	: public CShape
 {
 public:
-    CSolidFunctionSurface(const Function2D &fn);
-
+    CSolidFunctionSurface(const Function2D &xFunction
+						, const Function2D &yFunction
+						, const Function2D &zFunction);
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
     /// Инициализирует индексированную сетку треугольников
     /// @param rangeX - диапазон, где x - нижняя граница, y - верхняя граница
     /// @param rangeZ - диапазон, где x - нижняя граница, y - верхняя граница
-    void Tesselate(const glm::vec2 &rangeX, const glm::vec2 &rangeZ, float step);
-
-    // IShape interface.
-	void Update(float) override final {};
+    void Tesselate(const glm::vec2 &rangeU
+					, const glm::vec2 &rangeV
+					, float step);
+	//--------------------------------------------
+    // CShape 
     void Draw() const override final;
-
+	//--------------------------------------------
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
-    Function2D m_fn;
-    std::vector<SVertexP3N> m_vertices;
-    std::vector<uint32_t> m_indicies;
+	Function2D					m_xFunction;// TODO : see will rewrite this part
+	Function2D					m_yFunction;
+	Function2D					m_zFunction;
+
+    std::vector<SVertexP3N>		m_vertices;
+    std::vector<uint32_t>		m_indicies;
 };
