@@ -163,9 +163,12 @@
     <ClInclude Include="Mixin\Drawable.h" />
     <ClInclude Include="Mixin\HaveDirection.h" />
     <ClInclude Include="Mixin\HaveFaceColor.h" />
+    <ClInclude Include="Mixin\HavePosition.h" />
     <ClInclude Include="Mixin\HaveVertex.h" />
     <ClInclude Include="Mixin\Material\HaveAmbient.h" />
     <ClInclude Include="Mixin\Material\HaveDiffuse.h" />
+    <ClInclude Include="Mixin\Material\HaveEmission.h" />
+    <ClInclude Include="Mixin\Material\HaveShininess.h" />
     <ClInclude Include="Mixin\Material\HaveSpecular.h" />
     <ClInclude Include="Mixin\Transformable.h" />
     <ClInclude Include="Mixin\Updatable.h" />
@@ -183,9 +186,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mixin\HaveDirection.cpp" />
     <ClCompile Include="Mixin\HaveFaceColor.cpp" />
+    <ClCompile Include="Mixin\HavePosition.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
     <ClCompile Include="Mixin\Material\HaveAmbient.cpp" />
     <ClCompile Include="Mixin\Material\HaveDiffuse.cpp" />
+    <ClCompile Include="Mixin\Material\HaveEmission.cpp" />
+    <ClCompile Include="Mixin\Material\HaveShininess.cpp" />
     <ClCompile Include="Mixin\Material\HaveSpecular.cpp" />
     <ClCompile Include="Mixin\Transformable.cpp" />
     <ClCompile Include="Shape\Shape.cpp" />

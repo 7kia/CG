@@ -81,6 +81,15 @@
     <ClInclude Include="Mixin\HaveDirection.h">
       <Filter>Mixin</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\HavePosition.h">
+      <Filter>Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\Material\HaveEmission.h">
+      <Filter>Mixin\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\Material\HaveShininess.h">
+      <Filter>Mixin\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -128,7 +137,16 @@
     <ClCompile Include="Mixin\Material\HaveSpecular.cpp">
       <Filter>Mixin\Material</Filter>
     </ClCompile>
+    <ClCompile Include="Mixin\Material\HaveEmission.cpp">
+      <Filter>Mixin\Material</Filter>
+    </ClCompile>
     <ClCompile Include="Mixin\HaveDirection.cpp">
+      <Filter>Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HavePosition.cpp">
+      <Filter>Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\Material\HaveShininess.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
