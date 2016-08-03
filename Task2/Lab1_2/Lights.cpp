@@ -12,39 +12,6 @@ CAbstractLightSource::CAbstractLightSource(unsigned index)
 {
 }
 
-CAbstractLightSource::~CAbstractLightSource()
-{
-}
-
-glm::vec4 CAbstractLightSource::GetAmbient() const
-{
-    return m_ambient;
-}
-
-glm::vec4 CAbstractLightSource::GetDiffuse() const
-{
-    return m_diffuse;
-}
-
-glm::vec4 CAbstractLightSource::GetSpecular() const
-{
-    return m_specular;
-}
-
-void CAbstractLightSource::SetAmbient(const glm::vec4 &color)
-{
-    m_ambient = color;
-}
-
-void CAbstractLightSource::SetDiffuse(const glm::vec4 &color)
-{
-    m_diffuse = color;
-}
-
-void CAbstractLightSource::SetSpecular(const glm::vec4 &color)
-{
-    m_specular = color;
-}
 
 void CAbstractLightSource::SetupImpl() const
 {
@@ -63,21 +30,10 @@ unsigned CAbstractLightSource::GetIndex() const
 
 CDirectedLightSource::CDirectedLightSource(unsigned index)
     : CAbstractLightSource(index)
-    , m_direction(0, 0, 0, 0)
+	, CHaveDirection()
 {
 }
 
-glm::vec3 CDirectedLightSource::GetDirection() const
-{
-    return {m_direction.x, m_direction.y, m_direction.z};
-}
-
-void CDirectedLightSource::SetDirection(const glm::vec3 &value)
-{
-    m_direction.x = value.x;
-    m_direction.y = value.y;
-    m_direction.z = value.z;
-}
 
 void CDirectedLightSource::Setup() const
 {

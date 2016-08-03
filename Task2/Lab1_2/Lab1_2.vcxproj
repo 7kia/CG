@@ -161,8 +161,12 @@
     <ClInclude Include="FunctionSurface.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Mixin\Drawable.h" />
+    <ClInclude Include="Mixin\HaveDirection.h" />
     <ClInclude Include="Mixin\HaveFaceColor.h" />
     <ClInclude Include="Mixin\HaveVertex.h" />
+    <ClInclude Include="Mixin\Material\HaveAmbient.h" />
+    <ClInclude Include="Mixin\Material\HaveDiffuse.h" />
+    <ClInclude Include="Mixin\Material\HaveSpecular.h" />
     <ClInclude Include="Mixin\Transformable.h" />
     <ClInclude Include="Mixin\Updatable.h" />
     <ClInclude Include="Shape\Shape.h" />
@@ -177,8 +181,12 @@
     <ClCompile Include="FunctionSurface.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mixin\HaveDirection.cpp" />
     <ClCompile Include="Mixin\HaveFaceColor.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
+    <ClCompile Include="Mixin\Material\HaveAmbient.cpp" />
+    <ClCompile Include="Mixin\Material\HaveDiffuse.cpp" />
+    <ClCompile Include="Mixin\Material\HaveSpecular.cpp" />
     <ClCompile Include="Mixin\Transformable.cpp" />
     <ClCompile Include="Shape\Shape.cpp" />
     <ClCompile Include="stdafx.cpp" />
