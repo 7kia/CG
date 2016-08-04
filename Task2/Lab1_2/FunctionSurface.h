@@ -7,7 +7,7 @@
 #include <glm/vec3.hpp>
 
 using Function2D = std::function<float(float, float)>;
-
+using uint = unsigned int;
 // Вершина с трёхмерной позицией и нормалью.
 struct SVertexP3N
 {

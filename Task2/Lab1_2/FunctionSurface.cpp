@@ -14,19 +14,16 @@ glm::vec3 GetPosition(const Function2D &fn, float x, float z)
 
 // вычисляет нормали численным методом,
 // с помощью векторного произведения.
-void CalculateNormals(std::vector<SVertexP3N> &vertices
-					, const Function2D &xFunction
-					, const Function2D &yFunction
-					, const Function2D &zFunction
-					, float step)
+void CalculateNormals(std::vector<SVertexP3N> &vertices, float step)
 {
-    for (SVertexP3N &v : vertices)
-    {
+	for(SVertexP3N & v : vertices)
+	{
         const glm::vec3 &position = v.position;
         glm::vec3 dir1 = glm::vec3(position.y, position.x, position.z + step) - position;
         glm::vec3 dir2 = glm::vec3(position.y, position.x + step, position.z) - position;
-        v.normal = glm::normalize(glm::cross(dir1, dir2));
+		v.normal = glm::normalize(glm::cross(dir1, dir2));
     }
+	
 }
 
 /// Привязывает вершины к состоянию OpenGL,
@@ -71,20 +68,19 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
     const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step);
 
     // вычисляем позиции вершин.
-    for (unsigned ci = 0; ci < columnCount; ++ci)
-    {
-        const float U = rangeU.x + step * float(ci);
-        for (unsigned ri = 0; ri < rowCount; ++ri)
-        {
-            const float V = rangeV.x + step * float(ri);
-			m_vertices.push_back(SVertexP3N( glm::vec3(m_xFunction(U, V), m_yFunction(U, V), m_zFunction(U, V))));
-        }
-    }
-    CalculateNormals(m_vertices
-					, m_xFunction
-					, m_yFunction
-					, m_zFunction
-					, step);
+	// рисуем двухсторонние полигоны
+	
+		for (unsigned ci = 0; ci < columnCount; ++ci)
+		{
+			const float U = rangeU.x + step * float(ci);
+			for (unsigned ri = 0; ri < rowCount; ++ri)
+			{
+				const float V = rangeV.x + step * float(ri);
+				m_vertices.push_back(SVertexP3N(glm::vec3(m_xFunction(U, V), m_yFunction(U, V), m_zFunction(U, V))));
+			}
+		}
+
+    CalculateNormals(m_vertices, step);
     // вычисляем индексы вершин.
     for (unsigned ci = 0; ci < columnCount - 1; ++ci)
     {
@@ -111,6 +107,14 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 
 void CSolidFunctionSurface::Draw() const
 {
+	// Рисуем обе стороны
+	glFrontFace(GL_CW);
+	DoWithBindedArrays(m_vertices, [this] {
+		glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),
+			GL_UNSIGNED_INT, m_indicies.data());
+	});
+	glFrontFace(GL_CCW);
+
     DoWithBindedArrays(m_vertices, [this] {
         glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),
                        GL_UNSIGNED_INT, m_indicies.data());

@@ -36,37 +36,56 @@ float GetSincFromXY(float x, float y)
     return sinf(radius) / radius;
 }
 
-float GetXKleinBottle(float U, float V)
+// MobiusStrip
+float GetXMobiusStrip(float U, float V)
 {
 	return (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U);
 }
 
-float GetYKleinBottle(float U, float V)
+float GetYMobiusStrip(float U, float V)
 {
 	return (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U);
 }
 
-float GetZKleinBottle(float U, float V)
+float GetZMobiusStrip(float U, float V)
 {
 	return V / 2.f * sinf(U / 2.f);
+}
+
+const float r = 1.f;
+// KleinBottle
+float GetXKleinBottle(float U, float V)
+{
+	return 6.f * cosf(1.f + sinf(U)) + 4.f * r * (1.f - cosf(U / 2.f)) * cosf(U) * cosf(V);
+}
+
+float GetYKleinBottle(float U, float V)
+{
+	return 16.f * sinf(U) + 4.f * r * (1.f - cosf(U / 2.f)) * sinf(U) * cosf(V);
+}
+
+float GetZKleinBottle(float U, float V)
+{
+	return 4.f * r * (1.f - cosf(U / 2.f)) * sinf(V);
 }
 
 }
 
 CWindow::CWindow()
-    : m_surface(GetXKleinBottle, GetYKleinBottle, GetZKleinBottle)
+    : m_surface(GetXMobiusStrip, GetYMobiusStrip, GetZMobiusStrip)
+	// m_surface(GetXKleinBottle, GetYKleinBottle, GetZKleinBottle)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
 {
     SetBackgroundColor(BLACK);
 
-    const glm::vec4 WHITE_RGBA = {1, 1, 1, 1};
     m_material.SetAmbient(YELLOW_RGBA);
     m_material.SetDiffuse(YELLOW_RGBA);
     m_material.SetSpecular(FADED_WHITE_RGBA);
     m_material.SetShininess(MATERIAL_SHININESS);
 
     m_surface.Tesselate({-0.f, 2.f * M_PI}, {-1.f, 1.f }, 0.1f);
+	//m_surface.Tesselate({ -0.f, 1.f * M_PI }, { M_PI, 2.f * M_PI }, 0.1f);
 
     m_sunlight.SetDirection(SUNLIGHT_DIRECTION);
     m_sunlight.SetDiffuse(WHITE_RGBA);

@@ -6,7 +6,7 @@
 namespace
 {
 const float ROTATION_SPEED_RADIANS = 1.f;
-const float LINEAR_MOVE_SPEED = 5.f;
+const float LINEAR_MOVE_SPEED = 15.f;
 const float MIN_DISTANCE = 1.5f;
 const float MAX_DISTANCE = 30.f;
 
