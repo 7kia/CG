@@ -64,8 +64,8 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 
 {
     m_vertices.clear();
-    const unsigned columnCount = unsigned((rangeU.y - rangeU.x) / step);
-    const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step);
+    const unsigned columnCount = unsigned((rangeU.y - rangeU.x) / step) + 2;
+    const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step) + 1;
 
     // вычисляем позиции вершин.
 	// рисуем двухсторонние полигоны
