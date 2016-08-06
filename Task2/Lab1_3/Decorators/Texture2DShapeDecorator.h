@@ -8,7 +8,7 @@ class CTexture2DShapeDecorator : public CAbstractShapeDecorator
 {
 public:
 	CTexture2DShapeDecorator();
-	CTexture2DShapeDecorator(const std::string & texturePath, unsigned int index);
+	CTexture2DShapeDecorator(const std::string & texturePath);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -18,7 +18,7 @@ public:
 	void Draw() const override;
 	//--------------------------------------------
 
-	void SetTexture(const std::string & texturePath, unsigned int index);
+	void SetTexture(const std::string & texturePath);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

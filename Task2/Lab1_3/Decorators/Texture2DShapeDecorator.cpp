@@ -6,11 +6,10 @@ CTexture2DShapeDecorator::CTexture2DShapeDecorator()
 {
 }
 
-CTexture2DShapeDecorator::CTexture2DShapeDecorator(const std::string & texturePath, unsigned int index)
+CTexture2DShapeDecorator::CTexture2DShapeDecorator(const std::string & texturePath)
 	: CAbstractShapeDecorator()
 	, m_pTexture(LoadTexture2DFromBMP(texturePath))
 {
-	m_pTexture->SetIndex(index);
 }
 
 void CTexture2DShapeDecorator::Update(float deltaTime)
@@ -25,8 +24,7 @@ void CTexture2DShapeDecorator::Draw() const
 	});
 }
 
-void CTexture2DShapeDecorator::SetTexture(const std::string & texturePath, unsigned int index)
+void CTexture2DShapeDecorator::SetTexture(const std::string & texturePath)
 {
 	m_pTexture = LoadTexture2DFromBMP(texturePath);
-	m_pTexture->SetIndex(index);
 }

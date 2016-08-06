@@ -101,6 +101,7 @@ CWindow::CWindow()
 {
     SetBackgroundColor(BLACK);
 
+
     m_material.SetAmbient(YELLOW_RGBA);
     m_material.SetDiffuse(YELLOW_RGBA);
     m_material.SetSpecular(FADED_WHITE_RGBA);
@@ -118,9 +119,9 @@ CWindow::CWindow()
 		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
 		pAnimate->SetChild(std::move(pSphere));
 
-		auto pTexture = std::make_unique<CTexture2DShapeDecorator>(EARTH_TEX_PATH, 1u);
+		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
 		pTexture->SetChild(std::move(pAnimate));
-		//pTexture->SetTexture(EARTH_TEX_PATH, 1u);
+		pTexture->SetTexture(EARTH_TEX_PATH);
 
 		m_opaqueBodies.emplace_back(std::move(pTexture));
 		//m_opaqueBodies.emplace_back(std::move(pAnimate));
@@ -132,6 +133,9 @@ void CWindow::OnWindowInit(const glm::ivec2 &size)
 {
     (void)size;
     SetupOpenGLState();
+
+	m_pEarthTexture = LoadTexture2DFromBMP(EARTH_TEX_PATH);
+
 }
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
@@ -153,10 +157,14 @@ void CWindow::OnDrawWindow(const glm::ivec2 &size)
 	m_sunlight.Setup();
 	m_material.Setup();
 
-	for (const IBodyUniquePtr &pBody : m_opaqueBodies)
-	{
-		pBody->Draw();
-	}	
+	//m_pEarthTexture->DoWhileBinded([&] {
+		for (const IBodyUniquePtr &pBody : m_opaqueBodies)
+		{
+			pBody->Draw();
+		}
+	//});
+
+		
 	//enableBlending();
 	for (const IBodyUniquePtr &pBody : m_transparentBodies)
 	{
