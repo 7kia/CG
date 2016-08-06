@@ -83,6 +83,5 @@ CTexture2DUniquePtr LoadTexture2DFromBMP(const std::string &path)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     });
 
-	pTexture->SetIndex(1u);
     return pTexture;
 }

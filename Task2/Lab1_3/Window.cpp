@@ -14,7 +14,7 @@ const glm::vec3 SUNLIGHT_DIRECTION = {-1.f, 0.2f, 0.7f};
 const float CAMERA_INITIAL_ROTATION = 0;
 const float CAMERA_INITIAL_DISTANCE = 5.f;
 
-const char EARTH_TEX_PATH[] = "daily_earth.bmp";
+const char EARTH_TEX_PATH[] = "res/daily_earth.bmp";
 
 
 void SetupOpenGLState()
@@ -113,20 +113,6 @@ CWindow::CWindow()
     m_sunlight.SetAmbient(0.1f * WHITE_RGBA);
     m_sunlight.SetSpecular(WHITE_RGBA);
 
-	//{
-		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
-
-		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
-		pAnimate->SetChild(std::move(pSphere));
-
-		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
-		pTexture->SetChild(std::move(pAnimate));
-		pTexture->SetTexture(EARTH_TEX_PATH);
-
-		m_opaqueBodies.emplace_back(std::move(pTexture));
-		//m_opaqueBodies.emplace_back(std::move(pAnimate));
-
-	//}
 }
 
 void CWindow::OnWindowInit(const glm::ivec2 &size)
@@ -134,8 +120,16 @@ void CWindow::OnWindowInit(const glm::ivec2 &size)
     (void)size;
     SetupOpenGLState();
 
-	m_pEarthTexture = LoadTexture2DFromBMP(EARTH_TEX_PATH);
+	IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
 
+	auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
+	pAnimate->SetChild(std::move(pSphere));
+
+	auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
+	pTexture->SetChild(std::move(pAnimate));
+	pTexture->SetTexture(EARTH_TEX_PATH);
+
+	m_opaqueBodies.emplace_back(std::move(pTexture));
 }
 
 void CWindow::OnUpdateWindow(float deltaSeconds)

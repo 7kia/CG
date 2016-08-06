@@ -23,10 +23,14 @@ public:
     {
         Bind();
         // При выходе из функции надо обязательно сделать Unbind.
-        BOOST_SCOPE_EXIT_ALL() {
-            Unbind();
-        };
+       
+		// remove because was warnigns
+		//BOOST_SCOPE_EXIT_ALL() {
+		//	Unbind();
+		//};
         fn();
+		Unbind();
+	
     }
 //////////////////////////////////////////////////////////////////////
 // Data

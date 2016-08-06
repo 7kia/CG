@@ -28,8 +28,6 @@ private:
 	std::vector<IBodyUniquePtr>		m_opaqueBodies;
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
-	CTexture2DUniquePtr m_pEarthTexture;
-
     CPhongModelMaterial m_material;// TODO : transfer
     CCamera m_camera;
     CDirectedLightSource m_sunlight;
