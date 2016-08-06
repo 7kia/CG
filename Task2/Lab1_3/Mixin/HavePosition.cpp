@@ -17,3 +17,13 @@ glm::vec3 CHavePosition::GetPosition() const
 {
 	return{ m_position.x, m_position.y, m_position.z };
 }
+
+CHavePosition::CHavePosition(const glm::vec3 & value)
+{
+	SetPosition(value);
+}
+
+void CHavePosition::Move(const glm::vec3 & value)
+{
+	SetPosition(GetPosition() + value);
+}

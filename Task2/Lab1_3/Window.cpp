@@ -96,7 +96,7 @@ float GetZKleinBottle(float U, float V)
 }
 
 CWindow::CWindow()
-    : m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
+    : m_camera(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)//m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
 {
     SetBackgroundColor(BLACK);
@@ -120,16 +120,28 @@ void CWindow::OnWindowInit(const glm::ivec2 &size)
     (void)size;
     SetupOpenGLState();
 
-	IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
+	{
+		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
 
-	auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
-	pAnimate->SetChild(std::move(pSphere));
+		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
+		pAnimate->SetChild(std::move(pSphere));
 
-	auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
-	pTexture->SetChild(std::move(pAnimate));
-	pTexture->SetTexture(EARTH_TEX_PATH);
+		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
+		pTexture->SetChild(std::move(pAnimate));
+		pTexture->SetTexture(EARTH_TEX_PATH);
 
-	m_opaqueBodies.emplace_back(std::move(pTexture));
+		m_opaqueBodies.emplace_back(std::move(pTexture));
+	}
+	{
+		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 0.f, 0.f }));
+		pTransform->SetChild(std::move(pSphere));
+
+		m_opaqueBodies.emplace_back(std::move(pTransform));
+
+	}
 }
 
 void CWindow::OnUpdateWindow(float deltaSeconds)

@@ -2,7 +2,7 @@
 #include "DispatchEvent.h"
 #include "Shape/Shapes.h"
 #include "Decorators\Decorators.h"
-#include "Camera.h"
+#include "Camera\Cameras.h"
 #include "Lights.h"
 #include "Material\PhongMaterial.h"
 #include <vector>
@@ -29,6 +29,6 @@ private:
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
     CPhongModelMaterial m_material;// TODO : transfer
-    CCamera m_camera;
+    CPlayerCamera m_camera;
     CDirectedLightSource m_sunlight;
 };

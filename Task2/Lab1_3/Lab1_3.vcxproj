@@ -156,7 +156,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractWindow.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Camera\Camera.h" />
+    <ClInclude Include="Camera\Cameras.h" />
+    <ClInclude Include="Camera\PlayerCamera.h" />
+    <ClInclude Include="Camera\WorldCamera.h" />
     <ClInclude Include="Decorators\AbstractShapeDecorator.h" />
     <ClInclude Include="Decorators\AnimatedShapeDecorator.h" />
     <ClInclude Include="Decorators\Decorators.h" />
@@ -187,7 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp" />
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Camera\Camera.cpp" />
+    <ClCompile Include="Camera\PlayerCamera.cpp" />
+    <ClCompile Include="Camera\WorldCamera.cpp" />
     <ClCompile Include="Decorators\AbstractShapeDecorator.cpp" />
     <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp" />
     <ClCompile Include="Decorators\Texture2DShapeDecorator.cpp" />

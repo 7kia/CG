@@ -19,6 +19,7 @@ class CHaveDirection : public IHaveDirection
 {
 public:
 	CHaveDirection();
+	CHaveDirection(const glm::vec3 &value);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

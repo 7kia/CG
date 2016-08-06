@@ -24,10 +24,12 @@ public:
         Bind();
         // При выходе из функции надо обязательно сделать Unbind.
        
+		// TODO : see need it
 		// remove because was warnigns
 		//BOOST_SCOPE_EXIT_ALL() {
 		//	Unbind();
 		//};
+
         fn();
 		Unbind();
 	

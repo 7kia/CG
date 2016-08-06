@@ -6,6 +6,11 @@ CHaveDirection::CHaveDirection()
 {
 }
 
+CHaveDirection::CHaveDirection(const glm::vec3 & value)
+{
+	SetDirection(value);
+}
+
 void CHaveDirection::SetDirection(const glm::vec3 & value)
 {
 	m_direction.x = value.x;
