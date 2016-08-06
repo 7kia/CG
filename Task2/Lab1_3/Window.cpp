@@ -5,17 +5,6 @@
 
 namespace
 {
-const glm::vec4 BLACK = {0, 0, 0, 1};
-const float MATERIAL_SHININESS = 30.f;
-const glm::vec4 WHITE_RGBA = {1, 1, 1, 1};
-const glm::vec4 FADED_WHITE_RGBA = {0.3f, 0.3f, 0.3f, 1.f};
-const glm::vec4 YELLOW_RGBA = {1, 1, 0, 1};
-const glm::vec3 SUNLIGHT_DIRECTION = {-1.f, 0.2f, 0.7f};
-const float CAMERA_INITIAL_ROTATION = 0;
-const float CAMERA_INITIAL_DISTANCE = 5.f;
-
-const char EARTH_TEX_PATH[] = "res/daily_earth.bmp";
-
 
 void SetupOpenGLState()
 {
@@ -96,23 +85,8 @@ float GetZKleinBottle(float U, float V)
 }
 
 CWindow::CWindow()
-    : m_camera(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)//m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
-    , m_sunlight(GL_LIGHT0)
 {
-    SetBackgroundColor(BLACK);
-
-
-    m_material.SetAmbient(YELLOW_RGBA);
-    m_material.SetDiffuse(YELLOW_RGBA);
-    m_material.SetSpecular(FADED_WHITE_RGBA);
-    m_material.SetShininess(MATERIAL_SHININESS);
-
-   
-    m_sunlight.SetDirection(SUNLIGHT_DIRECTION);
-    m_sunlight.SetDiffuse(WHITE_RGBA);
-    m_sunlight.SetAmbient(0.1f * WHITE_RGBA);
-    m_sunlight.SetSpecular(WHITE_RGBA);
-
+    SetBackgroundColor(WindowSpace::BLACK);
 }
 
 void CWindow::OnWindowInit(const glm::ivec2 &size)
@@ -120,63 +94,18 @@ void CWindow::OnWindowInit(const glm::ivec2 &size)
     (void)size;
     SetupOpenGLState();
 
-	{
-		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
-
-		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
-		pAnimate->SetChild(std::move(pSphere));
-
-		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
-		pTexture->SetChild(std::move(pAnimate));
-		pTexture->SetTexture(EARTH_TEX_PATH);
-
-		m_opaqueBodies.emplace_back(std::move(pTexture));
-	}
-	{
-		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
-
-		auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 0.f, 0.f }));
-		pTransform->SetChild(std::move(pSphere));
-
-		m_opaqueBodies.emplace_back(std::move(pTransform));
-
-	}
+	m_world.CreateScene();
 }
 
 void CWindow::OnUpdateWindow(float deltaSeconds)
 {
-	m_camera.Update(deltaSeconds);
-	for (const IBodyUniquePtr &pBody : m_opaqueBodies)
-	{
-		pBody->Update(deltaSeconds);
-	}
-	for (const IBodyUniquePtr &pBody : m_transparentBodies)
-	{
-		pBody->Update(deltaSeconds);
-	}
+	m_world.Update(deltaSeconds);
 }
 
 void CWindow::OnDrawWindow(const glm::ivec2 &size)
 {
 	SetupView(size);
-	m_sunlight.Setup();
-	m_material.Setup();
-
-	//m_pEarthTexture->DoWhileBinded([&] {
-		for (const IBodyUniquePtr &pBody : m_opaqueBodies)
-		{
-			pBody->Draw();
-		}
-	//});
-
-		
-	//enableBlending();
-	for (const IBodyUniquePtr &pBody : m_transparentBodies)
-	{
-		pBody->Draw();
-	}
-	//disableBlending();
+	m_world.Draw();
 }
 
 void CWindow::SetupView(const glm::ivec2 &size)
@@ -185,7 +114,7 @@ void CWindow::SetupView(const glm::ivec2 &size)
 
     // Матрица вида возвращается камерой и составляет
     // начальное значение матрицы GL_MODELVIEW.
-    glLoadMatrixf(glm::value_ptr(m_camera.GetViewTransform()));
+    glLoadMatrixf(glm::value_ptr(m_world.GetPlayerCamera()->GetViewTransform()));
 
     // Матрица перспективного преобразования вычисляется функцией
     // glm::perspective, принимающей угол обзора, соотношение ширины
@@ -202,10 +131,10 @@ void CWindow::SetupView(const glm::ivec2 &size)
 
 void CWindow::OnKeyDown(const SDL_KeyboardEvent &event)
 {
-    m_camera.OnKeyDown(event);
+    m_world.OnKeyDown(event);
 }
 
 void CWindow::OnKeyUp(const SDL_KeyboardEvent &event)
 {
-    m_camera.OnKeyUp(event);
+	m_world.OnKeyUp(event);
 }

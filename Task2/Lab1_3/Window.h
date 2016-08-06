@@ -1,11 +1,11 @@
 #pragma once
-#include "DispatchEvent.h"
-#include "Shape/Shapes.h"
-#include "Decorators\Decorators.h"
-#include "Camera\Cameras.h"
-#include "Lights.h"
-#include "Material\PhongMaterial.h"
-#include <vector>
+
+#include "World\World.h"
+
+namespace WindowSpace
+{
+	const glm::vec4 BLACK = { 0, 0, 0, 1 };
+}
 
 class CWindow : public CAbstractInputControlWindow
 {
@@ -25,10 +25,5 @@ protected:
 private:
     void SetupView(const glm::ivec2 &size);
 
-	std::vector<IBodyUniquePtr>		m_opaqueBodies;
-	std::vector<IBodyUniquePtr>		m_transparentBodies;
-
-    CPhongModelMaterial m_material;// TODO : transfer
-    CPlayerCamera m_camera;
-    CDirectedLightSource m_sunlight;
+	CWorld m_world;
 };

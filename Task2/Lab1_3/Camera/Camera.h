@@ -42,13 +42,13 @@ public:
 	// TODO
 	// Need coordinate with IInputEventAcceptor
 	// two low methods is common for all cameras
-	bool OnKeyDown(const SDL_KeyboardEvent &event);
-	bool OnKeyUp(const SDL_KeyboardEvent &event);
+	bool				OnKeyDown(const SDL_KeyboardEvent &event);
+	bool				OnKeyUp(const SDL_KeyboardEvent &event);
 
-	virtual glm::mat4 GetViewTransform() const = 0;
+	virtual				glm::mat4 GetViewTransform() const = 0;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-	std::set<unsigned> m_keysPressed;
+	std::set<unsigned>	m_keysPressed;
 
 };
