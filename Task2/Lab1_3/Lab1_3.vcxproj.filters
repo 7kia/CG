@@ -138,6 +138,15 @@
     <ClInclude Include="World\World.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="World\Player.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\HaveLinearVelocity.h">
+      <Filter>Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\HaveRotationSpeed.h">
+      <Filter>Mixin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -222,6 +231,15 @@
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="World\World.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Player.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HaveLinearVelocity.cpp">
+      <Filter>Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HaveRotationSpeed.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,7 +2,6 @@
 #include "Camera.h"
 
 CAbcstartCamera::CAbcstartCamera()
-	: IUpdatable()
 {
 }
 

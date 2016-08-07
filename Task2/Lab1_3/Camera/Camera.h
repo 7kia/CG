@@ -31,9 +31,7 @@ namespace CameraSpace
 
 }
 
-class CAbcstartCamera
-	: public IUpdatable
-{
+class CAbcstartCamera{
 public:
 	CAbcstartCamera();
 //////////////////////////////////////////////////////////////////////
@@ -49,6 +47,5 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-	std::set<unsigned>	m_keysPressed;
 
 };

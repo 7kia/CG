@@ -172,7 +172,9 @@
     <ClInclude Include="Mixin\Drawable.h" />
     <ClInclude Include="Mixin\HaveDirection.h" />
     <ClInclude Include="Mixin\HaveFaceColor.h" />
+    <ClInclude Include="Mixin\HaveLinearVelocity.h" />
     <ClInclude Include="Mixin\HavePosition.h" />
+    <ClInclude Include="Mixin\HaveRotationSpeed.h" />
     <ClInclude Include="Mixin\HaveVertex.h" />
     <ClInclude Include="Mixin\Material\HaveAmbient.h" />
     <ClInclude Include="Mixin\Material\HaveDiffuse.h" />
@@ -187,6 +189,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="World\Player.h" />
     <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -205,7 +208,9 @@
     <ClCompile Include="Material\Texture2D.cpp" />
     <ClCompile Include="Mixin\HaveDirection.cpp" />
     <ClCompile Include="Mixin\HaveFaceColor.cpp" />
+    <ClCompile Include="Mixin\HaveLinearVelocity.cpp" />
     <ClCompile Include="Mixin\HavePosition.cpp" />
+    <ClCompile Include="Mixin\HaveRotationSpeed.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
     <ClCompile Include="Mixin\Material\HaveAmbient.cpp" />
     <ClCompile Include="Mixin\Material\HaveDiffuse.cpp" />
@@ -217,6 +222,7 @@
     <ClCompile Include="Shape\Sphere.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World\Player.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

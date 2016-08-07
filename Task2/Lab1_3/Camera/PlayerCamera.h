@@ -42,13 +42,14 @@ namespace PlayerCameraSpace
 
 
 // TODO : rename
-class CPlayerCamera
+class CPlayerCamera final
 	: public CAbcstartCamera
 	, public CHavePosition
 	, public CHaveDirection
 	, private boost::noncopyable
 {
 public:
+	CPlayerCamera() = default;
 	explicit CPlayerCamera(const glm::vec3 & position, const glm::vec3 & direction);
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -56,11 +57,14 @@ public:
 
 	//--------------------------------------------
 	// IUpdatable
-	void		Update(float deltaSec) override;
+	void		Update(float deltaSec
+						, float moveSpeed
+						, float rotationSpeed);
 	//--------------------------------------------
 	// IInputEventAcceptor
-	glm::mat4	GetViewTransform() const override;
+	glm::mat4	GetViewTransform() const override final;
 	//--------------------------------------------
+
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

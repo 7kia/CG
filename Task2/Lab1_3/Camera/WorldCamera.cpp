@@ -41,10 +41,12 @@ CWorldCamera::CWorldCamera(float rotationRadians, float distance)
 {
 }
 
-void CWorldCamera::Update(float deltaSec)
+void CWorldCamera::Update(float deltaSec
+						, float moveSpeed
+						, float rotationSpeed)
 {
-	m_rotationRadians += deltaSec * WorldCameraSpace::GetRotationSpeedRadians(m_keysPressed);
-	m_distance += deltaSec * WorldCameraSpace::GetLinearMoveSpeed(m_keysPressed);
+	m_rotationRadians += deltaSec * rotationSpeed;
+	m_distance += deltaSec * moveSpeed;
 	m_distance = glm::clamp(m_distance, WorldCameraSpace::MIN_DISTANCE, WorldCameraSpace::MAX_DISTANCE);
 }
 

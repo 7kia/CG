@@ -10,16 +10,17 @@ CPlayerCamera::CPlayerCamera(const glm::vec3 & position, const glm::vec3 & direc
 {
 }
 
-void CPlayerCamera::Update(float deltaSec)
+void CPlayerCamera::Update(float deltaSec
+							, float moveSpeed
+							, float rotationSpeed)
 {
-	m_rotationRadians += deltaSec * PlayerCameraSpace::GetRotationSpeedRadians(m_keysPressed);
+	m_rotationRadians += deltaSec * rotationSpeed;//PlayerCameraSpace::GetRotationSpeedRadians(m_keysPressed);
 	auto direction = GetDirection();
 	direction = glm::rotateY(glm::normalize(direction), m_rotationRadians);
 
 	glm::vec3 direction3D = glm::vec3(direction.x, direction.y, direction.z);
 
-
-	Move(direction3D * (deltaSec * PlayerCameraSpace::GetLinearMoveSpeed(m_keysPressed)) );
+	Move(direction3D * (deltaSec *  moveSpeed));//PlayerCameraSpace::GetLinearMoveSpeed(m_keysPressed))
 }
 
 glm::mat4 CPlayerCamera::GetViewTransform() const
