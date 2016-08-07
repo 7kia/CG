@@ -9,6 +9,9 @@
 #include "..\Camera\Cameras.h"
 #include "..\Lights.h"
 #include "..\Material\PhongMaterial.h"
+
+#include "Player.h"
+
 #include <vector>
 
 namespace WorldSpace
@@ -59,8 +62,9 @@ private:
 	std::vector<IBodyUniquePtr>		m_opaqueBodies;
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
+	CPlayer							m_player;
+
 	CPhongModelMaterial m_material;// TODO : transfer
-	CPlayerCamera m_camera;
 	CDirectedLightSource m_sunlight;
 
 };

@@ -10,10 +10,9 @@ class CWorldCamera
 public:
 	CWorldCamera() = default;
 	explicit CWorldCamera(float rotationRadians, float distance);
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
-
 	//--------------------------------------------
 	// IUpdatable
 	void Update(float deltaSec

@@ -5,7 +5,7 @@ CWorld::CWorld()
 	: IDrawable()
 	, IInputEventAcceptor()
 	, IUpdatable()
-	, m_camera(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)//m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
+	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)//m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
 	, m_sunlight(GL_LIGHT0)
 {
 	m_material.SetAmbient(WorldSpace::YELLOW_RGBA);
@@ -22,6 +22,7 @@ CWorld::CWorld()
 void CWorld::OnKeyDown(const SDL_KeyboardEvent & event)
 {
 	m_camera.OnKeyDown(event);
+	m_player.m_pController->
 }
 
 void CWorld::OnKeyUp(const SDL_KeyboardEvent & event)
