@@ -17,22 +17,14 @@ namespace PlayerSpace
 {
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
-	const float ROTATION_SPEED_RADIANS = 1.f;
-	const float LINEAR_MOVE_SPEED = 5.f;
+	const float ROTATION_SPEED_RADIANS = 45.f;
+	const float LINEAR_MOVE_SPEED = 75.f;
 
 }
 
 //
 // SSkill - content pointer to function and value keys which activate the skill
 // 
-struct SSkill
-{
-	SSkill() = default;
-	SSkill(std::function<void()> function, const std::vector<SDL_Keysym> & keys);
-
-	std::function<void()>	m_skill = nullptr;
-	std::vector<SDL_Keysym>	m_keys;
-};
 
 class CPlayer final
 	: public IUpdatable
@@ -47,6 +39,17 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
+
+	using KeyList = std::vector<SDL_Keycode>;
+	struct SSkill
+	{
+		SSkill() = default;
+		SSkill(const std::function<void()> function, const KeyList & keys);
+		
+		std::function<void()>		m_skill	= nullptr;
+		KeyList						m_keys;
+	};
+
 	// TODO : see might the enums need transfer to heirs
 	enum class TurnTo
 	{
@@ -69,6 +72,8 @@ public:
 	// IUpdatable
 	void Update(float deltaTime) override final;
 	//--------------------------------------------
+	CAbcstartCamera*				GetPlayerCamera();
+
 private:
 //////////////////////////////////////////////////////////////////////
 // Data
@@ -78,4 +83,38 @@ public:
 
 private:
 	CPlayerCamera			m_camera;
+};
+
+class CPlayer::CController
+	: public IInputEventAcceptor
+{
+public:
+	CController(CPlayer * master);
+	//////////////////////////////////////////////////////////////////////
+	// Methods
+public:
+	enum class IdCommands
+	{
+		TurnToLeft = 0
+		, TurnToRight
+		, GoToForward
+		, GoToBack
+		, AmountCommands
+	};
+
+	void				OnKeyDown(const SDL_KeyboardEvent &event) override;
+	void				OnKeyUp(const SDL_KeyboardEvent &event) override;
+private:
+	void				SetSkill(IdCommands id, const std::function<void()> function);
+	void				SetKeysSkill(IdCommands id, const KeyList & keys);
+
+	IdCommands			FindCommand(const SDL_KeyboardEvent & event);
+
+	void				SetFunctionList();
+	void				CheckListCommands() const;
+	//////////////////////////////////////////////////////////////////////
+	// Data
+private:
+	CPlayer*							m_master;
+	std::map<IdCommands, SSkill>		m_listFunctions;
 };

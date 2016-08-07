@@ -233,14 +233,17 @@
     <ClCompile Include="World\World.cpp">
       <Filter>World</Filter>
     </ClCompile>
-    <ClCompile Include="World\Player.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp">
       <Filter>Mixin</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp">
       <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Player.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\PlayerController.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

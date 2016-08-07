@@ -223,6 +223,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="World\Player.cpp" />
+    <ClCompile Include="World\PlayerController.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

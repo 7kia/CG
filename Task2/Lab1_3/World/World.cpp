@@ -21,13 +21,12 @@ CWorld::CWorld()
 
 void CWorld::OnKeyDown(const SDL_KeyboardEvent & event)
 {
-	m_camera.OnKeyDown(event);
-	m_player.m_pController->
+	m_player.m_pController->OnKeyDown(event);
 }
 
 void CWorld::OnKeyUp(const SDL_KeyboardEvent & event)
 {
-	m_camera.OnKeyUp(event);
+	m_player.m_pController->OnKeyUp(event);
 }
 
 void CWorld::Draw() const
@@ -50,7 +49,7 @@ void CWorld::Draw() const
 
 void CWorld::Update(float deltaTime)
 {
-	m_camera.Update(deltaTime);
+	m_player.Update(deltaTime);
 	for (const IBodyUniquePtr &pBody : m_opaqueBodies)
 	{
 		pBody->Update(deltaTime);
@@ -63,7 +62,7 @@ void CWorld::Update(float deltaTime)
 
 CAbcstartCamera * CWorld::GetPlayerCamera()
 {
-	return dynamic_cast<CAbcstartCamera*>(&m_camera);
+	return m_player.GetPlayerCamera();
 }
 
 void CWorld::CreateScene()
