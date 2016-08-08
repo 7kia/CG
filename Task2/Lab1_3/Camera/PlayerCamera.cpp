@@ -5,9 +5,11 @@
 
 CPlayerCamera::CPlayerCamera(const glm::vec3 & position, const glm::vec3 & direction)
 	: CAbcstartCamera()
-	, CHavePosition(position)
-	, CHaveDirection(PlayerCameraSpace::PLAYER_DIRECTION)
+	//, CHavePosition(position)
+	//, CHaveDirection(PlayerCameraSpace::PLAYER_DIRECTION)
 {
+	SetPosition(position);
+	SetDirection(direction);
 }
 
 void CPlayerCamera::Update(float deltaSec

@@ -18,15 +18,19 @@ CPlayer::CPlayer()
 {
 }
 
-CPlayer::CPlayer(const glm::vec3 & position, const glm::vec3 & direction)
+CPlayer::CPlayer(const glm::vec3 & position
+				, const glm::vec3 & direction
+				, CAbcstartCamera* camera)
 	: IUpdatable()
 	, CHavePosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_pController(std::make_unique<CController>(this))
-	, m_camera(position, direction)
+	, m_camera(camera)
 {
+	m_camera->SetPosition(position);
+	m_camera->SetDirection(direction);
 }
 
 void CPlayer::TurnLeft()
@@ -51,16 +55,21 @@ void CPlayer::GoBack()
 
 void CPlayer::Update(float deltaTime)
 {
-	m_camera.Update(deltaTime
-		, GetCurrentLinearVelocity()
-		, GetCurrentRotationSpeed());
-	SetPosition(m_camera.GetPosition());// TODO : might need rewrite, the string crutch
+	m_camera->Update(deltaTime
+					, GetCurrentLinearVelocity()
+					, GetCurrentRotationSpeed());
+	SetPosition(m_camera->GetPosition());// TODO : might need rewrite, the string crutch
 
 	ResetCurrentLinearVelocity();
 	ResetCurrentRotationSpeed();
 }
 
-CAbcstartCamera * CPlayer::GetPlayerCamera()
+void CPlayer::SetCamera(CAbcstartCamera * camera)
 {
-	return &m_camera;
+	m_camera = camera;
+}
+
+CAbcstartCamera * CPlayer::GetCamera()
+{
+	return m_camera;
 }

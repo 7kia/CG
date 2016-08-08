@@ -52,7 +52,7 @@ public:
 	void							Update(float deltaTime);
 	//--------------------------------------------
 
-	CAbcstartCamera*				GetPlayerCamera();
+	CAbcstartCamera*				GetCamera();
 
 	// TODO : do call_once
 	void							CreateScene();
@@ -64,8 +64,11 @@ private:
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
 	CPlayer							m_player;
-	CPlayerCamera					m_playerCamera;
+
+	// Player can change camera
 	CWorldCamera					m_worldCamera;
+	CPlayerCamera					m_playerCamera;
+	bool							m_changePlayer = true;
 	CPhongModelMaterial m_material;// TODO : transfer
 	CDirectedLightSource m_sunlight;
 

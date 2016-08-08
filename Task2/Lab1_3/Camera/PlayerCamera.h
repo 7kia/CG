@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Camera.h"
-#include "../Mixin/HavePosition.h"
-#include "../Mixin/HaveDirection.h"
 
 namespace PlayerCameraSpace
 {
@@ -20,8 +18,6 @@ namespace PlayerCameraSpace
 // TODO : rename
 class CPlayerCamera final
 	: public CAbcstartCamera
-	, public CHavePosition
-	, public CHaveDirection
 	, private boost::noncopyable
 {
 public:
@@ -35,7 +31,7 @@ public:
 	// IUpdatable
 	void		Update(float deltaSec
 						, float moveSpeed
-						, float rotationSpeed);
+						, float rotationSpeed) override;
 	//--------------------------------------------
 	// IInputEventAcceptor
 	glm::mat4	GetViewTransform() const override final;

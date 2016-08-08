@@ -8,6 +8,8 @@
 
 
 #include "../Mixin/Updatable.h"
+#include "../Mixin/HavePosition.h"
+#include "../Mixin/HaveDirection.h"
 
 namespace CameraSpace
 {
@@ -15,7 +17,11 @@ namespace CameraSpace
 
 }
 
-class CAbcstartCamera{
+class CAbcstartCamera
+	: public CHavePosition
+	, public CHaveDirection
+
+{
 public:
 	CAbcstartCamera();
 //////////////////////////////////////////////////////////////////////
@@ -25,6 +31,11 @@ public:
 	// Need coordinate with IInputEventAcceptor
 	// two low methods is common for all cameras
 	virtual				glm::mat4 GetViewTransform() const = 0;
+
+	virtual void Update(float deltaSec
+						, float moveSpeed
+						, float rotationSpeed) = 0;
+
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

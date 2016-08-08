@@ -114,7 +114,7 @@ void CWindow::SetupView(const glm::ivec2 &size)
 
     // Матрица вида возвращается камерой и составляет
     // начальное значение матрицы GL_MODELVIEW.
-    glLoadMatrixf(glm::value_ptr(m_world.GetPlayerCamera()->GetViewTransform()));
+    glLoadMatrixf(glm::value_ptr(m_world.GetCamera()->GetViewTransform()));
 
     // Матрица перспективного преобразования вычисляется функцией
     // glm::perspective, принимающей угол обзора, соотношение ширины

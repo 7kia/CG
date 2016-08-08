@@ -35,7 +35,9 @@ class CPlayer final
 {
 public:
 	CPlayer();
-	explicit CPlayer(const glm::vec3 & position, const glm::vec3 & direction);
+	explicit CPlayer(const glm::vec3 & position
+					, const glm::vec3 & direction
+					, CAbcstartCamera* camera);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -72,17 +74,18 @@ public:
 	// IUpdatable
 	void Update(float deltaTime) override final;
 	//--------------------------------------------
-	CAbcstartCamera*				GetPlayerCamera();
+	void							SetCamera(CAbcstartCamera * camera);
+	CAbcstartCamera*				GetCamera();// TODO : see need there const
 
 private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
 	class CController;
-	std::unique_ptr<CController> m_pController;// TODO : see need pImpl and unique_ptr
+	std::unique_ptr<CController>	m_pController;// TODO : see need pImpl and unique_ptr
 
 private:
-	CPlayerCamera			m_camera;
+	CAbcstartCamera*				m_camera = nullptr;
 };
 
 class CPlayer::CController

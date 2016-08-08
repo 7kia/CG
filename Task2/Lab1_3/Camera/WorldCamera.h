@@ -8,7 +8,7 @@ class CWorldCamera
 	, private boost::noncopyable
 {
 public:
-	CWorldCamera() = default;
+	//CWorldCamera() = default;
 	explicit CWorldCamera(float rotationRadians, float distance);
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -17,7 +17,7 @@ public:
 	// IUpdatable
 	void Update(float deltaSec
 				, float moveSpeed
-				, float rotationSpeed);
+				, float rotationSpeed) override;
 	//--------------------------------------------
 	// IInputEventAcceptor
 	glm::mat4 GetViewTransform() const override;
