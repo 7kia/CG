@@ -18,6 +18,4 @@ void CShape::Draw() const
 		glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),
 			GL_UNSIGNED_INT, m_indicies.data());
 	});
-
-
 }

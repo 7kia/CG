@@ -2,7 +2,7 @@
 #include "CompositeShape.h"
 
 ÑCompositeShape::ÑCompositeShape()
-	: CShape()
+	: IShape()
 {
 }
 

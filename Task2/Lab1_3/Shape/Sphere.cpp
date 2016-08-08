@@ -21,6 +21,7 @@ namespace
 }
 
 CIdentitySphere::CIdentitySphere(unsigned slices, unsigned stacks)
+	: CShape()
 {
 	Tesselate(slices, stacks);
 }

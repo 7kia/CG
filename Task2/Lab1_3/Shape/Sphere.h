@@ -15,7 +15,8 @@ namespace SphereSpace
 }
 
 
-class CIdentitySphere final : public CShape
+class CIdentitySphere final 
+	: public CShape
 {
 public:
 	CIdentitySphere(unsigned slices, unsigned stacks);

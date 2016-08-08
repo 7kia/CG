@@ -6,7 +6,7 @@
 
 
 class ÑCompositeShape 
-	: public CShape
+	: public IShape
 {
 public:
 	ÑCompositeShape();
