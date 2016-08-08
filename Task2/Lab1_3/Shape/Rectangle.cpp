@@ -5,9 +5,13 @@ CRectangle::CRectangle()
 	: ÑCompositeShape()
 	, CHaveReferenceVertex(4)
 {
-	const glm::vec3 normal = { 0.f, 0.f, 1.f };
 
-	{
+	m_shapes.emplace_back(std::make_unique<CTriangle>());
+	m_shapes.emplace_back(std::make_unique<CTriangle>());
+	UpdateReference();
+
+	/*
+		{
 		auto FirstTriangle = std::make_unique<CTriangle>();
 
 		FirstTriangle->SetVertex(0u, SVertexP3NT2(glm::vec3(-1.f, 1.f, 0.f), glm::vec2(0.f, 0.f), glm::vec3(-1.f, 1.f, 0.f)) );
@@ -26,7 +30,10 @@ CRectangle::CRectangle()
 
 		m_shapes.emplace_back(std::move(SecondTriangle));
 	}
-	UpdateReference();
+
+	*/
+
+	//SetVertexPosition(0, )
 }
 
 

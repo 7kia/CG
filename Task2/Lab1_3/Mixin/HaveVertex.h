@@ -31,14 +31,14 @@ public:
 	virtual SVertexP3NT2*					GetReferenceToVertex(int index) = 0;
 	virtual std::vector<SVertexP3NT2>		GetVertexes() const = 0;
 
-	virtual void							SetPosition(uint index, const glm::vec3 & position) = 0;
-	virtual glm::vec3						GetPosition(uint index) const = 0;
+	virtual void							SetVertexPosition(uint index, const glm::vec3 & position) = 0;
+	virtual glm::vec3						GetVertexPosition(uint index) const = 0;
 
-	virtual void							SetNoraml(uint index, const glm::vec3 & normal) = 0;
-	virtual glm::vec3						GetNoraml(uint index) const = 0;
+	virtual void							SetVertexNormal(uint index, const glm::vec3 & normal) = 0;
+	virtual glm::vec3						GetVertexNormal(uint index) const = 0;
 
-	virtual void							SetTexCoordinate(uint index, const glm::vec2 & texCoordinate) = 0;
-	virtual glm::vec2						GetTexCoordinate(uint index) const = 0;
+	virtual void							SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) = 0;
+	virtual glm::vec2						GetVertexTexCoordinate(uint index) const = 0;
 
 
 	virtual void							CheckVertexIndex(uint index) const = 0;;// TODO : see need transfer to other place												  
@@ -59,14 +59,14 @@ public:
 	std::vector<SVertexP3NT2>		GetVertexes() const override final;//
 
 
-	void							SetPosition(uint index, const glm::vec3 & position) override final;
-	glm::vec3						GetPosition(uint index) const override final;
+	void							SetVertexPosition(uint index, const glm::vec3 & position) override final;
+	glm::vec3						GetVertexPosition(uint index) const override final;
 
-	void							SetNoraml(uint index, const glm::vec3 & normal) override final;
-	glm::vec3						GetNoraml(uint index) const override final;
+	void							SetVertexNormal(uint index, const glm::vec3 & normal) override final;
+	glm::vec3						GetVertexNormal(uint index) const override final;
 
-	void							SetTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
-	glm::vec2						GetTexCoordinate(uint index) const override final;
+	void							SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
+	glm::vec2						GetVertexTexCoordinate(uint index) const override final;
 
 
 
@@ -91,14 +91,14 @@ public:
 
 	std::vector<SVertexP3NT2>					GetVertexes() const override final;//
 
-	void										SetPosition(uint index, const glm::vec3 & position) override final;
-	glm::vec3									GetPosition(uint index) const override final;
+	void										SetVertexPosition(uint index, const glm::vec3 & position) override final;
+	glm::vec3									GetVertexPosition(uint index) const override final;
 
-	void										SetNoraml(uint index, const glm::vec3 & normal) override final;
-	glm::vec3									GetNoraml(uint index) const override final;
+	void										SetVertexNormal(uint index, const glm::vec3 & normal) override final;
+	glm::vec3									GetVertexNormal(uint index) const override final;
 
-	void										SetTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
-	glm::vec2									GetTexCoordinate(uint index) const override final;
+	void										SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
+	glm::vec2									GetVertexTexCoordinate(uint index) const override final;
 
 
 	void										CheckVertexIndex(uint index) const override final;// TODO : see need transfer to other place

@@ -57,42 +57,42 @@ std::vector<SVertexP3NT2> CHaveVertexes::GetVertexes() const
 	return result;
 }
 
-void CHaveVertexes::SetPosition(uint index, const glm::vec3 & position)
+void CHaveVertexes::SetVertexPosition(uint index, const glm::vec3 & position)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].position = position;
 }
 
-glm::vec3 CHaveVertexes::GetPosition(uint index) const
+glm::vec3 CHaveVertexes::GetVertexPosition(uint index) const
 {
 	CheckVertexIndex(index);
 
 	return m_vertices[index].position;
 }
 
-void CHaveVertexes::SetNoraml(uint index, const glm::vec3 & normal)
+void CHaveVertexes::SetVertexNormal(uint index, const glm::vec3 & normal)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].normal = normal;
 }
 
-glm::vec3 CHaveVertexes::GetNoraml(uint index) const
+glm::vec3 CHaveVertexes::GetVertexNormal(uint index) const
 {
 	CheckVertexIndex(index);
 
 	return m_vertices[index].normal;
 }
 
-void CHaveVertexes::SetTexCoordinate(uint index, const glm::vec2 & texCoordinate)
+void CHaveVertexes::SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].texCoord = texCoordinate;
 }
 
-glm::vec2 CHaveVertexes::GetTexCoordinate(uint index) const
+glm::vec2 CHaveVertexes::GetVertexTexCoordinate(uint index) const
 {
 	CheckVertexIndex(index);
 
@@ -150,7 +150,7 @@ std::vector<SVertexP3NT2> CHaveReferenceVertex::GetVertexes() const
 	return result;
 }
 
-void CHaveReferenceVertex::SetPosition(uint index, const glm::vec3 & position)
+void CHaveReferenceVertex::SetVertexPosition(uint index, const glm::vec3 & position)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -159,14 +159,14 @@ void CHaveReferenceVertex::SetPosition(uint index, const glm::vec3 & position)
 	}
 }
 
-glm::vec3 CHaveReferenceVertex::GetPosition(uint index) const
+glm::vec3 CHaveReferenceVertex::GetVertexPosition(uint index) const
 {
 	CheckVertexIndex(index);
 
 	return m_pVertex[index][0]->position;
 }
 
-void CHaveReferenceVertex::SetNoraml(uint index, const glm::vec3 & normal)
+void CHaveReferenceVertex::SetVertexNormal(uint index, const glm::vec3 & normal)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -175,14 +175,14 @@ void CHaveReferenceVertex::SetNoraml(uint index, const glm::vec3 & normal)
 	}
 }
 
-glm::vec3 CHaveReferenceVertex::GetNoraml(uint index) const
+glm::vec3 CHaveReferenceVertex::GetVertexNormal(uint index) const
 {
 	CheckVertexIndex(index);
 
 	return m_pVertex[index][0]->normal;
 }
 
-void CHaveReferenceVertex::SetTexCoordinate(uint index, const glm::vec2 & texCoordinate)
+void CHaveReferenceVertex::SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -191,7 +191,7 @@ void CHaveReferenceVertex::SetTexCoordinate(uint index, const glm::vec2 & texCoo
 	}
 }
 
-glm::vec2 CHaveReferenceVertex::GetTexCoordinate(uint index) const
+glm::vec2 CHaveReferenceVertex::GetVertexTexCoordinate(uint index) const
 {
 	CheckVertexIndex(index);
 
