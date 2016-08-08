@@ -14,28 +14,10 @@ CShape::CShape()
 
 void CShape::Draw() const
 {
-	glPushMatrix();// TODO : see neew this method rewrite
+	DoWithBindedArrays(m_vertices, [this] {
+		glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),
+			GL_UNSIGNED_INT, m_indicies.data());
+	});
 
-	/*
-	if (GetFaceColor().a < 0.99f)
-	{
-		glFrontFace(GL_CW);
-		DrawOutputFaces();
-		glFrontFace(GL_CCW);
-	}
-	*/
-	
-	DrawOutputFaces();
 
-	glPopMatrix();
-
-}
-
-SVertexP3NT2::SVertexP3NT2(const glm::vec3 & position
-							, const glm::vec2 & texCoord
-							, const glm::vec3 & normal)
-	: position(position)
-	, texCoord(texCoord)
-	, normal(normal)
-{
 }

@@ -12,21 +12,9 @@
 
 #include "../Mixin/Drawable.h"
 #include "../Mixin/Updatable.h"
-#include "../Mixin/HaveFaceColor.h"
+#include "../Mixin/HaveVertex.h"
 #include "../Mixin/Transformable.h"
 
-// Вершина с трёхмерной позицией, нормалью и 2D координатами текстуры.
-struct SVertexP3NT2
-{
-	SVertexP3NT2() = default;
-	SVertexP3NT2(const glm::vec3 & position
-				, const glm::vec2 & texCoord
-				, const glm::vec3 & normal);
-
-	glm::vec3 position;
-	glm::vec2 texCoord;
-	glm::vec3 normal;
-};
 
 namespace// TODO : rewrite this namespace
 {
@@ -39,6 +27,61 @@ namespace// TODO : rewrite this namespace
 		uint16_t vertexIndex3;
 		uint16_t colorIndex;
 	};
+
+	void CalculateTriangleStripIndicies(std::vector<uint32_t> &indicies,
+		unsigned columnCount, unsigned rowCount)
+	{
+		indicies.clear();
+		indicies.reserve((columnCount - 1) * rowCount * 2);
+		// вычисляем индексы вершин.
+		for (unsigned ci = 0; ci < columnCount - 1; ++ci)
+		{
+			if (ci % 2 == 0)
+			{
+				for (unsigned ri = 0; ri < rowCount; ++ri)
+				{
+					unsigned index = ci * rowCount + ri;
+					indicies.push_back(index + rowCount);
+					indicies.push_back(index);
+				}
+			}
+			else
+			{
+				for (unsigned ri = rowCount - 1; ri < rowCount; --ri)
+				{
+					unsigned index = ci * rowCount + ri;
+					indicies.push_back(index);
+					indicies.push_back(index + rowCount);
+				}
+			}
+		}
+	}
+
+	/// Привязывает вершины к состоянию OpenGL,
+	/// затем вызывает 'callback'.
+	template <class T>
+	void DoWithBindedArrays(const std::vector<SVertexP3NT2> &vertices, T && callback)
+	{
+		// Включаем режим vertex array и normal array.
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_NORMAL_ARRAY);
+
+		// Выполняем привязку vertex array и normal array
+		const size_t stride = sizeof(SVertexP3NT2);
+		glNormalPointer(GL_FLOAT, stride, glm::value_ptr(vertices[0].normal));
+		glVertexPointer(3, GL_FLOAT, stride, glm::value_ptr(vertices[0].position));
+		glTexCoordPointer(2, GL_FLOAT, stride, glm::value_ptr(vertices[0].texCoord));
+
+		// Выполняем внешнюю функцию.
+		callback();
+
+		// Выключаем режим vertex array и normal array.
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_NORMAL_ARRAY);
+	}
+
 }
 
 
@@ -53,6 +96,7 @@ public:
 
 class CShape
 	: public IShape
+	, public CHaveVertexes
 {
 public:
 	CShape();
@@ -69,8 +113,6 @@ protected:
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-	std::vector<SVertexP3NT2>		m_vertices;
-	std::vector<uint32_t>			m_indicies;
 
 };
 

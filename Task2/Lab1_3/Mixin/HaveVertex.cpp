@@ -1,88 +1,108 @@
 #include "stdafx.h"
 #include "HaveVertex.h"
 
-CHaveThreeVertex::CHaveThreeVertex()
+
+SVertexP3NT2::SVertexP3NT2(const glm::vec3 & position
+	, const glm::vec2 & texCoord
+	, const glm::vec3 & normal)
+	: position(position)
+	, texCoord(texCoord)
+	, normal(normal)
+{
+}
+
+CHaveVertexes::CHaveVertexes()
 	: IHaveVertex()
-	, m_vertex(3)
+	, m_vertices(3)
 {
 }
 
-void CHaveThreeVertex::SetVertex(uint index, const SVertexP3NT2 & value)
+CHaveVertexes::CHaveVertexes(uint size)
+	: IHaveVertex()
 {
-	CheckIndex(index);
-	m_vertex[index] = value;
+	if (size < 3)
+	{
+		throw std::logic_error("Shape must have more 2 vertex");
+	}
+	m_vertices.resize(size);
 }
 
-
-SVertexP3NT2 CHaveThreeVertex::GetVertex(uint index) const
-{
-	CheckIndex(index);
-	return m_vertex[index];
-}
-
-SVertexP3NT2 * CHaveThreeVertex::GetReferenceToVertex(int index)
+void CHaveVertexes::SetVertex(uint index, const SVertexP3NT2 & value)
 {
 	CheckIndex(index);
-	return &m_vertex[index];
+	m_vertices[index] = value;
 }
 
 
-std::vector<SVertexP3NT2> CHaveThreeVertex::GetVertexes() const
+SVertexP3NT2 CHaveVertexes::GetVertex(uint index) const
+{
+	CheckIndex(index);
+	return m_vertices[index];
+}
+
+SVertexP3NT2 * CHaveVertexes::GetReferenceToVertex(int index)
+{
+	CheckIndex(index);
+	return &m_vertices[index];
+}
+
+
+std::vector<SVertexP3NT2> CHaveVertexes::GetVertexes() const
 {
 	std::vector<SVertexP3NT2> result;
 	for (size_t index = 0; index < 3; ++index)
 	{
-		result[index] = m_vertex[index];
+		result[index] = m_vertices[index];
 	}
 	return result;
 }
 
-void CHaveThreeVertex::SetPosition(uint index, const glm::vec3 & position)
+void CHaveVertexes::SetPosition(uint index, const glm::vec3 & position)
 {
 	CheckIndex(index);
 
-	m_vertex[index].position = position;
+	m_vertices[index].position = position;
 }
 
-glm::vec3 CHaveThreeVertex::GetPosition(uint index) const
+glm::vec3 CHaveVertexes::GetPosition(uint index) const
 {
 	CheckIndex(index);
 
-	return m_vertex[index].position;
+	return m_vertices[index].position;
 }
 
-void CHaveThreeVertex::SetNoraml(uint index, const glm::vec3 & normal)
+void CHaveVertexes::SetNoraml(uint index, const glm::vec3 & normal)
 {
 	CheckIndex(index);
 
-	m_vertex[index].normal = normal;
+	m_vertices[index].normal = normal;
 }
 
-glm::vec3 CHaveThreeVertex::GetNoraml(uint index) const
+glm::vec3 CHaveVertexes::GetNoraml(uint index) const
 {
 	CheckIndex(index);
 
-	return m_vertex[index].normal;
+	return m_vertices[index].normal;
 }
 
-void CHaveThreeVertex::SetTexCoordinate(uint index, const glm::vec2 & texCoordinate)
+void CHaveVertexes::SetTexCoordinate(uint index, const glm::vec2 & texCoordinate)
 {
 	CheckIndex(index);
 
-	m_vertex[index].texCoord = texCoordinate;
+	m_vertices[index].texCoord = texCoordinate;
 }
 
-glm::vec2 CHaveThreeVertex::GetTexCoordinate(uint index) const
+glm::vec2 CHaveVertexes::GetTexCoordinate(uint index) const
 {
 	CheckIndex(index);
 
-	return m_vertex[index].texCoord;
+	return m_vertices[index].texCoord;
 }
 
 
-void CHaveThreeVertex::CheckIndex(uint index) const
+void CHaveVertexes::CheckIndex(uint index) const
 {
-	if (!IsBetween(index, 0u, uint(m_vertex.size())))
+	if (!IsBetween(index, 0u, uint(m_vertices.size())))
 	{
 		throw std::runtime_error("SVertexP3NT2 have the index not exist");
 	}

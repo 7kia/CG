@@ -27,8 +27,6 @@
 #include <memory>
 #include <vector>
 
-using uint = unsigned int;
-
 // TODO : transfer to other place
 template <typename T>
 bool IsBetween(const T& value, const T& lowerBound, const T& upperBound)

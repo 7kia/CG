@@ -25,7 +25,6 @@ public:
 	//--------------------------------------------
 	// CShape
 	void Update(float) final {}
-	void Draw()const final;	
 private:
 	void Tesselate(unsigned slices, unsigned stacks);
 	//--------------------------------------------

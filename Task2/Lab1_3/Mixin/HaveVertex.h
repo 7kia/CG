@@ -1,9 +1,21 @@
 #pragma once
 
-#include "../Shape/Shape.h"
 #include <vector>
 
 typedef unsigned int uint;
+
+// Вершина с трёхмерной позицией, нормалью и 2D координатами текстуры.
+struct SVertexP3NT2
+{
+	SVertexP3NT2() = default;
+	SVertexP3NT2(const glm::vec3 & position
+		, const glm::vec2 & texCoord
+		, const glm::vec3 & normal);
+
+	glm::vec3 position;
+	glm::vec2 texCoord;
+	glm::vec3 normal;
+};
 
 class IHaveVertex
 {
@@ -30,10 +42,11 @@ public:
 	virtual void					CheckIndex(uint index) const = 0;;// TODO : see need transfer to other place												  
 };
 
-class CHaveThreeVertex : public IHaveVertex
+class CHaveVertexes : public IHaveVertex
 {
 public:
-	CHaveThreeVertex();// TODO: delete parametr
+	CHaveVertexes();// TODO: delete parametr
+	CHaveVertexes(uint size);
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:
@@ -58,7 +71,9 @@ public:
 	void							CheckIndex(uint index) const override final;;// TODO : see need transfer to other place												  
 	// Data
 protected:
-	std::vector<SVertexP3NT2>				m_vertex;
+	std::vector<SVertexP3NT2>		m_vertices;
+	std::vector<uint32_t>			m_indicies;
+
 };
 
 class CHaveReferenceVertex : public IHaveVertex
