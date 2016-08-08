@@ -183,9 +183,12 @@
     <ClInclude Include="Mixin\Material\HaveSpecular.h" />
     <ClInclude Include="Mixin\Transformable.h" />
     <ClInclude Include="Mixin\Updatable.h" />
+    <ClInclude Include="Shape\CompositeShape.h" />
+    <ClInclude Include="Shape\Rectangle.h" />
     <ClInclude Include="Shape\Shape.h" />
     <ClInclude Include="Shape\Shapes.h" />
     <ClInclude Include="Shape\Sphere.h" />
+    <ClInclude Include="Shape\Triangle.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Window.h" />
@@ -218,8 +221,11 @@
     <ClCompile Include="Mixin\Material\HaveShininess.cpp" />
     <ClCompile Include="Mixin\Material\HaveSpecular.cpp" />
     <ClCompile Include="Mixin\Transformable.cpp" />
+    <ClCompile Include="Shape\CompositeShape.cpp" />
+    <ClCompile Include="Shape\Rectangle.cpp" />
     <ClCompile Include="Shape\Shape.cpp" />
     <ClCompile Include="Shape\Sphere.cpp" />
+    <ClCompile Include="Shape\Triangle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="World\Player.cpp" />

@@ -30,3 +30,12 @@ void CShape::Draw() const
 	glPopMatrix();
 
 }
+
+SVertexP3NT2::SVertexP3NT2(const glm::vec3 & position
+							, const glm::vec2 & texCoord
+							, const glm::vec3 & normal)
+	: position(position)
+	, texCoord(texCoord)
+	, normal(normal)
+{
+}

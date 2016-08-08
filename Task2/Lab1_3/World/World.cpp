@@ -8,8 +8,8 @@ CWorld::CWorld()
 	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)//m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
 	, m_sunlight(GL_LIGHT0)
 {
-	m_material.SetAmbient(WorldSpace::YELLOW_RGBA);
-	m_material.SetDiffuse(WorldSpace::YELLOW_RGBA);
+	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
+	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);
 	m_material.SetShininess(WorldSpace::MATERIAL_SHININESS);
 
@@ -75,7 +75,7 @@ void CWorld::CreateScene()
 
 		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
 		pTexture->SetChild(std::move(pAnimate));
-		pTexture->SetTexture(WorldSpace::EARTH_TEX_PATH);
+		pTexture->SetTexture(WorldSpace::BREAK_TEXTURE_PATH);
 
 		m_opaqueBodies.emplace_back(std::move(pTexture));
 	}
@@ -85,6 +85,16 @@ void CWorld::CreateScene()
 		auto pTransform = std::make_unique<CTransformShapeDecorator>();
 		pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 0.f, 0.f }));
 		pTransform->SetChild(std::move(pSphere));
+
+		m_opaqueBodies.emplace_back(std::move(pTransform));
+
+	}
+	{
+		IBodyUniquePtr pRectangle = std::make_unique<CRectangle>();
+
+		auto pTransform = std::make_unique<CTransformShapeDecorator>();
+		pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 1.f, 0.f }));
+		pTransform->SetChild(std::move(pRectangle));
 
 		m_opaqueBodies.emplace_back(std::move(pTransform));
 

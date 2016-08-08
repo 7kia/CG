@@ -25,7 +25,7 @@ namespace WorldSpace
 	const float CAMERA_INITIAL_ROTATION = 0;
 	const float CAMERA_INITIAL_DISTANCE = 5.f;
 
-	const char EARTH_TEX_PATH[] = "res/daily_earth.bmp";
+	const char BREAK_TEXTURE_PATH[] = "Resources/brick.bmp";
 
 }
 

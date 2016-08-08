@@ -27,6 +27,6 @@ public:
 	void Update(float) final {}
 	void Draw()const final;	
 private:
-	void Tesselate(unsigned slices, unsigned stacks) override final;
+	void Tesselate(unsigned slices, unsigned stacks);
 	//--------------------------------------------
 };

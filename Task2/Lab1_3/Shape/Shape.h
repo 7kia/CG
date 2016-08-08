@@ -18,6 +18,11 @@
 // Вершина с трёхмерной позицией, нормалью и 2D координатами текстуры.
 struct SVertexP3NT2
 {
+	SVertexP3NT2() = default;
+	SVertexP3NT2(const glm::vec3 & position
+				, const glm::vec2 & texCoord
+				, const glm::vec3 & normal);
+
 	glm::vec3 position;
 	glm::vec2 texCoord;
 	glm::vec3 normal;
@@ -60,7 +65,6 @@ public:
 	//--------------------------------------------
 protected:
 	virtual void					DrawOutputFaces() const {};
-	virtual void					Tesselate(unsigned slices, unsigned stacks) = 0;// TODO : see need the method there
 
 //////////////////////////////////////////////////////////////////////
 // Data
