@@ -35,7 +35,7 @@ CRectangle::CRectangle()
 
 	SetVertex(0u, SVertexP3NT2(glm::vec3(-1.f, 1.f, 0.f), glm::vec2(0.f, 0.f), glm::vec3(-1.f, 1.f, 0.f)));
 	SetVertex(1u, SVertexP3NT2(glm::vec3(1.f, 1.f, 0.f), glm::vec2(1.f, 0.f), glm::vec3(1.f, 1.f, 0.f)));
-	SetVertex(2u, SVertexP3NT2(glm::vec3(-1.f, -1.f, 0.f), glm::vec2(0.f, 1.f), glm::vec3(-1.f, -1.f, 0.f)));
+	SetVertex(2u, SVertexP3NT2(glm::vec3(1.f, -1.f, 0.f), glm::vec2(1.f, 1.f), glm::vec3(1.f, -1.f, 0.f)));
 	SetVertex(3u, SVertexP3NT2(glm::vec3(-1.f, -1.f, 0.f), glm::vec2(0.f, 1.f), glm::vec3(-1.f, -1.f, 0.f)));
 }
 
@@ -56,12 +56,12 @@ void CRectangle::UpdateReference()
 
 	AddReferenceVertex(0u, pTriangle->GetReferenceToVertex(0u));
 	AddReferenceVertex(1u, pTriangle->GetReferenceToVertex(1u));
-	AddReferenceVertex(2u, pTriangle->GetReferenceToVertex(2u));
+	AddReferenceVertex(3u, pTriangle->GetReferenceToVertex(2u));
 
 	pTriangle = dynamic_cast<CTriangle*>(m_shapes.back().get());
 
-	AddReferenceVertex(1u, pTriangle->GetReferenceToVertex(0u));
-	AddReferenceVertex(3u, pTriangle->GetReferenceToVertex(1u));
-	AddReferenceVertex(2u, pTriangle->GetReferenceToVertex(2u));
+	AddReferenceVertex(1u, pTriangle->GetReferenceToVertex(0u));//2
+	AddReferenceVertex(2u, pTriangle->GetReferenceToVertex(1u));//1
+	AddReferenceVertex(3u, pTriangle->GetReferenceToVertex(2u));//0
 
 }
