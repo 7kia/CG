@@ -66,8 +66,6 @@ private:
 	CPlayer							m_player;
 
 	// Player can change camera
-	CWorldCamera					m_worldCamera;
-	CPlayerCamera					m_playerCamera;
 	bool							m_changePlayer = true;
 	CPhongModelMaterial m_material;// TODO : transfer
 	CDirectedLightSource m_sunlight;

@@ -6,16 +6,8 @@ CWorld::CWorld()
 	, IInputEventAcceptor()
 	, IUpdatable()
 	, m_sunlight(GL_LIGHT0)
-	, m_worldCamera(0.f, 2.5f)
+	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)
 {
-	m_playerCamera.SetPosition(glm::vec3(0.f, 0.5f, 1.f));
-	m_playerCamera.SetDirection(PlayerCameraSpace::PLAYER_DIRECTION);
-
-	m_player.SetPosition(m_playerCamera.GetPosition());
-	m_player.SetDirection(PlayerCameraSpace::PLAYER_DIRECTION);
-	//m_player.SetCamera(&m_worldCamera);
-	m_player.SetCamera(&m_playerCamera);
-
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);

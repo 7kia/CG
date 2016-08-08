@@ -67,6 +67,13 @@ void CPlayer::CController::SetFunctionList()
 	SetSkill(IdCommands::TurnToRight, [&]() { m_master->TurnRight(); });
 	SetKeysSkill(IdCommands::TurnToRight, { SDLK_RIGHT, SDLK_d } );
 
+	SetSkill(IdCommands::ChangePlayerCamera, [&]() { m_master->ChangePlayerCamera(); });
+	SetKeysSkill(IdCommands::ChangePlayerCamera, { SDLK_v });
+
+	SetSkill(IdCommands::ChangeWorldCamera, [&]() { m_master->ChangeWorldCamera(); });
+	SetKeysSkill(IdCommands::ChangeWorldCamera, { SDLK_b });
+
+
 }
 
 void CPlayer::CController::CheckListCommands() const

@@ -5,13 +5,14 @@
 #include "../Mixin/HaveRotationSpeed.h"
 #include "../Mixin/HaveDirection.h"
 
-#include "..\Camera\PlayerCamera.h"
+#include "..\Camera\Cameras.h"
 #include "..\DispatchEvent.h"
 #include <map>
 #include <memory>
 #include <string>
 #include <functional>
 #include <vector>
+#include <array>
 
 namespace PlayerSpace
 {
@@ -36,8 +37,7 @@ class CPlayer final
 public:
 	CPlayer();
 	explicit CPlayer(const glm::vec3 & position
-					, const glm::vec3 & direction
-					, CAbcstartCamera* camera);
+					, const glm::vec3 & direction);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -53,31 +53,31 @@ public:
 	};
 
 	// TODO : see might the enums need transfer to heirs
-	enum class TurnTo
+	enum class IdCameras
 	{
-		Left = 0
-		, Right
+		Player = 0
+		, World
 	};
+
 	// TODO : transfer four low methods to skill-function
 	void TurnLeft();
 	void TurnRight();
 
-	enum class GoTo
-	{
-		Forward = 0
-		, Back
-	};
-
 	void GoForward();
 	void GoBack();
+
+	void ChangePlayerCamera();
+	void ChangeWorldCamera();
+
 	//--------------------------------------------
 	// IUpdatable
 	void Update(float deltaTime) override final;
 	//--------------------------------------------
-	void							SetCamera(CAbcstartCamera * camera);
+	void							SetCamera(CPlayer::IdCameras id);
 	CAbcstartCamera*				GetCamera();// TODO : see need there const
 
 private:
+	void							SetCamera();
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
@@ -85,7 +85,9 @@ public:
 	std::unique_ptr<CController>	m_pController;// TODO : see need pImpl and unique_ptr
 
 private:
-	CAbcstartCamera*				m_camera = nullptr;
+	IdCameras						m_idCamera = IdCameras::Player;
+	// TODO : see might can rewrite better
+	std::array<std::unique_ptr<CAbcstartCamera>, 2>	m_cameras;
 };
 
 class CPlayer::CController
@@ -102,6 +104,8 @@ public:
 		, TurnToRight
 		, GoToForward
 		, GoToBack
+		, ChangePlayerCamera
+		, ChangeWorldCamera
 		, AmountCommands
 	};
 
