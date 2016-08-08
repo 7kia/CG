@@ -12,22 +12,6 @@
 namespace CameraSpace
 {
 	// TODO : see need transfer
-	static bool ShouldTrackKeyPressed(const SDL_Keysym &key)
-	{
-		switch (key.sym)
-		{
-		case SDLK_LEFT:
-		case SDLK_RIGHT:
-		case SDLK_UP:
-		case SDLK_DOWN:
-		case SDLK_w:
-		case SDLK_a:
-		case SDLK_s:
-		case SDLK_d:
-			return true;
-		}
-		return false;
-	}
 
 }
 

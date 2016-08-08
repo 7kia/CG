@@ -3,6 +3,7 @@
 
 CRectangle::CRectangle()
 	: ÑCompositeShape()
+	, CHaveReferenceVertex(4)
 {
 	const glm::vec3 normal = { 0.f, 0.f, 1.f };
 
@@ -25,10 +26,32 @@ CRectangle::CRectangle()
 
 		m_shapes.emplace_back(std::move(SecondTriangle));
 	}
+	UpdateReference();
 }
 
 
 void CRectangle::Update(float deltaTime)
 {
 	(void)deltaTime;
+}
+
+void CRectangle::UpdateReference()
+{
+	// Firts triangle
+	const size_t size = m_pVertex.size();
+	m_pVertex.clear();
+	m_pVertex.resize(size);
+
+	CTriangle* pTriangle = dynamic_cast<CTriangle*>(m_shapes.front().get());
+
+	AddReferenceVertex(0u, pTriangle->GetReferenceToVertex(0u));
+	AddReferenceVertex(1u, pTriangle->GetReferenceToVertex(1u));
+	AddReferenceVertex(2u, pTriangle->GetReferenceToVertex(2u));
+
+	pTriangle = dynamic_cast<CTriangle*>(m_shapes.back().get());
+
+	AddReferenceVertex(1u, pTriangle->GetReferenceToVertex(0u));
+	AddReferenceVertex(3u, pTriangle->GetReferenceToVertex(1u));
+	AddReferenceVertex(2u, pTriangle->GetReferenceToVertex(2u));
+
 }

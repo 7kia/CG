@@ -15,10 +15,10 @@ public:
 public:
 	//--------------------------------------------
 	// IShape
-	void					Draw() const override final;
+	void					Draw() const override;
 	//--------------------------------------------
 private:
-	void					CheckIndex(size_t index) const;
+	void					CheckVertexIndex(size_t index) const;
 
 //////////////////////////////////////////////////////////////////////
 // Data

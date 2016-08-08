@@ -156,6 +156,9 @@
     <ClInclude Include="Shape\Triangle.h">
       <Filter>Shape</Filter>
     </ClInclude>
+    <ClInclude Include="World\Wall.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -262,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="Shape\Triangle.cpp">
       <Filter>Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Wall.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

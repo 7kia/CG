@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <glm\vec2.hpp>
+#include <glm\vec3.hpp>
 
 typedef unsigned int uint;
 
@@ -39,7 +41,7 @@ public:
 	virtual glm::vec2						GetTexCoordinate(uint index) const = 0;
 
 
-	virtual void					CheckIndex(uint index) const = 0;;// TODO : see need transfer to other place												  
+	virtual void							CheckVertexIndex(uint index) const = 0;;// TODO : see need transfer to other place												  
 };
 
 class CHaveVertexes : public IHaveVertex
@@ -57,18 +59,18 @@ public:
 	std::vector<SVertexP3NT2>		GetVertexes() const override final;//
 
 
-	void							SetPosition(uint index, const glm::vec3 & position);
-	glm::vec3						GetPosition(uint index) const;
+	void							SetPosition(uint index, const glm::vec3 & position) override final;
+	glm::vec3						GetPosition(uint index) const override final;
 
-	void							SetNoraml(uint index, const glm::vec3 & normal);
-	glm::vec3						GetNoraml(uint index) const;
+	void							SetNoraml(uint index, const glm::vec3 & normal) override final;
+	glm::vec3						GetNoraml(uint index) const override final;
 
-	void							SetTexCoordinate(uint index, const glm::vec2 & texCoordinate);
-	glm::vec2						GetTexCoordinate(uint index) const;
+	void							SetTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
+	glm::vec2						GetTexCoordinate(uint index) const override final;
 
 
 
-	void							CheckIndex(uint index) const override final;;// TODO : see need transfer to other place												  
+	void							CheckVertexIndex(uint index) const override final;// TODO : see need transfer to other place												  
 	// Data
 protected:
 	std::vector<SVertexP3NT2>		m_vertices;
@@ -85,11 +87,21 @@ public:
 public:
 	void										SetVertex(uint index, const SVertexP3NT2 & value) override;
 	SVertexP3NT2								GetVertex(uint index) const override;
-	SVertexP3NT2*								GetReferenceToVertex(int index) override final;;
+	SVertexP3NT2*								GetReferenceToVertex(int index) override final;
 
 	std::vector<SVertexP3NT2>					GetVertexes() const override final;//
 
-	void										CheckIndex(uint index) const override final;// TODO : see need transfer to other place
+	void										SetPosition(uint index, const glm::vec3 & position) override final;
+	glm::vec3									GetPosition(uint index) const override final;
+
+	void										SetNoraml(uint index, const glm::vec3 & normal) override final;
+	glm::vec3									GetNoraml(uint index) const override final;
+
+	void										SetTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
+	glm::vec2									GetTexCoordinate(uint index) const override final;
+
+
+	void										CheckVertexIndex(uint index) const override final;// TODO : see need transfer to other place
 protected:
 	void										AddReferenceVertex(uint index, SVertexP3NT2 * value);
 	virtual void								UpdateReference() {};// TODO : = 0;

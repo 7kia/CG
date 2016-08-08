@@ -14,7 +14,7 @@ void ÑCompositeShape::Draw() const
 	}
 }
 
-void ÑCompositeShape::CheckIndex(size_t index) const
+void ÑCompositeShape::CheckVertexIndex(size_t index) const
 {
 	if (!IsBetween(index, 0llu, m_shapes.size()))
 	{
