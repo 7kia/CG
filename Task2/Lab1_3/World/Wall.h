@@ -3,6 +3,7 @@
 #include "../Shape/Rectangle.h"
 #include <array>
 
+
 class CWall final
 	: public ÑCompositeShape
 {

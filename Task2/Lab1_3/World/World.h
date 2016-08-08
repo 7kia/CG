@@ -11,6 +11,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "Player.h"
+#include "Wall.h"
 
 #include <vector>
 
@@ -63,7 +64,8 @@ private:
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
 	CPlayer							m_player;
-
+	CPlayerCamera					m_playerCamera;
+	CWorldCamera					m_worldCamera;
 	CPhongModelMaterial m_material;// TODO : transfer
 	CDirectedLightSource m_sunlight;
 

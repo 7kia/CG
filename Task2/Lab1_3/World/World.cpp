@@ -68,7 +68,7 @@ CAbcstartCamera * CWorld::GetPlayerCamera()
 void CWorld::CreateScene()
 {
 	{
-		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
+		IBodyUniquePtr pSphere = std::make_unique<CWall>();
 
 		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
 		pAnimate->SetChild(std::move(pSphere));
@@ -89,21 +89,5 @@ void CWorld::CreateScene()
 		m_opaqueBodies.emplace_back(std::move(pTransform));
 
 	}
-	{
-		IBodyUniquePtr pRectangle = std::make_unique<CRectangle>();
 
-		auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		//pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 1.f, 2.f }));
-		//pTransform->SetTransform(glm::rotate(glm::translate(glm::mat4(), { 1.5f, 1.f, 2.f }), 90.f, glm::vec3(0.f, 1.f, 0.f)) );
-
-		pTransform->SetChild(std::move(pRectangle));
-
-		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
-		pTexture->SetChild(std::move(pTransform));
-		pTexture->SetTexture(WorldSpace::BREAK_TEXTURE_PATH);
-
-		m_opaqueBodies.emplace_back(std::move(pTexture));
-		//m_opaqueBodies.emplace_back(std::move(pTransform));
-
-	}
 }
