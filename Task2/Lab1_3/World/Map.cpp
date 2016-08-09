@@ -144,33 +144,59 @@ void CMap::AddWall(unsigned x, unsigned y, int z)
 	{
 		for (int yShift = -1; yShift <= 1; ++yShift)// this and high for process around wall
 		{
-			if (abs(xShift) != abs(yShift))// not process itself
+			for (int zShift = -1; zShift <= 1; ++zShift)
 			{
-				// 
-				if ( ((int(x) + xShift) >= 0) && ((int(y) + yShift) >= 0) 
-					&& ((int(x) + xShift) < m_map[0].size()) && ((int(y) + yShift) < m_map[0].size()))
+
+				if (abs(xShift) != abs(yShift))// not process itself
 				{
-					if (m_map[z + 1][y + yShift][x + xShift] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
+					// 
+					if (((int(x) + xShift) >= 0) && ((int(y) + yShift) >= 0)
+						//&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size()) )
+						&& ((int(x) + xShift) < m_map[0].size()) && ((int(y) + yShift) < m_map[0].size()))
 					{
-						if ((xShift == 0) && (yShift == 1))
+						if (m_map[z + 1][y + yShift][x + xShift] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 						{
-							pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), false);
+							if ((xShift == 0) && (yShift == 1) && ((int(z + 1) + zShift) == 0) )
+							{
+								pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), false);
+							}
+							else if ((xShift == 1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
+							{
+								pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), false);
+							}
+							else if ((xShift == 0) && (yShift == -1) && ((int(z + 1) + zShift) == 0))
+							{
+								pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), false);
+							}
+							else if ((xShift == -1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
+							{
+								pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), false);
+							}
+
 						}
-						else if ((xShift == 1) && (yShift == 0))
+					}
+
+
+				}
+				else if ((xShift == 0) && (yShift == 0))
+				{
+					if ((x >= 0) && (y >= 0)
+						&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size()) )
+						&& (x < m_map[0].size()) && (y < m_map[0].size()) )
+					{
+						if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 						{
-							pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), false);
-						}
-						else if ((xShift == 0) && (yShift == -1))
-						{
-							pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), false);
-						}
-						else if ((xShift == -1) && (yShift == 0))
-						{
-							pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), false);
+							if (zShift == 1)
+							{
+								pWall->SetVisible(unsigned(WallSpace::CubeFace::Top), false);
+							}
+							else if (zShift == -1)
+							{
+								pWall->SetVisible(unsigned(WallSpace::CubeFace::Bottom), false);
+							}
 						}
 					}
 				}
-				
 
 			}
 		}
