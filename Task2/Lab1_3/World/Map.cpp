@@ -42,6 +42,8 @@ void CMap::ReadMap(ifstream & file)
 	AddLowLevel(length, width);
 	AddMiddleLevel(length, width);
 	AddTopLevel(length, width);
+
+	ComputeVisibleEdge(length, width);
 }
 
 void CMap::ProcessRow(const std::string & row, unsigned widthCount, int level)
@@ -84,7 +86,6 @@ void CMap::AddTopLevel(unsigned length, unsigned width)
 		{
 			row += RecognizeSymbols[unsigned(IdSymbol::Space)];
 		}
-		ProcessRow(row, y, 1);
 		topLevel.push_back(row);
 	}
 
@@ -109,7 +110,6 @@ void CMap::AddMiddleLevel(unsigned length, unsigned width)
 			throw std::runtime_error("Length row more expected");
 		}
 
-		ProcessRow(inputString, widthCount++, 0);
 		middleLevel.push_back(inputString);
 	}
 	m_map.push_back(middleLevel);
@@ -126,7 +126,6 @@ void CMap::AddLowLevel(unsigned length, unsigned width)
 		{
 			row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
 		}
-		ProcessRow(row, y, -1);
 		lowLevel.push_back(row);
 	}
 
@@ -139,9 +138,62 @@ void CMap::AddWall(unsigned x, unsigned y, int z)
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
 	auto pWall = std::make_unique<CWall>();
+
+
+	for (int xShift = -1; xShift <= 1; ++xShift)
+	{
+		for (int yShift = -1; yShift <= 1; ++yShift)// this and high for process around wall
+		{
+			if (abs(xShift) != abs(yShift))// not process itself
+			{
+				// 
+				if ( ((int(x) + xShift) >= 0) && ((int(y) + yShift) >= 0) 
+					&& ((int(x) + xShift) < m_map[0].size()) && ((int(y) + yShift) < m_map[0].size()))
+				{
+					if (m_map[z + 1][y + yShift][x + xShift] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
+					{
+						if ((xShift == 0) && (yShift == 1))
+						{
+							pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), false);
+						}
+						else if ((xShift == 1) && (yShift == 0))
+						{
+							pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), false);
+						}
+						else if ((xShift == 0) && (yShift == -1))
+						{
+							pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), false);
+						}
+						else if ((xShift == -1) && (yShift == 0))
+						{
+							pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), false);
+						}
+					}
+				}
+				
+
+			}
+		}
+	}
+	
+
 	auto pTransform = std::make_unique<CTransformShapeDecorator>();
 	pTransform->SetChild(std::move(pWall));
 	pTransform->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
 
 	m_walls.emplace_back(std::move(pTransform));
+}
+
+void CMap::ComputeVisibleEdge(unsigned length, unsigned width)
+{
+	for (unsigned height = 0; height < 3; ++height)
+	{
+		string* row = nullptr;
+		for (unsigned y = 0; y < width; ++y)
+		{
+			row = &m_map[height][y];
+
+			ProcessRow(*row, y, height - 1);
+		}
+	}
 }

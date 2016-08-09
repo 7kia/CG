@@ -5,6 +5,50 @@
 
 namespace WallSpace
 {
+	enum class CubeFace
+	{
+		Front = 0,
+		Back,
+		Top,
+		Bottom,
+		Left,
+		Right,
+
+		NumFaces
+	};
+
+	struct SRectangleFace
+	{
+		uint16_t vertexIndex1;
+		uint16_t vertexIndex2;
+		uint16_t vertexIndex3;
+		uint16_t vertexIndex4;
+		uint16_t colorIndex;
+	};
+
+
+	const SRectangleFace CUBE_FACES[] = {
+		{ 5, 4, 7, 6, static_cast<uint16_t>(CubeFace::Front) },
+		{ 0, 1, 2, 3, static_cast<uint16_t>(CubeFace::Back) },
+		{ 1, 0, 4, 5, static_cast<uint16_t>(CubeFace::Top) },
+		{ 3, 2, 6, 7, static_cast<uint16_t>(CubeFace::Bottom) },
+		{ 4, 0, 3, 7, static_cast<uint16_t>(CubeFace::Left) },
+		{ 1, 5, 6, 2, static_cast<uint16_t>(CubeFace::Right) },
+	};
+
+	// ¬ершины куба служат материалом дл€ формировани€ треугольников,
+	// составл€ющих грани куба.
+	const Vertex CUBE_VERTICIES[] = {
+		{ -1, +1, -1 },
+		{ +1, +1, -1 },
+		{ +1, -1, -1 },
+		{ -1, -1, -1 },
+		{ -1, +1, +1 },
+		{ +1, +1, +1 },
+		{ +1, -1, +1 },
+		{ -1, -1, +1 },
+	};
+
 	static const float SIZE = 2.f;
 }
 

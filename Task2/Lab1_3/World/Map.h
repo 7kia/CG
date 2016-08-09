@@ -36,6 +36,8 @@ private:
 	void	AddMiddleLevel(unsigned length, unsigned width);
 	void	AddLowLevel(unsigned length, unsigned width);
 	void	AddWall(unsigned x, unsigned y, int z);
+
+	void	ComputeVisibleEdge(unsigned length, unsigned width);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
