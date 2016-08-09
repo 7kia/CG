@@ -170,8 +170,11 @@
     <ClInclude Include="Material\PhongMaterial.h" />
     <ClInclude Include="Material\Texture2D.h" />
     <ClInclude Include="Mixin\Drawable.h" />
+    <ClInclude Include="Mixin\FileProcess.h" />
     <ClInclude Include="Mixin\HaveDirection.h" />
     <ClInclude Include="Mixin\HaveFaceColor.h" />
+    <ClInclude Include="Mixin\HaveFileForReading.h" />
+    <ClInclude Include="Mixin\HaveFileForWriting.h" />
     <ClInclude Include="Mixin\HaveLinearVelocity.h" />
     <ClInclude Include="Mixin\HavePosition.h" />
     <ClInclude Include="Mixin\HaveRotationSpeed.h" />
@@ -192,6 +195,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="World\Map.h" />
     <ClInclude Include="World\Player.h" />
     <ClInclude Include="World\Wall.h" />
     <ClInclude Include="World\World.h" />
@@ -212,6 +216,8 @@
     <ClCompile Include="Material\Texture2D.cpp" />
     <ClCompile Include="Mixin\HaveDirection.cpp" />
     <ClCompile Include="Mixin\HaveFaceColor.cpp" />
+    <ClCompile Include="Mixin\HaveFileForReading.cpp" />
+    <ClCompile Include="Mixin\HaveFileForWriting.cpp" />
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp" />
     <ClCompile Include="Mixin\HavePosition.cpp" />
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp" />
@@ -229,6 +235,7 @@
     <ClCompile Include="Shape\Triangle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World\Map.cpp" />
     <ClCompile Include="World\Player.cpp" />
     <ClCompile Include="World\PlayerController.cpp" />
     <ClCompile Include="World\Wall.cpp" />
