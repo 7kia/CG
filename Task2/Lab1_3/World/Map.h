@@ -35,7 +35,15 @@ private:
 	void	AddTopLevel(unsigned length, unsigned width);
 	void	AddMiddleLevel(unsigned length, unsigned width);
 	void	AddLowLevel(unsigned length, unsigned width);
+
 	void	AddWall(unsigned x, unsigned y, int z);
+	void	ProcessLateralEdge(CWall* pWall
+								, const glm::vec3 & position
+								, const glm::vec3 & shifts);
+	void	ProcessVerticalEdge(CWall* pWall
+								, const glm::vec3 & position
+								, int zShift);
+
 
 	void	ComputeVisibleEdge(unsigned length, unsigned width);
 //////////////////////////////////////////////////////////////////////

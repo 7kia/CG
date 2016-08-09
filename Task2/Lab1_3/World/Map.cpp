@@ -149,53 +149,11 @@ void CMap::AddWall(unsigned x, unsigned y, int z)
 
 				if (abs(xShift) != abs(yShift))// not process itself
 				{
-					// 
-					if (((int(x) + xShift) >= 0) && ((int(y) + yShift) >= 0)
-						//&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size()) )
-						&& ((int(x) + xShift) < m_map[0].size()) && ((int(y) + yShift) < m_map[0].size()))
-					{
-						if (m_map[z + 1][y + yShift][x + xShift] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
-						{
-							if ((xShift == 0) && (yShift == 1) && ((int(z + 1) + zShift) == 0) )
-							{
-								pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), false);
-							}
-							else if ((xShift == 1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
-							{
-								pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), false);
-							}
-							else if ((xShift == 0) && (yShift == -1) && ((int(z + 1) + zShift) == 0))
-							{
-								pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), false);
-							}
-							else if ((xShift == -1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
-							{
-								pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), false);
-							}
-
-						}
-					}
-
-
+					ProcessLateralEdge(pWall.get(), glm::vec3(x, y, z), glm::vec3(xShift, yShift, zShift));
 				}
 				else if ((xShift == 0) && (yShift == 0))
 				{
-					if ((x >= 0) && (y >= 0)
-						&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size()) )
-						&& (x < m_map[0].size()) && (y < m_map[0].size()) )
-					{
-						if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
-						{
-							if (zShift == 1)
-							{
-								pWall->SetVisible(unsigned(WallSpace::CubeFace::Top), false);
-							}
-							else if (zShift == -1)
-							{
-								pWall->SetVisible(unsigned(WallSpace::CubeFace::Bottom), false);
-							}
-						}
-					}
+					ProcessVerticalEdge(pWall.get(), glm::vec3(x, y, z), zShift);
 				}
 
 			}
@@ -208,6 +166,69 @@ void CMap::AddWall(unsigned x, unsigned y, int z)
 	pTransform->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
 
 	m_walls.emplace_back(std::move(pTransform));
+}
+
+void CMap::ProcessLateralEdge(CWall* pWall
+							, const glm::vec3 & position
+							, const glm::vec3 & shifts)
+{
+	unsigned x = unsigned(position.x);
+	unsigned y = unsigned(position.y);
+	unsigned z = unsigned(position.z);
+	int xShift = int(shifts.x);
+	int yShift = int(shifts.y);
+	int zShift = int(shifts.z);
+
+	if (((int(x) + xShift) >= 0) && ((int(y) + yShift) >= 0)
+		&& ((int(x) + xShift) < m_map[0].size()) && ((int(y) + yShift) < m_map[0].size()))
+	{
+		if (m_map[z + 1][y + yShift][x + xShift] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
+		{
+			if ((xShift == 0) && (yShift == 1) && ((int(z + 1) + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), false);
+			}
+			else if ((xShift == 1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), false);
+			}
+			else if ((xShift == 0) && (yShift == -1) && ((int(z + 1) + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), false);
+			}
+			else if ((xShift == -1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), false);
+			}
+
+		}
+	}
+
+}
+
+void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zShift)
+{
+	unsigned x = unsigned(position.x);
+	unsigned y = unsigned(position.y);
+	unsigned z = unsigned(position.z);
+
+	if ((x >= 0) && (y >= 0)
+		&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size()))
+		&& (x < m_map[0].size()) && (y < m_map[0].size()))
+	{
+		if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
+		{
+			if (zShift == 1)
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Top), false);
+			}
+			else if (zShift == -1)
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Bottom), false);
+			}
+		}
+	}
+
 }
 
 void CMap::ComputeVisibleEdge(unsigned length, unsigned width)
