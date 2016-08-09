@@ -288,7 +288,7 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="World\Map.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

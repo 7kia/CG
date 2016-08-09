@@ -12,6 +12,7 @@
 
 #include "Player.h"
 #include "Wall.h"
+#include "Map.h"
 
 #include <vector>
 
@@ -64,7 +65,7 @@ private:
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
 	CPlayer							m_player;
-
+	CMap							m_map;
 	// Player can change camera
 	bool							m_changePlayer = true;
 	CPhongModelMaterial m_material;// TODO : transfer

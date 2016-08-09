@@ -3,6 +3,10 @@
 #include "../Shape/Rectangle.h"
 #include <array>
 
+namespace WallSpace
+{
+	static const float SIZE = 2.f;
+}
 
 class CWall final
 	: public ÑCompositeShape

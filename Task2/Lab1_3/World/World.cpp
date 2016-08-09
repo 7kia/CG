@@ -7,6 +7,7 @@ CWorld::CWorld()
 	, IUpdatable()
 	, m_sunlight(GL_LIGHT0)
 	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)
+	, m_map("map.txt")
 {
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
@@ -45,6 +46,8 @@ void CWorld::Draw() const
 		pBody->Draw();
 	}
 	//disableBlending();
+
+	m_map.Draw();
 }
 
 void CWorld::Update(float deltaTime)
@@ -58,6 +61,8 @@ void CWorld::Update(float deltaTime)
 	{
 		pBody->Update(deltaTime);
 	}
+
+	m_map.Update(deltaTime);
 }
 
 CAbcstartCamera * CWorld::GetCamera()
