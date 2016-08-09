@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="TestClasses">
+      <UniqueIdentifier>{6181c25c-6129-4694-ba8a-f4cdf3d38b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestClasses\World">
+      <UniqueIdentifier>{6816dc94-5716-48ca-bc77-68558be8d7a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestClasses\Mixin">
+      <UniqueIdentifier>{6539ae7f-6441-469d-9519-58f7bee8affd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapTests.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lab1_3\World\Map.h">
+      <Filter>TestClasses\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lab1_3\Mixin\HaveFileForReading.h">
+      <Filter>TestClasses\Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lab1_3\Mixin\FileProcess.h">
+      <Filter>TestClasses\Mixin</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="CMapTests.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lab1_3\World\Map.cpp">
+      <Filter>TestClasses\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lab1_3\Mixin\HaveFileForReading.cpp">
+      <Filter>TestClasses\Mixin</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
