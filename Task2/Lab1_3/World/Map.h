@@ -52,6 +52,8 @@ private:
 								, const glm::vec3 & position
 								, int zShift);
 
+	static unsigned	GetIndexWallType(int heigth);
+
 
 	void	ComputeVisibleEdge(unsigned length, unsigned width);
 //////////////////////////////////////////////////////////////////////

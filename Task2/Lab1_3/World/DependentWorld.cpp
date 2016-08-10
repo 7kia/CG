@@ -1,13 +1,27 @@
 #include "stdafx.h"
 #include "World.h"
 
+
+unsigned CMap::GetIndexWallType(int heigth)
+{
+	switch (heigth)
+	{
+	case -1: case 1:
+		return unsigned(CHaveWallTypes::IdWallType::Plank);
+	case 0:
+		return unsigned(CHaveWallTypes::IdWallType::Break);
+	default:
+		break;
+	}
+}
+
 void CMap::AddWall(unsigned x, unsigned y, int z)
 {
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
 	auto pWall = std::make_unique<CWall>();
-	pWall->SetType(pWorld->GetWallType(1));
+	pWall->SetType(pWorld->GetWallType(GetIndexWallType(z)));
 
 	for (int xShift = -1; xShift <= 1; ++xShift)
 	{
