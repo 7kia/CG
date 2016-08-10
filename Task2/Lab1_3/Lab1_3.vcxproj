@@ -197,7 +197,9 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="World\Map.h" />
     <ClInclude Include="World\Player.h" />
-    <ClInclude Include="World\Wall.h" />
+    <ClInclude Include="World\Wall\HaveWallTypes.h" />
+    <ClInclude Include="World\Wall\Wall.h" />
+    <ClInclude Include="World\Wall\WallType.h" />
     <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -235,10 +237,13 @@
     <ClCompile Include="Shape\Triangle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World\DependentWorld.cpp" />
     <ClCompile Include="World\Map.cpp" />
     <ClCompile Include="World\Player.cpp" />
     <ClCompile Include="World\PlayerController.cpp" />
-    <ClCompile Include="World\Wall.cpp" />
+    <ClCompile Include="World\Wall\HaveWallTypes.cpp" />
+    <ClCompile Include="World\Wall\Wall.cpp" />
+    <ClCompile Include="World\Wall\WallType.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

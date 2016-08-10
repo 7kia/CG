@@ -34,6 +34,9 @@
     <Filter Include="World">
       <UniqueIdentifier>{b1eaa24c-9be9-4b1a-b220-324d98561f16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="World\Wall">
+      <UniqueIdentifier>{26f40efa-8ce5-4543-963a-4581c0cceacb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -156,9 +159,6 @@
     <ClInclude Include="Shape\Triangle.h">
       <Filter>Shape</Filter>
     </ClInclude>
-    <ClInclude Include="World\Wall.h">
-      <Filter>World</Filter>
-    </ClInclude>
     <ClInclude Include="Mixin\HaveFileForReading.h">
       <Filter>Mixin</Filter>
     </ClInclude>
@@ -170,6 +170,15 @@
     </ClInclude>
     <ClInclude Include="World\Map.h">
       <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Wall\Wall.h">
+      <Filter>World\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Wall\WallType.h">
+      <Filter>World\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Wall\HaveWallTypes.h">
+      <Filter>World\Wall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -278,9 +287,6 @@
     <ClCompile Include="Shape\Triangle.cpp">
       <Filter>Shape</Filter>
     </ClCompile>
-    <ClCompile Include="World\Wall.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
     <ClCompile Include="Mixin\HaveFileForReading.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -288,6 +294,18 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="World\Map.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Wall\Wall.cpp">
+      <Filter>World\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Wall\WallType.cpp">
+      <Filter>World\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Wall\HaveWallTypes.cpp">
+      <Filter>World\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="World\DependentWorld.cpp">
       <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>

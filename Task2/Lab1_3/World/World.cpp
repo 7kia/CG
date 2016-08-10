@@ -5,9 +5,10 @@ CWorld::CWorld()
 	: IDrawable()
 	, IInputEventAcceptor()
 	, IUpdatable()
+	, CHaveWallTypes()
 	, m_sunlight(GL_LIGHT0)
 	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)
-	, m_map("map.txt")
+	, m_map("map.txt", this)
 {
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
@@ -73,10 +74,11 @@ CAbcstartCamera * CWorld::GetCamera()
 void CWorld::CreateScene()
 {
 	{
-		IBodyUniquePtr pSphere = std::make_unique<CWall>();
+		auto pWall = std::make_unique<CWall>();
+		pWall->SetType(GetWallType(1));
 
 		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
-		pAnimate->SetChild(std::move(pSphere));
+		pAnimate->SetChild(std::move(pWall));
 
 		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
 		pTexture->SetChild(std::move(pAnimate));

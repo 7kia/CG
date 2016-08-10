@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../Shape/Rectangle.h"
+#include "../../Shape/Rectangle.h"
 #include <array>
+#include "WallType.h"
 
 namespace WallSpace
 {
@@ -62,16 +63,22 @@ public:
 public:
 	//--------------------------------------------
 	// CShape
-	void					Update(float deltaTime) override final;
-	void					Draw() const override final;
+	void						Update(float deltaTime) override final;
+	void						Draw() const override final;
 	//--------------------------------------------
 
-	void					SetVisible(uint index, bool value);
-	bool					GetVisible(uint index) const;
+	void						SetType(const CWallType* type);
+	const CWallType*			GetType() const;
+	//
+	void						SetVisible(uint index, bool value);
+	bool						GetVisible(uint index) const;
 
-	void					CheckVisibleIndex(uint index) const;
+	void						CheckVisibleIndex(uint index) const;
+private:
+	CTexture2D*					GetTexture() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	std::array<bool, 6>		m_visible;
+	std::array<bool, 6>				m_visible;
+	const CWallType*				m_pType;
 };

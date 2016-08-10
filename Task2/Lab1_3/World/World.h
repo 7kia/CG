@@ -11,7 +11,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "Player.h"
-#include "Wall.h"
+#include "Wall\HaveWallTypes.h"
 #include "Map.h"
 
 #include <vector>
@@ -28,6 +28,7 @@ namespace WorldSpace
 	const float CAMERA_INITIAL_DISTANCE = 5.f;
 
 	const char BREAK_TEXTURE_PATH[] = "Resources/brick.bmp";
+	const char PLANK_TEXTURE_PATH[] = "Resources/plank.bmp";
 
 }
 
@@ -35,6 +36,7 @@ class CWorld
 	: public IDrawable
 	, public IInputEventAcceptor
 	, public IUpdatable
+	, public CHaveWallTypes
 {
 public:
 	CWorld();
@@ -65,7 +67,10 @@ private:
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
 	CPlayer							m_player;
+
 	CMap							m_map;
+
+
 	// Player can change camera
 	bool							m_changePlayer = true;
 	CPhongModelMaterial m_material;// TODO : transfer

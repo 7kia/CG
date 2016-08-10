@@ -42,9 +42,21 @@ void CWall::Draw() const
 	{
 		if (m_visible[index])
 		{
-			m_shapes[index]->Draw();
+			GetTexture()->DoWhileBinded([&] {
+				m_shapes[index]->Draw();
+			});
 		}
 	}
+}
+
+void CWall::SetType(const CWallType* type)
+{
+	m_pType = type;
+}
+
+const CWallType* CWall::GetType() const
+{
+	return m_pType;
 }
 
 void CWall::SetVisible(uint index, bool value)
@@ -67,4 +79,9 @@ void CWall::CheckVisibleIndex(uint index) const
 	{
 		throw std::runtime_error("Wall have not the index");
 	}
+}
+
+CTexture2D * CWall::GetTexture() const
+{
+	return m_pType->GetTexture();
 }

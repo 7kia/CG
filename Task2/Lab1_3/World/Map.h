@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Mixin/HaveFileForReading.h"
-#include "Wall.h"
+#include "Wall/Wall.h"
 #include "../Decorators/TransformShapeDecorator.h"
 #include <string>
 #include <vector>
@@ -15,19 +15,27 @@ namespace MapSpace
 	};
 }
 
+class CWorld;
+
 class CMap
 	: public CHaveFileForReading
 	, public IDrawable
 	, public IUpdatable
 {
 public:
-	CMap(const std::string & mapPath);
+	CMap(const std::string & mapPath, CWorld* pWorld);
+
 	virtual ~CMap() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
+	//--------------------------------------------
+	// IDrawable
 	void	Draw() const override final;
+	//--------------------------------------------
+	// IUpdatable
 	void	Update(float deltaTime) override final;
+	//--------------------------------------------
 private:
 	void	ReadMap(std::ifstream & file);
 	void	ProcessRow(const std::string & row, unsigned widthCount, int level);
@@ -61,4 +69,6 @@ private:
 	glm::vec2						m_centerMap;
 	std::vector<IBodyUniquePtr>		m_walls;
 	std::vector<Level>				m_map;
+
+	CWorld*							pWorld = nullptr;
 };
