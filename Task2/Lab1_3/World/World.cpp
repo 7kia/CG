@@ -73,6 +73,7 @@ CAbcstartCamera * CWorld::GetCamera()
 
 void CWorld::CreateScene()
 {
+	CreateWallTypes();
 	{
 		auto pWall = std::make_unique<CWall>();
 		pWall->SetType(GetWallType(1));
@@ -80,11 +81,14 @@ void CWorld::CreateScene()
 		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
 		pAnimate->SetChild(std::move(pWall));
 
-		auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
-		pTexture->SetChild(std::move(pAnimate));
-		pTexture->SetTexture(WorldSpace::BREAK_TEXTURE_PATH);
+		//auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
+		//pTexture->SetChild(std::move(pAnimate));
+		//pTexture->SetTexture(WorldSpace::BREAK_TEXTURE_PATH);
 
-		m_opaqueBodies.emplace_back(std::move(pTexture));
+		//m_opaqueBodies.emplace_back(std::move(pTexture));
+		//pAnimate
+		m_opaqueBodies.emplace_back(std::move(pAnimate));//
+
 	}
 	{
 		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);

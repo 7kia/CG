@@ -7,7 +7,7 @@ void CMap::AddWall(unsigned x, unsigned y, int z)
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
 	auto pWall = std::make_unique<CWall>();
-	pWall->SetType(pWorld->GetWallType(0));
+	pWall->SetType(pWorld->GetWallType(1));
 
 	for (int xShift = -1; xShift <= 1; ++xShift)
 	{

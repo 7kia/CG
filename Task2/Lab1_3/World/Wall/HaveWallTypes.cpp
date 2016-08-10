@@ -3,6 +3,10 @@
 
 CHaveWallTypes::CHaveWallTypes()
 {
+}
+
+void CHaveWallTypes::CreateWallTypes()
+{
 	if (sizeof(TexturePathWallTypes) / sizeof(std::string) != unsigned(IdWallType::AmountTypes))
 	{
 		throw std::runtime_error("Amount texture paths incorrect");

@@ -27,6 +27,7 @@ public:
 
 	using ArrayWallTypes = std::array<CWallType, size_t(IdWallType::AmountTypes)>;
 
+	void							CreateWallTypes();// TODO : do call_once
 	const CWallType*				GetWallType(unsigned index) const;
 private:
 	void							SetWallType(unsigned index);
