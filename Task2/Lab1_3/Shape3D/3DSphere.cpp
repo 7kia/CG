@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "Sphere.h"
+#include "3DSphere.h"
 #include <algorithm>
 
 namespace
@@ -20,13 +20,13 @@ namespace
 	}
 }
 
-CIdentitySphere::CIdentitySphere(unsigned slices, unsigned stacks)
-	: CShape()
+CIdentity3DSphere::CIdentity3DSphere(unsigned slices, unsigned stacks)
+	: C3DShape()
 {
 	Tesselate(slices, stacks);
 }
 
-void CIdentitySphere::Tesselate(unsigned slices, unsigned stacks)
+void CIdentity3DSphere::Tesselate(unsigned slices, unsigned stacks)
 {
 	assert((slices >= MIN_PRECISION) && (stacks >= MIN_PRECISION));
 	m_vertices.reserve(slices * stacks);

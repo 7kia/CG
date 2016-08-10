@@ -17,7 +17,7 @@ CWorld::CWorld()
 
 	m_sunlight.SetDirection(WorldSpace::SUNLIGHT_DIRECTION);
 	m_sunlight.SetDiffuse(WorldSpace::WHITE_RGBA);
-	m_sunlight.SetAmbient(0.1f * WorldSpace::WHITE_RGBA);
+	m_sunlight.SetAmbient(0.f * WorldSpace::WHITE_RGBA);
 	m_sunlight.SetSpecular(WorldSpace::WHITE_RGBA);
 }
 
@@ -36,18 +36,16 @@ void CWorld::Draw() const
 	m_sunlight.Setup();
 	m_material.Setup();
 
+	m_player.Draw();
+
 	for (const IBodyUniquePtr &pBody : m_opaqueBodies)
 	{
 		pBody->Draw();
 	}
-
-	//enableBlending();
 	for (const IBodyUniquePtr &pBody : m_transparentBodies)
 	{
 		pBody->Draw();
 	}
-	//disableBlending();
-
 	m_map.Draw();
 }
 
@@ -74,24 +72,20 @@ CAbcstartCamera * CWorld::GetCamera()
 void CWorld::CreateScene()
 {
 	CreateWallTypes();
-	{
+
+	/*
+		{
 		auto pWall = std::make_unique<CWall>();
 		pWall->SetType(GetWallType(1));
 
 		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
 		pAnimate->SetChild(std::move(pWall));
 
-		//auto pTexture = std::make_unique<CTexture2DShapeDecorator>();
-		//pTexture->SetChild(std::move(pAnimate));
-		//pTexture->SetTexture(WorldSpace::BREAK_TEXTURE_PATH);
-
-		//m_opaqueBodies.emplace_back(std::move(pTexture));
-		//pAnimate
-		m_opaqueBodies.emplace_back(std::move(pAnimate));//
+		m_opaqueBodies.emplace_back(std::move(pAnimate));
 
 	}
 	{
-		IBodyUniquePtr pSphere = std::make_unique<CIdentitySphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
+		IBodyUniquePtr pSphere = std::make_unique<CIdentity3DSphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
 
 		auto pTransform = std::make_unique<CTransformShapeDecorator>();
 		pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 0.f, 0.f }));
@@ -100,5 +94,7 @@ void CWorld::CreateScene()
 		m_opaqueBodies.emplace_back(std::move(pTransform));
 
 	}
+
+	*/
 
 }

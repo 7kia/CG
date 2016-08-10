@@ -10,10 +10,12 @@ CPlayer::SSkill::SSkill(const std::function<void()> function, const KeyList & ke
 
 CPlayer::CPlayer()
 	: IUpdatable()
+	, IDrawable()
 	, CHavePosition()
 	, CHaveDirection(PlayerSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
+	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
 {
 	SetCamera();
@@ -22,16 +24,23 @@ CPlayer::CPlayer()
 CPlayer::CPlayer(const glm::vec3 & position
 				, const glm::vec3 & direction)
 	: IUpdatable()
+	, IDrawable()
 	, CHavePosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
+	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
 {
 	SetCamera();
 
 	GetCamera()->SetPosition(position);
 	GetCamera()->SetDirection(direction);
+
+	m_flashlight.SetPosition(position);
+	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
+	m_flashlight.SetAmbient(0.1f * PlayerSpace::WHITE_RGBA);
+	m_flashlight.SetSpecular(PlayerSpace::WHITE_RGBA);
 }
 
 void CPlayer::TurnLeft()
@@ -86,8 +95,14 @@ void CPlayer::Update(float deltaTime)
 					, GetCurrentRotationSpeed());
 	SetPosition(GetCamera()->GetPosition());// TODO : might need rewrite, the string crutch
 
+	m_flashlight.SetPosition(GetPosition());
 	ResetCurrentLinearVelocity();
 	ResetCurrentRotationSpeed();
+}
+
+void CPlayer::Draw() const
+{
+	//m_flashlight.Setup();// TODO : fix light
 }
 
 void CPlayer::SetCamera(CPlayer::IdCameras id)

@@ -6,7 +6,7 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
-#include "Shape.h"
+#include "3DShape.h"
 
 namespace SphereSpace
 {
@@ -15,16 +15,16 @@ namespace SphereSpace
 }
 
 
-class CIdentitySphere final 
-	: public CShape
+class CIdentity3DSphere final 
+	: public C3DShape
 {
 public:
-	CIdentitySphere(unsigned slices, unsigned stacks);
+	CIdentity3DSphere(unsigned slices, unsigned stacks);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
 	//--------------------------------------------
-	// CShape
+	// C3DShape
 	void Update(float) final {}
 private:
 	void Tesselate(unsigned slices, unsigned stacks);

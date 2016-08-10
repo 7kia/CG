@@ -1,22 +1,20 @@
 #pragma once
 
-#include "CompositeShape.h"
+#include "3DShape.h"
 #include "../Mixin/HaveVertex.h"
-#include "Triangle.h"
 
-class CRectangle final
-	: public ÑCompositeShape
-	, public CHaveReferenceVertex
+class C3DTriangle final
+	: public C3DShape
 {
 public:
-	CRectangle();
+	C3DTriangle();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
 	//--------------------------------------------
-	// CShape
+	// C3DShape
 	void					Update(float deltaTime) override final;
-	//--------------------------------------------
 private:
-	void					UpdateReference() override final;
+	void					DrawOutputFaces() const override final;
+	//--------------------------------------------
 };

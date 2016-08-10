@@ -1,20 +1,20 @@
 #pragma once
 
 #include "../Mixin/Drawable.h"
-#include "Shape.h"
+#include "3DShape.h"
 #include <vector>
 
 
-class ÑCompositeShape 
-	: public IShape
+class ÑComposite3DShape 
+	: public I3DShape
 {
 public:
-	ÑCompositeShape();
+	ÑComposite3DShape();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
 	//--------------------------------------------
-	// IShape
+	// I3DShape
 	void					Draw() const override;
 	//--------------------------------------------
 private:

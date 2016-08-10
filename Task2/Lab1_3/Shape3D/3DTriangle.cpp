@@ -1,9 +1,9 @@
 ﻿//#include "../stdafx.h"
 #include "stdafx.h"
-#include "Triangle.h"
+#include "3DTriangle.h"
 
-CTriangle::CTriangle()
-	: CShape()
+C3DTriangle::C3DTriangle()
+	: C3DShape()
 {
 	const float shift = 0.66f;// origin int triangle center
 	const auto firstPosition = glm::vec3(0.f, shift, 0.f);
@@ -21,13 +21,13 @@ CTriangle::CTriangle()
 }
 
 
-void CTriangle::Update(float deltaTime)
+void C3DTriangle::Update(float deltaTime)
 {
 	(void)deltaTime;
 }
 
 
-void CTriangle::DrawOutputFaces() const
+void C3DTriangle::DrawOutputFaces() const
 {
 	// менее оптимальный способ рисования: прямая отправка данных
 	// могла бы работать быстрее, чем множество вызовов glColor/glVertex.

@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "CompositeShape.h"
+#include "Composite3DShape.h"
 
-ÑCompositeShape::ÑCompositeShape()
-	: IShape()
+ÑComposite3DShape::ÑComposite3DShape()
+	: I3DShape()
 {
 }
 
-void ÑCompositeShape::Draw() const
+void ÑComposite3DShape::Draw() const
 {
 	for (const auto & shape : m_shapes)
 	{
@@ -14,7 +14,7 @@ void ÑCompositeShape::Draw() const
 	}
 }
 
-void ÑCompositeShape::CheckVertexIndex(size_t index) const
+void ÑComposite3DShape::CheckVertexIndex(size_t index) const
 {
 	if (!IsBetween(index, 0llu, m_shapes.size()))
 	{

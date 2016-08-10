@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Shape/Shape.h"
+#include "../Shape3D/3DShape.h"
 #include <glm/fwd.hpp>
 #include <glm/mat4x4.hpp>
 
@@ -18,7 +18,7 @@ public:
 };
 
 class CAbstractShapeDecorator 
-	: public IShape
+	: public I3DShape
 {
 public:
 	CAbstractShapeDecorator();
@@ -28,7 +28,7 @@ public:
 	void SetChild(IBodyUniquePtr && pChild);
 protected:
 	//--------------------------------------------
-	// IShape
+	// I3DShape
 	void					Update(float deltaTime) override;
 	void					Draw() const override;
 	//--------------------------------------------

@@ -58,7 +58,7 @@ class CAnimatedShapeDecorator : public CAbstractShapeDecorator
 // Methods
 public:
 	//--------------------------------------------
-	// IShape
+	// I3DShape
 	void			Update(float deltaTime);
 	void			Draw()const;
 	//--------------------------------------------

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Shape/Rectangle.h"
+#include "../../Shape3D/3DRectangle.h"
 #include <array>
 #include "WallType.h"
 
@@ -54,7 +54,7 @@ namespace WallSpace
 }
 
 class CWall final
-	: public ÑCompositeShape
+	: public ÑComposite3DShape
 {
 public:
 	CWall();
@@ -62,7 +62,7 @@ public:
 // Methods
 public:
 	//--------------------------------------------
-	// CShape
+	// C3DShape
 	void						Update(float deltaTime) override final;
 	void						Draw() const override final;
 	//--------------------------------------------

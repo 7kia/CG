@@ -2,20 +2,20 @@
 #include "Wall.h"
 
 CWall::CWall()
-	: ÑCompositeShape()
+	: ÑComposite3DShape()
 {
 	m_visible.fill(true);
 
 	for(uint index = 0; index < 6; ++index)
 	{
-		IBodyUniquePtr pRectangle = std::make_unique<CRectangle>();
+		IBodyUniquePtr pRectangle = std::make_unique<C3DRectangle>();
 		m_shapes.push_back(std::move(pRectangle));
 	}
 
 
 	for (uint index = 0; index < m_shapes.size(); ++index)
 	{
-		CRectangle* pRectangle = dynamic_cast<CRectangle*>(m_shapes[index].get());
+		C3DRectangle* pRectangle = dynamic_cast<C3DRectangle*>(m_shapes[index].get());
 
 		const WallSpace::SRectangleFace face = WallSpace::CUBE_FACES[index];
 

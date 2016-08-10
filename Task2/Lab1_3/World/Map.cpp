@@ -32,8 +32,8 @@ void CMap::Update(float deltaTime)
 
 void CMap::ReadMap(ifstream & file)
 {
-	unsigned length = 0;
-	unsigned width = 0;
+	size_t length = 0;
+	size_t width = 0;
 
 	file >> length;
 	file >> width;
@@ -44,10 +44,10 @@ void CMap::ReadMap(ifstream & file)
 	AddMiddleLevel(length, width);
 	AddTopLevel(length, width);
 
-	ComputeVisibleEdge(length, width);
+	ComputeVisibleEdge(width);
 }
 
-void CMap::ProcessRow(const std::string & row, unsigned widthCount, int level)
+void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
 {
 	for (size_t index = 0; index < row.size(); ++index)
 	{
@@ -76,14 +76,14 @@ void CMap::ProcessRow(const std::string & row, unsigned widthCount, int level)
 	}
 }
 
-void CMap::AddTopLevel(unsigned length, unsigned width)
+void CMap::AddTopLevel(size_t length, size_t width)
 {
 	Level topLevel;
 
-	for (unsigned y = 0; y < width; ++y)
+	for (size_t y = 0; y < width; ++y)
 	{
 		string row;
-		for (unsigned x = 0; x < length; ++x)
+		for (size_t x = 0; x < length; ++x)
 		{
 			row += RecognizeSymbols[unsigned(IdSymbol::Space)];
 		}
@@ -93,7 +93,7 @@ void CMap::AddTopLevel(unsigned length, unsigned width)
 	m_map.emplace_back(topLevel);
 }
 
-void CMap::AddMiddleLevel(unsigned length, unsigned width)
+void CMap::AddMiddleLevel(size_t length, size_t width)
 {
 	unsigned widthCount = 0;
 
@@ -116,7 +116,7 @@ void CMap::AddMiddleLevel(unsigned length, unsigned width)
 	m_map.push_back(middleLevel);
 }
 
-void CMap::AddLowLevel(unsigned length, unsigned width)
+void CMap::AddLowLevel(size_t length, size_t width)
 {
 	Level lowLevel;
 
@@ -196,12 +196,12 @@ void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zS
 
 }
 
-void CMap::ComputeVisibleEdge(unsigned length, unsigned width)
+void CMap::ComputeVisibleEdge(size_t width)
 {
-	for (unsigned height = 0; height < 3; ++height)
+	for (size_t height = 0; height < 3; ++height)
 	{
 		string* row = nullptr;
-		for (unsigned y = 0; y < width; ++y)
+		for (size_t y = 0; y < width; ++y)
 		{
 			row = &m_map[height][y];
 

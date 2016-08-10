@@ -13,7 +13,7 @@ public:
 // Methods
 public:
 	//--------------------------------------------
-	// IShape
+	// I3DShape
 	void Update(float deltaTime) override;
 	void Draw() const override;
 	//--------------------------------------------

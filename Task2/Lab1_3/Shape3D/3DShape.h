@@ -85,21 +85,21 @@ namespace// TODO : rewrite this namespace
 }
 
 
-class IShape
+class I3DShape
 	: public IDrawable
 	, public IUpdatable
 {
 public:
-	IShape();
-    virtual ~IShape() = default;
+	I3DShape();
+    virtual ~I3DShape() = default;
 };
 
-class CShape
-	: public IShape
+class C3DShape
+	: public I3DShape
 	, public CHaveVertexes
 {
 public:
-	CShape();
+	C3DShape();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -116,4 +116,4 @@ protected:
 
 };
 
-using IBodyUniquePtr = std::unique_ptr<IShape>;
+using IBodyUniquePtr = std::unique_ptr<I3DShape>;

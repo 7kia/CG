@@ -11,11 +11,12 @@ unsigned CMap::GetIndexWallType(int heigth)
 	case 0:
 		return unsigned(CHaveWallTypes::IdWallType::Break);
 	default:
+		throw std::runtime_error("Incorrect index");
 		break;
 	}
 }
 
-void CMap::AddWall(unsigned x, unsigned y, int z)
+void CMap::AddWall(size_t x, size_t y, int z)
 {
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;

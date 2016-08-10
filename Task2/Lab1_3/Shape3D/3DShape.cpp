@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "Shape.h"
+#include "3DShape.h"
 
-IShape::IShape()
+I3DShape::I3DShape()
 	: IDrawable()
 	, IUpdatable()
 {
 }
 
-CShape::CShape()
-	: IShape()
+C3DShape::C3DShape()
+	: I3DShape()
 {
 }
 
-void CShape::Draw() const
+void C3DShape::Draw() const
 {
 	DoWithBindedArrays(m_vertices, [this] {
 		glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),

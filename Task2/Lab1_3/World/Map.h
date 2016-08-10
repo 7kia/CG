@@ -38,13 +38,13 @@ public:
 	//--------------------------------------------
 private:
 	void	ReadMap(std::ifstream & file);
-	void	ProcessRow(const std::string & row, unsigned widthCount, int level);
+	void	ProcessRow(const std::string & row, size_t widthCount, int level);
 
-	void	AddTopLevel(unsigned length, unsigned width);
-	void	AddMiddleLevel(unsigned length, unsigned width);
-	void	AddLowLevel(unsigned length, unsigned width);
+	void	AddTopLevel(size_t length, size_t width);
+	void	AddMiddleLevel(size_t length, size_t width);
+	void	AddLowLevel(size_t length, size_t width);
 
-	void	AddWall(unsigned x, unsigned y, int z);
+	void	AddWall(size_t x, size_t y, int z);
 	void	ProcessLateralEdge(CWall* pWall
 								, const glm::vec3 & position
 								, const glm::vec3 & shifts);
@@ -55,7 +55,7 @@ private:
 	static unsigned	GetIndexWallType(int heigth);
 
 
-	void	ComputeVisibleEdge(unsigned length, unsigned width);
+	void	ComputeVisibleEdge(size_t width);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

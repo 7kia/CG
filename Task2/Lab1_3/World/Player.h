@@ -4,7 +4,9 @@
 #include "../Mixin/HaveLinearVelocity.h"
 #include "../Mixin/HaveRotationSpeed.h"
 #include "../Mixin/HaveDirection.h"
+#include "../Mixin/Drawable.h"
 
+#include "../Lights.h"
 #include "..\Camera\Cameras.h"
 #include "..\DispatchEvent.h"
 #include <map>
@@ -18,8 +20,19 @@ namespace PlayerSpace
 {
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
-	const float ROTATION_SPEED_RADIANS = 15.f;
+	const float ROTATION_SPEED_RADIANS = 5.f;
 	const float LINEAR_MOVE_SPEED = 25.f;
+
+
+		const glm::vec4 BLACK = { 0, 0, 0, 1 };
+		const float MATERIAL_SHININESS = 30.f;
+		const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
+		const glm::vec4 FADED_WHITE_RGBA = { 0.3f, 0.3f, 0.3f, 1.f };
+		const glm::vec4 YELLOW_RGBA = { 1, 1, 0, 1 };
+		const glm::vec3 SUNLIGHT_DIRECTION = { -1.f, 0.2f, 0.7f };
+		const float CAMERA_INITIAL_ROTATION = 0;
+		const float CAMERA_INITIAL_DISTANCE = 5.f;
+
 
 }
 
@@ -29,6 +42,7 @@ namespace PlayerSpace
 
 class CPlayer final
 	: public IUpdatable
+	, public IDrawable
 	, public CHavePosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity
@@ -73,6 +87,9 @@ public:
 	// IUpdatable
 	void Update(float deltaTime) override final;
 	//--------------------------------------------
+	// IDrawable
+	void Draw() const override final;
+	//--------------------------------------------
 	void							SetCamera(CPlayer::IdCameras id);
 	CAbcstartCamera*				GetCamera();// TODO : see need there const
 
@@ -88,6 +105,8 @@ private:
 	IdCameras						m_idCamera = IdCameras::Player;
 	// TODO : see might can rewrite better
 	std::array<std::unique_ptr<CAbcstartCamera>, 2>	m_cameras;
+
+	CPositionLightSource			m_flashlight;
 };
 
 class CPlayer::CController

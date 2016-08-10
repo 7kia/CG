@@ -9,7 +9,7 @@ class CTransformShapeDecorator : public CAbstractShapeDecorator
 // Methods
 public:
 	//--------------------------------------------
-	// IShape
+	// I3DShape
 	void Update(float deltaTime);
 	void Draw()const;
 	//--------------------------------------------
