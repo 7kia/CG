@@ -22,9 +22,6 @@
     <Filter Include="Material">
       <UniqueIdentifier>{82a9adbe-7eab-47ff-802e-9908c987d094}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Decorators">
-      <UniqueIdentifier>{81754577-5a3b-43f4-af52-989a440ef7a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Camera">
       <UniqueIdentifier>{53570b6c-4259-4a48-b4da-51298c389e4d}</UniqueIdentifier>
     </Filter>
@@ -104,21 +101,6 @@
     </ClInclude>
     <ClInclude Include="Material\Texture2D.h">
       <Filter>Material</Filter>
-    </ClInclude>
-    <ClInclude Include="Decorators\AbstractShapeDecorator.h">
-      <Filter>Decorators</Filter>
-    </ClInclude>
-    <ClInclude Include="Decorators\AnimatedShapeDecorator.h">
-      <Filter>Decorators</Filter>
-    </ClInclude>
-    <ClInclude Include="Decorators\Decorators.h">
-      <Filter>Decorators</Filter>
-    </ClInclude>
-    <ClInclude Include="Decorators\TransformShapeDecorator.h">
-      <Filter>Decorators</Filter>
-    </ClInclude>
-    <ClInclude Include="Decorators\Texture2DShapeDecorator.h">
-      <Filter>Decorators</Filter>
     </ClInclude>
     <ClInclude Include="Camera\Camera.h">
       <Filter>Camera</Filter>
@@ -284,18 +266,6 @@
     <ClCompile Include="Material\Texture2D.cpp">
       <Filter>Material</Filter>
     </ClCompile>
-    <ClCompile Include="Decorators\AbstractShapeDecorator.cpp">
-      <Filter>Decorators</Filter>
-    </ClCompile>
-    <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp">
-      <Filter>Decorators</Filter>
-    </ClCompile>
-    <ClCompile Include="Decorators\TransformShapeDecorator.cpp">
-      <Filter>Decorators</Filter>
-    </ClCompile>
-    <ClCompile Include="Decorators\Texture2DShapeDecorator.cpp">
-      <Filter>Decorators</Filter>
-    </ClCompile>
     <ClCompile Include="Camera\Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
@@ -396,7 +366,7 @@
       <Filter>World\Wall</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\HaveVisiblePart.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Mixin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

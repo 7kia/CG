@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "../stdafx.h"
+#include <Box2D\Box2D.h>
 #include "World.h"
 
 
@@ -21,7 +23,7 @@ void CMap::AddWall(size_t x, size_t y, int z)
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
-	auto pWall = std::make_unique<CWallView>();
+	auto pWall = std::make_unique<CWall>();
 	pWall->SetType(pWorld->GetWallType(GetIndexWallType(z)));
 
 	for (int xShift = -1; xShift <= 1; ++xShift)

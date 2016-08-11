@@ -3,15 +3,13 @@
 
 CWallView::CWallView()
 	: ÑComposite3DShape()
+	, CHaveVisiblePart(6)
 {
-	m_visible.fill(true);
-
 	for(uint index = 0; index < 6; ++index)
 	{
 		IBodyUniquePtr pRectangle = std::make_unique<C3DRectangle>();
 		m_shapes.push_back(std::move(pRectangle));
 	}
-
 
 	for (uint index = 0; index < m_shapes.size(); ++index)
 	{
@@ -52,28 +50,6 @@ void CWallView::SetType(const CWallViewType* type)
 const CWallViewType* CWallView::GetType() const
 {
 	return m_pType;
-}
-
-void CWallView::SetVisible(uint index, bool value)
-{
-	CheckVisibleIndex(index);
-
-	m_visible[index] = value;
-}
-
-bool CWallView::GetVisible(uint index) const
-{
-	CheckVisibleIndex(index);
-
-	return m_visible[index];
-}
-
-void CWallView::CheckVisibleIndex(uint index) const
-{
-	if (!IsBetween(index, 0u, uint(m_visible.size())))
-	{
-		throw std::runtime_error("Wall have not the index");
-	}
 }
 
 CTexture2D * CWallView::GetTexture() const

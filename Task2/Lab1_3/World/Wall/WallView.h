@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../3DShape/3DRectangle.h"
+#include "../../Mixin/HaveVisiblePart.h"
 #include <array>
 #include "WallType.h"
 
@@ -56,6 +57,7 @@ namespace WallSpace
 class CWallView final
 	: public ÑComposite3DShape
 	, public IHavePointerToWallViewType
+	, public CHaveVisiblePart
 {
 public:
 	CWallView();
@@ -70,16 +72,10 @@ public:
 	void						SetType(const CWallViewType* type) override;
 	const CWallViewType*		GetType() const override;
 	//--------------------------------------------
-
-	void						SetVisible(uint index, bool value);
-	bool						GetVisible(uint index) const;
-
-	void						CheckVisibleIndex(uint index) const;
 private:
 	CTexture2D*					GetTexture() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	std::vector<bool>			m_visible;
 	const CWallViewType*		m_pType;
 };

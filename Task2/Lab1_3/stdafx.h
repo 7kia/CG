@@ -27,6 +27,8 @@
 #include <memory>
 #include <vector>
 
+#include <Box2D/Box2D.h>
+
 // TODO : transfer to other place
 template <typename T>
 bool IsBetween(const T& value, const T& lowerBound, const T& upperBound)

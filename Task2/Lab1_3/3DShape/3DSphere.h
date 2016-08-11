@@ -25,7 +25,6 @@ public:
 public:
 	//--------------------------------------------
 	// CIdentity3DShape
-	void Update(float) final {}
 private:
 	void Tesselate(unsigned slices, unsigned stacks);
 	//--------------------------------------------

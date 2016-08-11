@@ -39,12 +39,6 @@ C3DRectangle::C3DRectangle()
 	SetVertex(3u, SVertexP3NT2(glm::vec3(-1.f, -1.f, 0.f), glm::vec2(1.f, 0.f), glm::vec3(-1.f, -1.f, 0.f)));
 }
 
-
-void C3DRectangle::Update(float deltaTime)
-{
-	(void)deltaTime;
-}
-
 void C3DRectangle::UpdateReference()
 {
 	// Firts triangle

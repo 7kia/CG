@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "../../stdafx.h"
 #include "HaveWallTypes.h"
 
 CHaveWallTypes::CHaveWallTypes()
@@ -7,7 +8,7 @@ CHaveWallTypes::CHaveWallTypes()
 
 void CHaveWallTypes::CreateWallTypes()
 {
-	if (sizeof(TexturePathWallTypes) / sizeof(std::string) != unsigned(IdWallType::AmountTypes))
+	if ( (sizeof(TexturePathWallTypes) / sizeof(std::string)) != unsigned(IdWallType::AmountTypes))
 	{
 		throw std::runtime_error("Amount texture paths incorrect");
 	}

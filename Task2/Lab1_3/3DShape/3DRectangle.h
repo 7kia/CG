@@ -15,7 +15,6 @@ public:
 public:
 	//--------------------------------------------
 	// CIdentity3DShape
-	void					Update(float deltaTime) override final;
 	//--------------------------------------------
 private:
 	void					UpdateReference() override final;

@@ -5,7 +5,6 @@
 
 #include "..\DispatchEvent.h"
 #include "..\3DShape\3DShapes.h"
-#include "..\Decorators\Decorators.h"
 #include "..\Camera\Cameras.h"
 #include "..\Lights.h"
 #include "..\Material\PhongMaterial.h"

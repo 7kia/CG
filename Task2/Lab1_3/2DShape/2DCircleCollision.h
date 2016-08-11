@@ -3,16 +3,15 @@
 #include "Dynamic2DShape.h"
 #include "Circle.h"
 
-class CBall
+class C2DCircleCollision
 	: public CDynamicBody
-	, public I2DShape
 	, public CCircle
 	, private boost::noncopyable
 
 {
 public:
-	CBall();
-	CBall(float radius, const glm::vec2 &position);
+	C2DCircleCollision();
+	C2DCircleCollision(float radius, const glm::vec2 &position);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -25,12 +24,6 @@ public:
 	void			Advance(float dt) override;
 	// Set visual part before create body, because view can have
 	// different from body
-	void			SetVisual() override;
-	//--------------------------------------------
-	// CDrawable
-	void			Redraw() const;
-	bool			HitTest(const glm::vec2 &point) const;
-	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:

@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,11 +179,6 @@
     <ClInclude Include="Camera\Cameras.h" />
     <ClInclude Include="Camera\PlayerCamera.h" />
     <ClInclude Include="Camera\WorldCamera.h" />
-    <ClInclude Include="Decorators\AbstractShapeDecorator.h" />
-    <ClInclude Include="Decorators\AnimatedShapeDecorator.h" />
-    <ClInclude Include="Decorators\Decorators.h" />
-    <ClInclude Include="Decorators\Texture2DShapeDecorator.h" />
-    <ClInclude Include="Decorators\TransformShapeDecorator.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Material\PhongMaterial.h" />
@@ -238,10 +234,6 @@
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Camera\PlayerCamera.cpp" />
     <ClCompile Include="Camera\WorldCamera.cpp" />
-    <ClCompile Include="Decorators\AbstractShapeDecorator.cpp" />
-    <ClCompile Include="Decorators\AnimatedShapeDecorator.cpp" />
-    <ClCompile Include="Decorators\Texture2DShapeDecorator.cpp" />
-    <ClCompile Include="Decorators\TransformShapeDecorator.cpp" />
     <ClCompile Include="DispatchEvent.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />

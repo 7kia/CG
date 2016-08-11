@@ -133,7 +133,7 @@ void CMap::AddLowLevel(size_t length, size_t width)
 	m_map.emplace_back(lowLevel);
 }
 
-void CMap::ProcessLateralEdge(CWallView* pWall
+void CMap::ProcessLateralEdge(CWall* pWall
 							, const glm::vec3 & position
 							, const glm::vec3 & shifts)
 {
@@ -171,7 +171,7 @@ void CMap::ProcessLateralEdge(CWallView* pWall
 
 }
 
-void CMap::ProcessVerticalEdge(CWallView * pWall, const glm::vec3 & position, int zShift)
+void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zShift)
 {
 	unsigned x = unsigned(position.x);
 	unsigned y = unsigned(position.y);
@@ -205,7 +205,7 @@ void CMap::ComputeVisibleEdge(size_t width)
 		{
 			row = &m_map[height][y];
 
-			ProcessRow(*row, y, height - 1);
+			ProcessRow(*row, y, int(height - 1));
 		}
 	}
 }

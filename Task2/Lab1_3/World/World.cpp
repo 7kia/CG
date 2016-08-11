@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "../stdafx.h"
 #include "World.h"
 
 CWorld::CWorld()
@@ -52,14 +53,6 @@ void CWorld::Draw() const
 void CWorld::Update(float deltaTime)
 {
 	m_player.Update(deltaTime);
-	for (const IBodyUniquePtr &pBody : m_opaqueBodies)
-	{
-		pBody->Update(deltaTime);
-	}
-	for (const IBodyUniquePtr &pBody : m_transparentBodies)
-	{
-		pBody->Update(deltaTime);
-	}
 
 	m_map.Update(deltaTime);
 }
@@ -72,29 +65,4 @@ CAbcstartCamera * CWorld::GetCamera()
 void CWorld::CreateScene()
 {
 	CreateWallTypes();
-
-	/*
-		{
-		auto pWall = std::make_unique<CWallView>();
-		pWall->SetType(GetWallType(1));
-
-		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();
-		pAnimate->SetChild(std::move(pWall));
-
-		m_opaqueBodies.emplace_back(std::move(pAnimate));
-
-	}
-	{
-		IBodyUniquePtr pSphere = std::make_unique<CIdentity3DSphere>(SphereSpace::SPHERE_PRECISION, SphereSpace::SPHERE_PRECISION);
-
-		auto pTransform = std::make_unique<CTransformShapeDecorator>();
-		pTransform->SetTransform(glm::translate(glm::mat4(), { 1.5f, 0.f, 0.f }));
-		pTransform->SetChild(std::move(pSphere));
-
-		m_opaqueBodies.emplace_back(std::move(pTransform));
-
-	}
-
-	*/
-
 }

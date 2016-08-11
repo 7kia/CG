@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "CHaveVelocity.h"
+#include "CHave2DVelocity.h"
 
 CHave2DVelocity::CHave2DVelocity()
 	: IHave2DVelocity()

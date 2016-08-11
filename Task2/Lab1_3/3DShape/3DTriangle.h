@@ -13,7 +13,6 @@ public:
 public:
 	//--------------------------------------------
 	// CIdentity3DShape
-	void					Update(float deltaTime) override final;
 private:
 	void					DrawOutputFaces() const override final;
 	//--------------------------------------------

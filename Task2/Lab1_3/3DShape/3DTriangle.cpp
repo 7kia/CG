@@ -20,13 +20,6 @@ C3DTriangle::C3DTriangle()
 
 }
 
-
-void C3DTriangle::Update(float deltaTime)
-{
-	(void)deltaTime;
-}
-
-
 void C3DTriangle::DrawOutputFaces() const
 {
 	// менее оптимальный способ рисования: прямая отправка данных

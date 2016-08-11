@@ -24,9 +24,10 @@ public:
 	void						SetVisible(unsigned index, bool value) override;
 	bool						GetVisible(unsigned index) const override;
 
+protected:
 	void						CheckVisibleIndex(unsigned index) const override;
 //////////////////////////////////////////////////////////////////////
 // Data
-private:
+protected:
 	std::vector<bool>			m_visible;
 };
