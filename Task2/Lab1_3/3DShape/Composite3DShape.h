@@ -1,12 +1,11 @@
 #pragma once
 
-#include "../Mixin/Drawable.h"
 #include "3DShape.h"
 #include <vector>
 
 
 class ÑComposite3DShape 
-	: public I3DShape
+	: public C3DShape
 {
 public:
 	ÑComposite3DShape();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Shape3D/3DShape.h"
+#include "../3DShape/3DShape.h"
 #include <glm/fwd.hpp>
 #include <glm/mat4x4.hpp>
 
@@ -29,7 +29,6 @@ public:
 protected:
 	//--------------------------------------------
 	// I3DShape
-	void					Update(float deltaTime) override;
 	void					Draw() const override;
 	//--------------------------------------------
 //////////////////////////////////////////////////////////////////////

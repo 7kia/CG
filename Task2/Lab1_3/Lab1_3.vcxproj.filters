@@ -34,8 +34,14 @@
     <Filter Include="World\Wall">
       <UniqueIdentifier>{26f40efa-8ce5-4543-963a-4581c0cceacb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shape3D">
+    <Filter Include="2DShapes">
+      <UniqueIdentifier>{ffa327df-bd1c-4518-a5cb-ae4b8e204681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3DShape">
       <UniqueIdentifier>{c65237b7-b60a-439d-89fa-be8189f0e7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DMixins">
+      <UniqueIdentifier>{254601df-9746-4e60-a6d5-3381f42539fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,9 +91,6 @@
       <Filter>Mixin\Material</Filter>
     </ClInclude>
     <ClInclude Include="Mixin\HaveDirection.h">
-      <Filter>Mixin</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixin\HavePosition.h">
       <Filter>Mixin</Filter>
     </ClInclude>
     <ClInclude Include="Mixin\Material\HaveEmission.h">
@@ -153,32 +156,80 @@
     <ClInclude Include="World\Map.h">
       <Filter>World</Filter>
     </ClInclude>
-    <ClInclude Include="World\Wall\Wall.h">
-      <Filter>World\Wall</Filter>
-    </ClInclude>
     <ClInclude Include="World\Wall\WallType.h">
       <Filter>World\Wall</Filter>
     </ClInclude>
     <ClInclude Include="World\Wall\HaveWallTypes.h">
       <Filter>World\Wall</Filter>
     </ClInclude>
-    <ClInclude Include="Shape3D\3DShape.h">
-      <Filter>Shape3D</Filter>
+    <ClInclude Include="3DShape\3DRectangle.h">
+      <Filter>3DShape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape3D\Composite3DShape.h">
-      <Filter>Shape3D</Filter>
+    <ClInclude Include="3DShape\3DShape.h">
+      <Filter>3DShape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape3D\3DRectangle.h">
-      <Filter>Shape3D</Filter>
+    <ClInclude Include="3DShape\3DShapes.h">
+      <Filter>3DShape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape3D\3DSphere.h">
-      <Filter>Shape3D</Filter>
+    <ClInclude Include="3DShape\3DSphere.h">
+      <Filter>3DShape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape3D\3DTriangle.h">
-      <Filter>Shape3D</Filter>
+    <ClInclude Include="3DShape\3DTriangle.h">
+      <Filter>3DShape</Filter>
     </ClInclude>
-    <ClInclude Include="Shape3D\3DShapes.h">
-      <Filter>Shape3D</Filter>
+    <ClInclude Include="3DShape\Composite3DShape.h">
+      <Filter>3DShape</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\2DCircleCollision.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\2DRectangleCollision.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\2DShape.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\Circle.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\Dynamic2DShape.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\I2DShape.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\Rectangle.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DShape\Static2DShape.h">
+      <Filter>2DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="2DMixins\C2DRotatable.h">
+      <Filter>2DMixins</Filter>
+    </ClInclude>
+    <ClInclude Include="2DMixins\CHave2DOrigin.h">
+      <Filter>2DMixins</Filter>
+    </ClInclude>
+    <ClInclude Include="2DMixins\CHave2DPosition.h">
+      <Filter>2DMixins</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\Have3DPosition.h">
+      <Filter>Mixin</Filter>
+    </ClInclude>
+    <ClInclude Include="2DMixins\CHave2DVelocity.h">
+      <Filter>2DMixins</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Actor.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Wall\WallView.h">
+      <Filter>World\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Wall\Wall.h">
+      <Filter>World\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixin\HaveVisiblePart.h">
+      <Filter>Mixin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -222,9 +273,6 @@
       <Filter>Mixin\Material</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\HaveDirection.cpp">
-      <Filter>Mixin</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\HavePosition.cpp">
       <Filter>Mixin</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\Material\HaveShininess.cpp">
@@ -272,9 +320,6 @@
     <ClCompile Include="World\Map.cpp">
       <Filter>World</Filter>
     </ClCompile>
-    <ClCompile Include="World\Wall\Wall.cpp">
-      <Filter>World\Wall</Filter>
-    </ClCompile>
     <ClCompile Include="World\Wall\WallType.cpp">
       <Filter>World\Wall</Filter>
     </ClCompile>
@@ -293,20 +338,65 @@
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp">
       <Filter>Mixin</Filter>
     </ClCompile>
-    <ClCompile Include="Shape3D\3DShape.cpp">
-      <Filter>Shape3D</Filter>
+    <ClCompile Include="3DShape\3DRectangle.cpp">
+      <Filter>3DShape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape3D\Composite3DShape.cpp">
-      <Filter>Shape3D</Filter>
+    <ClCompile Include="3DShape\3DShape.cpp">
+      <Filter>3DShape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape3D\3DRectangle.cpp">
-      <Filter>Shape3D</Filter>
+    <ClCompile Include="3DShape\3DSphere.cpp">
+      <Filter>3DShape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape3D\3DSphere.cpp">
-      <Filter>Shape3D</Filter>
+    <ClCompile Include="3DShape\3DTriangle.cpp">
+      <Filter>3DShape</Filter>
     </ClCompile>
-    <ClCompile Include="Shape3D\3DTriangle.cpp">
-      <Filter>Shape3D</Filter>
+    <ClCompile Include="3DShape\Composite3DShape.cpp">
+      <Filter>3DShape</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\2DCircleCollision.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\2DRectangleCollision.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\2DShape.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\Circle.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\Dynamic2DShape.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\Rectangle.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DShape\Static2DShape.cpp">
+      <Filter>2DShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="2DMixins\C2DRotatable.cpp">
+      <Filter>2DMixins</Filter>
+    </ClCompile>
+    <ClCompile Include="2DMixins\CHave2DOrigin.cpp">
+      <Filter>2DMixins</Filter>
+    </ClCompile>
+    <ClCompile Include="2DMixins\CHave2DPosition.cpp">
+      <Filter>2DMixins</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\Have3DPosition.cpp">
+      <Filter>Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="2DMixins\CHave2DVelocity.cpp">
+      <Filter>2DMixins</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Wall\WallView.cpp">
+      <Filter>World\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Wall\Wall.cpp">
+      <Filter>World\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HaveVisiblePart.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

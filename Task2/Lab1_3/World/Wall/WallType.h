@@ -2,7 +2,17 @@
 
 #include "../../Material/Texture2D.h"
 
-class CWallType
+// TODO : might need transfer
+class IHavePointerToWallViewType
+{
+public:
+	virtual ~IHavePointerToWallViewType() = default;
+
+	virtual void						SetType(const CWallViewType* type) = 0;
+	virtual const CWallViewType*		GetType() const = 0;
+};
+
+class CWallViewType
 {
 public:
 	void					SetTexture(const std::string & texturePath);

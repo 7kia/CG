@@ -43,7 +43,7 @@ namespace PlayerSpace
 class CPlayer final
 	: public IUpdatable
 	, public IDrawable
-	, public CHavePosition
+	, public CHave3DPosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity
 	, public CHaveRotationSpeed

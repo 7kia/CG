@@ -2,16 +2,21 @@
 #include "Composite3DShape.h"
 
 ÑComposite3DShape::ÑComposite3DShape()
-	: I3DShape()
+	: C3DShape()
 {
 }
 
 void ÑComposite3DShape::Draw() const
 {
+	glPushMatrix();
+	glMultMatrixf(glm::value_ptr(m_transform));
+
 	for (const auto & shape : m_shapes)
 	{
 		shape->Draw();
 	}
+
+	glPopMatrix();
 }
 
 void ÑComposite3DShape::CheckVertexIndex(size_t index) const

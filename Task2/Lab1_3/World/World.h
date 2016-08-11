@@ -4,7 +4,7 @@
 #include "../Mixin/Updatable.h"
 
 #include "..\DispatchEvent.h"
-#include "..\Shape3D\3DShapes.h"
+#include "..\3DShape\3DShapes.h"
 #include "..\Decorators\Decorators.h"
 #include "..\Camera\Cameras.h"
 #include "..\Lights.h"

@@ -14,7 +14,7 @@ public:
 // Methods
 public:
 	//--------------------------------------------
-	// C3DShape
+	// CIdentity3DShape
 	void					Update(float deltaTime) override final;
 	//--------------------------------------------
 private:

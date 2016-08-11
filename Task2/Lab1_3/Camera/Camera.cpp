@@ -2,7 +2,7 @@
 #include "Camera.h"
 
 CAbcstartCamera::CAbcstartCamera()
-	: CHavePosition()
+	: CHave3DPosition()
 	, CHaveDirection()
 
 {

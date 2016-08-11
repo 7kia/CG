@@ -75,7 +75,7 @@ void CWorld::CreateScene()
 
 	/*
 		{
-		auto pWall = std::make_unique<CWall>();
+		auto pWall = std::make_unique<CWallView>();
 		pWall->SetType(GetWallType(1));
 
 		auto pAnimate = std::make_unique<CAnimatedShapeDecorator>();

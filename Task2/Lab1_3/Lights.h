@@ -13,7 +13,7 @@
 #include "Mixin\Material\HaveShininess.h"
 
 #include "Mixin\HaveDirection.h"
-#include "Mixin\HavePosition.h"
+#include "Mixin\Have3DPosition.h"
 
 class ILightSource
 {
@@ -58,7 +58,7 @@ public:
 
 class CPositionLightSource 
 	: public CAbstractLightSource
-	, public CHavePosition
+	, public CHave3DPosition
 {
 public:
     /// @param index - один из GL_LIGHT*

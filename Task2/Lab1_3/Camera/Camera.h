@@ -8,7 +8,7 @@
 
 
 #include "../Mixin/Updatable.h"
-#include "../Mixin/HavePosition.h"
+#include "../Mixin/Have3DPosition.h"
 #include "../Mixin/HaveDirection.h"
 
 namespace CameraSpace
@@ -18,7 +18,7 @@ namespace CameraSpace
 }
 
 class CAbcstartCamera
-	: public CHavePosition
+	: public CHave3DPosition
 	, public CHaveDirection
 
 {

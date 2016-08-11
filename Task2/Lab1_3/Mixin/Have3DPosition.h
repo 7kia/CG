@@ -3,10 +3,10 @@
 #include <glm/mat3x3.hpp>
 #include <glm/mat4x4.hpp>
 
-class IHavePosition
+class IHave3DPosition
 {
 public:
-	virtual ~IHavePosition() = default;
+	virtual ~IHave3DPosition() = default;
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:
@@ -16,11 +16,11 @@ public:
 	virtual void			Move(const glm::vec3 &value) = 0;
 };
 
-class CHavePosition : public IHavePosition
+class CHave3DPosition : public IHave3DPosition
 {
 public:
-	CHavePosition();
-	CHavePosition(const glm::vec3 &value);
+	CHave3DPosition();
+	CHave3DPosition(const glm::vec3 &value);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

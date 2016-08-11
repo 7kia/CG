@@ -21,7 +21,7 @@ namespace
 }
 
 CIdentity3DSphere::CIdentity3DSphere(unsigned slices, unsigned stacks)
-	: C3DShape()
+	: CIdentity3DShape()
 {
 	Tesselate(slices, stacks);
 }

@@ -21,7 +21,7 @@ void CMap::AddWall(size_t x, size_t y, int z)
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
-	auto pWall = std::make_unique<CWall>();
+	auto pWall = std::make_unique<CWallView>();
 	pWall->SetType(pWorld->GetWallType(GetIndexWallType(z)));
 
 	for (int xShift = -1; xShift <= 1; ++xShift)
@@ -45,9 +45,7 @@ void CMap::AddWall(size_t x, size_t y, int z)
 	}
 
 
-	auto pTransform = std::make_unique<CTransformShapeDecorator>();
-	pTransform->SetChild(std::move(pWall));
-	pTransform->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
+	pWall->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
 
-	m_walls.emplace_back(std::move(pTransform));
+	m_walls.emplace_back(std::move(pWall));
 }

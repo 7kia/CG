@@ -87,7 +87,6 @@ namespace// TODO : rewrite this namespace
 
 class I3DShape
 	: public IDrawable
-	, public IUpdatable
 {
 public:
 	I3DShape();
@@ -96,10 +95,19 @@ public:
 
 class C3DShape
 	: public I3DShape
-	, public CHaveVertexes
+	, public CTransformable
+
 {
 public:
 	C3DShape();
+};
+
+class CIdentity3DShape
+	: public C3DShape
+	, public CHaveVertexes
+{
+public:
+	CIdentity3DShape();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

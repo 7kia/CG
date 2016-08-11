@@ -16,7 +16,7 @@ namespace SphereSpace
 
 
 class CIdentity3DSphere final 
-	: public C3DShape
+	: public CIdentity3DShape
 {
 public:
 	CIdentity3DSphere(unsigned slices, unsigned stacks);
@@ -24,7 +24,7 @@ public:
 // Methods
 public:
 	//--------------------------------------------
-	// C3DShape
+	// CIdentity3DShape
 	void Update(float) final {}
 private:
 	void Tesselate(unsigned slices, unsigned stacks);

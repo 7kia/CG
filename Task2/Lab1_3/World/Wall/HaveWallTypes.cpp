@@ -18,7 +18,7 @@ void CHaveWallTypes::CreateWallTypes()
 	}
 }
 
-const CWallType * CHaveWallTypes::GetWallType(unsigned index) const
+const CWallViewType * CHaveWallTypes::GetWallType(unsigned index) const
 {
 	return &m_wallTypes[index];
 }

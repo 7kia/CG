@@ -3,7 +3,7 @@
 #include "3DTriangle.h"
 
 C3DTriangle::C3DTriangle()
-	: C3DShape()
+	: CIdentity3DShape()
 {
 	const float shift = 0.66f;// origin int triangle center
 	const auto firstPosition = glm::vec3(0.f, shift, 0.f);

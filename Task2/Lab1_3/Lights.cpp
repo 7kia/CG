@@ -45,7 +45,7 @@ void CDirectedLightSource::Setup() const
 
 CPositionLightSource::CPositionLightSource(unsigned index)
     : CAbstractLightSource(index)
-    , CHavePosition()
+    , CHave3DPosition()
 {
 	m_position = { 0.f, 0.f, 0.f, 1.f };
 }

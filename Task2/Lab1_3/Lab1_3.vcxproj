@@ -102,7 +102,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
@@ -155,6 +155,24 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2DMixins\C2DRotatable.h" />
+    <ClInclude Include="2DMixins\CHave2DOrigin.h" />
+    <ClInclude Include="2DMixins\CHave2DPosition.h" />
+    <ClInclude Include="2DMixins\CHave2DVelocity.h" />
+    <ClInclude Include="2DShape\2DCircleCollision.h" />
+    <ClInclude Include="2DShape\2DRectangleCollision.h" />
+    <ClInclude Include="2DShape\2DShape.h" />
+    <ClInclude Include="2DShape\Circle.h" />
+    <ClInclude Include="2DShape\Dynamic2DShape.h" />
+    <ClInclude Include="2DShape\I2DShape.h" />
+    <ClInclude Include="2DShape\Rectangle.h" />
+    <ClInclude Include="2DShape\Static2DShape.h" />
+    <ClInclude Include="3DShape\3DRectangle.h" />
+    <ClInclude Include="3DShape\3DShape.h" />
+    <ClInclude Include="3DShape\3DShapes.h" />
+    <ClInclude Include="3DShape\3DSphere.h" />
+    <ClInclude Include="3DShape\3DTriangle.h" />
+    <ClInclude Include="3DShape\Composite3DShape.h" />
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Camera\Cameras.h" />
@@ -176,9 +194,10 @@
     <ClInclude Include="Mixin\HaveFileForReading.h" />
     <ClInclude Include="Mixin\HaveFileForWriting.h" />
     <ClInclude Include="Mixin\HaveLinearVelocity.h" />
-    <ClInclude Include="Mixin\HavePosition.h" />
+    <ClInclude Include="Mixin\Have3DPosition.h" />
     <ClInclude Include="Mixin\HaveRotationSpeed.h" />
     <ClInclude Include="Mixin\HaveVertex.h" />
+    <ClInclude Include="Mixin\HaveVisiblePart.h" />
     <ClInclude Include="Mixin\Material\HaveAmbient.h" />
     <ClInclude Include="Mixin\Material\HaveDiffuse.h" />
     <ClInclude Include="Mixin\Material\HaveEmission.h" />
@@ -186,23 +205,35 @@
     <ClInclude Include="Mixin\Material\HaveSpecular.h" />
     <ClInclude Include="Mixin\Transformable.h" />
     <ClInclude Include="Mixin\Updatable.h" />
-    <ClInclude Include="Shape3D\Composite3DShape.h" />
-    <ClInclude Include="Shape3D\3DRectangle.h" />
-    <ClInclude Include="Shape3D\3DShape.h" />
-    <ClInclude Include="Shape3D\3DShapes.h" />
-    <ClInclude Include="Shape3D\3DSphere.h" />
-    <ClInclude Include="Shape3D\3DTriangle.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="World\Actor.h" />
     <ClInclude Include="World\Map.h" />
     <ClInclude Include="World\Player.h" />
     <ClInclude Include="World\Wall\HaveWallTypes.h" />
     <ClInclude Include="World\Wall\Wall.h" />
+    <ClInclude Include="World\Wall\WallView.h" />
     <ClInclude Include="World\Wall\WallType.h" />
     <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="2DMixins\C2DRotatable.cpp" />
+    <ClCompile Include="2DMixins\CHave2DOrigin.cpp" />
+    <ClCompile Include="2DMixins\CHave2DPosition.cpp" />
+    <ClCompile Include="2DMixins\CHave2DVelocity.cpp" />
+    <ClCompile Include="2DShape\2DCircleCollision.cpp" />
+    <ClCompile Include="2DShape\2DRectangleCollision.cpp" />
+    <ClCompile Include="2DShape\2DShape.cpp" />
+    <ClCompile Include="2DShape\Circle.cpp" />
+    <ClCompile Include="2DShape\Dynamic2DShape.cpp" />
+    <ClCompile Include="2DShape\Rectangle.cpp" />
+    <ClCompile Include="2DShape\Static2DShape.cpp" />
+    <ClCompile Include="3DShape\3DRectangle.cpp" />
+    <ClCompile Include="3DShape\3DShape.cpp" />
+    <ClCompile Include="3DShape\3DSphere.cpp" />
+    <ClCompile Include="3DShape\3DTriangle.cpp" />
+    <ClCompile Include="3DShape\Composite3DShape.cpp" />
     <ClCompile Include="AbstractWindow.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Camera\PlayerCamera.cpp" />
@@ -221,20 +252,16 @@
     <ClCompile Include="Mixin\HaveFileForReading.cpp" />
     <ClCompile Include="Mixin\HaveFileForWriting.cpp" />
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp" />
-    <ClCompile Include="Mixin\HavePosition.cpp" />
+    <ClCompile Include="Mixin\Have3DPosition.cpp" />
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
+    <ClCompile Include="Mixin\HaveVisiblePart.cpp" />
     <ClCompile Include="Mixin\Material\HaveAmbient.cpp" />
     <ClCompile Include="Mixin\Material\HaveDiffuse.cpp" />
     <ClCompile Include="Mixin\Material\HaveEmission.cpp" />
     <ClCompile Include="Mixin\Material\HaveShininess.cpp" />
     <ClCompile Include="Mixin\Material\HaveSpecular.cpp" />
     <ClCompile Include="Mixin\Transformable.cpp" />
-    <ClCompile Include="Shape3D\Composite3DShape.cpp" />
-    <ClCompile Include="Shape3D\3DRectangle.cpp" />
-    <ClCompile Include="Shape3D\3DShape.cpp" />
-    <ClCompile Include="Shape3D\3DSphere.cpp" />
-    <ClCompile Include="Shape3D\3DTriangle.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="World\DependentWorld.cpp" />
@@ -243,6 +270,7 @@
     <ClCompile Include="World\PlayerController.cpp" />
     <ClCompile Include="World\Wall\HaveWallTypes.cpp" />
     <ClCompile Include="World\Wall\Wall.cpp" />
+    <ClCompile Include="World\Wall\WallView.cpp" />
     <ClCompile Include="World\Wall\WallType.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>

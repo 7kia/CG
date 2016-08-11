@@ -45,10 +45,10 @@ private:
 	void	AddLowLevel(size_t length, size_t width);
 
 	void	AddWall(size_t x, size_t y, int z);
-	void	ProcessLateralEdge(CWall* pWall
+	void	ProcessLateralEdge(CWallView* pWall
 								, const glm::vec3 & position
 								, const glm::vec3 & shifts);
-	void	ProcessVerticalEdge(CWall* pWall
+	void	ProcessVerticalEdge(CWallView* pWall
 								, const glm::vec3 & position
 								, int zShift);
 
