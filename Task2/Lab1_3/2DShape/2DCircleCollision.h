@@ -1,17 +1,21 @@
 #pragma once
 
+#include "../World/Wall/WallView.h"
+#include "../Mixin/HaveReferenceToC3DShape.h"
+
 #include "Dynamic2DShape.h"
 #include "Circle.h"
 
 class C2DCircleCollision
 	: public CDynamicBody
 	, public CCircle
+	, public CHaveReferenceToC3DShape
 	, private boost::noncopyable
 
 {
 public:
 	C2DCircleCollision();
-	C2DCircleCollision(float radius, const glm::vec2 &position);
+	C2DCircleCollision(float radius, const glm::vec2 &position, C3DShape* pVisual);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

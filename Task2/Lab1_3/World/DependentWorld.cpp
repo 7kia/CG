@@ -18,6 +18,20 @@ unsigned CMap::GetIndexWallType(int heigth)
 	}
 }
 
+unsigned CMap::WallHaveCollision(int heigth)
+{
+	switch (heigth)
+	{
+	case -1: case 1:
+		return false;
+	case 0:
+		return true;
+	default:
+		throw std::runtime_error("Incorrect index");
+		break;
+	}
+}
+
 void CMap::AddWall(size_t x, size_t y, int z)
 {
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
@@ -48,7 +62,31 @@ void CMap::AddWall(size_t x, size_t y, int z)
 
 
 	//pWall->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
+
 	pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
-	pWall->AddToWorld(pWorld->GetWorld());
+	pWall->SetHaveCollision(WallHaveCollision(z));
+
+	if (pWall->GetHaveCollision())
+	{
+		pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
+		pWall->AddToWorld(pWorld->GetWorld());
+
+	}
 	m_walls.emplace_back(std::move(pWall));
+}
+
+void CPlayer::SetCollison()
+{
+	m_collision.SetRadius(1.f);
+	m_collision.SetReferenceSystemOrigin(glm::vec2());
+
+	auto position = GetCamera()->GetPosition();
+	m_collision.SetPosition(position.x, position.y);
+	m_collision.SetVelocity(glm::vec2());
+
+
+	m_visual.SetType(m_pWorld->GetWallType(0));
+	m_visual.SetTransform(glm::translate(glm::mat4(), position));
+
+	m_collision.AddToWorld(m_pWorld->GetWorld());
 }

@@ -4,7 +4,7 @@
 
 
 CPlayerCamera::CPlayerCamera(const glm::vec3 & position, const glm::vec3 & direction)
-	: CAbcstartCamera()
+	: CAbstractRotatableCamera()
 	//, CHave3DPosition(position)
 	//, CHaveDirection(PlayerCameraSpace::PLAYER_DIRECTION)
 {
@@ -17,12 +17,8 @@ void CPlayerCamera::Update(float deltaSec
 							, float rotationSpeed)
 {
 	m_rotationRadians += deltaSec * rotationSpeed;//PlayerCameraSpace::GetRotationSpeedRadians(m_keysPressed);
-	auto direction = GetDirection();
-	direction = glm::rotateY(glm::normalize(direction), m_rotationRadians);
 
-	glm::vec3 direction3D = glm::vec3(direction.x, direction.y, direction.z);
-
-	Move(direction3D * (deltaSec *  moveSpeed));//PlayerCameraSpace::GetLinearMoveSpeed(m_keysPressed))
+	Move(GetCurrentDirection() * (deltaSec *  moveSpeed));//PlayerCameraSpace::GetLinearMoveSpeed(m_keysPressed))
 }
 
 glm::mat4 CPlayerCamera::GetViewTransform() const

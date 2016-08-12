@@ -6,7 +6,9 @@
 #include "../Mixin/HaveDirection.h"
 #include "../Mixin/Drawable.h"
 
-#include "../Lights.h"
+#include "../2DShape/2DCircleCollision.h"
+#include "Wall\WallView.h"
+#include "..\Lights.h"
 #include "..\Camera\Cameras.h"
 #include "..\DispatchEvent.h"
 #include <map>
@@ -21,7 +23,7 @@ namespace PlayerSpace
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
-	const float LINEAR_MOVE_SPEED = 25.f;
+	const float LINEAR_MOVE_SPEED = 5.f;
 
 
 		const glm::vec4 BLACK = { 0, 0, 0, 1 };
@@ -40,6 +42,8 @@ namespace PlayerSpace
 // SSkill - content pointer to function and value keys which activate the skill
 // 
 
+class CWorld;
+
 class CPlayer final
 	: public IUpdatable
 	, public IDrawable
@@ -51,7 +55,8 @@ class CPlayer final
 public:
 	CPlayer();
 	explicit CPlayer(const glm::vec3 & position
-					, const glm::vec3 & direction);
+					, const glm::vec3 & direction
+					, CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -91,10 +96,11 @@ public:
 	void Draw() const override final;
 	//--------------------------------------------
 	void							SetCamera(CPlayer::IdCameras id);
-	CAbcstartCamera*				GetCamera();// TODO : see need there const
+	CAbstractRotatableCamera*		GetCamera();// TODO : see need there const
 
 private:
 	void							SetCamera();
+	void							SetCollison();
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
@@ -104,9 +110,12 @@ public:
 private:
 	IdCameras						m_idCamera = IdCameras::Player;
 	// TODO : see might can rewrite better
-	std::array<std::unique_ptr<CAbcstartCamera>, 2>	m_cameras;
+	std::array<std::unique_ptr<CAbstractRotatableCamera>, 2>	m_cameras;
 
 	CPositionLightSource			m_flashlight;
+	C2DCircleCollision				m_collision;
+	CWallView						m_visual;
+	CWorld*							m_pWorld;
 };
 
 class CPlayer::CController

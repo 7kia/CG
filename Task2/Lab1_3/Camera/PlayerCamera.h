@@ -17,7 +17,7 @@ namespace PlayerCameraSpace
 
 // TODO : rename
 class CPlayerCamera final
-	: public CAbcstartCamera
+	: public CAbstractRotatableCamera
 	, private boost::noncopyable
 {
 public:
@@ -40,5 +40,4 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	float		m_rotationRadians = 0;
 };

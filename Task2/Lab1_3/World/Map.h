@@ -52,6 +52,7 @@ private:
 								, int zShift);
 
 	static unsigned	GetIndexWallType(int heigth);
+	static unsigned WallHaveCollision(int heigth);
 
 
 	void	ComputeVisibleEdge(size_t width);

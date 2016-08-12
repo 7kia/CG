@@ -45,11 +45,17 @@ public:
 	glm::mat4						GetTransform() const override;
 	//--------------------------------------------
 
-	void							AddToWorld(b2World * world) ;
+	void							AddToWorld(b2World * world);
+	void							SetHaveCollision(bool value);
+	bool							GetHaveCollision() const;
 
+private:
+	bool							CheckContentCollision() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	CWallView						m_visual;
-	C2DRectangleCollision			m_collision;
+	CWallView										m_visual;
+
+	bool											m_haveCollision = false;
+	std::shared_ptr<C2DRectangleCollision>			m_collision;
 };

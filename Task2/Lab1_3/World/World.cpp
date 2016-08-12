@@ -9,7 +9,7 @@ CWorld::CWorld()
 	, CHaveWallTypes()
 	, CHavePhysicalWorld()
 	, m_sunlight(GL_LIGHT0)
-	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)
+	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION, this)
 	, m_map("map.txt", this)
 {
 
@@ -57,6 +57,8 @@ void CWorld::Update(float deltaTime)
 	m_player.Update(deltaTime);
 
 	m_map.Update(deltaTime);
+
+	m_world->Step(deltaTime, 8, 3);
 }
 
 CAbcstartCamera * CWorld::GetCamera()

@@ -3,16 +3,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "../World/Wall/WallView.h"
+#include "../Mixin/HaveReferenceToC3DShape.h"
+
 #include "Static2DShape.h"
 #include "Rectangle.h"
 
 class C2DRectangleCollision final
 	: public CStatic2DShape
 	, public CRectangle
+	, public CHaveReferenceToC3DShape
 	, private boost::noncopyable
 {
 public:
-	C2DRectangleCollision(C3DShape* pVisual);
+	C2DRectangleCollision();
 	C2DRectangleCollision(const glm::vec2 & leftTopPoint
 		, SSize size
 		, float rotate
@@ -41,5 +44,4 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	C3DShape*			m_pVisual = nullptr;
 };

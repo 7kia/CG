@@ -4,7 +4,7 @@
 
 // TODO : rename
 class CWorldCamera
-	: public CAbcstartCamera
+	: public CAbstractRotatableCamera
 	, private boost::noncopyable
 {
 public:
@@ -23,6 +23,5 @@ public:
 	glm::mat4 GetViewTransform() const override;
 	//--------------------------------------------
 private:
-	float m_rotationRadians = 0;
 	float m_distance = 1;
 };

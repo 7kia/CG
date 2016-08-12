@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "2DRectangleCollision.h"
 
-C2DRectangleCollision::C2DRectangleCollision(C3DShape* pVisual)
+C2DRectangleCollision::C2DRectangleCollision()
 	: CStatic2DShape()
 	, CRectangle()
-	, m_pVisual(pVisual)
+	, CHaveReferenceToC3DShape()
 {
 	SetReferenceSystemOrigin(glm::vec2());
 }
@@ -15,8 +15,10 @@ C2DRectangleCollision::C2DRectangleCollision(const glm::vec2 & leftTopPoint
 			, C3DShape* pVisual)
 	: CStatic2DShape()
 	, CRectangle(size)
-	, m_pVisual(pVisual)
+	, CHaveReferenceToC3DShape()
 {
+	SetPVisual(pVisual);
+
 	SetPosition(leftTopPoint);
 	SetRotation(rotate);
 

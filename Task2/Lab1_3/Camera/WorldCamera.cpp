@@ -36,7 +36,7 @@ namespace WorldCameraSpace
 }
 
 CWorldCamera::CWorldCamera(float rotationRadians, float distance)
-	: m_rotationRadians(rotationRadians)
+	: CAbstractRotatableCamera(rotationRadians)
 	, m_distance(distance)
 {
 	SetDirection({ 0.f, 0.5f, 1.f });
@@ -53,14 +53,7 @@ void CWorldCamera::Update(float deltaSec
 
 glm::mat4 CWorldCamera::GetViewTransform() const
 {
-	auto direction4d = GetDirection();
-	glm::vec3 direction = { direction4d.x, direction4d.y, direction4d.z };
-	// Нормализуем вектор (приводим к единичной длине),
-	// затем поворачиваем вокруг оси Z.
-	// см. http://glm.g-truc.net/0.9.3/api/a00199.html
-	direction = glm::rotateY(glm::normalize(direction), m_rotationRadians);
-
-	const glm::vec3 eye = direction * m_distance;// TODO : must position = eye
+	const glm::vec3 eye = GetCurrentDirection() * m_distance;// TODO : must position = eye
 
 	const glm::vec3 center = { 0, 0, 0 };//direction
 	const glm::vec3 up = { 0, 1, 0 };

@@ -216,6 +216,9 @@
     <ClInclude Include="World\HavePhysicalWorld.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\HaveReferenceToC3DShape.h">
+      <Filter>2DMixins</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -373,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="World\HavePhysicalWorld.cpp">
       <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\HaveReferenceToC3DShape.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -41,3 +41,18 @@ public:
 protected:
 
 };
+
+class CAbstractRotatableCamera
+	: public CAbcstartCamera
+{
+public:
+	CAbstractRotatableCamera() = default;
+	CAbstractRotatableCamera(float rotationRadians);
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+	float		GetRotationRadians() const;
+	glm::vec3	GetCurrentDirection() const;
+protected:
+	float		m_rotationRadians = 0;
+};

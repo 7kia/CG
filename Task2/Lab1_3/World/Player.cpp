@@ -18,11 +18,13 @@ CPlayer::CPlayer()
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
 {
+	m_collision.SetPVisual(&m_visual);
 	SetCamera();
 }
 
 CPlayer::CPlayer(const glm::vec3 & position
-				, const glm::vec3 & direction)
+				, const glm::vec3 & direction
+				, CWorld* pWorld)
 	: IUpdatable()
 	, IDrawable()
 	, CHave3DPosition(position)
@@ -31,11 +33,16 @@ CPlayer::CPlayer(const glm::vec3 & position
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
+	, m_pWorld(pWorld)
 {
+	m_collision.SetPVisual(&m_visual);
+
 	SetCamera();
 
 	GetCamera()->SetPosition(position);
 	GetCamera()->SetDirection(direction);
+
+	SetCollison();
 
 	m_flashlight.SetPosition(position);
 	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
@@ -90,10 +97,19 @@ void CPlayer::ChangeCamera()
 
 void CPlayer::Update(float deltaTime)
 {
+	auto collisionPosition = m_collision.GetPosition();
+	GetCamera()->SetPosition(glm::vec3(collisionPosition.x, 0.f, collisionPosition.y));
+
 	GetCamera()->Update(deltaTime
-					, GetCurrentLinearVelocity()
-					, GetCurrentRotationSpeed());
-	SetPosition(GetCamera()->GetPosition());// TODO : might need rewrite, the string crutch
+				, GetCurrentLinearVelocity()
+				, GetCurrentRotationSpeed());
+	//SetPosition(GetCamera()->GetPosition());// TODO : might need rewrite, the string crutch
+
+	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * GetCurrentLinearVelocity();
+	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.y));
+	//m_collision.ApplyAcceleration(glm::vec2(deltaTime, deltaTime));
+
+	m_collision.Advance(deltaTime);
 
 	m_flashlight.SetPosition(GetPosition());
 	ResetCurrentLinearVelocity();
@@ -103,6 +119,7 @@ void CPlayer::Update(float deltaTime)
 void CPlayer::Draw() const
 {
 	//m_flashlight.Setup();// TODO : fix light
+	m_visual.Draw();
 }
 
 void CPlayer::SetCamera(CPlayer::IdCameras id)
@@ -110,7 +127,7 @@ void CPlayer::SetCamera(CPlayer::IdCameras id)
 	m_idCamera = id;
 }
 
-CAbcstartCamera * CPlayer::GetCamera()
+CAbstractRotatableCamera * CPlayer::GetCamera()
 {
 	return m_cameras[unsigned(m_idCamera)].get();
 }

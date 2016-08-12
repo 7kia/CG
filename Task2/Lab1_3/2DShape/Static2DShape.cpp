@@ -28,8 +28,7 @@ void CStatic2DShape::SetPosition(float x, float y)
 }
 
 glm::vec2 CStatic2DShape::GetPosition() const
-{
-	return glm::vec2(Convert::ToNormal(m_body->GetPosition().x)
+{	return glm::vec2(Convert::ToNormal(m_body->GetPosition().x)
 					, Convert::ToNormal(m_body->GetPosition().y) );
 }
 
