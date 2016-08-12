@@ -124,4 +124,4 @@ protected:
 
 };
 
-using IBodyUniquePtr = std::unique_ptr<I3DShape>;
+using IBodyUniquePtr = std::unique_ptr<C3DShape>;

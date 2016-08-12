@@ -7,10 +7,12 @@ CWorld::CWorld()
 	, IInputEventAcceptor()
 	, IUpdatable()
 	, CHaveWallTypes()
+	, CHavePhysicalWorld()
 	, m_sunlight(GL_LIGHT0)
 	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION)
 	, m_map("map.txt", this)
 {
+
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);

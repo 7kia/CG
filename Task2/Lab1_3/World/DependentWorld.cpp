@@ -25,7 +25,7 @@ void CMap::AddWall(size_t x, size_t y, int z)
 
 	auto pWall = std::make_unique<CWall>();
 	pWall->SetType(pWorld->GetWallType(GetIndexWallType(z)));
-
+	
 	for (int xShift = -1; xShift <= 1; ++xShift)
 	{
 		for (int yShift = -1; yShift <= 1; ++yShift)// this and high for process around wall
@@ -47,7 +47,8 @@ void CMap::AddWall(size_t x, size_t y, int z)
 	}
 
 
-	pWall->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
-
+	//pWall->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
+	pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
+	pWall->AddToWorld(pWorld->GetWorld());
 	m_walls.emplace_back(std::move(pWall));
 }

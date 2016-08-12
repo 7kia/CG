@@ -213,6 +213,9 @@
     <ClInclude Include="Mixin\HaveVisiblePart.h">
       <Filter>Mixin</Filter>
     </ClInclude>
+    <ClInclude Include="World\HavePhysicalWorld.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -367,6 +370,9 @@
     </ClCompile>
     <ClCompile Include="Mixin\HaveVisiblePart.cpp">
       <Filter>Mixin</Filter>
+    </ClCompile>
+    <ClCompile Include="World\HavePhysicalWorld.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

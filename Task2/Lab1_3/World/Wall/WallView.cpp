@@ -52,6 +52,15 @@ const CWallViewType* CWallView::GetType() const
 	return m_pType;
 }
 
+void CWallView::SetTransform(const glm::mat4 & transform)
+{
+	CTransformable::SetTransform(transform);
+	for (auto & shape : m_shapes)
+	{
+		shape->SetTransform(transform);
+	}
+}
+
 CTexture2D * CWallView::GetTexture() const
 {
 	return m_pType->GetTexture();

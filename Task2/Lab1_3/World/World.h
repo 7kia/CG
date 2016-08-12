@@ -11,6 +11,7 @@
 
 #include "Player.h"
 #include "Wall\HaveWallTypes.h"
+#include "HavePhysicalWorld.h"
 #include "Map.h"
 
 #include <vector>
@@ -36,6 +37,7 @@ class CWorld
 	, public IInputEventAcceptor
 	, public IUpdatable
 	, public CHaveWallTypes
+	, public CHavePhysicalWorld
 {
 public:
 	CWorld();
@@ -62,16 +64,13 @@ public:
 // Data
 
 private:
-	std::vector<IBodyUniquePtr>		m_opaqueBodies;
+	std::vector<IBodyUniquePtr>		m_opaqueBodies;// TODO : see need it's
 	std::vector<IBodyUniquePtr>		m_transparentBodies;
 
 	CPlayer							m_player;
 
 	CMap							m_map;
 
-
-	// Player can change camera
-	bool							m_changePlayer = true;
 	CPhongModelMaterial m_material;// TODO : transfer
 	CDirectedLightSource m_sunlight;
 

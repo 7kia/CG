@@ -12,11 +12,12 @@ class C2DRectangleCollision final
 	, private boost::noncopyable
 {
 public:
-	C2DRectangleCollision();
+	C2DRectangleCollision(C3DShape* pVisual);
 	C2DRectangleCollision(const glm::vec2 & leftTopPoint
 		, SSize size
 		, float rotate
-		);
+		, C3DShape* pVisual
+	);
 	virtual ~C2DRectangleCollision() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods

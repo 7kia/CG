@@ -1,22 +1,26 @@
 #include "stdafx.h"
 #include "2DRectangleCollision.h"
 
-C2DRectangleCollision::C2DRectangleCollision()
+C2DRectangleCollision::C2DRectangleCollision(C3DShape* pVisual)
 	: CStatic2DShape()
 	, CRectangle()
-
+	, m_pVisual(pVisual)
 {
+	SetReferenceSystemOrigin(glm::vec2());
 }
 
 C2DRectangleCollision::C2DRectangleCollision(const glm::vec2 & leftTopPoint
 			, SSize size
-			, float rotate)
+			, float rotate
+			, C3DShape* pVisual)
 	: CStatic2DShape()
 	, CRectangle(size)
-
+	, m_pVisual(pVisual)
 {
 	SetPosition(leftTopPoint);
 	SetRotation(rotate);
+
+	SetReferenceSystemOrigin(glm::vec2());
 }
 
 void C2DRectangleCollision::AddToWorld(b2World * world)
@@ -33,10 +37,11 @@ void C2DRectangleCollision::Advance(float dt)
 {
 	(void)dt;
 
-	auto bodyPosition = GetPosition();
-	auto moveTransform = glm::translate(glm::mat4(), glm::vec3(bodyPosition.x, bodyPosition.y, 0.f));
+	auto bodyPosition = GetPosition();//m_pVisual->GetTransform()[3][2]
+	auto moveTransform = glm::translate(glm::mat4(), glm::vec3(bodyPosition.x, m_pVisual->GetTransform()[3][1], bodyPosition.y));
 
-	auto resultTransform = glm::rotate(moveTransform, GetRotation(), glm::vec3(0.f, 1.f, 0.f));
+	auto resultTransform = moveTransform;
+	//auto resultTransform = glm::rotate(moveTransform, GetRotation(), glm::vec3(0.f, 1.f, 0.f));
 	m_pVisual->SetTransform(resultTransform);
 
 }
