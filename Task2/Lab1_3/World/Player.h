@@ -23,7 +23,7 @@ namespace PlayerSpace
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
-	const float LINEAR_MOVE_SPEED = 5.f;
+	const float LINEAR_MOVE_SPEED = 1.f;
 
 
 		const glm::vec4 BLACK = { 0, 0, 0, 1 };

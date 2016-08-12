@@ -48,10 +48,10 @@ void C2DCircleCollision::AddCircleToBody(b2Body *body, float radius)
 	circle.shape = &circleShape;
 
 	// Set the box density to be non-zero, so it will be dynamic.
-	circle.density = 1.0f;
+	circle.density = 100.0f;
 
 	// Override the default friction.
-	circle.friction = 0.3f;
+	circle.friction = 100.0f;
 
 	circle.restitution = 0.5f;
 

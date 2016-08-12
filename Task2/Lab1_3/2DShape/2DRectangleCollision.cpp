@@ -63,9 +63,9 @@ void C2DRectangleCollision::AddRectangleToBody(b2Body *body
 	b2PolygonShape rectangleShape;
 
 	// Origin body box2d in center by default
-	const glm::vec2 shiftOrigin = { Convert::ToBox(size.width) / 2.f, Convert::ToBox(size.height) / 2.f };
+	const glm::vec2 shiftOrigin = { -Convert::ToBox(size.width) / 2.f, -Convert::ToBox(size.height) / 2.f };
 	rectangleShape.SetAsBox(Convert::ToBox(size.width) / 2.f, Convert::ToBox(size.height) / 2.f
-		, b2Vec2(shapeOrigin.x + shiftOrigin.x, shapeOrigin.y + shiftOrigin.y)
+		, b2Vec2(shapeOrigin.x , shapeOrigin.y )
 		, 0.f);
 
 	body->CreateFixture(&rectangleShape, 2.f);

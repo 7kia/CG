@@ -24,6 +24,7 @@ public:
 	void		SetVelocity(const glm::vec2 &GetVelocity) override;
 	//--------------------------------------------
 	void		ApplyAcceleration(const glm::vec2 & acceleration);
+	void		ReserVelocity();
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:

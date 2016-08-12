@@ -97,6 +97,7 @@ void CPlayer::ChangeCamera()
 
 void CPlayer::Update(float deltaTime)
 {
+	m_collision.ReserVelocity();
 	auto collisionPosition = m_collision.GetPosition();
 	GetCamera()->SetPosition(glm::vec3(collisionPosition.x, 0.f, collisionPosition.y));
 
@@ -106,7 +107,7 @@ void CPlayer::Update(float deltaTime)
 	//SetPosition(GetCamera()->GetPosition());// TODO : might need rewrite, the string crutch
 
 	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * GetCurrentLinearVelocity();
-	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.y));
+	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
 	//m_collision.ApplyAcceleration(glm::vec2(deltaTime, deltaTime));
 
 	m_collision.Advance(deltaTime);
