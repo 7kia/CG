@@ -36,10 +36,7 @@ void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 
 void CDynamicBody::ReserVelocity()
 {
-	//m_body->SetTransform(0.f);
-	//m_body->S
-	//if(GetVelocity())
-	//m_body->ApplyForceToCenter(-m_body->GetLinearVelocity());
+	m_body->SetLinearVelocity(b2Vec2(0, 0));
 }
 
 void CDynamicBody::CheckParametres()
