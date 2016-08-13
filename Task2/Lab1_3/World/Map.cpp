@@ -101,7 +101,6 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 	Level middleLevel;
 	string inputString;
 	getline(m_inputFile, inputString);// pass string
-	middleLevel.push_back(GenerateRowOfWalls(length));// Border row
 	while (getline(m_inputFile, inputString))
 	{
 		if (widthCount > (width - 1))
@@ -113,19 +112,53 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 			throw std::runtime_error("Length row more expected");
 		}
 		// Add in start and end border symbols
-		inputString.insert(inputString.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
-		inputString.insert(inputString.end(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
-		middleLevel.push_back(inputString
-								);
+		AddBorderSymbolsForRow(inputString);
+		middleLevel.push_back(inputString);
 	}
-	middleLevel.push_back(GenerateRowOfWalls(length));// Border row
+	middleLevel.insert(middleLevel.begin(), GenerateRowOfWalls(length, middleLevel.front()));// Border row
+	middleLevel.push_back(GenerateRowOfWalls(length, middleLevel.back()));// Border row
 
 	m_map.push_back(middleLevel);
 }
 
-std::string CMap::GenerateRowOfWalls(unsigned length)
+std::string CMap::GenerateRowOfWalls(unsigned length, const std::string & borderRow)
 {
-	return std::string(length + 2 * MapSpace::SIZE_BORDER, RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+	std::string result;
+	for (size_t index = 1; index < (borderRow.size() - 1); ++index)
+	{
+		if (borderRow[index] == RecognizeSymbols[unsigned(IdSymbol::Space)])
+		{
+			result += RecognizeSymbols[unsigned(IdSymbol::Wall)];
+		}
+		else
+		{
+			result += RecognizeSymbols[unsigned(IdSymbol::Space)];
+		}
+	}
+	result.insert(result.begin(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
+	result.insert(result.end(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
+
+	return result;
+}
+
+void CMap::AddBorderSymbolsForRow(std::string & row)
+{
+	if (row.front() == RecognizeSymbols[unsigned(IdSymbol::Space)])
+	{
+		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+	}
+	else
+	{
+		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
+	}
+	if (row.back() == RecognizeSymbols[unsigned(IdSymbol::Space)])
+	{
+		row.insert(row.end(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+	}
+	else
+	{
+		row.insert(row.end(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
+	}
 }
 
 void CMap::AddLowLevel(size_t length, size_t width)
