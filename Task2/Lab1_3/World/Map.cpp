@@ -38,7 +38,8 @@ void CMap::ReadMap(ifstream & file)
 	file >> length;
 	file >> width;
 
-	m_centerMap = glm::vec2((length / 2.f) * WallSpace::SIZE, (width / 2.f) * WallSpace::SIZE);
+	m_centerMap = glm::vec2((length / 2.f + MapSpace::SIZE_BORDER) * WallSpace::SIZE
+							, (width / 2.f + MapSpace::SIZE_BORDER) * WallSpace::SIZE);
 
 	AddLowLevel(length, width);
 	AddMiddleLevel(length, width);
@@ -80,10 +81,10 @@ void CMap::AddTopLevel(size_t length, size_t width)
 {
 	Level topLevel;
 
-	for (size_t y = 0; y < width; ++y)
+	for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
 		string row;
-		for (size_t x = 0; x < length; ++x)
+		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
 			row += RecognizeSymbols[unsigned(IdSymbol::Space)];
 		}
@@ -100,6 +101,7 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 	Level middleLevel;
 	string inputString;
 	getline(m_inputFile, inputString);// pass string
+	middleLevel.push_back(GenerateRowOfWalls(length));// Border row
 	while (getline(m_inputFile, inputString))
 	{
 		if (widthCount > (width - 1))
@@ -110,20 +112,30 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 		{
 			throw std::runtime_error("Length row more expected");
 		}
-
-		middleLevel.push_back(inputString);
+		// Add in start and end border symbols
+		inputString.insert(inputString.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+		inputString.insert(inputString.end(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+		middleLevel.push_back(inputString
+								);
 	}
+	middleLevel.push_back(GenerateRowOfWalls(length));// Border row
+
 	m_map.push_back(middleLevel);
+}
+
+std::string CMap::GenerateRowOfWalls(unsigned length)
+{
+	return std::string(length + 2 * MapSpace::SIZE_BORDER, RecognizeSymbols[unsigned(IdSymbol::Wall)]);
 }
 
 void CMap::AddLowLevel(size_t length, size_t width)
 {
 	Level lowLevel;
 
-	for (unsigned y = 0; y < width; ++y)
+	for (unsigned y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
 		string row;
-		for (unsigned x = 0; x < length; ++x)
+		for (unsigned x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
 			row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
 		}
@@ -201,7 +213,7 @@ void CMap::ComputeVisibleEdge(size_t width)
 	for (size_t height = 0; height < 3; ++height)
 	{
 		string* row = nullptr;
-		for (size_t y = 0; y < width; ++y)
+		for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 		{
 			row = &m_map[height][y];
 

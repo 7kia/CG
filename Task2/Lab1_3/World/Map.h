@@ -12,6 +12,8 @@ namespace MapSpace
 		, ' '
 		, '0'
 	};
+
+	static const int SIZE_BORDER = 1;
 }
 
 class CWorld;
@@ -30,32 +32,32 @@ public:
 public:
 	//--------------------------------------------
 	// IDrawable
-	void	Draw() const override final;
+	void			Draw() const override final;
 	//--------------------------------------------
 	// IUpdatable
-	void	Update(float deltaTime) override final;
+	void			Update(float deltaTime) override final;
 	//--------------------------------------------
 private:
-	void	ReadMap(std::ifstream & file);
-	void	ProcessRow(const std::string & row, size_t widthCount, int level);
+	void			ReadMap(std::ifstream & file);
+	void			ProcessRow(const std::string & row, size_t widthCount, int level);
 
-	void	AddTopLevel(size_t length, size_t width);
-	void	AddMiddleLevel(size_t length, size_t width);
-	void	AddLowLevel(size_t length, size_t width);
+	void			AddTopLevel(size_t length, size_t width);
+	void			AddMiddleLevel(size_t length, size_t width);
+	void			AddLowLevel(size_t length, size_t width);
 
-	void	AddWall(size_t x, size_t y, int z);
-	void	ProcessLateralEdge(CWall* pWall
-								, const glm::vec3 & position
-								, const glm::vec3 & shifts);
-	void	ProcessVerticalEdge(CWall* pWall
-								, const glm::vec3 & position
-								, int zShift);
+	void			AddWall(size_t x, size_t y, int z);
+	void			ProcessLateralEdge(CWall* pWall
+										, const glm::vec3 & position
+										, const glm::vec3 & shifts);
+	void			ProcessVerticalEdge(CWall* pWall
+										, const glm::vec3 & position
+										, int zShift);
 
 	static unsigned	GetIndexWallType(int heigth);
 	static unsigned WallHaveCollision(int heigth);
+	static std::string GenerateRowOfWalls(unsigned length);
 
-
-	void	ComputeVisibleEdge(size_t width);
+	void			ComputeVisibleEdge(size_t width);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

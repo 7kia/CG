@@ -23,24 +23,10 @@ namespace PlayerSpace
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
-	const float LINEAR_MOVE_SPEED = 10.f;
+	const float LINEAR_MOVE_SPEED = 5.f;
 
-
-		const glm::vec4 BLACK = { 0, 0, 0, 1 };
-		const float MATERIAL_SHININESS = 30.f;
-		const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
-		const glm::vec4 FADED_WHITE_RGBA = { 0.3f, 0.3f, 0.3f, 1.f };
-		const glm::vec4 YELLOW_RGBA = { 1, 1, 0, 1 };
-		const glm::vec3 SUNLIGHT_DIRECTION = { -1.f, 0.2f, 0.7f };
-		const float CAMERA_INITIAL_ROTATION = 0;
-		const float CAMERA_INITIAL_DISTANCE = 5.f;
-
-
+	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
 }
-
-//
-// SSkill - content pointer to function and value keys which activate the skill
-// 
 
 class CWorld;
 
@@ -61,6 +47,9 @@ public:
 // Methods
 public:
 
+	//
+	// SSkill - content pointer to function and value keys which activate the skill
+	// 
 	using KeyList = std::vector<SDL_Keycode>;
 	struct SSkill
 	{
@@ -70,15 +59,12 @@ public:
 		std::function<void()>		m_skill	= nullptr;
 		KeyList						m_keys;
 	};
-
-	// TODO : see might the enums need transfer to heirs
 	enum class IdCameras
 	{
 		Player = 0
 		, World
 	};
 
-	// TODO : transfer four low methods to skill-function
 	void TurnLeft();
 	void TurnRight();
 
@@ -115,7 +101,7 @@ private:
 	CPositionLightSource			m_flashlight;
 	C2DCircleCollision				m_collision;
 	CWallView						m_visual;
-	CWorld*							m_pWorld;
+	CWorld*							m_pWorld;// For add physic body
 };
 
 class CPlayer::CController
