@@ -45,7 +45,9 @@ private:
 	void					AddMiddleLevel(size_t length, size_t width);
 	void					AddLowLevel(size_t length, size_t width);
 
-	void					AddWall(size_t x, size_t y, int z);
+	void					AddWall(const glm::vec3 & position
+									, size_t length
+									, size_t width); 
 	void					ProcessLateralEdge(CWall* pWall
 												, const glm::vec3 & position
 												, const glm::vec3 & shifts);
@@ -53,7 +55,9 @@ private:
 												, const glm::vec3 & position
 												, int zShift);
 
-	static unsigned			GetIndexWallType(int heigth);
+	static unsigned			GetIndexWallType(const glm::vec3 & position
+											, size_t length
+											, size_t width);
 	static unsigned			WallHaveCollision(int heigth);
 	static std::string		GenerateRowOfWalls(unsigned length, const std::string & borderRow);
 	static void				AddBorderSymbolsForRow(std::string & row);

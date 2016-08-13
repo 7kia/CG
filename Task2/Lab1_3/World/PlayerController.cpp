@@ -26,7 +26,7 @@ void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
 
 void CPlayer::CController::OnKeyUp(const SDL_KeyboardEvent & event)
 {
-	OnKeyDown(event);// TODO : see need rewrite
+	//OnKeyDown(event);// TODO : see need rewrite
 }
 
 void CPlayer::CController::SetSkill(IdCommands id, const std::function<void()> function)

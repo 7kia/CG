@@ -9,6 +9,7 @@ static const std::string TexturePathWallTypes[] =
 {
 	PATH_TO_RECOURCES + "brick.bmp",
 	PATH_TO_RECOURCES + "plank.bmp",
+	PATH_TO_RECOURCES + "arch.bmp",
 };
 
 class CHaveWallTypes
@@ -22,13 +23,14 @@ public:
 	{
 			Break = 0
 		,	Plank
+		,	Arch
 		,	AmountTypes
 	};
 
 	using ArrayWallTypes = std::array<CWallViewType, size_t(IdWallType::AmountTypes)>;
 
 	void							CreateWallTypes();// TODO : do call_once
-	const CWallViewType*				GetWallType(unsigned index) const;
+	const CWallViewType*			GetWallType(unsigned index) const;
 private:
 	void							SetWallType(unsigned index);
 //////////////////////////////////////////////////////////////////////

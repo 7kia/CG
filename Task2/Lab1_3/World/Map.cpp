@@ -63,7 +63,7 @@ void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
 		}
 		else if (row[index] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 		{
-			AddWall(index, widthCount, level);
+			AddWall(glm::vec3(index, widthCount, level), row.size(), m_map[0].size());
 		}
 		/*// TODO : see why swith not work
 		switch (cell)
@@ -115,11 +115,11 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 	{
 		if (widthCount > (width - 1))
 		{
-			throw std::runtime_error("Width labyrinth more expected");
+			throw std::runtime_error("Width labyrinth not correspond expected");
 		}
-		if (inputString.size() > length)
+		if (inputString.size() != length)
 		{
-			throw std::runtime_error("Length row more expected");
+			throw std::runtime_error("Length row not correspond expected");
 		}
 		// Add in start and end border symbols
 		AddBorderSymbolsForRow(inputString);
@@ -147,6 +147,7 @@ std::string CMap::GenerateRowOfWalls(unsigned length, const std::string & border
 			result += RecognizeSymbols[unsigned(IdSymbol::Space)];
 		}
 	}
+	// Border symbols
 	result.insert(result.begin(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
 	result.insert(result.end(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
 
@@ -183,8 +184,8 @@ void CMap::AddLowLevel(size_t length, size_t width)
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
 			if ((m_map[1][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
-				&& IsBetween(x, size_t(1), m_map[0][0].size() - 2)
-				&& IsBetween(y, size_t(1), m_map[0].size() - 2))
+				&& IsBetween(x, size_t(1), m_map[0][0].size() - 1 - MapSpace::SIZE_BORDER)
+				&& IsBetween(y, size_t(1), m_map[0].size() - 1 - MapSpace::SIZE_BORDER))
 			{
 				row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
 			}
@@ -204,9 +205,9 @@ void CMap::ProcessLateralEdge(CWall* pWall
 							, const glm::vec3 & position
 							, const glm::vec3 & shifts)
 {
-	unsigned x = unsigned(position.x);
-	unsigned y = unsigned(position.y);
-	unsigned z = unsigned(position.z);
+	size_t x = size_t(position.x);
+	size_t y = size_t(position.y);
+	size_t z = size_t(position.z);
 	int xShift = int(shifts.x);
 	int yShift = int(shifts.y);
 	int zShift = int(shifts.z);
@@ -240,13 +241,14 @@ void CMap::ProcessLateralEdge(CWall* pWall
 
 void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zShift)
 {
-	unsigned x = unsigned(position.x);
-	unsigned y = unsigned(position.y);
-	unsigned z = unsigned(position.z);
+	size_t x = size_t(position.x);
+	size_t y = size_t(position.y);
+	size_t z = size_t(position.z);
 
-	if ((x >= 0) && (y >= 0)
+	if (IsBetween(x, size_t(0), m_map[0].size())
+		&& IsBetween(y, size_t(0), m_map[0].size())
 		&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size() - 1))
-		&& (x < m_map[0].size()) && (y < m_map[0].size()))
+		)
 	{
 		if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 		{

@@ -3,14 +3,23 @@
 #include <Box2D\Box2D.h>
 #include "World.h"
 
-
-unsigned CMap::GetIndexWallType(int heigth)
+unsigned CMap::GetIndexWallType(const glm::vec3 & position
+								, size_t length
+								, size_t width)
 {
+	size_t x = size_t(position.x);
+	size_t y = size_t(position.y);
+	int heigth = int(position.z);
 	switch (heigth)
 	{
 	case -1: case 1:
 		return unsigned(CHaveWallTypes::IdWallType::Plank);
 	case 0:
+		if ((x == 0) || (x == length - 1)
+			|| (y == 0) || (y == width - 1))
+		{
+			return unsigned(CHaveWallTypes::IdWallType::Arch);
+		}
 		return unsigned(CHaveWallTypes::IdWallType::Break);
 	default:
 		throw std::runtime_error("Incorrect index");
@@ -32,37 +41,41 @@ unsigned CMap::WallHaveCollision(int heigth)
 	}
 }
 
-void CMap::AddWall(size_t x, size_t y, int z)
+void CMap::AddWall(const glm::vec3 & position
+					, size_t length
+					, size_t width)
 {
+	size_t x = size_t(position.x);
+	size_t y = size_t(position.y);
+	int z = int(position.z);
+
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
 	auto pWall = std::make_unique<CWall>();
-	pWall->SetType(pWorld->GetWallType(GetIndexWallType(z)));
+	pWall->SetType(pWorld->GetWallType(GetIndexWallType(position, length, width)));
 	
 	for (int xShift = -1; xShift <= 1; ++xShift)
 	{
-		for (int yShift = -1; yShift <= 1; ++yShift)// this and high for process around wall
+		for (int yShift = -1; yShift <= 1; ++yShift)// this loop and high for process around wall
 		{
 			for (int zShift = -1; zShift <= 1; ++zShift)
 			{
 
 				if (abs(xShift) != abs(yShift))// not process itself
 				{
-					ProcessLateralEdge(pWall.get(), glm::vec3(x, y, z), glm::vec3(xShift, yShift, zShift));
+					ProcessLateralEdge(pWall.get(), position, glm::vec3(xShift, yShift, zShift));
 				}
 				else if ((xShift == 0) && (yShift == 0))
 				{
-					ProcessVerticalEdge(pWall.get(), glm::vec3(x, y, z), zShift);
+					ProcessVerticalEdge(pWall.get(), position, zShift);
 				}
 
 			}
 		}
 	}
 
-
-	//pWall->SetTransform(glm::translate(glm::mat4(), { xPosition, z * WallSpace::SIZE, yPosition }));
-
+	// SetPosition duplicate because before call AddToWorld must set position
 	pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
 	pWall->SetHaveCollision(WallHaveCollision(z));
 
@@ -70,7 +83,6 @@ void CMap::AddWall(size_t x, size_t y, int z)
 	{
 		pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
 		pWall->AddToWorld(pWorld->GetWorld());
-
 	}
 	m_walls.emplace_back(std::move(pWall));
 }
