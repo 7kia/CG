@@ -48,6 +48,7 @@ private:
 	void					AddWall(const glm::vec3 & position
 									, size_t length
 									, size_t width); 
+	void					AddPlayer(const glm::vec3 & position);
 	void					ProcessLateralEdge(CWall* pWall
 												, const glm::vec3 & position
 												, const glm::vec3 & shifts);

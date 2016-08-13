@@ -55,7 +55,7 @@ void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
 	{
 		if (row[index] == RecognizeSymbols[unsigned(IdSymbol::Player)])
 		{
-
+			AddPlayer(glm::vec3(index, widthCount, level));
 		}
 		else if (row[index] == RecognizeSymbols[unsigned(IdSymbol::Space)])
 		{
@@ -87,7 +87,7 @@ void CMap::AddTopLevel(size_t length, size_t width)
 		string row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
-			if ((m_map[0][y][x] == RecognizeSymbols[unsigned(IdSymbol::Space)])
+			if ((m_map[0][y][x] != RecognizeSymbols[unsigned(IdSymbol::Wall)])
 				&& IsBetween(x, size_t(1), m_map[0][0].size() - 2)
 				&& IsBetween(y, size_t(1), m_map[0].size() - 2) )
 			{
@@ -156,7 +156,7 @@ std::string CMap::GenerateRowOfWalls(unsigned length, const std::string & border
 
 void CMap::AddBorderSymbolsForRow(std::string & row)
 {
-	if (row.front() == RecognizeSymbols[unsigned(IdSymbol::Space)])
+	if (row.front() != RecognizeSymbols[unsigned(IdSymbol::Wall)])
 	{
 		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
 	}
@@ -164,7 +164,7 @@ void CMap::AddBorderSymbolsForRow(std::string & row)
 	{
 		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
 	}
-	if (row.back() == RecognizeSymbols[unsigned(IdSymbol::Space)])
+	if (row.back() != RecognizeSymbols[unsigned(IdSymbol::Wall)])
 	{
 		row.insert(row.end(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
 	}

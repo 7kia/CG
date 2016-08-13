@@ -84,6 +84,12 @@ public:
 	void							SetCamera(CPlayer::IdCameras id);
 	CAbstractRotatableCamera*		GetCamera();// TODO : see need there const
 
+
+	void							SetWorld(CWorld* pWorld);
+	// TODO : call-once
+	void							CreatePlayer(const glm::vec3 & position
+												, const glm::vec3 & direction
+												, CWorld* pWorld);
 private:
 	void							SetCamera();
 	void							SetCollison();

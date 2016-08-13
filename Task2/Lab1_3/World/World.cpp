@@ -8,10 +8,11 @@ CWorld::CWorld()
 	, IUpdatable()
 	, CHaveWallTypes()
 	, CHavePhysicalWorld()
+	, CHavePlayer()
 	, m_sunlight(GL_LIGHT0)
-	, m_player(glm::vec3(0.f, 0.5f, 1.f), PlayerCameraSpace::PLAYER_DIRECTION, this)
 	, m_map("map.txt", this)
 {
+	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
@@ -41,7 +42,8 @@ void CWorld::Draw() const
 
 	m_player.Draw();
 
-	for (const IBodyUniquePtr &pBody : m_opaqueBodies)
+	/*
+		for (const IBodyUniquePtr &pBody : m_opaqueBodies)
 	{
 		pBody->Draw();
 	}
@@ -49,6 +51,7 @@ void CWorld::Draw() const
 	{
 		pBody->Draw();
 	}
+	*/
 	m_map.Draw();
 }
 
@@ -61,12 +64,17 @@ void CWorld::Update(float deltaTime)
 	m_world->Step(deltaTime, 8, 3);
 }
 
-CAbcstartCamera * CWorld::GetCamera()
-{
-	return m_player.GetCamera();
-}
-
 void CWorld::CreateScene()
 {
 	CreateWallTypes();
+}
+
+void CWorld::CreatePlayer(const glm::vec3 & position
+							, const glm::vec3 & direction)
+{
+	if (position == glm::vec3())
+	{
+		throw std::runtime_error("Player position not define");
+	}
+	m_player.CreatePlayer(position, direction, this);
 }

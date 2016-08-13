@@ -27,27 +27,14 @@ CPlayer::CPlayer(const glm::vec3 & position
 				, CWorld* pWorld)
 	: IUpdatable()
 	, IDrawable()
-	, CHave3DPosition(position)
-	, CHaveDirection(direction)
+	, CHave3DPosition()
+	, CHaveDirection()
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
-	, m_pWorld(pWorld)
 {
-	m_collision.SetPVisual(&m_visual);
-
-	SetCamera();
-
-	GetCamera()->SetPosition(position);
-	GetCamera()->SetDirection(direction);
-
-	SetCollison();
-
-	m_flashlight.SetPosition(position);
-	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
-	m_flashlight.SetAmbient(0.1f * PlayerSpace::WHITE_RGBA);
-	m_flashlight.SetSpecular(PlayerSpace::WHITE_RGBA);
+	CreatePlayer(position, direction, pWorld);
 }
 
 void CPlayer::TurnLeft()

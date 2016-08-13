@@ -87,6 +87,14 @@ void CMap::AddWall(const glm::vec3 & position
 	m_walls.emplace_back(std::move(pWall));
 }
 
+void CMap::AddPlayer(const glm::vec3 & position)
+{
+	float xPosition = WallSpace::SIZE * position.x - m_centerMap.x;
+	float yPosition = WallSpace::SIZE * position.y - m_centerMap.y;
+
+	pWorld->SetSpawnPoint(glm::vec3(xPosition, yPosition, position.z * WallSpace::SIZE));
+}
+
 void CPlayer::SetCollison()
 {
 	m_collision.SetRadius(1.f);
@@ -101,4 +109,29 @@ void CPlayer::SetCollison()
 	m_visual.SetTransform(glm::translate(glm::mat4(), position));
 
 	m_collision.AddToWorld(m_pWorld->GetWorld());
+}
+
+void CPlayer::SetWorld(CWorld * pWorld)
+{
+	m_pWorld = pWorld;
+}
+
+void CPlayer::CreatePlayer(const glm::vec3 & position
+							, const glm::vec3 & direction
+							, CWorld* pWorld)
+{
+	m_collision.SetPVisual(&m_visual);
+
+	SetCamera();
+
+	GetCamera()->SetPosition(position);
+	GetCamera()->SetDirection(direction);
+
+	SetWorld(pWorld);
+	SetCollison();
+
+	m_flashlight.SetPosition(position);
+	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
+	m_flashlight.SetAmbient(0.1f * PlayerSpace::WHITE_RGBA);
+	m_flashlight.SetSpecular(PlayerSpace::WHITE_RGBA);
 }

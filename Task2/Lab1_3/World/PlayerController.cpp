@@ -26,7 +26,6 @@ void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
 
 void CPlayer::CController::OnKeyUp(const SDL_KeyboardEvent & event)
 {
-	//OnKeyDown(event);// TODO : see need rewrite
 }
 
 void CPlayer::CController::SetSkill(IdCommands id, const std::function<void()> function)
@@ -37,7 +36,6 @@ void CPlayer::CController::SetSkill(IdCommands id, const std::function<void()> f
 void CPlayer::CController::SetKeysSkill(IdCommands id, const CPlayer::KeyList & keys)
 {
 	m_listFunctions[id].m_keys = keys;
-
 }
 
 CPlayer::CController::IdCommands CPlayer::CController::FindCommand(const SDL_KeyboardEvent & event)
@@ -73,8 +71,6 @@ void CPlayer::CController::SetFunctionList()
 
 	SetSkill(IdCommands::ChangeWorldCamera, [&]() { m_master->ChangeWorldCamera(); });
 	SetKeysSkill(IdCommands::ChangeWorldCamera, { SDLK_b });
-
-
 }
 
 void CPlayer::CController::CheckListCommands() const

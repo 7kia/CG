@@ -9,7 +9,7 @@
 #include "..\Lights.h"
 #include "..\Material\PhongMaterial.h"
 
-#include "Player.h"
+#include "HavePlayer.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -38,6 +38,7 @@ class CWorld
 	, public IUpdatable
 	, public CHaveWallTypes
 	, public CHavePhysicalWorld
+	, public CHavePlayer
 {
 public:
 	CWorld();
@@ -56,22 +57,18 @@ public:
 	void							Update(float deltaTime);
 	//--------------------------------------------
 
-	CAbcstartCamera*				GetCamera();
 
 	// TODO : do call_once
 	void							CreateScene();
+	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 //////////////////////////////////////////////////////////////////////
 // Data
 
 private:
-	std::vector<IBodyUniquePtr>		m_opaqueBodies;// TODO : see need it's
-	std::vector<IBodyUniquePtr>		m_transparentBodies;
-
-	CPlayer							m_player;
-
+	//std::vector<IBodyUniquePtr>		m_opaqueBodies;// TODO : see need it's
+	//std::vector<IBodyUniquePtr>		m_transparentBodies;
 	CMap							m_map;
 
 	CPhongModelMaterial m_material;// TODO : transfer
 	CDirectedLightSource m_sunlight;
-
 };
