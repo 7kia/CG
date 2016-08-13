@@ -41,9 +41,10 @@ void CMap::ReadMap(ifstream & file)
 	m_centerMap = glm::vec2((length / 2.f + MapSpace::SIZE_BORDER) * WallSpace::SIZE
 							, (width / 2.f + MapSpace::SIZE_BORDER) * WallSpace::SIZE);
 
-	AddLowLevel(length, width);
+	// Order changed for optimization
 	AddMiddleLevel(length, width);
 	AddTopLevel(length, width);
+	AddLowLevel(length, width);
 
 	ComputeVisibleEdge(width);
 }
@@ -86,7 +87,16 @@ void CMap::AddTopLevel(size_t length, size_t width)
 		string row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
-			row += RecognizeSymbols[unsigned(IdSymbol::Space)];
+			if ((m_map[0][y][x] == RecognizeSymbols[unsigned(IdSymbol::Space)])
+				&& IsBetween(x, size_t(1), m_map[0][0].size() - 2)
+				&& IsBetween(y, size_t(1), m_map[0].size() - 2) )
+			{
+				row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
+			}
+			else
+			{
+				row += RecognizeSymbols[unsigned(IdSymbol::Space)];
+			}
 		}
 		topLevel.push_back(row);
 	}
@@ -115,8 +125,10 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 		AddBorderSymbolsForRow(inputString);
 		middleLevel.push_back(inputString);
 	}
-	middleLevel.insert(middleLevel.begin(), GenerateRowOfWalls(length, middleLevel.front()));// Border row
-	middleLevel.push_back(GenerateRowOfWalls(length, middleLevel.back()));// Border row
+	// Top border row
+	middleLevel.insert(middleLevel.begin(), GenerateRowOfWalls(length, middleLevel.front()));
+	// Low border row
+	middleLevel.push_back(GenerateRowOfWalls(length, middleLevel.back()));
 
 	m_map.push_back(middleLevel);
 }
@@ -165,17 +177,27 @@ void CMap::AddLowLevel(size_t length, size_t width)
 {
 	Level lowLevel;
 
-	for (unsigned y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
+	for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
 		string row;
-		for (unsigned x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
+		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
-			row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
+			if ((m_map[1][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
+				&& IsBetween(x, size_t(1), m_map[0][0].size() - 2)
+				&& IsBetween(y, size_t(1), m_map[0].size() - 2))
+			{
+				row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
+			}
+			else
+			{
+				row += RecognizeSymbols[unsigned(IdSymbol::Space)];
+			}
+
 		}
 		lowLevel.push_back(row);
 	}
 
-	m_map.emplace_back(lowLevel);
+	m_map.emplace(m_map.begin(), lowLevel);
 }
 
 void CMap::ProcessLateralEdge(CWall* pWall
@@ -223,7 +245,7 @@ void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zS
 	unsigned z = unsigned(position.z);
 
 	if ((x >= 0) && (y >= 0)
-		&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size()))
+		&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size() - 1))
 		&& (x < m_map[0].size()) && (y < m_map[0].size()))
 	{
 		if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
