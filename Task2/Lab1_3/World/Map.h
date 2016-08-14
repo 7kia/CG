@@ -38,6 +38,13 @@ public:
 	void					Update(float deltaTime) override final;
 	//--------------------------------------------
 private:
+	enum class IdSymbol
+	{
+		Wall = 0
+		, Space
+		, Player
+	};
+
 	void					ReadMap(std::ifstream & file);
 	void					ProcessRow(const std::string & row, size_t widthCount, int level);
 
@@ -63,17 +70,16 @@ private:
 	static std::string		GenerateRowOfWalls(unsigned length, const std::string & borderRow);
 	static void				AddBorderSymbolsForRow(std::string & row);
 
+	static void				InsertSymbolInRow(std::string & row
+											, std::string::const_iterator where
+											, std::string::const_iterator checkSymbol
+											, CMap::IdSymbol insteadWall
+											, IdSymbol insteadSpace);
+
 	void					ComputeVisibleEdge(size_t width);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-
-	enum class IdSymbol
-	{
-		  Wall = 0
-		, Space
-		, Player
-	};
 	using Level = std::vector<std::string>;
 
 	glm::vec2						m_centerMap;

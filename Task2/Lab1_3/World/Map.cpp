@@ -156,7 +156,19 @@ std::string CMap::GenerateRowOfWalls(unsigned length, const std::string & border
 
 void CMap::AddBorderSymbolsForRow(std::string & row)
 {
-	if (row.front() != RecognizeSymbols[unsigned(IdSymbol::Wall)])
+	InsertSymbolInRow(row
+					, row.end()
+					, row.end() - 1
+					, IdSymbol::Space
+					, IdSymbol::Wall);
+	InsertSymbolInRow(row
+					, row.begin()
+					, row.begin()
+					, IdSymbol::Space
+					, IdSymbol::Wall);
+
+	/*
+		if (row.front() != RecognizeSymbols[unsigned(IdSymbol::Wall)])
 	{
 		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
 	}
@@ -171,6 +183,24 @@ void CMap::AddBorderSymbolsForRow(std::string & row)
 	else
 	{
 		row.insert(row.end(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
+	}
+
+	*/
+}
+
+void CMap::InsertSymbolInRow(std::string & row
+							, std::string::const_iterator where
+							, std::string::const_iterator checkSymbol
+							, CMap::IdSymbol insteadWall
+							, CMap::IdSymbol insteadSpace)
+{
+	if (*checkSymbol != RecognizeSymbols[unsigned(insteadSpace)])
+	{
+		row.insert(where, RecognizeSymbols[unsigned(insteadSpace)]);
+	}
+	else
+	{
+		row.insert(where, RecognizeSymbols[unsigned(insteadWall)]);
 	}
 }
 
