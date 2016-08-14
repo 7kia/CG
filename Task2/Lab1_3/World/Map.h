@@ -66,8 +66,8 @@ private:
 	static unsigned			GetIndexWallType(const glm::vec3 & position
 											, size_t length
 											, size_t width);
-	static unsigned			WallHaveCollision(int heigth);
-	static std::string		GenerateRowOfWalls(unsigned length, const std::string & borderRow);
+	static bool				WallHaveCollision(int heigth);
+	static std::string		GenerateRowOfWalls(const std::string & borderRow);
 	static void				AddBorderSymbolsForRow(std::string & row);
 
 	static void				InsertSymbolInRow(std::string & row

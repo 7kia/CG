@@ -27,7 +27,7 @@ unsigned CMap::GetIndexWallType(const glm::vec3 & position
 	}
 }
 
-unsigned CMap::WallHaveCollision(int heigth)
+bool CMap::WallHaveCollision(int heigth)
 {
 	switch (heigth)
 	{

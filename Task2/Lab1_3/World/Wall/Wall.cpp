@@ -121,5 +121,4 @@ bool CWall::CheckContentCollision() const
 		return true;
 	}
 	throw std::runtime_error("The wall not have collision");
-	return false;
 }

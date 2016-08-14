@@ -96,7 +96,7 @@ void CMap::AddTopLevel(size_t length, size_t width)
 
 void CMap::AddMiddleLevel(size_t length, size_t width)
 {
-	unsigned widthCount = 0;
+	size_t widthCount = 0;
 
 	Level middleLevel;
 	string inputString;
@@ -116,14 +116,14 @@ void CMap::AddMiddleLevel(size_t length, size_t width)
 		middleLevel.push_back(inputString);
 	}
 	// Top border row
-	middleLevel.insert(middleLevel.begin(), GenerateRowOfWalls(length, middleLevel.front()));
+	middleLevel.insert(middleLevel.begin(), GenerateRowOfWalls(middleLevel.front()));
 	// Low border row
-	middleLevel.push_back(GenerateRowOfWalls(length, middleLevel.back()));
+	middleLevel.push_back(GenerateRowOfWalls(middleLevel.back()));
 
 	m_map.push_back(middleLevel);
 }
 
-std::string CMap::GenerateRowOfWalls(unsigned length, const std::string & borderRow)
+std::string CMap::GenerateRowOfWalls(const std::string & borderRow)
 {
 	std::string result;
 	for (size_t index = 1; index < (borderRow.size() - 1); ++index)
