@@ -64,17 +64,7 @@ void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
 		else if (row[index] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 		{
 			AddWall(glm::vec3(index, widthCount, level), row.size(), m_map[0].size());
-		}
-		/*// TODO : see why swith not work
-		switch (cell)
-		{
-		case RecognizeSymbols[unsigned(IdSymbol::Player)]:
-			break;
-		default:
-			break;
-		}
-		*/
-		
+		}		
 	}
 }
 
@@ -166,26 +156,6 @@ void CMap::AddBorderSymbolsForRow(std::string & row)
 					, row.begin()
 					, IdSymbol::Space
 					, IdSymbol::Wall);
-
-	/*
-		if (row.front() != RecognizeSymbols[unsigned(IdSymbol::Wall)])
-	{
-		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
-	}
-	else
-	{
-		row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
-	}
-	if (row.back() != RecognizeSymbols[unsigned(IdSymbol::Wall)])
-	{
-		row.insert(row.end(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
-	}
-	else
-	{
-		row.insert(row.end(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
-	}
-
-	*/
 }
 
 void CMap::InsertSymbolInRow(std::string & row
