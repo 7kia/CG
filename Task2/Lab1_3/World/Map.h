@@ -20,8 +20,7 @@ class CWorld;
 
 class CMap
 	: public CHaveFileForReading
-	, public IDrawable
-	, public IUpdatable
+	, public IActor
 {
 public:
 	CMap(const std::string & mapPath, CWorld* pWorld);

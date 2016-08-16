@@ -278,9 +278,6 @@
     <ClCompile Include="World\Wall\HaveWallTypes.cpp">
       <Filter>World\Wall</Filter>
     </ClCompile>
-    <ClCompile Include="World\DependentWorld.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
     <ClCompile Include="Mixin\HaveFileForReading.cpp">
       <Filter>Mixin</Filter>
     </ClCompile>

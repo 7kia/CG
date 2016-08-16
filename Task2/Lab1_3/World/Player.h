@@ -88,7 +88,7 @@ public:
 												, const glm::vec3 & direction
 												, CWorld* pWorld);
 private:
-	void							SetCameras();
+	void							SetCameras(const glm::vec3 & direction);
 	void							SetCollison();
 //////////////////////////////////////////////////////////////////////
 // Data
@@ -103,7 +103,7 @@ private:
 	CPositionLightSource			m_flashlight;
 	C2DCircleCollision				m_collision;
 	CWallView						m_visual;
-	std::shared_ptr<CWorld>			m_pWorld;// For add physic body
+	CWorld*							m_pWorld;// For add physic body
 };
 
 class CPlayer::CController

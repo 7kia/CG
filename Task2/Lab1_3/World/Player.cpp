@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "World.h"
 
 
 CPlayer::SSkill::SSkill(const std::function<void()> function, const KeyList & keys)
@@ -18,7 +19,7 @@ CPlayer::CPlayer()
 	, m_pController(std::make_unique<CController>(this))
 {
 	m_collision.SetPVisual(&m_visual);
-	SetCameras();
+	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 }
 
 CPlayer::CPlayer(const glm::vec3 & position
@@ -26,13 +27,13 @@ CPlayer::CPlayer(const glm::vec3 & position
 				, CWorld* pWorld)
 	: IActor()
 	, CHave3DPosition()
-	, CHaveDirection()
+	, CHaveDirection(PlayerSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
 {
-	SetCameras();
+	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 	CreatePlayer(position, direction, pWorld);
 }
 
@@ -86,16 +87,13 @@ void CPlayer::Update(float deltaTime)
 	m_collision.ReserVelocity();
 	auto collisionPosition = m_collision.GetPosition();
 	GetCamera()->SetPosition(glm::vec3(collisionPosition.x, 0.f, collisionPosition.y));
-
 	GetCamera()->Update(deltaTime
-				, GetCurrentLinearVelocity()
-				, GetCurrentRotationSpeed());
+						, GetCurrentLinearVelocity()
+						, GetCurrentRotationSpeed());
 	//SetPosition(GetCamera()->GetPosition());// TODO : might need rewrite, the string crutch
 
 	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * GetCurrentLinearVelocity();
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
-	//m_collision.ApplyAcceleration(glm::vec2(deltaTime, deltaTime));
-
 	m_collision.Advance(deltaTime);
 
 	m_flashlight.SetPosition(GetPosition());
@@ -119,10 +117,52 @@ CAbstractRotatableCamera* CPlayer::GetCamera()
 	return m_cameras[unsigned(m_idCamera)].get();// TODO : see word it
 }
 
-void CPlayer::SetCameras()
+void CPlayer::SetCameras(const glm::vec3 & direction)
 {
 	m_cameras[unsigned(IdCameras::Player)] = std::make_unique<CPlayerCamera>();
+	m_cameras[unsigned(IdCameras::Player)]->SetDirection(direction);
+
 	m_cameras[unsigned(IdCameras::World)] = std::make_unique<CWorldCamera>(0.f, 2.5f);
 
 	SetCamera(IdCameras::Player);
+}
+
+
+void CPlayer::SetCollison()
+{
+	m_collision.SetRadius(1.f);
+	m_collision.SetReferenceSystemOrigin(glm::vec2());
+
+	auto position = GetCamera()->GetPosition();
+	m_collision.SetPosition(position.x, position.y);
+	m_collision.SetVelocity(glm::vec2());
+
+
+	m_visual.SetType(m_pWorld->GetWallType(0));
+	m_visual.SetTransform(glm::translate(glm::mat4(), position));
+
+	m_collision.AddToWorld(m_pWorld->GetWorld());
+}
+
+void CPlayer::SetWorld(CWorld * pWorld)
+{
+	m_pWorld = pWorld;
+}
+
+void CPlayer::CreatePlayer(const glm::vec3 & position
+	, const glm::vec3 & direction
+	, CWorld* pWorld)
+{
+	m_collision.SetPVisual(&m_visual);
+
+	SetCameras(direction);
+
+	GetCamera()->SetPosition(position);
+	SetWorld(pWorld);
+	SetCollison();
+
+	m_flashlight.SetPosition(position);
+	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
+	m_flashlight.SetAmbient(0.1f * PlayerSpace::WHITE_RGBA);
+	m_flashlight.SetSpecular(PlayerSpace::WHITE_RGBA);
 }

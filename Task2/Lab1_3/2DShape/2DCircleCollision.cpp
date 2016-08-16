@@ -31,7 +31,7 @@ void C2DCircleCollision::Advance(float dt)
 	(void)dt;
 
 	auto bodyPosition = GetPosition();//m_pVisual->GetTransform()[3][2]
-	auto moveTransform = glm::translate(glm::mat4(), glm::vec3(bodyPosition.x, m_pVisual->GetTransform()[3][1], bodyPosition.y));
+	auto moveTransform = glm::translate(glm::mat4(), glm::vec3(bodyPosition.x, m_pVisual->GetTransform()[2][1], bodyPosition.y));
 
 	auto resultTransform = moveTransform;
 	//auto resultTransform = glm::rotate(moveTransform, GetRotation(), glm::vec3(0.f, 1.f, 0.f));
