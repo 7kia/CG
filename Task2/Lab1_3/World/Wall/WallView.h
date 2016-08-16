@@ -19,6 +19,7 @@ namespace WallSpace
 		NumFaces
 	};
 
+	// TODO: protect my privacy
 	struct SRectangleFace
 	{
 		uint16_t vertexIndex1;
@@ -29,6 +30,7 @@ namespace WallSpace
 	};
 
 
+	// TODO: protect my privacy
 	const SRectangleFace CUBE_FACES[] = {
 		{ 5, 4, 7, 6, static_cast<uint16_t>(CubeFace::Front) },
 		{ 0, 1, 2, 3, static_cast<uint16_t>(CubeFace::Back) },
@@ -38,6 +40,7 @@ namespace WallSpace
 		{ 1, 5, 6, 2, static_cast<uint16_t>(CubeFace::Right) },
 	};
 
+	// TODO: protect my privacy
 	// ¬ершины куба служат материалом дл€ формировани€ треугольников,
 	// составл€ющих грани куба.
 	const Vertex CUBE_VERTICIES[] = {
@@ -80,5 +83,5 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	const CWallViewType*		m_pType;
+	const CWallViewType*		m_pType; // TODO: nullptrize me
 };

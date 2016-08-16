@@ -57,5 +57,5 @@ private:
 	CWallView										m_visual;
 
 	bool											m_haveCollision = false;
-	std::shared_ptr<C2DRectangleCollision>			m_collision;
+	std::shared_ptr<C2DRectangleCollision>			m_collision; // TODO: why shared_ptr
 };

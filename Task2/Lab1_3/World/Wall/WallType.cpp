@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "../../stdafx.h"
 #include "WallType.h"
 
 void CWallViewType::SetTexture(const std::string & texturePath)

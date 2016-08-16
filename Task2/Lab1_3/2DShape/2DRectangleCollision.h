@@ -8,6 +8,7 @@
 #include "Static2DShape.h"
 #include "Rectangle.h"
 
+// TODO: stop mix in me!
 class C2DRectangleCollision final
 	: public CStatic2DShape
 	, public CRectangle

@@ -26,17 +26,11 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-
-	//--------------------------------------------
-	// IUpdatable
 	void		Update(float deltaSec
 						, float moveSpeed
 						, float rotationSpeed) override;
-	//--------------------------------------------
-	// IInputEventAcceptor
-	glm::mat4	GetViewTransform() const override final;
-	//--------------------------------------------
 
+	glm::mat4	GetViewTransform() const override final;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

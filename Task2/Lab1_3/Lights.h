@@ -6,11 +6,7 @@
 #include <boost/noncopyable.hpp>
 #include <set>
 
-#include "Mixin\Material\HaveAmbient.h"
-#include "Mixin\Material\HaveDiffuse.h"
-#include "Mixin\Material\HaveSpecular.h"
-#include "Mixin\Material\HaveEmission.h"
-#include "Mixin\Material\HaveShininess.h"
+#include "Mixin/Material/MaterialCharacteristics.h"
 
 #include "Mixin\HaveDirection.h"
 #include "Mixin\Have3DPosition.h"
@@ -24,9 +20,7 @@ public:
 
 class CAbstractLightSource
         : public ILightSource
-		, public CHaveAmbient
-		, public CHaveDiffuse
-		, public CHaveSpecular
+		, public CMaterialCharactiristics
         , private boost::noncopyable
 {
 public:

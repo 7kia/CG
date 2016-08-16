@@ -1,23 +1,27 @@
 #pragma once
 
-#include "..\Mixin\Material\HaveAmbient.h"
-#include "..\Mixin\Material\HaveDiffuse.h"
-#include "..\Mixin\Material\HaveSpecular.h"
-#include "..\Mixin\Material\HaveEmission.h"
-#include "..\Mixin\Material\HaveShininess.h"
-
+#include "../Mixin/Material/MaterialCharacteristics.h"
 
 class CPhongModelMaterial
-	: public CHaveEmission
-	, public CHaveAmbient
-	, public CHaveDiffuse
-	, public CHaveSpecular
-	, public CHaveShininess
+	: public CMaterialCharactiristics
 {
 public:
 	CPhongModelMaterial();
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
-	void Setup() const;
+	void		Setup() const;
+
+
+	void		SetEmission(const glm::vec4 &emission);
+	glm::vec4	GetEmission() const;
+
+	void		SetShininess(float GetShininess);
+	float		GetShininess() const;
+//////////////////////////////////////////////////////////////////////
+// Data
+private:
+	glm::vec4	m_emission;
+	float		m_shininess = 10.f;
+
 };

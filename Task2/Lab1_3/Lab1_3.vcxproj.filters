@@ -78,23 +78,8 @@
     <ClInclude Include="Mixin\Updatable.h">
       <Filter>Mixin</Filter>
     </ClInclude>
-    <ClInclude Include="Mixin\Material\HaveAmbient.h">
-      <Filter>Mixin\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixin\Material\HaveDiffuse.h">
-      <Filter>Mixin\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixin\Material\HaveSpecular.h">
-      <Filter>Mixin\Material</Filter>
-    </ClInclude>
     <ClInclude Include="Mixin\HaveDirection.h">
       <Filter>Mixin</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixin\Material\HaveEmission.h">
-      <Filter>Mixin\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixin\Material\HaveShininess.h">
-      <Filter>Mixin\Material</Filter>
     </ClInclude>
     <ClInclude Include="Material\PhongMaterial.h">
       <Filter>Material</Filter>
@@ -222,6 +207,9 @@
     <ClInclude Include="World\HavePlayer.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\Material\MaterialCharacteristics.h">
+      <Filter>Mixin\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -251,23 +239,8 @@
     <ClCompile Include="Mixin\Transformable.cpp">
       <Filter>Mixin</Filter>
     </ClCompile>
-    <ClCompile Include="Mixin\Material\HaveAmbient.cpp">
-      <Filter>Mixin\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\Material\HaveDiffuse.cpp">
-      <Filter>Mixin\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\Material\HaveSpecular.cpp">
-      <Filter>Mixin\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\Material\HaveEmission.cpp">
-      <Filter>Mixin\Material</Filter>
-    </ClCompile>
     <ClCompile Include="Mixin\HaveDirection.cpp">
       <Filter>Mixin</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\Material\HaveShininess.cpp">
-      <Filter>Mixin\Material</Filter>
     </ClCompile>
     <ClCompile Include="Material\PhongMaterial.cpp">
       <Filter>Material</Filter>
@@ -385,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="Mixin\HaveReferenceToC3DShape.cpp">
       <Filter>3DShape</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\Material\MaterialCharacteristics.cpp">
+      <Filter>Mixin\Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

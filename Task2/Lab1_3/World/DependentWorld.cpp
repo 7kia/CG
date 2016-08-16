@@ -1,3 +1,5 @@
+// TODO: remove this file, merge it with Map.cpp
+
 #include "stdafx.h"
 #include "../stdafx.h"
 #include <Box2D\Box2D.h>
@@ -31,13 +33,13 @@ bool CMap::WallHaveCollision(int heigth)
 {
 	switch (heigth)
 	{
-	case -1: case 1:
+		// TODO: create enum with list of height values as constants
+	case -1: case 1: // TODO: what is -1? what is 1?
 		return false;
-	case 0:
+	case 0: // TODO: what is 0?
 		return true;
 	default:
 		throw std::runtime_error("Incorrect index");
-		break;
 	}
 }
 
@@ -113,7 +115,7 @@ void CPlayer::SetCollison()
 
 void CPlayer::SetWorld(CWorld * pWorld)
 {
-	m_pWorld = pWorld;
+	m_pWorld.reset(pWorld);
 }
 
 void CPlayer::CreatePlayer(const glm::vec3 & position
@@ -122,7 +124,7 @@ void CPlayer::CreatePlayer(const glm::vec3 & position
 {
 	m_collision.SetPVisual(&m_visual);
 
-	SetCamera();
+	SetCameras();
 
 	GetCamera()->SetPosition(position);
 	GetCamera()->SetDirection(direction);

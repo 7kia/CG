@@ -49,12 +49,12 @@ class CHaveVertexes : public IHaveVertex
 public:
 	CHaveVertexes();// TODO: delete parametr
 	CHaveVertexes(uint size);
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	void							SetVertex(uint index, const SVertexP3NT2 & value) override final;
 	SVertexP3NT2					GetVertex(uint index) const override final;
-	SVertexP3NT2*					GetReferenceToVertex(int index) override final;;
+	SVertexP3NT2*					GetReferenceToVertex(int index) override final;
 
 	std::vector<SVertexP3NT2>		GetVertexes() const override final;//
 
@@ -70,8 +70,9 @@ public:
 
 
 
-	void							CheckVertexIndex(uint index) const override final;// TODO : see need transfer to other place												  
-	// Data
+	void							CheckVertexIndex(uint index) const override final;											  
+//////////////////////////////////////////////////////////////////////
+// Data
 protected:
 	std::vector<SVertexP3NT2>		m_vertices;
 	std::vector<uint32_t>			m_indicies;

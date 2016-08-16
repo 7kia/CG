@@ -20,7 +20,6 @@ namespace CameraSpace
 class CAbcstartCamera
 	: public CHave3DPosition
 	, public CHaveDirection
-
 {
 public:
 	CAbcstartCamera();
@@ -53,6 +52,8 @@ public:
 public:
 	float		GetRotationRadians() const;
 	glm::vec3	GetCurrentDirection() const;
+//////////////////////////////////////////////////////////////////////
+// Data
 protected:
 	float		m_rotationRadians = 0;
 };

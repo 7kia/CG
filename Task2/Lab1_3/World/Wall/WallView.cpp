@@ -31,15 +31,16 @@ CWallView::CWallView()
 
 void CWallView::Draw() const
 {
-	for (uint index = 0; index < m_visible.size(); ++index)
-	{
-		if (m_visible[index])
+	GetTexture()->DoWhileBinded([&] {
+		for (uint index = 0; index < m_visible.size(); ++index)
 		{
-			GetTexture()->DoWhileBinded([&] {
+			if (m_visible[index])
+			{
 				m_shapes[index]->Draw();
-			});
+			}
 		}
-	}
+	});
+
 }
 
 void CWallView::SetType(const CWallViewType* type)

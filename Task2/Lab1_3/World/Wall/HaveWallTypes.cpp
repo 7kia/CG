@@ -8,6 +8,7 @@ CHaveWallTypes::CHaveWallTypes()
 
 void CHaveWallTypes::CreateWallTypes()
 {
+	// TODO: use static_assert from C++11
 	if ( (sizeof(TexturePathWallTypes) / sizeof(std::string)) != unsigned(IdWallType::AmountTypes))
 	{
 		throw std::runtime_error("Amount texture paths incorrect");

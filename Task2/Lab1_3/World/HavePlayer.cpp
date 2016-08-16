@@ -5,7 +5,7 @@ CHavePlayer::CHavePlayer()
 {
 }
 
-CAbcstartCamera * CHavePlayer::GetCamera()
+CAbcstartCamera* CHavePlayer::GetCamera()
 {
 	return m_player.GetCamera();
 }

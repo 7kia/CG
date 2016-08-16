@@ -6,7 +6,7 @@ class CWallViewType
 {
 public:
 	void					SetTexture(const std::string & texturePath);
-	CTexture2D*				GetTexture() const;
+	CTexture2D*				GetTexture() const; // TODO: return reference
 private:
 	CTexture2DUniquePtr		m_texture;
 };

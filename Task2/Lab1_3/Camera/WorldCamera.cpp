@@ -55,7 +55,7 @@ glm::mat4 CWorldCamera::GetViewTransform() const
 {
 	const glm::vec3 eye = GetCurrentDirection() * m_distance;// TODO : must position = eye
 
-	const glm::vec3 center = { 0, 0, 0 };//direction
+	const glm::vec3 center = { 0, 0, 0 };
 	const glm::vec3 up = { 0, 1, 0 };
 
 	// Матрица моделирования-вида вычисляется функцией glm::lookAt.

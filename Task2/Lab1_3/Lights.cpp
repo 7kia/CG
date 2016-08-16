@@ -8,7 +8,9 @@ namespace
 }
 
 CAbstractLightSource::CAbstractLightSource(unsigned index)
-    : m_index(index)
+    : ILightSource()
+	, CMaterialCharactiristics()
+	, m_index(index)
 {
 }
 

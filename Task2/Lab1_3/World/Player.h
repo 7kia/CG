@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Mixin/Updatable.h"
+#include "Actor.h"
 #include "../Mixin/HaveLinearVelocity.h"
 #include "../Mixin/HaveRotationSpeed.h"
 #include "../Mixin/HaveDirection.h"
@@ -31,8 +31,7 @@ namespace PlayerSpace
 class CWorld;
 
 class CPlayer final
-	: public IUpdatable
-	, public IDrawable
+	: public IActor
 	, public CHave3DPosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity
@@ -75,11 +74,9 @@ public:
 	void ChangeWorldCamera();
 
 	//--------------------------------------------
-	// IUpdatable
-	void Update(float deltaTime) override final;
-	//--------------------------------------------
-	// IDrawable
-	void Draw() const override final;
+	// IActor
+	void							Update(float deltaTime) override final;
+	void							Draw() const override final;
 	//--------------------------------------------
 	void							SetCamera(CPlayer::IdCameras id);
 	CAbstractRotatableCamera*		GetCamera();// TODO : see need there const
@@ -91,14 +88,13 @@ public:
 												, const glm::vec3 & direction
 												, CWorld* pWorld);
 private:
-	void							SetCamera();
+	void							SetCameras();
 	void							SetCollison();
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
 	class CController;
-	std::unique_ptr<CController>	m_pController;// TODO : see need pImpl and unique_ptr
-
+	std::unique_ptr<CController>	m_pController;
 private:
 	IdCameras						m_idCamera = IdCameras::Player;
 	// TODO : see might can rewrite better
@@ -107,7 +103,7 @@ private:
 	CPositionLightSource			m_flashlight;
 	C2DCircleCollision				m_collision;
 	CWallView						m_visual;
-	CWorld*							m_pWorld;// For add physic body
+	std::shared_ptr<CWorld>			m_pWorld;// For add physic body
 };
 
 class CPlayer::CController
@@ -115,8 +111,8 @@ class CPlayer::CController
 {
 public:
 	CController(CPlayer * master);
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	enum class IdCommands
 	{
@@ -139,9 +135,9 @@ private:
 
 	void				SetFunctionList();
 	void				CheckListCommands() const;
-	//////////////////////////////////////////////////////////////////////
-	// Data
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
-	CPlayer*							m_master;
+	CPlayer*							m_master = nullptr;// TODO : see might need do it smart pointer
 	std::map<IdCommands, SSkill>		m_listFunctions;
 };

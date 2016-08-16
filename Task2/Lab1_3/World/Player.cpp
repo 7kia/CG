@@ -9,8 +9,7 @@ CPlayer::SSkill::SSkill(const std::function<void()> function, const KeyList & ke
 }
 
 CPlayer::CPlayer()
-	: IUpdatable()
-	, IDrawable()
+	: IActor()
 	, CHave3DPosition()
 	, CHaveDirection(PlayerSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
@@ -19,14 +18,13 @@ CPlayer::CPlayer()
 	, m_pController(std::make_unique<CController>(this))
 {
 	m_collision.SetPVisual(&m_visual);
-	SetCamera();
+	SetCameras();
 }
 
 CPlayer::CPlayer(const glm::vec3 & position
 				, const glm::vec3 & direction
 				, CWorld* pWorld)
-	: IUpdatable()
-	, IDrawable()
+	: IActor()
 	, CHave3DPosition()
 	, CHaveDirection()
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
@@ -34,6 +32,7 @@ CPlayer::CPlayer(const glm::vec3 & position
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
 {
+	SetCameras();
 	CreatePlayer(position, direction, pWorld);
 }
 
@@ -115,12 +114,12 @@ void CPlayer::SetCamera(CPlayer::IdCameras id)
 	m_idCamera = id;
 }
 
-CAbstractRotatableCamera * CPlayer::GetCamera()
+CAbstractRotatableCamera* CPlayer::GetCamera()
 {
-	return m_cameras[unsigned(m_idCamera)].get();
+	return m_cameras[unsigned(m_idCamera)].get();// TODO : see word it
 }
 
-void CPlayer::SetCamera()
+void CPlayer::SetCameras()
 {
 	m_cameras[unsigned(IdCameras::Player)] = std::make_unique<CPlayerCamera>();
 	m_cameras[unsigned(IdCameras::World)] = std::make_unique<CWorldCamera>(0.f, 2.5f);
