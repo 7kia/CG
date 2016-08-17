@@ -85,7 +85,13 @@ void CPlayer::Update(float deltaTime)
 {
 	m_collision.ResetVelocity();
 	auto collisionPosition = m_collision.GetPosition();
-	GetCamera()->SetPosition(glm::vec3(collisionPosition.x, 0.f, collisionPosition.y));
+	auto playerPosition = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
+	GetCamera()->SetPosition(playerPosition);
+
+	// Visual part must place over labyrinth in cheat mode
+	playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
+	m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
+
 	GetCamera()->Update(deltaTime
 						, GetCurrentLinearVelocity()
 						, GetCurrentRotationSpeed());

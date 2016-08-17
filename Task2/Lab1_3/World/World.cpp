@@ -54,6 +54,7 @@ void CWorld::Draw() const
 	}
 	*/
 	m_map.Draw();
+	m_labyrinth.Draw();
 }
 
 void CWorld::Update(float deltaTime)

@@ -142,9 +142,9 @@ SVertexP3NT2 * CHaveReferenceVertex::GetReferenceToVertex(int index)
 std::vector<SVertexP3NT2> CHaveReferenceVertex::GetVertexes() const
 {
 	std::vector<SVertexP3NT2> result;
-	for (size_t index = 0; index < 3; ++index)
+	for (size_t index = 0; index < m_pVertex.size(); ++index)
 	{
-		result[index] = *m_pVertex[index][0];
+		result.push_back(*m_pVertex[index][0]);
 	}
 	return result;
 }

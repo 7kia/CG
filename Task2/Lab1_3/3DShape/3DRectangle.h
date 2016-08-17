@@ -5,17 +5,11 @@
 #include "3DTriangle.h"
 
 class C3DRectangle final
-	: public ÑComposite3DShape
-	, public CHaveReferenceVertex
+	: public CIdentity3DShape
 {
 public:
 	C3DRectangle();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	//--------------------------------------------
-	// CIdentity3DShape
-	//--------------------------------------------
-private:
-	void					UpdateReference() override final;
 };
