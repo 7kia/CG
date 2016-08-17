@@ -30,6 +30,11 @@ void CMap::Update(float deltaTime)
 	}
 }
 
+std::vector<PWall> CMap::GetWalls() const
+{
+	return m_walls;
+}
+
 void CMap::ReadMap(ifstream & file)
 {
 	size_t length = 0;

@@ -10,6 +10,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "HavePlayer.h"
+#include "Labyrinth.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -68,6 +69,7 @@ private:
 	//std::vector<IBodyUniquePtr>		m_opaqueBodies;// TODO : see need it's
 	//std::vector<IBodyUniquePtr>		m_transparentBodies;
 	CMap							m_map;
+	CLabyrinth						m_labyrinth;
 
 	CPhongModelMaterial m_material;// TODO : transfer
 	CDirectedLightSource m_sunlight;

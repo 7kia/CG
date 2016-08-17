@@ -363,7 +363,7 @@
       <Filter>Mixin\Material</Filter>
     </ClCompile>
     <ClCompile Include="World\Labyrinth.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

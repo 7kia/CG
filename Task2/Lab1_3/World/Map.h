@@ -31,11 +31,13 @@ public:
 public:
 	//--------------------------------------------
 	// IDrawable
-	void					Draw() const override final;
+	void							Draw() const override final;
 	//--------------------------------------------
 	// IUpdatable
-	void					Update(float deltaTime) override final;
+	void							Update(float deltaTime) override final;
 	//--------------------------------------------
+
+	std::vector<PWall>				GetWalls() const;
 private:
 	enum class IdSymbol
 	{
@@ -82,7 +84,7 @@ private:
 	using Level = std::vector<std::string>;
 
 	glm::vec2						m_centerMap;
-	std::vector<IActorUniquePtr>	m_walls;
+	std::vector<PWall>				m_walls;
 	std::vector<Level>				m_map;
 
 	CWorld*							pWorld = nullptr;

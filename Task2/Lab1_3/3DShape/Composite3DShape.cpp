@@ -26,6 +26,18 @@ IBodyUniquePtr ÑComposite3DShape::GetShape(size_t index)
 	return m_shapes[index];
 }
 
+const IBodyUniquePtr ÑComposite3DShape::GetShape(size_t index) const
+{
+	CheckVertexIndex(index);
+
+	return m_shapes[index];
+}
+
+size_t ÑComposite3DShape::GetAmountShapes() const
+{
+	return m_shapes.size();
+}
+
 void ÑComposite3DShape::CheckVertexIndex(size_t index) const
 {
 	if (!IsBetween(index, 0llu, m_shapes.size()))

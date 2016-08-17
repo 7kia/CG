@@ -113,6 +113,11 @@ bool CWall::GetHaveCollision() const
 	return m_haveCollision;
 }
 
+const CWallView * CWall::GetVisual() const
+{
+	return &m_visual;
+}
+
 bool CWall::CheckContentCollision() const
 {
 	if (m_haveCollision)

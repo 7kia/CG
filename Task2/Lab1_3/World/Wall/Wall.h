@@ -51,7 +51,7 @@ public:
 
 
 	// for buiding labyrinth
-
+	const CWallView*				GetVisual() const;
 private:
 	bool							CheckContentCollision() const;
 //////////////////////////////////////////////////////////////////////
@@ -62,3 +62,5 @@ private:
 	bool											m_haveCollision = false;
 	std::shared_ptr<C2DRectangleCollision>			m_collision; // TODO: why shared_ptr
 };
+
+using PWall = std::shared_ptr<CWall>;

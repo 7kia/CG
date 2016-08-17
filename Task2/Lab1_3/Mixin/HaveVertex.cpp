@@ -48,12 +48,12 @@ SVertexP3NT2 * CHaveVertexes::GetReferenceToVertex(int index)
 
 std::vector<SVertexP3NT2> CHaveVertexes::GetVertexes() const
 {
-	std::vector<SVertexP3NT2> result;
-	for (size_t index = 0; index < 3; ++index)
-	{
-		result[index] = m_vertices[index];
-	}
-	return result;
+	return m_vertices;
+}
+
+std::vector<uint32_t> CHaveVertexes::GetIndexes() const
+{
+	return m_indicies;
 }
 
 void CHaveVertexes::SetVertexPosition(uint index, const glm::vec3 & position)

@@ -13,6 +13,8 @@ CWorld::CWorld()
 {
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 
+	m_labyrinth.BuildLabyrinth(m_map.GetWalls());
+
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);

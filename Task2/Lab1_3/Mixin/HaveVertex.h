@@ -56,8 +56,8 @@ public:
 	SVertexP3NT2					GetVertex(uint index) const override final;
 	SVertexP3NT2*					GetReferenceToVertex(int index) override final;
 
-	std::vector<SVertexP3NT2>		GetVertexes() const override final;//
-
+	std::vector<SVertexP3NT2>		GetVertexes() const override final;
+	std::vector<uint32_t>			GetIndexes() const;
 
 	void							SetVertexPosition(uint index, const glm::vec3 & position) override final;
 	glm::vec3						GetVertexPosition(uint index) const override final;

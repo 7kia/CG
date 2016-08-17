@@ -16,8 +16,12 @@ public:
 	// I3DShape
 	void					Draw() const override;
 	//--------------------------------------------
-private:
+
 	IBodyUniquePtr			GetShape(size_t index);// shape can will be changed
+	const IBodyUniquePtr	GetShape(size_t index) const;// shape can will be changed
+
+	size_t					GetAmountShapes() const;
+private:
 	void					CheckVertexIndex(size_t index) const;
 
 //////////////////////////////////////////////////////////////////////
