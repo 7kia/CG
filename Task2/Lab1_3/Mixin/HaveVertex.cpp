@@ -13,7 +13,6 @@ SVertexP3NT2::SVertexP3NT2(const glm::vec3 & position
 
 CHaveVertexes::CHaveVertexes()
 	: IHaveVertex()
-	, m_vertices(3)
 {
 }
 

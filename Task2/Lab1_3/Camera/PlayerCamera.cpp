@@ -5,8 +5,6 @@
 
 CPlayerCamera::CPlayerCamera(const glm::vec3 & position, const glm::vec3 & direction)
 	: CAbstractRotatableCamera()
-	//, CHave3DPosition(position)
-	//, CHaveDirection(PlayerCameraSpace::PLAYER_DIRECTION)
 {
 	SetPosition(position);
 	SetDirection(direction);

@@ -24,6 +24,7 @@ namespace PlayerSpace
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
 	const float LINEAR_MOVE_SPEED = 2.f;
+	const float HEIGHT_VISUAL_PART = 2.f;
 
 	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
 }

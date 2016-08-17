@@ -204,6 +204,7 @@
     <ClInclude Include="World\Actor.h" />
     <ClInclude Include="World\HavePhysicalWorld.h" />
     <ClInclude Include="World\HavePlayer.h" />
+    <ClInclude Include="World\Labyrinth.h" />
     <ClInclude Include="World\Map.h" />
     <ClInclude Include="World\Player.h" />
     <ClInclude Include="World\Wall\HaveWallTypes.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="World\HavePhysicalWorld.cpp" />
     <ClCompile Include="World\HavePlayer.cpp" />
+    <ClCompile Include="World\Labyrinth.cpp" />
     <ClCompile Include="World\Map.cpp" />
     <ClCompile Include="World\Player.cpp" />
     <ClCompile Include="World\PlayerController.cpp" />

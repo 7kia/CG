@@ -17,6 +17,7 @@ public:
 	void					Draw() const override;
 	//--------------------------------------------
 private:
+	IBodyUniquePtr			GetShape(size_t index);// shape can will be changed
 	void					CheckVertexIndex(size_t index) const;
 
 //////////////////////////////////////////////////////////////////////

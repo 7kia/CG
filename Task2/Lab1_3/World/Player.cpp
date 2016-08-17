@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "World.h"
 
-
 CPlayer::SSkill::SSkill(const std::function<void()> function, const KeyList & keys)
 {
 	m_skill = function;
@@ -84,7 +83,7 @@ void CPlayer::ChangeCamera()
 
 void CPlayer::Update(float deltaTime)
 {
-	m_collision.ReserVelocity();
+	m_collision.ResetVelocity();
 	auto collisionPosition = m_collision.GetPosition();
 	GetCamera()->SetPosition(glm::vec3(collisionPosition.x, 0.f, collisionPosition.y));
 	GetCamera()->Update(deltaTime

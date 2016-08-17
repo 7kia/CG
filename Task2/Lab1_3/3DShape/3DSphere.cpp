@@ -18,6 +18,35 @@ namespace
 			cosf(latitude) * radius,
 			sinf(longitude) * latitudeRadius };
 	}
+
+	void CalculateTriangleStripIndicies(std::vector<uint32_t> &indicies,
+		unsigned columnCount, unsigned rowCount)
+	{
+		indicies.clear();
+		indicies.reserve((columnCount - 1) * rowCount * 2);
+		// вычисляем индексы вершин.
+		for (unsigned ci = 0; ci < columnCount - 1; ++ci)
+		{
+			if (ci % 2 == 0)
+			{
+				for (unsigned ri = 0; ri < rowCount; ++ri)
+				{
+					unsigned index = ci * rowCount + ri;
+					indicies.push_back(index + rowCount);
+					indicies.push_back(index);
+				}
+			}
+			else
+			{
+				for (unsigned ri = rowCount - 1; ri < rowCount; --ri)
+				{
+					unsigned index = ci * rowCount + ri;
+					indicies.push_back(index);
+					indicies.push_back(index + rowCount);
+				}
+			}
+		}
+	}
 }
 
 CIdentity3DSphere::CIdentity3DSphere(unsigned slices, unsigned stacks)

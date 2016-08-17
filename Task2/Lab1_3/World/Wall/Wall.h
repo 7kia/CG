@@ -49,6 +49,9 @@ public:
 	void							SetHaveCollision(bool value);
 	bool							GetHaveCollision() const;
 
+
+	// for buiding labyrinth
+
 private:
 	bool							CheckContentCollision() const;
 //////////////////////////////////////////////////////////////////////

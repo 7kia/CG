@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "../stdafx.h"
 #include "Player.h"
 
 CPlayer::CController::CController(CPlayer * master)

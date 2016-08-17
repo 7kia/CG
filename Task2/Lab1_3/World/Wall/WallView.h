@@ -83,5 +83,5 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	const CWallViewType*		m_pType; // TODO: nullptrize me
+	const CWallViewType*		m_pType = nullptr; // TODO: nullptrize me
 };

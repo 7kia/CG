@@ -34,7 +34,7 @@ void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 	m_body->ApplyForceToCenter(b2Vec2(convertAcceleration.x, convertAcceleration.y));// TODO : what is wake?
 }
 
-void CDynamicBody::ReserVelocity()
+void CDynamicBody::ResetVelocity()
 {
 	m_body->SetLinearVelocity(b2Vec2(0, 0));
 }

@@ -19,6 +19,13 @@ void ÑComposite3DShape::Draw() const
 	glPopMatrix();
 }
 
+IBodyUniquePtr ÑComposite3DShape::GetShape(size_t index)
+{
+	CheckVertexIndex(index);
+
+	return m_shapes[index];
+}
+
 void ÑComposite3DShape::CheckVertexIndex(size_t index) const
 {
 	if (!IsBetween(index, 0llu, m_shapes.size()))

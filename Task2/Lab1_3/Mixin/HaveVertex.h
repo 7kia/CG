@@ -109,5 +109,5 @@ protected:
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-	std::vector<std::vector<SVertexP3NT2*>>			m_pVertex;
+	std::vector<std::vector<SVertexP3NT2*>>		m_pVertex;
 };
