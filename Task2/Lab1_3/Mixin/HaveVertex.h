@@ -29,9 +29,14 @@ public:
 	virtual void							SetVertex(uint index, const SVertexP3NT2 & value) = 0;
 	virtual SVertexP3NT2					GetVertex(uint index) const = 0;
 	virtual SVertexP3NT2*					GetReferenceToVertex(int index) = 0;
+
+	virtual std::vector<SVertexP3NT2>		GetSourceVertexes() const = 0;
 	virtual std::vector<SVertexP3NT2>		GetVertexes() const = 0;
 
-	virtual void							SetVertexPosition(uint index, const glm::vec3 & position) = 0;
+	virtual void							SetSourceVertexPosition(uint index, const glm::vec3 & position) = 0;
+	virtual glm::vec3						GetSourceVertexPosition(uint index) const = 0;
+
+	//virtual void							SetVertexPosition(uint index, const glm::vec3 & position) = 0;
 	virtual glm::vec3						GetVertexPosition(uint index) const = 0;
 
 	virtual void							SetVertexNormal(uint index, const glm::vec3 & normal) = 0;
@@ -56,11 +61,11 @@ public:
 	SVertexP3NT2					GetVertex(uint index) const override final;
 	SVertexP3NT2*					GetReferenceToVertex(int index) override final;
 
-	std::vector<SVertexP3NT2>		GetVertexes() const override final;
+	std::vector<SVertexP3NT2>		GetSourceVertexes() const override final;
 	std::vector<uint32_t>			GetIndexes() const;
 
-	void							SetVertexPosition(uint index, const glm::vec3 & position) override final;
-	glm::vec3						GetVertexPosition(uint index) const override final;
+	void							SetSourceVertexPosition(uint index, const glm::vec3 & position) override final;
+	glm::vec3						GetSourceVertexPosition(uint index) const override final;
 
 	void							SetVertexNormal(uint index, const glm::vec3 & normal) override final;
 	glm::vec3						GetVertexNormal(uint index) const override final;
@@ -79,6 +84,7 @@ protected:
 
 };
 
+// TODO : see need it
 class CHaveReferenceVertex : public IHaveVertex
 {
 public:
@@ -90,10 +96,10 @@ public:
 	SVertexP3NT2								GetVertex(uint index) const override;
 	SVertexP3NT2*								GetReferenceToVertex(int index) override final;
 
-	std::vector<SVertexP3NT2>					GetVertexes() const override final;//
+	std::vector<SVertexP3NT2>					GetSourceVertexes() const override final;//
 
-	void										SetVertexPosition(uint index, const glm::vec3 & position) override final;
-	glm::vec3									GetVertexPosition(uint index) const override final;
+	void										SetSourceVertexPosition(uint index, const glm::vec3 & position) override final;
+	glm::vec3									GetSourceVertexPosition(uint index) const override final;
 
 	void										SetVertexNormal(uint index, const glm::vec3 & normal) override final;
 	glm::vec3									GetVertexNormal(uint index) const override final;

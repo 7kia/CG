@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Labyrinth.h"
 #include "Map.h"
+#include <algorithm>
+#include <boost/phoenix.hpp>
+#include <boost/range/algorithm/transform.hpp>
 
 CLabyrinth::CLabyrinth()
 	: CIdentity3DShape()
@@ -9,31 +12,61 @@ CLabyrinth::CLabyrinth()
 
 void CLabyrinth::BuildLabyrinth(const std::vector<PWall> & walls)
 {
+	size_t countVertex = 0;
+	size_t countIndexes = 0;
 	size_t indexCount = 0;
 	for (const auto & wall : walls)
 	{
 		auto visual = wall->GetVisual();
 		for (size_t index = 0; index < visual->GetAmountShapes(); ++index)
 		{
-			auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
-			
-			
-				auto vertexes = currentRectangle->GetVertexes();
-				
-				m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
+			if (wall->GetVisible(index))
+			{
+				auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
 
-				for (size_t count = 0; count < vertexes.size(); ++count)// TODO : see is it correct
-				{
-					m_indicies.push_back(indexCount++);
-				}
-				//m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
-			
+				auto amountVertex = currentRectangle->GetVertexes().size();
+				auto amountIndexes = currentRectangle->GetIndexes().size();
+
+
+				countVertex += amountVertex;
+				countIndexes += amountIndexes;
+			}
 		}
-
 
 	}
 
+	m_vertices.reserve(countVertex);
+	m_indicies.reserve(countIndexes);
+	indexCount = 0;
+	for (const auto & wall : walls)
+	{
+		auto visual = wall->GetVisual();
+		for (size_t index = 0; index < visual->GetAmountShapes(); ++index)
+		{
+			if (wall->GetVisible(index))
+			{
 
+				auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
+
+				auto vertexes = currentRectangle->GetVertexes();
+				auto indexes = currentRectangle->GetIndexes();
+
+				auto append = [indexCount](uint32_t source) {
+					return source + indexCount * 4;
+				};
+
+				boost::transform(indexes, indexes.begin(), append);
+
+				m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
+				m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
+
+				++indexCount;
+			}
+		}
+
+	}
+
+	indexCount = 0;
 
 	/*
 		const int rowCount = 2;

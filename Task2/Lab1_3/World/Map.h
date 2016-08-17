@@ -2,6 +2,7 @@
 
 #include "../Mixin/HaveFileForReading.h"
 #include "Wall/Wall.h"
+#include "Labyrinth.h"
 #include <string>
 #include <vector>
 
@@ -37,7 +38,6 @@ public:
 	void							Update(float deltaTime) override final;
 	//--------------------------------------------
 
-	std::vector<PWall>				GetWalls() const;
 private:
 	enum class IdSymbol
 	{
@@ -45,6 +45,8 @@ private:
 		, Space
 		, Player
 	};
+	std::vector<PWall>		GetWalls() const;
+
 
 	void					ReadMap(std::ifstream & file);
 	void					ProcessRow(const std::string & row, size_t widthCount, int level);
@@ -86,6 +88,8 @@ private:
 	glm::vec2						m_centerMap;
 	std::vector<PWall>				m_walls;
 	std::vector<Level>				m_map;
+
+	CLabyrinth						m_labyrinth;
 
 	CWorld*							pWorld = nullptr;
 	bool							m_addPlayer = false;

@@ -16,10 +16,15 @@ CMap::CMap(const string & mapPath, CWorld* pWorld)
 
 void CMap::Draw() const
 {
+	//m_labyrinth.Draw();
+
+	///*
 	for (const auto & wall : m_walls)
 	{
 		wall->Draw();
 	}
+	//*/
+
 }
 
 void CMap::Update(float deltaTime)
@@ -52,6 +57,8 @@ void CMap::ReadMap(ifstream & file)
 	AddLowLevel(length, width);
 
 	ComputeVisibleEdge(width);
+
+	m_labyrinth.BuildLabyrinth(GetWalls());
 }
 
 void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)

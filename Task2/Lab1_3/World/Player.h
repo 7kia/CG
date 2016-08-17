@@ -22,8 +22,8 @@ namespace PlayerSpace
 {
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
-	const float ROTATION_SPEED_RADIANS = 5.f;
-	const float LINEAR_MOVE_SPEED = 2.f;
+	const float ROTATION_SPEED_RADIANS = 15.f;
+	const float LINEAR_MOVE_SPEED = 12.f;
 	const float HEIGHT_VISUAL_PART = 4.f;
 
 	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };

@@ -17,10 +17,10 @@ CWallView::CWallView()
 
 		const WallSpace::SRectangleFace face = WallSpace::CUBE_FACES[index];
 
-		pRectangle->SetVertexPosition(0, WallSpace::CUBE_VERTICIES[face.vertexIndex1]);
-		pRectangle->SetVertexPosition(1, WallSpace::CUBE_VERTICIES[face.vertexIndex2]);
-		pRectangle->SetVertexPosition(2, WallSpace::CUBE_VERTICIES[face.vertexIndex3]);
-		pRectangle->SetVertexPosition(3, WallSpace::CUBE_VERTICIES[face.vertexIndex4]);
+		pRectangle->SetSourceVertexPosition(0, WallSpace::CUBE_VERTICIES[face.vertexIndex1]);
+		pRectangle->SetSourceVertexPosition(1, WallSpace::CUBE_VERTICIES[face.vertexIndex2]);
+		pRectangle->SetSourceVertexPosition(2, WallSpace::CUBE_VERTICIES[face.vertexIndex3]);
+		pRectangle->SetSourceVertexPosition(3, WallSpace::CUBE_VERTICIES[face.vertexIndex4]);
 	}
 
 	if (m_visible.size() != m_shapes.size())

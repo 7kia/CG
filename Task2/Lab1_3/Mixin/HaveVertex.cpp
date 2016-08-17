@@ -46,7 +46,7 @@ SVertexP3NT2 * CHaveVertexes::GetReferenceToVertex(int index)
 }
 
 
-std::vector<SVertexP3NT2> CHaveVertexes::GetVertexes() const
+std::vector<SVertexP3NT2> CHaveVertexes::GetSourceVertexes() const
 {
 	return m_vertices;
 }
@@ -56,14 +56,14 @@ std::vector<uint32_t> CHaveVertexes::GetIndexes() const
 	return m_indicies;
 }
 
-void CHaveVertexes::SetVertexPosition(uint index, const glm::vec3 & position)
+void CHaveVertexes::SetSourceVertexPosition(uint index, const glm::vec3 & position)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].position = position;
 }
 
-glm::vec3 CHaveVertexes::GetVertexPosition(uint index) const
+glm::vec3 CHaveVertexes::GetSourceVertexPosition(uint index) const
 {
 	CheckVertexIndex(index);
 
@@ -139,7 +139,7 @@ SVertexP3NT2 * CHaveReferenceVertex::GetReferenceToVertex(int index)
 }
 
 
-std::vector<SVertexP3NT2> CHaveReferenceVertex::GetVertexes() const
+std::vector<SVertexP3NT2> CHaveReferenceVertex::GetSourceVertexes() const
 {
 	std::vector<SVertexP3NT2> result;
 	for (size_t index = 0; index < m_pVertex.size(); ++index)
@@ -149,7 +149,7 @@ std::vector<SVertexP3NT2> CHaveReferenceVertex::GetVertexes() const
 	return result;
 }
 
-void CHaveReferenceVertex::SetVertexPosition(uint index, const glm::vec3 & position)
+void CHaveReferenceVertex::SetSourceVertexPosition(uint index, const glm::vec3 & position)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -158,7 +158,7 @@ void CHaveReferenceVertex::SetVertexPosition(uint index, const glm::vec3 & posit
 	}
 }
 
-glm::vec3 CHaveReferenceVertex::GetVertexPosition(uint index) const
+glm::vec3 CHaveReferenceVertex::GetSourceVertexPosition(uint index) const
 {
 	CheckVertexIndex(index);
 

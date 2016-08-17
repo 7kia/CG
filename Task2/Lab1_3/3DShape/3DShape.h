@@ -86,6 +86,10 @@ public:
 	// IDrawable
 	void							Draw() const override;
 	//--------------------------------------------
+
+	std::vector<SVertexP3NT2>		GetVertexes() const override;
+	glm::vec3						GetVertexPosition(uint index) const override;
+
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

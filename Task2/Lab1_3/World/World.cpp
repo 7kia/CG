@@ -13,8 +13,6 @@ CWorld::CWorld()
 {
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 
-	m_labyrinth.BuildLabyrinth(m_map.GetWalls());
-
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);
@@ -53,8 +51,13 @@ void CWorld::Draw() const
 		pBody->Draw();
 	}
 	*/
+
+	// TODO : без текстурировния лабиринта не работают коллизии
+	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {
+		
 	m_map.Draw();
-	m_labyrinth.Draw();
+
+	});
 }
 
 void CWorld::Update(float deltaTime)
