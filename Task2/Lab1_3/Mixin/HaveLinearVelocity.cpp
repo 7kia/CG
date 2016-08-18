@@ -16,42 +16,42 @@ float CHaveLinearVelocity::GetMaxLinearVelocity() const
 	return m_maxLinearVelocity;
 }
 
-void CHaveLinearVelocity::SetMaxTime(float time)
+void CHaveLinearVelocity::SetMaxSpeedUpTime(float time)
 {
-	m_maxTime = time;
+	m_maxSpeedUpTime = time;
 }
 
-float CHaveLinearVelocity::GetMaxTime() const
+float CHaveLinearVelocity::GetMaxSpeedUpTime() const
 {
-	return m_maxTime;
+	return m_maxSpeedUpTime;
 }
 
-void CHaveLinearVelocity::SetMinTime(float time)
+void CHaveLinearVelocity::SetMinSpeedUpTime(float time)
 {
-	m_minTime = time;
+	m_minSpeedUpTime = time;
 }
 
-float CHaveLinearVelocity::GetMinTime() const
+float CHaveLinearVelocity::GetMinSpeedUpTime() const
 {
-	return m_minTime;
+	return m_minSpeedUpTime;
 }
 
 float CHaveLinearVelocity::GetCurrentLinearVelocity(float deltaTime)
 {
 	if (m_directionWalk != DirectionWalk::None)
 	{
-		m_currentTime += deltaTime;
+		m_currentSpeedUpTime += deltaTime;
 
-		if (m_currentTime >= m_maxTime)
+		if (m_currentSpeedUpTime >= m_maxSpeedUpTime)
 		{
 			m_currentVelocity = m_maxLinearVelocity;
 		}
-		else if ((m_currentTime > m_minTime) && (m_currentTime < m_maxTime))
+		else if ((m_currentSpeedUpTime > m_minSpeedUpTime) && (m_currentSpeedUpTime < m_maxSpeedUpTime))
 		{
-			m_currentVelocity = m_maxLinearVelocity / m_maxTime * m_currentTime;
+			m_currentVelocity = m_maxLinearVelocity / m_maxSpeedUpTime * m_currentSpeedUpTime;
 		}
 
-		if (m_currentTime > m_minTime)
+		if (m_currentSpeedUpTime > m_minSpeedUpTime)
 		{
 			switch (m_directionWalk)
 			{
@@ -73,7 +73,6 @@ void CHaveLinearVelocity::ResetCurrentLinearVelocity()
 	m_currentVelocity = 0.f;
 	if (m_directionWalk == DirectionWalk::None)
 	{
-		m_currentTime = 0.f;
+		m_currentSpeedUpTime = 0.f;
 	}
-	//m_directionWalk = DirectionWalk::None; // TODO : fix
 }

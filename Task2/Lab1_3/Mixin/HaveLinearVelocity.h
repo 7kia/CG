@@ -17,11 +17,11 @@ public:
 	void	SetMaxLinearVelocity(float velocity);
 	float	GetMaxLinearVelocity() const;
 
-	void	SetMaxTime(float time);
-	float	GetMaxTime() const;
+	void	SetMaxSpeedUpTime(float time);
+	float	GetMaxSpeedUpTime() const;
 
-	void	SetMinTime(float velocity);
-	float	GetMinTime() const;
+	void	SetMinSpeedUpTime(float velocity);
+	float	GetMinSpeedUpTime() const;
 
 
 	float	GetCurrentLinearVelocity(float deltaTime);
@@ -32,10 +32,10 @@ public:
 // Methods
 protected:
 	float			m_maxLinearVelocity = 0.f;
-	float	 		m_maxTime = 3.f;// TODO : fix name
-	float			m_minTime = 0.25f;// TODO : fix name
+	float	 		m_maxSpeedUpTime = 3.f;
+	float			m_minSpeedUpTime = 0.25f;
 
-	float			m_currentTime = 0.f;
+	float			m_currentSpeedUpTime = 0.f;
 	float			m_currentVelocity = 0.f;
 	DirectionWalk	m_directionWalk = DirectionWalk::None;
 };

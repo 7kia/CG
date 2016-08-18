@@ -1,39 +1,40 @@
 #pragma once
 
-class IHaveRotationSpeed
-{
-public:
-	virtual ~IHaveRotationSpeed() = default;
-
-	virtual void	SetRotationSpeed(float rotation) = 0;
-	virtual float	GetRotationSpeed() const = 0;
-
-	virtual void	SetCurrentRotationSpeed(float rotation) = 0;
-	virtual float	GetCurrentRotationSpeed() const = 0;
-
-	virtual void	ResetCurrentRotationSpeed() = 0;
-};
-
-
 class CHaveRotationSpeed
-	: public IHaveRotationSpeed
 {
 public:
 	CHaveRotationSpeed(float rotation);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void	SetRotationSpeed(float rotation) override;
-	float	GetRotationSpeed() const override;
+	enum class DirectionRotation
+	{
+		  None = 0
+		, Left
+		, Right
+	};
+	void	SetMaxRotationSpeed(float rotation);
+	float	GetMaxRotationSpeed() const;
 
-	void	SetCurrentRotationSpeed(float rotation) override;
-	float	GetCurrentRotationSpeed() const override;
+	void	SetMaxRotationUpTime(float time);
+	float	GetMaxRotationUpTime() const;
 
-	void	ResetCurrentRotationSpeed() override;
+	void	SetMinRotationUpTime(float time);
+	float	GetMinRotationUpTime() const;
+
+
+	float	GetCurrentRotationSpeed(float deltaTime);
+
+	void	ResetCurrentRotationSpeed();
 
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
-	float	m_rotationSpeed = 0.f;
-	float	m_currentRotation = 0.f;
+	float				m_maxRotationSpeed = 0.f;
+	float	 			m_maxRotationUpTime = 1.5f;
+	float				m_minRotationUpTime = 0.25f;
+
+	float				m_currentRotationUpTime = 0.f;
+	float				m_currentRotation = 0.f;
+	DirectionRotation	m_directionRotation = DirectionRotation::None;
 };

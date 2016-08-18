@@ -41,12 +41,17 @@ CPlayer::CPlayer(const glm::vec3 & position
 
 void CPlayer::TurnLeft()
 {
-	SetCurrentRotationSpeed(GetRotationSpeed());
+	m_directionRotation = DirectionRotation::Left;
 }
 
 void CPlayer::TurnRight()
 {
-	SetCurrentRotationSpeed(-GetRotationSpeed());
+	m_directionRotation = DirectionRotation::Right;
+}
+
+void CPlayer::ResetDirectionRotation()
+{
+	m_directionRotation = DirectionRotation::None;
 }
 
 void CPlayer::GoForward()
@@ -101,9 +106,10 @@ void CPlayer::Update(float deltaTime)
 	m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
 
 	const float velocity = GetCurrentLinearVelocity(deltaTime);
+	const float rotationSpeed = GetCurrentRotationSpeed(deltaTime);
 	GetCamera()->Update(deltaTime
 						, velocity
-						, GetCurrentRotationSpeed());
+						, rotationSpeed);
 
 	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * velocity;
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));

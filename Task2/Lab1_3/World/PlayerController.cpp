@@ -82,6 +82,10 @@ void CPlayer::CController::SetFunctionList()
 	SetSkill(IdCommands::TurnToRight, [&]() { m_master->TurnRight(); });
 	SetKeysSkill(IdCommands::TurnToRight, { SDLK_RIGHT, SDLK_d }, SDL_KEYDOWN);
 
+	SetSkill(IdCommands::ResetDirectionRotation, [&]() { m_master->ResetDirectionRotation(); });
+	SetKeysSkill(IdCommands::ResetDirectionRotation, { SDLK_LEFT, SDLK_a, SDLK_RIGHT, SDLK_d }, SDL_KEYUP);
+
+
 	SetSkill(IdCommands::ChangePlayerCamera, [&]() { m_master->ChangePlayerCamera(); });
 	SetKeysSkill(IdCommands::ChangePlayerCamera, { SDLK_v }, SDL_KEYDOWN);
 
