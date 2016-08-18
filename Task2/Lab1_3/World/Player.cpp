@@ -2,10 +2,13 @@
 #include "Player.h"
 #include "World.h"
 
-CPlayer::SSkill::SSkill(const std::function<void()> function, const KeyList & keys)
+CPlayer::SSkill::SSkill(const std::function<void()> function
+						, const KeyList & keys
+						, const EventType type)
 {
 	m_skill = function;
 	m_keys = keys;
+	m_type = type;
 }
 
 CPlayer::CPlayer()
@@ -26,7 +29,7 @@ CPlayer::CPlayer(const glm::vec3 & position
 				, CWorld* pWorld)
 	: IActor()
 	, CHave3DPosition()
-	, CHaveDirection(PlayerSpace::PLAYER_DIRECTION)
+	, CHaveDirection()
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
@@ -48,12 +51,17 @@ void CPlayer::TurnRight()
 
 void CPlayer::GoForward()
 {
-	SetCurrentLinearVelocity(GetLinearVelocity());
+	m_directionWalk = DirectionWalk::Forward;
 }
 
 void CPlayer::GoBack()
 {
-	SetCurrentLinearVelocity(-GetLinearVelocity());
+	m_directionWalk = DirectionWalk::Back;
+}
+
+void CPlayer::ResetDirectionWalk()
+{
+	m_directionWalk = DirectionWalk::None;
 }
 
 void CPlayer::ChangePlayerCamera()
@@ -92,12 +100,12 @@ void CPlayer::Update(float deltaTime)
 	playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
 	m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
 
+	const float velocity = GetCurrentLinearVelocity(deltaTime);
 	GetCamera()->Update(deltaTime
-						, GetCurrentLinearVelocity()
+						, velocity
 						, GetCurrentRotationSpeed());
-	//SetPosition(GetCamera()->GetPosition());// TODO : might need rewrite, the string crutch
 
-	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * GetCurrentLinearVelocity();
+	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * velocity;
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
 	m_collision.Advance(deltaTime);
 

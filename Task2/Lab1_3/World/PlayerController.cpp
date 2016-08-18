@@ -16,7 +16,7 @@ CPlayer::CController::CController(CPlayer * master)
 
 void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
 {
-	IdCommands id = FindCommand(event);
+	IdCommands id = FindCommand(event, SDL_KEYDOWN);
 	if (id != IdCommands::AmountCommands)
 	{
 		m_listFunctions[id].m_skill();
@@ -25,7 +25,11 @@ void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
 
 void CPlayer::CController::OnKeyUp(const SDL_KeyboardEvent & event)
 {
-	(void)event;
+	IdCommands id = FindCommand(event, SDL_KEYUP);
+	if (id != IdCommands::AmountCommands)
+	{
+		m_listFunctions[id].m_skill();
+	}
 }
 
 void CPlayer::CController::SetSkill(IdCommands id, const std::function<void()> function)
@@ -33,20 +37,27 @@ void CPlayer::CController::SetSkill(IdCommands id, const std::function<void()> f
 	m_listFunctions[id].m_skill = function;
 }
 
-void CPlayer::CController::SetKeysSkill(IdCommands id, const CPlayer::KeyList & keys)
+void CPlayer::CController::SetKeysSkill(IdCommands id
+										, const CPlayer::KeyList & keys
+										, const CPlayer::EventType type)
 {
 	m_listFunctions[id].m_keys = keys;
+	m_listFunctions[id].m_type = type;
 }
 
-CPlayer::CController::IdCommands CPlayer::CController::FindCommand(const SDL_KeyboardEvent & event)
+CPlayer::CController::IdCommands CPlayer::CController::FindCommand(const SDL_KeyboardEvent & event, const EventType type)
 {
 	for (const auto & element : m_listFunctions)
 	{
-		const auto & keys = element.second.m_keys;
-		if (std::find(keys.begin(), keys.end(), event.keysym.sym) != keys.end())
+		const auto & elementType = element.second.m_type;
+		if (elementType == type)
 		{
-			return element.first;
-		}
+			const auto & keys = element.second.m_keys;
+			if (std::find(keys.begin(), keys.end(), event.keysym.sym) != keys.end())
+			{
+				return element.first;
+			}
+		}	
 	}
 
 	return IdCommands::AmountCommands;
@@ -55,22 +66,27 @@ CPlayer::CController::IdCommands CPlayer::CController::FindCommand(const SDL_Key
 void CPlayer::CController::SetFunctionList()
 {
 	SetSkill(IdCommands::GoToForward, [&]() { m_master->GoForward(); });
-	SetKeysSkill(IdCommands::GoToForward, { SDLK_UP, SDLK_w } );
+	SetKeysSkill(IdCommands::GoToForward, { SDLK_UP, SDLK_w }, SDL_KEYDOWN);
 
 	SetSkill(IdCommands::GoToBack, [&]() { m_master->GoBack(); });
-	SetKeysSkill(IdCommands::GoToBack, {SDLK_DOWN, SDLK_s } );
+	SetKeysSkill(IdCommands::GoToBack, {SDLK_DOWN, SDLK_s }, SDL_KEYDOWN);
+
+	SetSkill(IdCommands::ResetDirectionWalk, [&]() { m_master->ResetDirectionWalk(); });
+	SetKeysSkill(IdCommands::ResetDirectionWalk, { SDLK_UP, SDLK_w, SDLK_DOWN, SDLK_s }, SDL_KEYUP);
+
+
 
 	SetSkill(IdCommands::TurnToLeft, [&]() { m_master->TurnLeft(); });
-	SetKeysSkill(IdCommands::TurnToLeft, { SDLK_LEFT, SDLK_a } );
+	SetKeysSkill(IdCommands::TurnToLeft, { SDLK_LEFT, SDLK_a }, SDL_KEYDOWN);
 
 	SetSkill(IdCommands::TurnToRight, [&]() { m_master->TurnRight(); });
-	SetKeysSkill(IdCommands::TurnToRight, { SDLK_RIGHT, SDLK_d } );
+	SetKeysSkill(IdCommands::TurnToRight, { SDLK_RIGHT, SDLK_d }, SDL_KEYDOWN);
 
 	SetSkill(IdCommands::ChangePlayerCamera, [&]() { m_master->ChangePlayerCamera(); });
-	SetKeysSkill(IdCommands::ChangePlayerCamera, { SDLK_v });
+	SetKeysSkill(IdCommands::ChangePlayerCamera, { SDLK_v }, SDL_KEYDOWN);
 
 	SetSkill(IdCommands::ChangeWorldCamera, [&]() { m_master->ChangeWorldCamera(); });
-	SetKeysSkill(IdCommands::ChangeWorldCamera, { SDLK_b });
+	SetKeysSkill(IdCommands::ChangeWorldCamera, { SDLK_b }, SDL_KEYDOWN);
 }
 
 void CPlayer::CController::CheckListCommands() const

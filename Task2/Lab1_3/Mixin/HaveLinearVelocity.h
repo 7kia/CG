@@ -1,39 +1,41 @@
 #pragma once
 
-class IHaveLinearVelocity
-{
-public:
-	virtual ~IHaveLinearVelocity() = default;
-
-	virtual void	SetLinearVelocity(float velocity) = 0;
-	virtual float	GetLinearVelocity() const = 0;
-
-	virtual void	SetCurrentLinearVelocity(float velocity) = 0;
-	virtual float	GetCurrentLinearVelocity() const = 0;
-
-	virtual void	ResetCurrentLinearVelocity() = 0;
-};
-
-
 class CHaveLinearVelocity
-	: public IHaveLinearVelocity
 {
 public:
 	CHaveLinearVelocity(float velocity);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void	SetLinearVelocity(float velocity) override;
-	float	GetLinearVelocity() const override;
+	enum class DirectionWalk
+	{
+		  None = 0
+		, Back
+		, Forward
+	};
 
-	void	SetCurrentLinearVelocity(float velocity) override;
-	float	GetCurrentLinearVelocity() const override;
+	void	SetMaxLinearVelocity(float velocity);
+	float	GetMaxLinearVelocity() const;
 
-	void	ResetCurrentLinearVelocity() override;
+	void	SetMaxTime(float time);
+	float	GetMaxTime() const;
+
+	void	SetMinTime(float velocity);
+	float	GetMinTime() const;
+
+
+	float	GetCurrentLinearVelocity(float deltaTime);
+
+	void	ResetCurrentLinearVelocity();
 
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:
-	float	m_linearVelocity = 0.f;
-	float	m_currentVelocity = 0.f;
+	float			m_maxLinearVelocity = 0.f;
+	float	 		m_maxTime = 3.f;// TODO : fix name
+	float			m_minTime = 0.25f;// TODO : fix name
+
+	float			m_currentTime = 0.f;
+	float			m_currentVelocity = 0.f;
+	DirectionWalk	m_directionWalk = DirectionWalk::None;
 };

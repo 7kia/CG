@@ -51,13 +51,17 @@ public:
 	// SSkill - content pointer to function and value keys which activate the skill
 	// 
 	using KeyList = std::vector<SDL_Keycode>;
+	using EventType = Uint32;
 	struct SSkill
 	{
 		SSkill() = default;
-		SSkill(const std::function<void()> function, const KeyList & keys);
+		SSkill(const std::function<void()> function
+				, const KeyList & keys
+				, const EventType type);
 		
 		std::function<void()>		m_skill	= nullptr;
 		KeyList						m_keys;
+		EventType					m_type;
 	};
 	enum class IdCameras
 	{
@@ -70,6 +74,7 @@ public:
 
 	void GoForward();
 	void GoBack();
+	void ResetDirectionWalk();
 
 	void ChangePlayerCamera();
 	void ChangeWorldCamera();
@@ -121,6 +126,7 @@ public:
 		, TurnToRight
 		, GoToForward
 		, GoToBack
+		, ResetDirectionWalk
 		, ChangePlayerCamera
 		, ChangeWorldCamera
 		, AmountCommands
@@ -130,9 +136,11 @@ public:
 	void				OnKeyUp(const SDL_KeyboardEvent &event) override;
 private:
 	void				SetSkill(IdCommands id, const std::function<void()> function);
-	void				SetKeysSkill(IdCommands id, const KeyList & keys);
+	void				SetKeysSkill(IdCommands id
+									, const CPlayer::KeyList & keys
+									, const CPlayer::EventType type);
 
-	IdCommands			FindCommand(const SDL_KeyboardEvent & event);
+	IdCommands			FindCommand(const SDL_KeyboardEvent & event, const EventType type);
 
 	void				SetFunctionList();
 	void				CheckListCommands() const;
