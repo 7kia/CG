@@ -17,28 +17,12 @@ CMap::CMap(const string & mapPath, CWorld* pWorld)
 void CMap::Draw() const
 {
 	// TODO : not work
-	//m_labyrinth.Draw();
-
-	///*
-	for (const auto & wall : m_walls)
-	{
-		wall->Draw();
-	}
-	//*/
-
+	m_labyrinth.Draw();
 }
 
 void CMap::Update(float deltaTime)
 {
-	for (const auto & wall : m_walls)
-	{
-		wall->Update(deltaTime);
-	}
-}
-
-std::vector<PWall> CMap::GetWalls() const
-{
-	return m_walls;
+	(void)deltaTime;
 }
 
 void CMap::ReadMap(ifstream & file)
@@ -59,7 +43,7 @@ void CMap::ReadMap(ifstream & file)
 
 	ComputeVisibleEdge(width);
 
-	m_labyrinth.BuildLabyrinth(GetWalls());
+	//m_labyrinth.BuildLabyrinth(GetWalls());
 }
 
 void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
@@ -343,7 +327,7 @@ void CMap::AddWall(const glm::vec3 & position
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
-	auto pWall = std::make_unique<CWall>();
+	auto pWall = std::make_shared<CWall>();
 	pWall->SetType(pWorld->GetWallType(GetIndexWallType(position, length, width)));
 
 	for (int xShift = -1; xShift <= 1; ++xShift)
@@ -375,7 +359,10 @@ void CMap::AddWall(const glm::vec3 & position
 		pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
 		pWall->AddToWorld(pWorld->GetWorld());
 	}
-	m_walls.emplace_back(std::move(pWall));
+
+	m_labyrinth.AddWall(pWall);
+
+	//m_walls.emplace_back(std::move(pWall));
 }
 
 void CMap::AddPlayer(const glm::vec3 & position)

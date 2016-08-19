@@ -45,8 +45,6 @@ private:
 		, Space
 		, Player
 	};
-	std::vector<PWall>		GetWalls() const;
-
 
 	void					ReadMap(std::ifstream & file);
 	void					ProcessRow(const std::string & row, size_t widthCount, int level);
@@ -86,7 +84,6 @@ private:
 	using Level = std::vector<std::string>;
 
 	glm::vec2						m_centerMap;
-	std::vector<PWall>				m_walls;
 	std::vector<Level>				m_map;
 
 	CLabyrinth						m_labyrinth;

@@ -32,7 +32,7 @@ public:
 // Methods
 protected:
 	float			m_maxLinearVelocity = 0.f;
-	float	 		m_maxSpeedUpTime = 3.f;
+	float	 		m_maxSpeedUpTime = 1.5f;
 	float			m_minSpeedUpTime = 0.25f;
 
 	float			m_currentSpeedUpTime = 0.f;

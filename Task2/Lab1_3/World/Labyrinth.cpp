@@ -10,11 +10,36 @@ CLabyrinth::CLabyrinth()
 {
 }
 
+void CLabyrinth::AddWall(PWall pWall)
+{
+	auto visual = pWall->GetVisual();
+	for (size_t index = 0; index < visual->GetAmountShapes(); ++index)
+	{
+		if (pWall->GetVisible(index))
+		{
+			auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
+
+			auto vertexes = currentRectangle->GetVertexes();
+			auto indexes = currentRectangle->GetIndexes();
+
+			auto append = [&](uint32_t source) {
+				return source + m_indexCount * 4;
+			};
+			boost::transform(indexes, indexes.begin(), append);
+
+			m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
+			m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
+
+			++m_indexCount;
+		}
+	}
+
+}
+
 void CLabyrinth::BuildLabyrinth(const std::vector<PWall> & walls)
 {
 	size_t countVertex = 0;
 	size_t countIndexes = 0;
-	size_t indexCount = 0;
 	for (const auto & wall : walls)
 	{
 		auto visual = wall->GetVisual();
@@ -27,7 +52,6 @@ void CLabyrinth::BuildLabyrinth(const std::vector<PWall> & walls)
 				auto amountVertex = currentRectangle->GetVertexes().size();
 				auto amountIndexes = currentRectangle->GetIndexes().size();
 
-
 				countVertex += amountVertex;
 				countIndexes += amountIndexes;
 			}
@@ -37,7 +61,6 @@ void CLabyrinth::BuildLabyrinth(const std::vector<PWall> & walls)
 
 	m_vertices.reserve(countVertex);
 	m_indicies.reserve(countIndexes);
-	indexCount = 0;
 	for (const auto & wall : walls)
 	{
 		auto visual = wall->GetVisual();
@@ -45,28 +68,26 @@ void CLabyrinth::BuildLabyrinth(const std::vector<PWall> & walls)
 		{
 			if (wall->GetVisible(index))
 			{
-
 				auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
 
 				auto vertexes = currentRectangle->GetVertexes();
 				auto indexes = currentRectangle->GetIndexes();
 
-				auto append = [indexCount](uint32_t source) {
-					return source + indexCount * 4;
+				auto append = [&](uint32_t source) {
+					return source + m_indexCount * 4;
 				};
-
 				boost::transform(indexes, indexes.begin(), append);
 
 				m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
 				m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
 
-				++indexCount;
+				++m_indexCount;
 			}
 		}
 
 	}
 
-	indexCount = 0;
+	m_indexCount = 0;
 
 	/*
 		const int rowCount = 2;
