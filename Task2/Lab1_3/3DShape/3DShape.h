@@ -10,6 +10,12 @@
 #include <GL/glu.h>
 #include <boost/noncopyable.hpp>
 
+#include <iterator>
+#include <algorithm>
+#include <boost/phoenix.hpp>
+#include <boost/range/algorithm/transform.hpp>
+
+
 #include "../Mixin/Drawable.h"
 #include "../Mixin/Updatable.h"
 #include "../Mixin/HaveVertex.h"
@@ -96,4 +102,10 @@ protected:
 
 };
 
-using IBodyUniquePtr = std::shared_ptr<C3DShape>;
+using IBodySharedPtr = std::shared_ptr<C3DShape>;
+using IdentityShapeSharedPtr = std::shared_ptr<CIdentity3DShape>;
+
+IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
+							, const IdentityShapeSharedPtr second
+							, size_t firstIndex
+							, size_t secondIndex);

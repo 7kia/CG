@@ -65,8 +65,8 @@ public:
 // Data
 
 private:
-	//std::vector<IBodyUniquePtr>		m_opaqueBodies;// TODO : see need it's
-	//std::vector<IBodyUniquePtr>		m_transparentBodies;
+	//std::vector<IBodySharedPtr>		m_opaqueBodies;// TODO : see need it's
+	//std::vector<IBodySharedPtr>		m_transparentBodies;
 	CMap							m_map;
 
 	CPhongModelMaterial m_material;// TODO : transfer

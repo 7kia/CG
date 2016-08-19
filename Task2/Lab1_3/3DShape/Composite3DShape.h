@@ -17,8 +17,8 @@ public:
 	void					Draw() const override;
 	//--------------------------------------------
 
-	IBodyUniquePtr			GetShape(size_t index);// shape can will be changed
-	const IBodyUniquePtr	GetShape(size_t index) const;// shape can will be changed
+	IBodySharedPtr			GetShape(size_t index);// shape can will be changed
+	const IBodySharedPtr	GetShape(size_t index) const;// shape can will be changed
 
 	size_t					GetAmountShapes() const;
 private:
@@ -27,5 +27,5 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<IBodyUniquePtr>		m_shapes;
+	std::vector<IBodySharedPtr>		m_shapes;
 };

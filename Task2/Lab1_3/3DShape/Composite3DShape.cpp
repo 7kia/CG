@@ -19,14 +19,14 @@ void ÑComposite3DShape::Draw() const
 	glPopMatrix();
 }
 
-IBodyUniquePtr ÑComposite3DShape::GetShape(size_t index)
+IBodySharedPtr ÑComposite3DShape::GetShape(size_t index)
 {
 	CheckVertexIndex(index);
 
 	return m_shapes[index];
 }
 
-const IBodyUniquePtr ÑComposite3DShape::GetShape(size_t index) const
+const IBodySharedPtr ÑComposite3DShape::GetShape(size_t index) const
 {
 	CheckVertexIndex(index);
 

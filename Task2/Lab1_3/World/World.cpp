@@ -39,11 +39,11 @@ void CWorld::Draw() const
 	m_player.Draw();
 
 	/*
-		for (const IBodyUniquePtr &pBody : m_opaqueBodies)
+		for (const IBodySharedPtr &pBody : m_opaqueBodies)
 	{
 		pBody->Draw();
 	}
-	for (const IBodyUniquePtr &pBody : m_transparentBodies)
+	for (const IBodySharedPtr &pBody : m_transparentBodies)
 	{
 		pBody->Draw();
 	}

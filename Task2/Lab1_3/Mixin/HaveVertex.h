@@ -45,8 +45,12 @@ public:
 	virtual void							SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) = 0;
 	virtual glm::vec2						GetVertexTexCoordinate(uint index) const = 0;
 
+	virtual void							SetIndex(uint index, uint newIndex) = 0;
+	virtual uint							GetIndex(uint index) const = 0;
 
-	virtual void							CheckVertexIndex(uint index) const = 0;;// TODO : see need transfer to other place												  
+	virtual void							CheckVertexIndex(uint index) const = 0;;// TODO : see need transfer to other place	
+	virtual void							CheckIdIndex(uint index) const = 0;;// TODO : rename												  
+
 };
 
 class CHaveVertexes : public IHaveVertex
@@ -57,6 +61,12 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
+	void							ResizeVertexArray(size_t newSize);
+	size_t							GetAmountVertexes() const;
+
+	void							ResizeIndexArray(size_t newSize);
+	size_t							GetAmountVIndexes() const;
+
 	void							SetVertex(uint index, const SVertexP3NT2 & value) override final;
 	SVertexP3NT2					GetVertex(uint index) const override final;
 	SVertexP3NT2*					GetReferenceToVertex(int index) override final;
@@ -73,9 +83,13 @@ public:
 	void							SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
 	glm::vec2						GetVertexTexCoordinate(uint index) const override final;
 
+	void							SetIndex(uint index, uint newIndex) override final;
+	uint							GetIndex(uint index) const override final;
 
 
-	void							CheckVertexIndex(uint index) const override final;											  
+	void							CheckVertexIndex(uint index) const override final;	
+	void							CheckIdIndex(uint index) const override final;// TODO : rename												  
+
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

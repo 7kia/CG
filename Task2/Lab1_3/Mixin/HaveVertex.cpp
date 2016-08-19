@@ -26,6 +26,26 @@ CHaveVertexes::CHaveVertexes(uint size)
 	m_vertices.resize(size);
 }
 
+void CHaveVertexes::ResizeVertexArray(size_t newSize)
+{
+	m_vertices.resize(newSize, SVertexP3NT2());
+}
+
+size_t CHaveVertexes::GetAmountVertexes() const
+{
+	return m_vertices.size();
+}
+
+void CHaveVertexes::ResizeIndexArray(size_t newSize)
+{
+	m_indicies.resize(newSize, 0u);
+}
+
+size_t CHaveVertexes::GetAmountVIndexes() const
+{
+	return m_indicies.size();
+}
+
 void CHaveVertexes::SetVertex(uint index, const SVertexP3NT2 & value)
 {
 	CheckVertexIndex(index);
@@ -98,12 +118,35 @@ glm::vec2 CHaveVertexes::GetVertexTexCoordinate(uint index) const
 	return m_vertices[index].texCoord;
 }
 
+void CHaveVertexes::SetIndex(uint index, uint newIndex)
+{
+	CheckIdIndex(index);
+
+	m_indicies[index] = newIndex;
+}
+
+uint CHaveVertexes::GetIndex(uint index) const
+{
+	CheckIdIndex(index);
+
+	return m_indicies[index];
+
+}
+
 
 void CHaveVertexes::CheckVertexIndex(uint index) const
 {
 	if (!IsBetween(index, 0u, uint(m_vertices.size())))
 	{
 		throw std::runtime_error("SVertexP3NT2 have the index not exist");
+	}
+}
+
+void CHaveVertexes::CheckIdIndex(uint index) const
+{
+	if (!IsBetween(index, 0u, uint(m_indicies.size())))
+	{
+		throw std::runtime_error("SVertexP3NT2 have index with the id");
 	}
 }
 

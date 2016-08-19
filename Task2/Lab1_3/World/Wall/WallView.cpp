@@ -7,7 +7,7 @@ CWallView::CWallView()
 {
 	for(uint index = 0; index < 6; ++index)
 	{
-		IBodyUniquePtr pRectangle = std::make_unique<C3DRectangle>();
+		IBodySharedPtr pRectangle = std::make_unique<C3DRectangle>();
 		m_shapes.push_back(std::move(pRectangle));
 	}
 
