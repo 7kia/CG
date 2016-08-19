@@ -38,10 +38,10 @@ namespace WallTypeSpace
 
 	const WallTextureMap STANDART_UV_TEXTURE_MAP =
 	{
-			glm::vec2( 0.f, 0.f )
-		,	glm::vec2(1.f / WIDTH_MAP, 0.f )
-		,	glm::vec2( 1.f / WIDTH_MAP, 1.f / HEIGHT_MAP )
+			glm::vec2( 1.f / WIDTH_MAP, 1.f / HEIGHT_MAP )
 		,	glm::vec2(0.f, 1.f / HEIGHT_MAP )
+		,	glm::vec2( 0.f, 0.f )
+		,	glm::vec2(1.f / WIDTH_MAP, 0.f )
 	};
 };
 

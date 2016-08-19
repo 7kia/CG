@@ -22,7 +22,9 @@ void CWallViewType::SetTextureMap(const glm::vec2 & position)
 {
 	for (size_t index = 0; index < m_textureMap.size(); ++index)
 	{
-		m_textureMap[index] = STANDART_UV_TEXTURE_MAP[index] * ( position + glm::vec2(1.f));
+		m_textureMap[index].x = STANDART_UV_TEXTURE_MAP[index].x + (position.x / WIDTH_MAP);
+		m_textureMap[index].y = STANDART_UV_TEXTURE_MAP[index].y + (position.y / HEIGHT_MAP);
+
 	}
 }
 
