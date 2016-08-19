@@ -101,8 +101,11 @@ CWindow::CWindow()
 	secondTriangle->SetVertex(1u, SVertexP3NT2(glm::vec3(-1.f, -1.f, 0.f), glm::vec2(0.f, 1.f), glm::vec3(1.f, 1.f, 0.f)));
 	secondTriangle->SetVertex(2u, SVertexP3NT2(glm::vec3(-1.f, 1.f, 0.f), glm::vec2(0.f, 0.f), glm::vec3(1.f, -1.f, 0.f)));
 
+	std::vector<std::pair<size_t, size_t>> indexesVertex;
+	indexesVertex.push_back({ 0, 2 });
+	indexesVertex.push_back({ 2, 0 });
 
-	Weld(firstTriangle, secondTriangle, 0, 2);
+	Weld(firstTriangle, secondTriangle, indexesVertex);
 
 	/////////////////
 }

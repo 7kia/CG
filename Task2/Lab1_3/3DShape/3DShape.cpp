@@ -57,8 +57,8 @@ C3DShape::C3DShape()
 
 IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 							, const IdentityShapeSharedPtr second
-							, size_t firstIndex
-							, size_t secondIndex)
+							, std::vector<std::pair<size_t, size_t>> indexesVertex
+							)
 {
 	IdentityShapeSharedPtr result = std::make_shared<CIdentity3DShape>();
 	size_t amountVertexInFirst = first->GetAmountVertexes();
@@ -66,7 +66,7 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 	size_t amountIndexesInFirst = first->GetAmountVIndexes();
 	size_t amountIndexesInSecond = second->GetAmountVIndexes();
 
-	result->ResizeVertexArray(amountVertexInFirst + amountVertexInSecond - 1);
+	result->ResizeVertexArray(amountVertexInFirst + amountVertexInSecond - indexesVertex.size());
 	result->ResizeIndexArray(amountIndexesInFirst + amountIndexesInSecond);
 	
 	// Записываем первую фигуру
@@ -87,7 +87,19 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 	auto vertexesFromSecond = second->GetVertexes();
 	auto indexesFromSecond = second->GetIndexes();
 
-	vertexesFromSecond.erase(vertexesFromSecond.begin() + secondIndex);
+
+	std::vector<std::pair<size_t, size_t>> replaceIndexes;
+
+	// удаление соединяемой вершины(из второй фигуры)
+	size_t indexPreviousDelete = 0;
+	auto sortedIndexesVertex = indexesVertex;
+	std::sort(sortedIndexesVertex.begin(), sortedIndexesVertex.end());
+	std::reverse(sortedIndexesVertex.begin(), sortedIndexesVertex.end());
+	for (const auto & pair : sortedIndexesVertex)
+	{
+		vertexesFromSecond.erase(vertexesFromSecond.begin() + pair.second - indexPreviousDelete);
+		++indexPreviousDelete;
+	}
 	// Замена второго на первый
 	/*
 		std::replace_if(indexesFromSecond.begin()
@@ -108,22 +120,37 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 
 	///////////////////
 	// Запись из второй фигуры
-	for (size_t index = amountVertexInFirst; index < result->GetAmountVertexes(); ++index)
+	for (size_t index = amountVertexInFirst; index <= (result->GetAmountVertexes() - indexesVertex.size() + 1); ++index)
 	{
-		result->SetVertex(index, second->GetVertex(index - amountVertexInFirst));
+		result->SetVertex(index, vertexesFromSecond[index - amountVertexInFirst]);
 	}
 	for (size_t index = amountIndexesInFirst; index < result->GetAmountVIndexes(); ++index)
 	{
 		result->SetIndex(index, indexesFromSecond[index - amountIndexesInFirst]);
 	}
 
-	// Замена индекса
+	// Search replace vertex
+	for (const auto & pair : indexesVertex)
+	{
+		// Замена индекса
+		for (size_t index = amountIndexesInFirst; index < result->GetAmountVIndexes(); ++index)
+		{
+			if (result->GetIndex(index) == (pair.second + maxIndex + 1))
+			{
+				//result->SetIndex(index, firstIndex);
+				replaceIndexes.push_back({ index, pair.first });
+			}
+		}
+	}
+	
 	for (size_t index = amountIndexesInFirst; index < result->GetAmountVIndexes(); ++index)
 	{
-		if (result->GetIndex(index) == (secondIndex + maxIndex + 1))
-		{
-			result->SetIndex(index, firstIndex);
-		}
+		result->SetIndex(index, result->GetIndex(index) - replaceIndexes.size() + 1);
+	}
+
+	for (const auto & element : replaceIndexes)
+	{
+		result->SetIndex(element.first, element.second);
 	}
 
 	return result;

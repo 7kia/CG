@@ -107,5 +107,4 @@ using IdentityShapeSharedPtr = std::shared_ptr<CIdentity3DShape>;
 
 IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 							, const IdentityShapeSharedPtr second
-							, size_t firstIndex
-							, size_t secondIndex);
+							, std::vector<std::pair<size_t, size_t>> indexesVertex);
