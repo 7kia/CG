@@ -13,7 +13,6 @@ public:
 // Methods
 public:
 	void		AddWall(PWall pWall);
-	void		BuildLabyrinth(const std::vector<PWall> & walls);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

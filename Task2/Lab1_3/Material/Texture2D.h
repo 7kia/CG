@@ -40,6 +40,6 @@ private:
     unsigned m_textureId = 0;
 };
 
-using CTexture2DUniquePtr = std::unique_ptr<CTexture2D>;
+using CTexture2DSharedPtr = std::shared_ptr<CTexture2D>;// TODO : see might need unique_ptr
 
-CTexture2DUniquePtr LoadTexture2DFromBMP(const std::string &path);
+CTexture2DSharedPtr LoadTexture2DFromBMP(const std::string &path);

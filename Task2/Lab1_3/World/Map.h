@@ -24,6 +24,7 @@ class CMap
 	, public IActor
 {
 public:
+	CMap() = default;
 	CMap(const std::string & mapPath, CWorld* pWorld);
 
 	virtual ~CMap() = default;
@@ -38,6 +39,8 @@ public:
 	void							Update(float deltaTime) override final;
 	//--------------------------------------------
 
+	// TODO : do call-once
+	void							Create(const std::string & mapPath, CWorld* pWorld);
 private:
 	enum class IdSymbol
 	{
@@ -78,6 +81,7 @@ private:
 											, IdSymbol insteadSpace);
 
 	void					ComputeVisibleEdge(size_t width);
+	void					SetWorld(CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
@@ -88,6 +92,6 @@ private:
 
 	CLabyrinth						m_labyrinth;
 
-	CWorld*							pWorld = nullptr;
+	CWorld*							m_pWorld = nullptr;
 	bool							m_addPlayer = false;
 };

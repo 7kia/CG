@@ -9,10 +9,7 @@ CWorld::CWorld()
 	, CHavePhysicalWorld()
 	, CHavePlayer()
 	, m_sunlight(GL_LIGHT0)
-	, m_map("map.txt", this)
 {
-	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
-
 	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);
@@ -72,6 +69,9 @@ void CWorld::Update(float deltaTime)
 void CWorld::CreateScene()
 {
 	CreateWallTypes();
+	m_map.Create("map.txt", this);
+	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
+
 }
 
 void CWorld::CreatePlayer(const glm::vec3 & position

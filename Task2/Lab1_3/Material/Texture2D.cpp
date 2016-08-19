@@ -52,7 +52,7 @@ unsigned CTexture2D::GetIndex() const
 	return m_textureId;
 }
 
-CTexture2DUniquePtr LoadTexture2DFromBMP(const std::string &path)
+CTexture2DSharedPtr LoadTexture2DFromBMP(const std::string &path)
 {
     SDLSurfacePtr pSurface(SDL_LoadBMP(path.c_str()), SDL_FreeSurface);
     if (!pSurface)

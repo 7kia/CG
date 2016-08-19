@@ -79,7 +79,7 @@ public:
 	void						SetTransform(const glm::mat4 &transform) override;
 	//--------------------------------------------
 private:
-	CTexture2D*					GetTexture() const;
+	CTexture2DSharedPtr			GetTexture() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

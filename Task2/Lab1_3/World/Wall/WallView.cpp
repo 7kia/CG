@@ -46,6 +46,17 @@ void CWallView::Draw() const
 void CWallView::SetType(const CWallViewType* type)
 {
 	m_pType = type;
+
+	for (auto & shape : m_shapes)
+	{
+		auto rectangle = dynamic_cast<C3DRectangle*>(shape.get());
+
+		const auto & textureMap = GetType()->GetTextureMap();
+		for (size_t indexVertex = 0; indexVertex < textureMap.size(); ++indexVertex)
+		{
+			rectangle->SetVertexTexCoordinate(indexVertex, textureMap[indexVertex]);
+		}
+	}
 }
 
 const CWallViewType* CWallView::GetType() const
@@ -62,7 +73,7 @@ void CWallView::SetTransform(const glm::mat4 & transform)
 	}
 }
 
-CTexture2D * CWallView::GetTexture() const
+CTexture2DSharedPtr CWallView::GetTexture() const
 {
 	return m_pType->GetTexture();
 }

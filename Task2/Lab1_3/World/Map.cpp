@@ -8,10 +8,8 @@ using namespace MapSpace;
 CMap::CMap(const string & mapPath, CWorld* pWorld)
 	: CHaveFileForReading()
 	, IActor()
-	, pWorld(pWorld)
 {
-	CheckAndOpenFileForReading(mapPath);
-	ReadMap(m_inputFile);
+	Create(mapPath, pWorld);
 }
 
 void CMap::Draw() const
@@ -23,6 +21,13 @@ void CMap::Draw() const
 void CMap::Update(float deltaTime)
 {
 	(void)deltaTime;
+}
+
+void CMap::Create(const std::string & mapPath, CWorld * pWorld)
+{
+	SetWorld(pWorld);
+	CheckAndOpenFileForReading(mapPath);
+	ReadMap(m_inputFile);
 }
 
 void CMap::ReadMap(ifstream & file)
@@ -276,6 +281,11 @@ void CMap::ComputeVisibleEdge(size_t width)
 	}
 }
 
+void CMap::SetWorld(CWorld * pWorld)
+{
+	m_pWorld = pWorld;
+}
+
 
 
 unsigned CMap::GetIndexWallType(const glm::vec3 & position
@@ -288,14 +298,14 @@ unsigned CMap::GetIndexWallType(const glm::vec3 & position
 	switch (heigth)
 	{
 	case -1: case 1:
-		return unsigned(CHaveWallTypes::IdWallType::Plank);
+		return unsigned(WallTypeSpace::Id::Plank);
 	case 0:
 		if ((x == 0) || (x == length - 1)
 			|| (y == 0) || (y == width - 1))
 		{
-			return unsigned(CHaveWallTypes::IdWallType::Arch);
+			return unsigned(WallTypeSpace::Id::Arch);
 		}
-		return unsigned(CHaveWallTypes::IdWallType::Break);
+		return unsigned(WallTypeSpace::Id::Break);
 	default:
 		throw std::runtime_error("Incorrect index");
 		break;
@@ -317,8 +327,8 @@ bool CMap::WallHaveCollision(int heigth)
 }
 
 void CMap::AddWall(const glm::vec3 & position
-	, size_t length
-	, size_t width)
+					, size_t length
+					, size_t width)
 {
 	size_t x = size_t(position.x);
 	size_t y = size_t(position.y);
@@ -328,7 +338,7 @@ void CMap::AddWall(const glm::vec3 & position
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
 	auto pWall = std::make_shared<CWall>();
-	pWall->SetType(pWorld->GetWallType(GetIndexWallType(position, length, width)));
+	pWall->SetType(m_pWorld->GetWallType(GetIndexWallType(position, length, width)));
 
 	for (int xShift = -1; xShift <= 1; ++xShift)
 	{
@@ -357,7 +367,7 @@ void CMap::AddWall(const glm::vec3 & position
 	if (pWall->GetHaveCollision())
 	{
 		pWall->SetPosition(glm::vec3(xPosition, z * WallSpace::SIZE, yPosition));
-		pWall->AddToWorld(pWorld->GetWorld());
+		pWall->AddToWorld(m_pWorld->GetWorld());
 	}
 
 	m_labyrinth.AddWall(pWall);
@@ -370,5 +380,5 @@ void CMap::AddPlayer(const glm::vec3 & position)
 	float xPosition = WallSpace::SIZE * position.x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * position.y - m_centerMap.y;
 
-	pWorld->SetSpawnPoint(glm::vec3(xPosition, yPosition, position.z * WallSpace::SIZE));
+	m_pWorld->SetSpawnPoint(glm::vec3(xPosition, yPosition, position.z * WallSpace::SIZE));
 }
