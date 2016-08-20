@@ -28,6 +28,7 @@ void CMap::Create(const std::string & mapPath, CWorld * pWorld)
 	SetWorld(pWorld);
 	CheckAndOpenFileForReading(mapPath);
 	ReadMap(m_inputFile);
+	m_labyrinth.ReallocateMemory();
 }
 
 void CMap::ReadMap(ifstream & file)

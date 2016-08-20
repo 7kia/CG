@@ -13,6 +13,8 @@ public:
 // Methods
 public:
 	void		AddWall(PWall pWall);
+
+	void		ReallocateMemory();
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

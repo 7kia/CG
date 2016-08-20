@@ -104,7 +104,5 @@ protected:
 
 using IBodySharedPtr = std::shared_ptr<C3DShape>;
 using IdentityShapeSharedPtr = std::shared_ptr<CIdentity3DShape>;
+using VectorPairsIndexes = std::vector<std::pair<size_t, size_t>>;
 
-IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
-							, const IdentityShapeSharedPtr second
-							, std::vector<std::pair<size_t, size_t>> indexesVertex);

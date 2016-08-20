@@ -3,6 +3,9 @@
 #include <boost/range/algorithm/find_if.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
+#include "World\WeldVertexes.h" / TODO : see need it
+
+
 namespace
 {
 

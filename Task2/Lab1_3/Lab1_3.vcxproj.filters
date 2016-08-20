@@ -213,6 +213,9 @@
     <ClInclude Include="World\Labyrinth.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="World\WeldVertexes.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -363,6 +366,9 @@
       <Filter>Mixin\Material</Filter>
     </ClCompile>
     <ClCompile Include="World\Labyrinth.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\WeldVertexes.cpp">
       <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
