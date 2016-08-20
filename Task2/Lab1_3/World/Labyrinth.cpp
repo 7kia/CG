@@ -27,7 +27,7 @@ void CLabyrinth::AddWall(PWall pWall)
 			// Search common vertexes
 			VectorPairsIndexes replaceIndexes = FindCommonVertexes(m_vertices, vertexes);
 
-			if (true)//!WeldToFirst(this, currentRectangle, replaceIndexes))//
+			if (!WeldToFirst(this, currentRectangle, replaceIndexes))//
 			{
 
 				auto indexes = currentRectangle->GetIndexes();

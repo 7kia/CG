@@ -19,7 +19,7 @@ void CIdentity3DShape::Draw() const
 	glMultMatrixf(glm::value_ptr(m_transform));
 
 	DoWithBindedArrays(m_vertices, [this] {
-		glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),
+		glDrawElements(GL_TRIANGLES, GLsizei(m_indicies.size()),
 			GL_UNSIGNED_INT, m_indicies.data());
 	});
 
