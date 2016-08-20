@@ -3,6 +3,7 @@
 #include "3DShape\3DShape.h"
 #include "Mixin\HaveVertex.h"
 #include "Wall\Wall.h"
+#include <array>
 
 class CLabyrinth
 	: public CIdentity3DShape

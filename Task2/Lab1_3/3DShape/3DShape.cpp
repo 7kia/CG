@@ -42,9 +42,10 @@ std::vector<SVertexP3NT2> CIdentity3DShape::GetVertexes() const
 glm::vec3 CIdentity3DShape::GetVertexPosition(uint index) const
 {
 	CheckVertexIndex(index);
-
-	auto currentPosition = glm::translate(GetTransform(), m_vertices[index].position);
-	return glm::vec3(currentPosition[3][0], currentPosition[3][1], currentPosition[3][2]);
+	auto position3D = m_vertices[index].position;
+	auto position4D = glm::vec4(position3D.x, position3D.y, position3D.z, 1.f);
+	auto currentPosition = GetTransform() * position4D;
+	return glm::vec3(currentPosition[0], currentPosition[1], currentPosition[2]);
 }
 
 

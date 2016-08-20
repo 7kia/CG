@@ -169,7 +169,7 @@ bool WeldToFirst(CIdentity3DShape* first
 
 		///////////////////
 		// Record from copy second shape in first
-		for (size_t index = amountVertexInFirst; index <= (first->GetAmountVertexes() - indexesVertex.size() + 1); ++index)// TODO :!!!
+		for (size_t index = amountVertexInFirst; index <= (first->GetAmountVertexes() - indexesVertex.size()); ++index)// TODO :!!!
 		{
 			first->SetVertex(index, vertexesFromSecond[index - amountVertexInFirst]);
 		}
