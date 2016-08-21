@@ -7,12 +7,12 @@
 #include <boost/phoenix.hpp>
 #include <boost/range/algorithm/transform.hpp>
 
-CLabyrinth::CLabyrinth()
+CLabyrinthLevel::CLabyrinthLevel()
 	: CIdentity3DShape()
 {
 }
 
-void CLabyrinth::AddWall(PWall pWall)
+void CLabyrinthLevel::AddWall(PWall pWall)
 {
 	auto visual = pWall->GetVisual();
 	for (size_t index = 0; index < visual->GetAmountShapes(); ++index)
@@ -27,7 +27,7 @@ void CLabyrinth::AddWall(PWall pWall)
 			// Search common vertexes
 			VectorPairsIndexes replaceIndexes = FindCommonVertexes(m_vertices, vertexes);
 
-			if (!WeldToFirst(this, currentRectangle, replaceIndexes))//
+			if (true)//!WeldToFirst(this, currentRectangle, replaceIndexes))//
 			{
 
 				auto indexes = currentRectangle->GetIndexes();
@@ -52,7 +52,7 @@ void CLabyrinth::AddWall(PWall pWall)
 
 }
 
-void CLabyrinth::ReallocateMemory()
+void CLabyrinthLevel::ReallocateMemory()
 {
 	auto vertexes = m_vertices;
 	auto indexes = m_indicies;
@@ -65,4 +65,28 @@ void CLabyrinth::ReallocateMemory()
 	m_indicies.reserve(indexes.size());
 	m_indicies = indexes;
 
+}
+
+CLabyrinth::CLabyrinth()
+{
+	const size_t amountLevels = 3;
+	m_shapes.reserve(amountLevels);
+
+	for (size_t index = 0; index < amountLevels; ++index)
+	{
+		m_shapes.push_back(std::make_shared<CLabyrinthLevel>());
+	}
+}
+
+void CLabyrinth::AddWall(PWall pWall, size_t index)
+{
+	dynamic_cast<CLabyrinthLevel*>(m_shapes[index].get())->AddWall(pWall);
+}
+
+void CLabyrinth::ReallocateMemory()
+{
+	for (auto & level : m_shapes)
+	{
+		dynamic_cast<CLabyrinthLevel*>(level.get())->ReallocateMemory();
+	}
 }

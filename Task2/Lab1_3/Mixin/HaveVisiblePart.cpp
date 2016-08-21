@@ -6,6 +6,14 @@ CHaveVisiblePart::CHaveVisiblePart(size_t size)
 {
 }
 
+void CHaveVisiblePart::SetVisible(bool value)
+{
+	for (auto & element : m_visible)
+	{
+		element = value;
+	}
+}
+
 void CHaveVisiblePart::SetVisible(unsigned index, bool value)
 {
 	CheckVisibleIndex(index);

@@ -28,6 +28,7 @@ void CMap::Create(const std::string & mapPath, CWorld * pWorld)
 	SetWorld(pWorld);
 	CheckAndOpenFileForReading(mapPath);
 	ReadMap(m_inputFile);
+
 	m_labyrinth.ReallocateMemory();
 }
 
@@ -80,6 +81,8 @@ void CMap::AddTopLevel(size_t length, size_t width)
 		string row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
+			
+			/*
 			if ((m_map[0][y][x] != RecognizeSymbols[unsigned(IdSymbol::Wall)])
 				&& IsBetween(x, size_t(1), m_map[0][0].size() - 2)
 				&& IsBetween(y, size_t(1), m_map[0].size() - 2) )
@@ -90,6 +93,8 @@ void CMap::AddTopLevel(size_t length, size_t width)
 			{
 				row += RecognizeSymbols[unsigned(IdSymbol::Space)];
 			}
+			*/
+			row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
 		}
 		topLevel.push_back(row);
 	}
@@ -131,6 +136,7 @@ std::string CMap::GenerateRowOfWalls(const std::string & borderRow)
 	std::string result;
 	for (size_t index = 1; index < (borderRow.size() - 1); ++index)
 	{
+		/*
 		if (borderRow[index] == RecognizeSymbols[unsigned(IdSymbol::Space)])
 		{
 			result += RecognizeSymbols[unsigned(IdSymbol::Wall)];
@@ -139,16 +145,20 @@ std::string CMap::GenerateRowOfWalls(const std::string & borderRow)
 		{
 			result += RecognizeSymbols[unsigned(IdSymbol::Space)];
 		}
+		*/
+		result += RecognizeSymbols[unsigned(IdSymbol::Wall)];
+		
 	}
 	// Border symbols
-	result.insert(result.begin(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
-	result.insert(result.end(), RecognizeSymbols[unsigned(IdSymbol::Space)]);
+	result.insert(result.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+	result.insert(result.end(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
 
 	return result;
 }
 
 void CMap::AddBorderSymbolsForRow(std::string & row)
 {
+	/*
 	InsertSymbolInRow(row
 					, row.end()
 					, row.end() - 1
@@ -159,6 +169,11 @@ void CMap::AddBorderSymbolsForRow(std::string & row)
 					, row.begin()
 					, IdSymbol::Space
 					, IdSymbol::Wall);
+	*/
+	
+
+	row.insert(row.begin(), RecognizeSymbols[unsigned(IdSymbol::Wall)]);
+	row.push_back(RecognizeSymbols[unsigned(IdSymbol::Wall)]);
 }
 
 void CMap::InsertSymbolInRow(std::string & row
@@ -186,6 +201,7 @@ void CMap::AddLowLevel(size_t length, size_t width)
 		string row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
+			/*
 			if ((m_map[1][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 				&& IsBetween(x, size_t(1), m_map[0][0].size() - 1 - MapSpace::SIZE_BORDER)
 				&& IsBetween(y, size_t(1), m_map[0].size() - 1 - MapSpace::SIZE_BORDER))
@@ -196,7 +212,9 @@ void CMap::AddLowLevel(size_t length, size_t width)
 			{
 				row += RecognizeSymbols[unsigned(IdSymbol::Space)];
 			}
-
+			*/
+			
+			row += RecognizeSymbols[unsigned(IdSymbol::Wall)];
 		}
 		lowLevel.push_back(row);
 	}
@@ -204,35 +222,35 @@ void CMap::AddLowLevel(size_t length, size_t width)
 	m_map.emplace(m_map.begin(), lowLevel);
 }
 
-void CMap::ProcessLateralEdge(CWall* pWall
+void CMap::DefineVisibleLateralEdge(CWall* pWall
 							, const glm::vec3 & position
 							, const glm::vec3 & shifts)
 {
-	size_t x = size_t(position.x);
-	size_t y = size_t(position.y);
-	size_t z = size_t(position.z);
+	int x = int(position.x);
+	int y = int(position.y);
+	int z = int(position.z);
 	int xShift = int(shifts.x);
 	int yShift = int(shifts.y);
 	int zShift = int(shifts.z);
 
-	if (((int(x) + xShift) >= 0) && ((int(y) + yShift) >= 0)
-		&& ((int(x) + xShift) < m_map[0].size()) && ((int(y) + yShift) < m_map[0].size()))
+	if (((x + xShift) >= 0) && ((y + yShift) >= 0)
+		&& ((x + xShift) < m_map[0].size()) && ((y + yShift) < m_map[0].size()))
 	{
 		if (m_map[z + 1][y + yShift][x + xShift] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 		{
-			if ((xShift == 0) && (yShift == 1) && ((int(z + 1) + zShift) == 0))
+			if ((xShift == 0) && (yShift == 1) && ((z + 1 + zShift) == 0))
 			{
 				pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), false);
 			}
-			else if ((xShift == 1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
+			else if ((xShift == 1) && (yShift == 0) && ((z + 1 + zShift) == 0))
 			{
 				pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), false);
 			}
-			else if ((xShift == 0) && (yShift == -1) && ((int(z + 1) + zShift) == 0))
+			else if ((xShift == 0) && (yShift == -1) && ((z + 1 + zShift) == 0))
 			{
 				pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), false);
 			}
-			else if ((xShift == -1) && (yShift == 0) && ((int(z + 1) + zShift) == 0))
+			else if ((xShift == -1) && (yShift == 0) && ((z + 1 + zShift) == 0))
 			{
 				pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), false);
 			}
@@ -242,17 +260,18 @@ void CMap::ProcessLateralEdge(CWall* pWall
 
 }
 
-void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zShift)
+void CMap::DefineVisibleVerticalEdge(CWall * pWall, const glm::vec3 & position, int zShift)
 {
 	size_t x = size_t(position.x);
 	size_t y = size_t(position.y);
-	size_t z = size_t(position.z);
+	int z = int(position.z);
 
 	if (IsBetween(x, size_t(0), m_map[0].size())
 		&& IsBetween(y, size_t(0), m_map[0].size())
-		&& IsBetween(int(z + 1) + zShift, 0, int(m_map.size() - 1))
+		&& IsBetween(z + 1 + zShift, 0, int(m_map.size() - 1))
 		)
 	{
+		/*
 		if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
 		{
 			if (zShift == 1)
@@ -262,6 +281,83 @@ void CMap::ProcessVerticalEdge(CWall * pWall, const glm::vec3 & position, int zS
 			else if (zShift == -1)
 			{
 				pWall->SetVisible(unsigned(WallSpace::CubeFace::Bottom), false);
+			}
+		}
+		*/
+		if (m_map[z + 1 + zShift][y][x] == RecognizeSymbols[unsigned(IdSymbol::Wall)])
+		{
+			if (zShift == 1)
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Top), true);
+			}
+			else if (zShift == -1)
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Bottom), true);
+			}
+		}
+	}
+
+}
+
+void CMap::DefineVisibleLateralEdgeForPlayer(CWall* pWall
+											, const glm::vec3 & position
+											, const glm::vec3 & shifts)
+{
+	int x = int(position.x);
+	int y = int(position.y);
+	int z = int(position.z);
+	int xShift = int(shifts.x);
+	int yShift = int(shifts.y);
+	int zShift = int(shifts.z);
+
+	if (((x + xShift) >= 0) && ((y + yShift) >= 0)
+		&& ((x + xShift) < m_map[0].size()) && ((y + yShift) < m_map[0].size()))
+	{
+		if (m_map[z + 1][y + yShift][x + xShift] != RecognizeSymbols[unsigned(IdSymbol::Wall)])
+		{
+			if ((xShift == 0) && (yShift == 1) && ((z + 1 + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Front), true);
+			}
+			else if ((xShift == 1) && (yShift == 0) && ((z + 1 + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Right), true);
+			}
+			else if ((xShift == 0) && (yShift == -1) && ((z + 1 + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Back), true);
+			}
+			else if ((xShift == -1) && (yShift == 0) && ((z + 1 + zShift) == 0))
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Left), true);
+			}
+
+		}
+	}
+}
+
+void CMap::DefineVisibleVerticalEdgeForPlayer(CWall* pWall
+												, const glm::vec3 & position
+												, int zShift)
+{
+	size_t x = size_t(position.x);
+	size_t y = size_t(position.y);
+	int z = int(position.z);
+
+	if (IsBetween(x, size_t(0), m_map[0].size())
+		&& IsBetween(y, size_t(0), m_map[0].size())
+		&& IsBetween(z + 1 + zShift, 0, int(m_map.size() - 1))
+		)
+	{
+		if (m_map[z + 1 + zShift][y][x] != RecognizeSymbols[unsigned(IdSymbol::Wall)])
+		{
+			if (zShift == 1)
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Top), true);
+			}
+			else if (zShift == -1)
+			{
+				pWall->SetVisible(unsigned(WallSpace::CubeFace::Bottom), true);
 			}
 		}
 	}
@@ -340,21 +436,42 @@ void CMap::AddWall(const glm::vec3 & position
 
 	auto pWall = std::make_shared<CWall>();
 	pWall->SetType(m_pWorld->GetWallType(GetIndexWallType(position, length, width)));
+	pWall->SetVisible(false);
 
+	// Next define visible edges
+	// for event when wall conect
 	for (int xShift = -1; xShift <= 1; ++xShift)
 	{
 		for (int yShift = -1; yShift <= 1; ++yShift)// this loop and high for process around wall
 		{
 			for (int zShift = -1; zShift <= 1; ++zShift)
 			{
-
 				if (abs(xShift) != abs(yShift))// not process itself
 				{
-					ProcessLateralEdge(pWall.get(), position, glm::vec3(xShift, yShift, zShift));
+					//DefineVisibleLateralEdge(pWall.get(), position, glm::vec3(xShift, yShift, zShift));
 				}
 				else if ((xShift == 0) && (yShift == 0))
 				{
-					ProcessVerticalEdge(pWall.get(), position, zShift);
+					//DefineVisibleVerticalEdge(pWall.get(), position, zShift);
+				}
+
+			}
+		}
+	}
+	// Next define visible for player
+	for (int xShift = -1; xShift <= 1; ++xShift)
+	{
+		for (int yShift = -1; yShift <= 1; ++yShift)// this loop and high for process around wall
+		{
+			for (int zShift = -1; zShift <= 1; ++zShift)
+			{
+				if (abs(xShift) != abs(yShift))// not process itself
+				{
+					DefineVisibleLateralEdgeForPlayer(pWall.get(), position, glm::vec3(xShift, yShift, zShift));
+				}
+				else if ((xShift == 0) && (yShift == 0))
+				{
+					DefineVisibleVerticalEdgeForPlayer(pWall.get(), position, zShift);
 				}
 
 			}
@@ -371,7 +488,7 @@ void CMap::AddWall(const glm::vec3 & position
 		pWall->AddToWorld(m_pWorld->GetWorld());
 	}
 
-	m_labyrinth.AddWall(pWall);
+	m_labyrinth.AddWall(pWall, z + 1);
 
 	//m_walls.emplace_back(std::move(pWall));
 }

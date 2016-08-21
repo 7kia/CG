@@ -60,12 +60,18 @@ private:
 									, size_t length
 									, size_t width); 
 	void					AddPlayer(const glm::vec3 & position);
-	void					ProcessLateralEdge(CWall* pWall
+	void					DefineVisibleLateralEdge(CWall* pWall
 												, const glm::vec3 & position
 												, const glm::vec3 & shifts);
-	void					ProcessVerticalEdge(CWall* pWall
+	void					DefineVisibleVerticalEdge(CWall* pWall
 												, const glm::vec3 & position
 												, int zShift);
+	void					DefineVisibleLateralEdgeForPlayer(CWall* pWall
+																, const glm::vec3 & position
+																, const glm::vec3 & shifts);
+	void					DefineVisibleVerticalEdgeForPlayer(CWall* pWall
+																, const glm::vec3 & position
+																, int zShift);
 
 	static unsigned			GetIndexWallType(const glm::vec3 & position
 											, size_t length

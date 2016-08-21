@@ -46,6 +46,11 @@ bool CWall::GetVisible(unsigned index) const
 	return m_visual.GetVisible(index);
 }
 
+void CWall::SetVisible(bool value)
+{
+	m_visual.SetVisible(value);
+}
+
 void CWall::CheckVisibleIndex(unsigned index) const
 {
 	(void)index;

@@ -29,8 +29,10 @@ public:
 	const CWallViewType*			GetType() const override;
 	//--------------------------------------------
 	// IHaveVisiblePart
+	void							SetVisible(bool value) override;
 	void							SetVisible(unsigned index, bool value) override;
 	bool							GetVisible(unsigned index) const override;
+
 
 	void							CheckVisibleIndex(unsigned index) const override;
 	//--------------------------------------------

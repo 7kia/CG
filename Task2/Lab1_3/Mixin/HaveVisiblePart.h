@@ -7,6 +7,7 @@ class IHaveVisiblePart
 public:
 	virtual ~IHaveVisiblePart() = default;
 
+	virtual void						SetVisible(bool value) = 0;
 	virtual void						SetVisible(unsigned index, bool value) = 0;
 	virtual bool						GetVisible(unsigned index) const = 0;
 
@@ -21,6 +22,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
+	void						SetVisible(bool value) override;
 	void						SetVisible(unsigned index, bool value) override;
 	bool						GetVisible(unsigned index) const override;
 
