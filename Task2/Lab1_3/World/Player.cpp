@@ -106,9 +106,11 @@ void CPlayer::Update(float deltaTime)
 	GetCamera()->SetPosition(playerPosition);
 
 	// Visual part must place over labyrinth in cheat mode
-	playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
-	m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
-
+	if (m_idCamera == IdCameras::Player)
+	{
+		playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
+		m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
+	}
 	const float velocity = GetCurrentLinearVelocity(deltaTime);
 	const float rotationSpeed = GetCurrentRotationSpeed(deltaTime);
 	GetCamera()->Update(deltaTime
@@ -117,7 +119,11 @@ void CPlayer::Update(float deltaTime)
 
 	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * velocity;
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
-	m_collision.Advance(deltaTime);
+
+	if (m_idCamera == IdCameras::Player)
+	{
+		m_collision.Advance(deltaTime);
+	}
 
 	m_flashlight.SetPosition(GetPosition());
 	ResetCurrentLinearVelocity();

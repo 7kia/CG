@@ -16,6 +16,7 @@ CPlayer::CController::CController(CPlayer * master)
 
 void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
 {
+	
 	IdCommands id = FindCommand(event, SDL_KEYDOWN);
 	if (id != IdCommands::AmountCommands)
 	{
