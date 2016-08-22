@@ -17,7 +17,7 @@ void CPlayerCamera::Update(float deltaSec
 	m_rotationRadians += deltaSec * rotationSpeed;//PlayerCameraSpace::GetRotationSpeedRadians(m_keysPressed);
 
 	// TODO : rewrite
-	//Move(GetCurrentDirection() * (deltaSec *  moveSpeed));//PlayerCameraSpace::GetLinearMoveSpeed(m_keysPressed))
+	Move(GetCurrentDirection() * (deltaSec *  moveSpeed));//PlayerCameraSpace::GetLinearMoveSpeed(m_keysPressed))
 }
 
 glm::mat4 CPlayerCamera::GetViewTransform() const

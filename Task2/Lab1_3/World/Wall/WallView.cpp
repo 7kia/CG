@@ -5,13 +5,13 @@ CWallView::CWallView()
 	: ÑComposite3DShape()
 	, CHaveVisiblePart(6)
 {
-	for(uint index = 0; index < 6; ++index)
+	for(size_t index = 0; index < 6; ++index)
 	{
 		IBodySharedPtr pRectangle = std::make_unique<C3DRectangle>();
 		m_shapes.push_back(std::move(pRectangle));
 	}
 
-	for (uint index = 0; index < m_shapes.size(); ++index)
+	for (size_t index = 0; index < m_shapes.size(); ++index)
 	{
 		C3DRectangle* pRectangle = dynamic_cast<C3DRectangle*>(m_shapes[index].get());
 
@@ -32,7 +32,7 @@ CWallView::CWallView()
 void CWallView::Draw() const
 {
 	GetTexture()->DoWhileBinded([&] {
-		for (uint index = 0; index < m_visible.size(); ++index)
+		for (size_t index = 0; index < m_visible.size(); ++index)
 		{
 			if (m_visible[index])
 			{

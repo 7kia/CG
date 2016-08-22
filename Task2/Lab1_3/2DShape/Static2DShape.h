@@ -49,8 +49,8 @@ public:
 	void						SetPosition(float x, float y) override;
 	glm::vec2					GetPosition() const override;
 
-	glm::vec2					GetCenterPosition(const glm::vec2 & origin) const override;
-	glm::vec2					GetCenterPosition() const override;
+	glm::vec2					GetCenterPosition(const glm::vec2 & origin) const;
+	glm::vec2					GetCenterPosition() const;
 	//--------------------------------------------
 	// I2DRotatable
 	float						GetRotation() const override;

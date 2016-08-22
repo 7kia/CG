@@ -39,7 +39,7 @@ std::vector<SVertexP3NT2> CIdentity3DShape::GetVertexes() const
 	return result;
 }
 
-glm::vec3 CIdentity3DShape::GetVertexPosition(uint index) const
+glm::vec3 CIdentity3DShape::GetVertexPosition(size_t index) const
 {
 	CheckVertexIndex(index);
 	auto position3D = m_vertices[index].position;

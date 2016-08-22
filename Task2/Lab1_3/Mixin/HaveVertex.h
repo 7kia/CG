@@ -4,8 +4,6 @@
 #include <glm\vec2.hpp>
 #include <glm\vec3.hpp>
 
-typedef unsigned int uint;
-
 // Вершина с трёхмерной позицией, нормалью и 2D координатами текстуры.
 struct SVertexP3NT2
 {
@@ -26,30 +24,30 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	virtual void							SetVertex(uint index, const SVertexP3NT2 & value) = 0;
-	virtual SVertexP3NT2					GetVertex(uint index) const = 0;
+	virtual void							SetVertex(size_t index, const SVertexP3NT2 & value) = 0;
+	virtual SVertexP3NT2					GetVertex(size_t index) const = 0;
 	virtual SVertexP3NT2*					GetReferenceToVertex(int index) = 0;
 
 	virtual std::vector<SVertexP3NT2>		GetSourceVertexes() const = 0;
 	virtual std::vector<SVertexP3NT2>		GetVertexes() const = 0;
 
-	virtual void							SetSourceVertexPosition(uint index, const glm::vec3 & position) = 0;
-	virtual glm::vec3						GetSourceVertexPosition(uint index) const = 0;
+	virtual void							SetSourceVertexPosition(size_t index, const glm::vec3 & position) = 0;
+	virtual glm::vec3						GetSourceVertexPosition(size_t index) const = 0;
 
-	//virtual void							SetVertexPosition(uint index, const glm::vec3 & position) = 0;
-	virtual glm::vec3						GetVertexPosition(uint index) const = 0;
+	//virtual void							SetVertexPosition(size_t index, const glm::vec3 & position) = 0;
+	virtual glm::vec3						GetVertexPosition(size_t index) const = 0;
 
-	virtual void							SetVertexNormal(uint index, const glm::vec3 & normal) = 0;
-	virtual glm::vec3						GetVertexNormal(uint index) const = 0;
+	virtual void							SetVertexNormal(size_t index, const glm::vec3 & normal) = 0;
+	virtual glm::vec3						GetVertexNormal(size_t index) const = 0;
 
-	virtual void							SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) = 0;
-	virtual glm::vec2						GetVertexTexCoordinate(uint index) const = 0;
+	virtual void							SetVertexTexCoordinate(size_t index, const glm::vec2 & texCoordinate) = 0;
+	virtual glm::vec2						GetVertexTexCoordinate(size_t index) const = 0;
 
-	virtual void							SetIndex(uint index, uint newIndex) = 0;
-	virtual uint							GetIndex(uint index) const = 0;
+	virtual void							SetIndex(size_t index, size_t newIndex) = 0;
+	virtual size_t							GetIndex(size_t index) const = 0;
 
-	virtual void							CheckVertexIndex(uint index) const = 0;;// TODO : see need transfer to other place	
-	virtual void							CheckIdIndex(uint index) const = 0;;// TODO : rename												  
+	virtual void							CheckVertexIndex(size_t index) const = 0;;// TODO : see need transfer to other place	
+	virtual void							CheckIdIndex(size_t index) const = 0;;// TODO : rename												  
 
 };
 
@@ -57,7 +55,7 @@ class CHaveVertexes : public IHaveVertex
 {
 public:
 	CHaveVertexes();// TODO: delete parametr
-	CHaveVertexes(uint size);
+	CHaveVertexes(size_t size);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -67,28 +65,28 @@ public:
 	void							ResizeIndexArray(size_t newSize);
 	size_t							GetAmountVIndexes() const;
 
-	void							SetVertex(uint index, const SVertexP3NT2 & value) override final;
-	SVertexP3NT2					GetVertex(uint index) const override final;
+	void							SetVertex(size_t index, const SVertexP3NT2 & value) override final;
+	SVertexP3NT2					GetVertex(size_t index) const override final;
 	SVertexP3NT2*					GetReferenceToVertex(int index) override final;
 
 	std::vector<SVertexP3NT2>		GetSourceVertexes() const override final;
 	std::vector<uint32_t>			GetIndexes() const;
 
-	void							SetSourceVertexPosition(uint index, const glm::vec3 & position) override final;
-	glm::vec3						GetSourceVertexPosition(uint index) const override final;
+	void							SetSourceVertexPosition(size_t index, const glm::vec3 & position) override final;
+	glm::vec3						GetSourceVertexPosition(size_t index) const override final;
 
-	void							SetVertexNormal(uint index, const glm::vec3 & normal) override final;
-	glm::vec3						GetVertexNormal(uint index) const override final;
+	void							SetVertexNormal(size_t index, const glm::vec3 & normal) override final;
+	glm::vec3						GetVertexNormal(size_t index) const override final;
 
-	void							SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
-	glm::vec2						GetVertexTexCoordinate(uint index) const override final;
+	void							SetVertexTexCoordinate(size_t index, const glm::vec2 & texCoordinate) override final;
+	glm::vec2						GetVertexTexCoordinate(size_t index) const override final;
 
-	void							SetIndex(uint index, uint newIndex) override final;
-	uint							GetIndex(uint index) const override final;
+	void							SetIndex(size_t index, size_t newIndex) override final;
+	size_t							GetIndex(size_t index) const override final;
 
 
-	void							CheckVertexIndex(uint index) const override final;	
-	void							CheckIdIndex(uint index) const override final;// TODO : rename												  
+	void							CheckVertexIndex(size_t index) const override final;	
+	void							CheckIdIndex(size_t index) const override final;// TODO : rename												  
 
 //////////////////////////////////////////////////////////////////////
 // Data
@@ -106,25 +104,25 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void										SetVertex(uint index, const SVertexP3NT2 & value) override;
-	SVertexP3NT2								GetVertex(uint index) const override;
+	void										SetVertex(size_t index, const SVertexP3NT2 & value) override;
+	SVertexP3NT2								GetVertex(size_t index) const override;
 	SVertexP3NT2*								GetReferenceToVertex(int index) override final;
 
 	std::vector<SVertexP3NT2>					GetSourceVertexes() const override final;//
 
-	void										SetSourceVertexPosition(uint index, const glm::vec3 & position) override final;
-	glm::vec3									GetSourceVertexPosition(uint index) const override final;
+	void										SetSourceVertexPosition(size_t index, const glm::vec3 & position) override final;
+	glm::vec3									GetSourceVertexPosition(size_t index) const override final;
 
-	void										SetVertexNormal(uint index, const glm::vec3 & normal) override final;
-	glm::vec3									GetVertexNormal(uint index) const override final;
+	void										SetVertexNormal(size_t index, const glm::vec3 & normal) override final;
+	glm::vec3									GetVertexNormal(size_t index) const override final;
 
-	void										SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate) override final;
-	glm::vec2									GetVertexTexCoordinate(uint index) const override final;
+	void										SetVertexTexCoordinate(size_t index, const glm::vec2 & texCoordinate) override final;
+	glm::vec2									GetVertexTexCoordinate(size_t index) const override final;
 
 
-	void										CheckVertexIndex(uint index) const override final;// TODO : see need transfer to other place
+	void										CheckVertexIndex(size_t index) const override final;// TODO : see need transfer to other place
 protected:
-	void										AddReferenceVertex(uint index, SVertexP3NT2 * value);
+	void										AddReferenceVertex(size_t index, SVertexP3NT2 * value);
 	virtual void								UpdateReference() {};// TODO : = 0;
 //////////////////////////////////////////////////////////////////////
 // Data

@@ -5,8 +5,8 @@ class I2DRotatable
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	virtual void		SetRotation(float rotation) { (void)rotation;  };
-	virtual float		GetRotation() const { return 0.f;  };
+	virtual void		SetRotation(float rotation) = 0;
+	virtual float		GetRotation() const = 0;
 };
 
 class C2DRotatable
@@ -15,13 +15,10 @@ class C2DRotatable
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-
 	float		GetRotation() const override;
 	void		SetRotation(float rotation) override;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
 	float		m_rotation = 0.f;
-//////////////////////////////////////////////////////////////////////
-
 };

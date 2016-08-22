@@ -33,14 +33,14 @@ const CWallViewType * CWall::GetType() const
 	return m_visual.GetType();
 }
 
-void CWall::SetVisible(unsigned index, bool value)
+void CWall::SetVisible(size_t index, bool value)
 {
 	CheckVisibleIndex(index);
 
 	m_visual.SetVisible(index, value);
 }
 
-bool CWall::GetVisible(unsigned index) const
+bool CWall::GetVisible(size_t index) const
 {
 	CheckVisibleIndex(index);
 	return m_visual.GetVisible(index);
@@ -51,7 +51,7 @@ void CWall::SetVisible(bool value)
 	m_visual.SetVisible(value);
 }
 
-void CWall::CheckVisibleIndex(unsigned index) const
+void CWall::CheckVisibleIndex(size_t index) const
 {
 	(void)index;
 	// TODO : rewrite the method

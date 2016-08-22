@@ -30,11 +30,11 @@ public:
 	//--------------------------------------------
 	// IHaveVisiblePart
 	void							SetVisible(bool value) override;
-	void							SetVisible(unsigned index, bool value) override;
-	bool							GetVisible(unsigned index) const override;
+	void							SetVisible(size_t index, bool value) override;
+	bool							GetVisible(size_t index) const override;
 
 
-	void							CheckVisibleIndex(unsigned index) const override;
+	void							CheckVisibleIndex(size_t index) const override;
 	//--------------------------------------------
 	// IHave3DPosition
 	void							SetPosition(const glm::vec3 &value) override;

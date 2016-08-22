@@ -94,7 +94,7 @@ public:
 	//--------------------------------------------
 
 	std::vector<SVertexP3NT2>		GetVertexes() const override;
-	glm::vec3						GetVertexPosition(uint index) const override;
+	glm::vec3						GetVertexPosition(size_t index) const override;
 
 //////////////////////////////////////////////////////////////////////
 // Data

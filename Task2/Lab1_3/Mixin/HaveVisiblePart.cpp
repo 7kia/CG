@@ -14,23 +14,23 @@ void CHaveVisiblePart::SetVisible(bool value)
 	}
 }
 
-void CHaveVisiblePart::SetVisible(unsigned index, bool value)
+void CHaveVisiblePart::SetVisible(size_t index, bool value)
 {
 	CheckVisibleIndex(index);
 
 	m_visible[index] = value;
 }
 
-bool CHaveVisiblePart::GetVisible(unsigned index) const
+bool CHaveVisiblePart::GetVisible(size_t index) const
 {
 	CheckVisibleIndex(index);
 
 	return m_visible[index];
 }
 
-void CHaveVisiblePart::CheckVisibleIndex(unsigned index) const
+void CHaveVisiblePart::CheckVisibleIndex(size_t index) const
 {
-	if (!IsBetween(index, 0u, unsigned(m_visible.size())))
+	if (!IsBetween(index, 0llu, m_visible.size()))
 	{
 		throw std::runtime_error("Wall have not the index");
 	}

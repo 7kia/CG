@@ -61,9 +61,9 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 		*/
 
 
-		auto GetNewIndex = [amountIndexesInFirst](size_t oldIndex)
+		auto GetNewIndex = [amountIndexesInFirst](uint32_t oldIndex)
 		{
-			return oldIndex + amountIndexesInFirst;
+			return oldIndex + uint32_t(amountIndexesInFirst);
 		};
 		boost::transform(indexesFromSecond, indexesFromSecond.begin(), GetNewIndex);
 
@@ -161,9 +161,9 @@ bool WeldToFirst(CIdentity3DShape* first
 		*/
 
 		// compute new value for indexes from copy second shape
-		auto GetNewIndex = [maxIndex](size_t oldIndex)
+		auto GetNewIndex = [maxIndex](uint32_t oldIndex)
 		{
-			return oldIndex + maxIndex + 1;
+			return oldIndex + uint32_t(maxIndex) + 1;
 		};
 		boost::transform(indexesFromSecond, indexesFromSecond.begin(), GetNewIndex);
 

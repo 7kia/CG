@@ -16,7 +16,7 @@ CHaveVertexes::CHaveVertexes()
 {
 }
 
-CHaveVertexes::CHaveVertexes(uint size)
+CHaveVertexes::CHaveVertexes(size_t size)
 	: IHaveVertex()
 {
 	if (size < 3)
@@ -46,14 +46,14 @@ size_t CHaveVertexes::GetAmountVIndexes() const
 	return m_indicies.size();
 }
 
-void CHaveVertexes::SetVertex(uint index, const SVertexP3NT2 & value)
+void CHaveVertexes::SetVertex(size_t index, const SVertexP3NT2 & value)
 {
 	CheckVertexIndex(index);
 	m_vertices[index] = value;
 }
 
 
-SVertexP3NT2 CHaveVertexes::GetVertex(uint index) const
+SVertexP3NT2 CHaveVertexes::GetVertex(size_t index) const
 {
 	CheckVertexIndex(index);
 	return m_vertices[index];
@@ -76,56 +76,56 @@ std::vector<uint32_t> CHaveVertexes::GetIndexes() const
 	return m_indicies;
 }
 
-void CHaveVertexes::SetSourceVertexPosition(uint index, const glm::vec3 & position)
+void CHaveVertexes::SetSourceVertexPosition(size_t index, const glm::vec3 & position)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].position = position;
 }
 
-glm::vec3 CHaveVertexes::GetSourceVertexPosition(uint index) const
+glm::vec3 CHaveVertexes::GetSourceVertexPosition(size_t index) const
 {
 	CheckVertexIndex(index);
 
 	return m_vertices[index].position;
 }
 
-void CHaveVertexes::SetVertexNormal(uint index, const glm::vec3 & normal)
+void CHaveVertexes::SetVertexNormal(size_t index, const glm::vec3 & normal)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].normal = normal;
 }
 
-glm::vec3 CHaveVertexes::GetVertexNormal(uint index) const
+glm::vec3 CHaveVertexes::GetVertexNormal(size_t index) const
 {
 	CheckVertexIndex(index);
 
 	return m_vertices[index].normal;
 }
 
-void CHaveVertexes::SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate)
+void CHaveVertexes::SetVertexTexCoordinate(size_t index, const glm::vec2 & texCoordinate)
 {
 	CheckVertexIndex(index);
 
 	m_vertices[index].texCoord = texCoordinate;
 }
 
-glm::vec2 CHaveVertexes::GetVertexTexCoordinate(uint index) const
+glm::vec2 CHaveVertexes::GetVertexTexCoordinate(size_t index) const
 {
 	CheckVertexIndex(index);
 
 	return m_vertices[index].texCoord;
 }
 
-void CHaveVertexes::SetIndex(uint index, uint newIndex)
+void CHaveVertexes::SetIndex(size_t index, size_t newIndex)
 {
 	CheckIdIndex(index);
 
 	m_indicies[index] = newIndex;
 }
 
-uint CHaveVertexes::GetIndex(uint index) const
+size_t CHaveVertexes::GetIndex(size_t index) const
 {
 	CheckIdIndex(index);
 
@@ -134,17 +134,17 @@ uint CHaveVertexes::GetIndex(uint index) const
 }
 
 
-void CHaveVertexes::CheckVertexIndex(uint index) const
+void CHaveVertexes::CheckVertexIndex(size_t index) const
 {
-	if (!IsBetween(index, 0u, uint(m_vertices.size())))
+	if (!IsBetween(index, 0llu, size_t(m_vertices.size())))
 	{
 		throw std::runtime_error("SVertexP3NT2 have the index not exist");
 	}
 }
 
-void CHaveVertexes::CheckIdIndex(uint index) const
+void CHaveVertexes::CheckIdIndex(size_t index) const
 {
-	if (!IsBetween(index, 0u, uint(m_indicies.size())))
+	if (!IsBetween(index, 0llu, size_t(m_indicies.size())))
 	{
 		throw std::runtime_error("SVertexP3NT2 have index with the id");
 	}
@@ -157,7 +157,7 @@ CHaveReferenceVertex::CHaveReferenceVertex(size_t amountVertex)
 {
 }
 
-void CHaveReferenceVertex::SetVertex(uint index, const SVertexP3NT2 & value)
+void CHaveReferenceVertex::SetVertex(size_t index, const SVertexP3NT2 & value)
 {
 	CheckVertexIndex(index);
 
@@ -169,7 +169,7 @@ void CHaveReferenceVertex::SetVertex(uint index, const SVertexP3NT2 & value)
 }
 
 
-SVertexP3NT2 CHaveReferenceVertex::GetVertex(uint index) const
+SVertexP3NT2 CHaveReferenceVertex::GetVertex(size_t index) const
 {
 	CheckVertexIndex(index);
 	return *m_pVertex[index][0];
@@ -192,7 +192,7 @@ std::vector<SVertexP3NT2> CHaveReferenceVertex::GetSourceVertexes() const
 	return result;
 }
 
-void CHaveReferenceVertex::SetSourceVertexPosition(uint index, const glm::vec3 & position)
+void CHaveReferenceVertex::SetSourceVertexPosition(size_t index, const glm::vec3 & position)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -201,14 +201,14 @@ void CHaveReferenceVertex::SetSourceVertexPosition(uint index, const glm::vec3 &
 	}
 }
 
-glm::vec3 CHaveReferenceVertex::GetSourceVertexPosition(uint index) const
+glm::vec3 CHaveReferenceVertex::GetSourceVertexPosition(size_t index) const
 {
 	CheckVertexIndex(index);
 
 	return m_pVertex[index][0]->position;
 }
 
-void CHaveReferenceVertex::SetVertexNormal(uint index, const glm::vec3 & normal)
+void CHaveReferenceVertex::SetVertexNormal(size_t index, const glm::vec3 & normal)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -217,14 +217,14 @@ void CHaveReferenceVertex::SetVertexNormal(uint index, const glm::vec3 & normal)
 	}
 }
 
-glm::vec3 CHaveReferenceVertex::GetVertexNormal(uint index) const
+glm::vec3 CHaveReferenceVertex::GetVertexNormal(size_t index) const
 {
 	CheckVertexIndex(index);
 
 	return m_pVertex[index][0]->normal;
 }
 
-void CHaveReferenceVertex::SetVertexTexCoordinate(uint index, const glm::vec2 & texCoordinate)
+void CHaveReferenceVertex::SetVertexTexCoordinate(size_t index, const glm::vec2 & texCoordinate)
 {
 	CheckVertexIndex(index);
 	for (auto & element : m_pVertex[index])
@@ -233,7 +233,7 @@ void CHaveReferenceVertex::SetVertexTexCoordinate(uint index, const glm::vec2 & 
 	}
 }
 
-glm::vec2 CHaveReferenceVertex::GetVertexTexCoordinate(uint index) const
+glm::vec2 CHaveReferenceVertex::GetVertexTexCoordinate(size_t index) const
 {
 	CheckVertexIndex(index);
 
@@ -241,15 +241,15 @@ glm::vec2 CHaveReferenceVertex::GetVertexTexCoordinate(uint index) const
 }
 
 
-void CHaveReferenceVertex::CheckVertexIndex(uint index) const
+void CHaveReferenceVertex::CheckVertexIndex(size_t index) const
 {
-	if (!IsBetween(index, 0u, uint(m_pVertex.size())))
+	if (!IsBetween(index, 0llu, m_pVertex.size()))
 	{
 		throw std::runtime_error("SVertexP3NT2 have the index not exist");
 	}
 }
 
-void CHaveReferenceVertex::AddReferenceVertex(uint index, SVertexP3NT2 * value)
+void CHaveReferenceVertex::AddReferenceVertex(size_t index, SVertexP3NT2 * value)
 {
 	CheckVertexIndex(index);
 
