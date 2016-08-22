@@ -33,7 +33,7 @@ void CLabyrinthLevel::AddWall(PWall pWall)
 				auto indexes = currentRectangle->GetIndexes();
 
 				auto append = [&](uint32_t source) {
-					return source + m_indexCount * 4;
+					return source + uint32_t(m_indexCount) * 4;
 				};
 				boost::transform(indexes, indexes.begin(), append);
 

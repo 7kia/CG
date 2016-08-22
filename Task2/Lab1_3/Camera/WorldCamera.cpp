@@ -7,32 +7,6 @@ namespace WorldCameraSpace
 	const float LINEAR_MOVE_SPEED = 15.f;
 	const float MIN_DISTANCE = 1.5f;
 	const float MAX_DISTANCE = 30.f;
-
-	float GetRotationSpeedRadians(std::set<unsigned> & keysPressed)
-	{
-		if (keysPressed.count(SDLK_RIGHT) || keysPressed.count(SDLK_d))
-		{
-			return ROTATION_SPEED_RADIANS;
-		}
-		if (keysPressed.count(SDLK_LEFT) || keysPressed.count(SDLK_a))
-		{
-			return -ROTATION_SPEED_RADIANS;
-		}
-		return 0;
-	}
-
-	float GetLinearMoveSpeed(std::set<unsigned> & keysPressed)
-	{
-		if (keysPressed.count(SDLK_UP) || keysPressed.count(SDLK_w))
-		{
-			return -LINEAR_MOVE_SPEED;
-		}
-		if (keysPressed.count(SDLK_DOWN) || keysPressed.count(SDLK_s))
-		{
-			return +LINEAR_MOVE_SPEED;
-		}
-		return 0;
-	}
 }
 
 CWorldCamera::CWorldCamera(float rotationRadians, float distance)

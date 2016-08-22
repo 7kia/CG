@@ -9,11 +9,11 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	virtual glm::vec2	GetVelocity() const { return glm::vec2(); };
-	virtual void		SetVelocity(const glm::vec2 &value) { (void)value; };
+	virtual glm::vec2	GetVelocity() const = 0;
+	virtual void		SetVelocity(const glm::vec2 &value) = 0;
 
-	//virtual glm::vec2	GetAcceleration() const { return glm::vec2(); };
-	//virtual void		SetAcceleration(const glm::vec2 &acceleration) {};
+	//virtual glm::vec2	GetAcceleration() const = 0;
+	//virtual void		SetAcceleration(const glm::vec2 &acceleration) = 0;
 };
 
 class CHave2DVelocity

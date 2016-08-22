@@ -18,7 +18,7 @@ void CHaveFileForReading::CheckAndOpenFileForReading(const string & fileName)
 	}
 
 	m_inputFile.open(fileName);
-	//m_inputFile.exceptions(ifstream::badbit);
+	m_inputFile.exceptions(ifstream::badbit);
 	if (!m_inputFile.is_open())
 	{
 		throw ifstream::failure(MESSAGE_FAILED_OPEN + fileName + MESSAGE_FAILED_OPEN_FOR_READING);

@@ -37,7 +37,7 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 		auto indexesFromSecond = second->GetIndexes();
 
 
-		std::vector<std::pair<size_t, size_t>> replaceIndexes;
+		std::vector<std::pair<size_t, uint32_t>> replaceIndexes;
 
 		// удаление соединяемой вершины(из второй фигуры)
 		size_t indexPreviousDelete = 0;
@@ -63,7 +63,7 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 
 		auto GetNewIndex = [amountIndexesInFirst](uint32_t oldIndex)
 		{
-			return oldIndex + uint32_t(amountIndexesInFirst);
+			return uint32_t(oldIndex + amountIndexesInFirst);
 		};
 		boost::transform(indexesFromSecond, indexesFromSecond.begin(), GetNewIndex);
 
@@ -94,7 +94,7 @@ IdentityShapeSharedPtr Weld(const IdentityShapeSharedPtr first
 
 		for (size_t index = amountIndexesInFirst; index < result->GetAmountVIndexes(); ++index)
 		{
-			result->SetIndex(index, result->GetIndex(index) - replaceIndexes.size() + 1);
+			result->SetIndex(index, result->GetIndex(index) - uint32_t(replaceIndexes.size()) + 1);
 		}
 
 		for (const auto & element : replaceIndexes)
@@ -132,7 +132,7 @@ bool WeldToFirst(CIdentity3DShape* first
 		auto indexesFromSecond = second->GetIndexes();
 
 
-		std::vector<std::pair<size_t, size_t>> replaceIndexes;
+		std::vector<std::pair<size_t, uint32_t>> replaceIndexes;
 
 		// delete weld vertex from copy second shape
 		auto sortedIndexesVertex = indexesVertex;
@@ -197,7 +197,7 @@ bool WeldToFirst(CIdentity3DShape* first
 		// with accounting delete vertexes
 		for (size_t index = amountIndexesInFirst; index < first->GetAmountVIndexes(); ++index)
 		{
-			first->SetIndex(index, first->GetIndex(index) - replaceIndexes.size() + 1);
+			first->SetIndex(index, first->GetIndex(index) - uint32_t(replaceIndexes.size()) + 1);
 		}
 
 		// Replace

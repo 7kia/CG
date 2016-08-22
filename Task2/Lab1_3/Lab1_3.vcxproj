@@ -186,7 +186,6 @@
     <ClInclude Include="Mixin\Drawable.h" />
     <ClInclude Include="Mixin\FileProcess.h" />
     <ClInclude Include="Mixin\HaveDirection.h" />
-    <ClInclude Include="Mixin\HaveFaceColor.h" />
     <ClInclude Include="Mixin\HaveFileForReading.h" />
     <ClInclude Include="Mixin\HaveFileForWriting.h" />
     <ClInclude Include="Mixin\HaveLinearVelocity.h" />
@@ -241,7 +240,6 @@
     <ClCompile Include="Material\PhongMaterial.cpp" />
     <ClCompile Include="Material\Texture2D.cpp" />
     <ClCompile Include="Mixin\HaveDirection.cpp" />
-    <ClCompile Include="Mixin\HaveFaceColor.cpp" />
     <ClCompile Include="Mixin\HaveFileForReading.cpp" />
     <ClCompile Include="Mixin\HaveFileForWriting.cpp" />
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp" />

@@ -7,11 +7,10 @@ class IHave3DPosition
 {
 public:
 	virtual ~IHave3DPosition() = default;
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	virtual void			SetPosition(const glm::vec3 &value) = 0;
-	// TODO : \/ see need rewrite this method, might incorrect return type
 	virtual	glm::vec3		GetPosition() const = 0;
 	virtual void			Move(const glm::vec3 &value) = 0;
 };

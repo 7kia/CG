@@ -7,7 +7,7 @@
 #include "../Mixin/Drawable.h"
 
 #include "../2DShape/2DCircleCollision.h"
-#include "Wall\WallView.h"
+#include "3DShape\3DSphere.h"
 #include "..\Lights.h"
 #include "..\Camera\Cameras.h"
 #include "..\DispatchEvent.h"
@@ -109,7 +109,7 @@ private:
 
 	CPositionLightSource			m_flashlight;
 	C2DCircleCollision				m_collision;
-	CWallView						m_visual;
+	CIdentity3DSphere				m_visual;
 	CWorld*							m_pWorld;// For add physic body
 };
 

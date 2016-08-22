@@ -19,6 +19,7 @@ CPlayer::CPlayer()
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
+	, m_visual(20, 20)
 {
 	m_collision.SetPVisual(&m_visual);
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
@@ -33,6 +34,7 @@ CPlayer::CPlayer(const glm::vec3 & position
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
+	, m_visual(20, 20)
 	, m_pController(std::make_unique<CController>(this))
 {
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
@@ -157,7 +159,7 @@ void CPlayer::SetCollison()
 	m_collision.SetVelocity(glm::vec2());
 
 
-	m_visual.SetType(m_pWorld->GetWallType(0));
+	//m_visual.SetType(m_pWorld->GetWallType(0));
 	m_visual.SetTransform(glm::translate(glm::mat4(), position));
 
 	m_collision.AddToWorld(m_pWorld->GetWorld());

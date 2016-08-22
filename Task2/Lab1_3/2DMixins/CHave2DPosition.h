@@ -23,9 +23,9 @@ class IHave2DPosition
 public:
 	virtual ~IHave2DPosition() = default;
 
-	virtual void				SetPosition(const glm::vec2 & position) { (void)position;  };
-	virtual void				SetPosition(float x, float y) { (void)x; (void)y; };
-	virtual glm::vec2			GetPosition() const { return glm::vec2(); };
+	virtual void				SetPosition(const glm::vec2 & position) = 0;
+	virtual void				SetPosition(float x, float y) = 0;
+	virtual glm::vec2			GetPosition() const = 0;
 //////////////////////////////////////////////////////////////////////
 };
 
