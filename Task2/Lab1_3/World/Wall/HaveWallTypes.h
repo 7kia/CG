@@ -14,9 +14,9 @@ public:
 	using ArrayWallTypes = std::array<CWallViewType, size_t(WallTypeSpace::AMOUNT_TYPES)>;
 
 	void							CreateWallTypes();// TODO : do call_once
-	const CWallViewType*			GetWallType(unsigned index) const;
+	const CWallViewType*			GetWallType(size_t index) const;
 private:
-	void							SetWallType(unsigned index, const glm::vec2 & position);
+	void							SetWallType(size_t index, const glm::vec2 & position);
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

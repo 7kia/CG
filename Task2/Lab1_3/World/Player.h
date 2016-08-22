@@ -5,7 +5,7 @@
 #include "../Mixin/HaveRotationSpeed.h"
 #include "../Mixin/HaveDirection.h"
 #include "../Mixin/Drawable.h"
-
+#include "../Mixin/Material/HaveTexture.h"
 #include "../2DShape/2DCircleCollision.h"
 #include "3DShape\3DSphere.h"
 #include "..\Lights.h"
@@ -24,9 +24,11 @@ namespace PlayerSpace
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
 	const float LINEAR_MOVE_SPEED = 150.f;
-	const float HEIGHT_VISUAL_PART = 4.f;
+	const float HEIGHT_VISUAL_PART = 0.f;
 
 	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
+
+
 }
 
 class CWorld;
@@ -37,11 +39,13 @@ class CPlayer final
 	, public CHaveDirection
 	, public CHaveLinearVelocity
 	, public CHaveRotationSpeed
+	, public CHaveTexture
 {
 public:
 	CPlayer();
 	explicit CPlayer(const glm::vec3 & position
 					, const glm::vec3 & direction
+					, const std::string & texturePath
 					, CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -110,6 +114,7 @@ private:
 	CPositionLightSource			m_flashlight;
 	C2DCircleCollision				m_collision;
 	CIdentity3DSphere				m_visual;
+
 	CWorld*							m_pWorld;// For add physic body
 };
 

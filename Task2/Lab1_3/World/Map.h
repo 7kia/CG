@@ -73,7 +73,7 @@ private:
 																, const glm::vec3 & position
 																, int zShift);
 
-	static unsigned			GetIndexWallType(const glm::vec3 & position
+	static size_t			GetIndexWallType(const glm::vec3 & position
 											, size_t length
 											, size_t width);
 	static bool				WallHaveCollision(int heigth);

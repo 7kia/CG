@@ -24,8 +24,10 @@ public:
 // Methods
 public:
 	//--------------------------------------------
-	// CIdentity3DShape
+	// IDrawable
+	void							Draw() const override;
+	//--------------------------------------------
+
 private:
 	void Tesselate(unsigned slices, unsigned stacks);
-	//--------------------------------------------
 };

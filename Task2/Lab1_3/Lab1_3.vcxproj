@@ -194,6 +194,7 @@
     <ClInclude Include="Mixin\HaveRotationSpeed.h" />
     <ClInclude Include="Mixin\HaveVertex.h" />
     <ClInclude Include="Mixin\HaveVisiblePart.h" />
+    <ClInclude Include="Mixin\Material\HaveTexture.h" />
     <ClInclude Include="Mixin\Material\MaterialCharacteristics.h" />
     <ClInclude Include="Mixin\Transformable.h" />
     <ClInclude Include="Mixin\Updatable.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
     <ClCompile Include="Mixin\HaveVisiblePart.cpp" />
+    <ClCompile Include="Mixin\Material\HaveTexture.cpp" />
     <ClCompile Include="Mixin\Material\MaterialCharacteristics.cpp" />
     <ClCompile Include="Mixin\Transformable.cpp" />
     <ClCompile Include="stdafx.cpp" />

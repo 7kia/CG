@@ -3,21 +3,6 @@
 
 using namespace WallTypeSpace;
 
-void CWallViewType::SetTexture(const std::string & texturePath)
-{
-	m_texture = LoadTexture2DFromBMP(texturePath);
-}
-
-void CWallViewType::SetTexture(CTexture2DSharedPtr pTexture)
-{
-	m_texture = pTexture;
-}
-
-CTexture2DSharedPtr CWallViewType::GetTexture() const
-{
-	return m_texture;
-}
-
 void CWallViewType::SetTextureMap(const glm::vec2 & position)
 {
 	for (size_t index = 0; index < m_textureMap.size(); ++index)
@@ -26,6 +11,11 @@ void CWallViewType::SetTextureMap(const glm::vec2 & position)
 		m_textureMap[index].y = STANDART_UV_TEXTURE_MAP[index].y + (position.y / HEIGHT_MAP);
 
 	}
+}
+
+CWallViewType::CWallViewType()
+	: CHaveTexture()
+{
 }
 
 WallTextureMap CWallViewType::GetTextureMap() const

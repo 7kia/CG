@@ -187,7 +187,6 @@ bool WeldToFirst(CIdentity3DShape* first
 			{
 				if (first->GetIndex(index) == (pair.second + maxIndex + 1))
 				{
-					//result->SetIndex(index, firstIndex);
 					replaceIndexes.push_back({ index, pair.first });
 				}
 			}

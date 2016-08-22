@@ -55,6 +55,19 @@ CIdentity3DSphere::CIdentity3DSphere(unsigned slices, unsigned stacks)
 	Tesselate(slices, stacks);
 }
 
+void CIdentity3DSphere::Draw() const
+{
+	glPushMatrix();
+	glMultMatrixf(glm::value_ptr(m_transform));
+
+	DoWithBindedArrays(m_vertices, [this] {
+		glDrawElements(GL_TRIANGLE_STRIP, GLsizei(m_indicies.size()),
+			GL_UNSIGNED_INT, m_indicies.data());
+	});
+
+	glPopMatrix();
+}
+
 void CIdentity3DSphere::Tesselate(unsigned slices, unsigned stacks)
 {
 	assert((slices >= MIN_PRECISION) && (stacks >= MIN_PRECISION));

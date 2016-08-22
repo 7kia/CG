@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Material/Texture2D.h"
+#include "../../Mixin/Material/HaveTexture.h"
 #include <array>
 
 using WallTextureMap = std::array<glm::vec2, 4>;
@@ -20,12 +20,6 @@ namespace WallTypeSpace
 	const unsigned WIDTH_MAP = 2;// In tiles
 	const unsigned HEIGHT_MAP = 2;
 	const unsigned SIZE_TILE = 750;
-
-	const std::string PATH_TO_RECOURCES = "Resources/";
-	const std::string TexturePaths[] =
-	{
-		PATH_TO_RECOURCES + "Tiles.bmp",
-	};
 
 	/*
 	// TODO : see need its
@@ -47,13 +41,13 @@ namespace WallTypeSpace
 
 
 class CWallViewType
+	: public CHaveTexture
 {
+public:
+	CWallViewType();
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void					SetTexture(const std::string & texturePath);
-	void					SetTexture(CTexture2DSharedPtr pTexture);
-	CTexture2DSharedPtr		GetTexture() const; // TODO: return reference
 
 	//  measured in tiles
 	WallTextureMap			GetTextureMap() const;
@@ -68,7 +62,6 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	CTexture2DSharedPtr		m_texture;
 	WallTextureMap			m_textureMap = WallTypeSpace::STANDART_UV_TEXTURE_MAP;
 	glm::vec2				m_positionTile;// need set int value, measured in tiles
 	

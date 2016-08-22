@@ -213,6 +213,9 @@
     <ClInclude Include="World\WeldVertexes.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="Mixin\Material\HaveTexture.h">
+      <Filter>Mixin\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractWindow.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="World\WeldVertexes.cpp">
       <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixin\Material\HaveTexture.cpp">
+      <Filter>Mixin\Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

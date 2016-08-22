@@ -19,7 +19,7 @@ CPlayer::CPlayer()
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
-	, m_visual(20, 20)
+	, m_visual(16, 16)
 {
 	m_collision.SetPVisual(&m_visual);
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
@@ -27,6 +27,7 @@ CPlayer::CPlayer()
 
 CPlayer::CPlayer(const glm::vec3 & position
 				, const glm::vec3 & direction
+				, const std::string & texturePath
 				, CWorld* pWorld)
 	: IActor()
 	, CHave3DPosition()
@@ -34,9 +35,10 @@ CPlayer::CPlayer(const glm::vec3 & position
 	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
 	, m_flashlight(GL_LIGHT1)
-	, m_visual(20, 20)
+	, m_visual(16, 16)
 	, m_pController(std::make_unique<CController>(this))
 {
+	SetTexture(texturePath);
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 	CreatePlayer(position, direction, pWorld);
 }
@@ -125,7 +127,10 @@ void CPlayer::Update(float deltaTime)
 void CPlayer::Draw() const
 {
 	//m_flashlight.Setup();// TODO : fix light
-	m_visual.Draw();
+
+	m_texture->DoWhileBinded([&] {
+		m_visual.Draw();
+	});
 }
 
 void CPlayer::SetCamera(CPlayer::IdCameras id)
