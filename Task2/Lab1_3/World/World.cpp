@@ -50,11 +50,11 @@ void CWorld::Draw() const
 	*/
 
 	// TODO : без текстурировния лабиринта не работают коллизии
-	//m_wallTypes[0].GetTexture()->DoWhileBinded([&] {
+	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {
 		
 	m_map.Draw();
 
-	//});
+	});
 }
 
 void CWorld::Update(float deltaTime)
