@@ -210,9 +210,6 @@
     <ClInclude Include="World\Labyrinth.h">
       <Filter>World</Filter>
     </ClInclude>
-    <ClInclude Include="World\WeldVertexes.h">
-      <Filter>World</Filter>
-    </ClInclude>
     <ClInclude Include="Mixin\Material\HaveTexture.h">
       <Filter>Mixin\Material</Filter>
     </ClInclude>
@@ -363,9 +360,6 @@
       <Filter>Mixin\Material</Filter>
     </ClCompile>
     <ClCompile Include="World\Labyrinth.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
-    <ClCompile Include="World\WeldVertexes.cpp">
       <Filter>World</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\Material\HaveTexture.cpp">

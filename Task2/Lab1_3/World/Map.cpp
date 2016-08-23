@@ -11,6 +11,9 @@ CMap::CMap(const string & mapPath, CWorld* pWorld)
 	, IActor()
 {
 	Create(mapPath, pWorld);
+
+	// Clear map, next it not need
+	m_map.clear();
 }
 
 void CMap::Draw() const
@@ -112,14 +115,7 @@ void CMap::AddTopLevel(size_t length, size_t width)
 
 void CMap::AddMiddleLevel(SDL_Surface & surface)
 {
-	size_t widthCount = 0;
-
-	m_map.resize(1);
-	m_map[0].reserve(surface.w * surface.h);
-
-	Map& middleLevel = m_map[0];
-	/////
-	// 
+	Map middleLevel;
 
 	const auto rowSize = size_t(surface.w * surface.format->BytesPerPixel);
 	std::vector<uint8_t> row(rowSize);
@@ -131,9 +127,8 @@ void CMap::AddMiddleLevel(SDL_Surface & surface)
 
 		std::memcpy(row.data(), upperRow, rowSize);
 		
-		AddBorderSymbolsForRow(row);
 		middleLevel.push_back(row);
-		row.clear();
+		AddBorderSymbolsForRow(middleLevel.back());
 	}
 
 	// Top border row
@@ -141,8 +136,7 @@ void CMap::AddMiddleLevel(SDL_Surface & surface)
 	// Low border row
 	middleLevel.push_back(GenerateRowOfWalls(middleLevel.back()));
 
-	//m_map.push_back(middleLevel);
-
+	m_map.push_back(middleLevel);
 }
 
 CMap::Level CMap::GenerateRowOfWalls(const CMap::Level & borderRow)
@@ -150,18 +144,7 @@ CMap::Level CMap::GenerateRowOfWalls(const CMap::Level & borderRow)
 	Level result;
 	for (size_t index = 1; index < (borderRow.size() - 1); ++index)
 	{
-		/*
-		if (borderRow[index] == RecognizeSymbols[size_t(IdSymbol::Space)])
-		{
-			result += RecognizeSymbols[size_t(IdSymbol::Wall)];
-		}
-		else
-		{
-			result += RecognizeSymbols[size_t(IdSymbol::Space)];
-		}
-		*/
-		result.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
-		
+		result.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);	
 	}
 	// Border symbols
 	result.insert(result.begin(), RecognizeSymbols[size_t(IdSymbol::Wall)]);
@@ -341,8 +324,6 @@ void CMap::SetWorld(CWorld * pWorld)
 	m_pWorld = pWorld;
 }
 
-
-
 size_t CMap::GetIndexWallType(const glm::vec3 & position
 							, size_t length
 							, size_t width)
@@ -371,10 +352,9 @@ bool CMap::WallHaveCollision(int heigth)
 {
 	switch (heigth)
 	{
-	// TODO: create enum with list of height values as constants
-	case -1: case 1: // TODO: what is -1? what is 1?
+	case int(NameLevels::Floor): case int(NameLevels::Ñeiling):
 		return false;
-	case 0: // TODO: what is 0?
+	case int(NameLevels::Wall):
 		return true;
 	default:
 		throw std::runtime_error("Incorrect index");

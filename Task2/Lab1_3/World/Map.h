@@ -55,6 +55,12 @@ private:
 		, Player
 		, Space
 	};
+	enum class NameLevels
+	{
+		Floor = -1
+		, Wall = 0
+		, Ñeiling = 1
+	};
 
 	void					ReadMap(const std::string & mapPath);
 	void					ProcessRow(const Level & row, size_t widthCount, int level);

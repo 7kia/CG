@@ -211,7 +211,6 @@
     <ClInclude Include="World\Wall\Wall.h" />
     <ClInclude Include="World\Wall\WallView.h" />
     <ClInclude Include="World\Wall\WallType.h" />
-    <ClInclude Include="World\WeldVertexes.h" />
     <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +263,6 @@
     <ClCompile Include="World\Wall\Wall.cpp" />
     <ClCompile Include="World\Wall\WallView.cpp" />
     <ClCompile Include="World\Wall\WallType.cpp" />
-    <ClCompile Include="World\WeldVertexes.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Labyrinth.h"
 #include "Map.h"
-#include "WeldVertexes.h"
 
 #include <algorithm>
 #include <boost/phoenix.hpp>

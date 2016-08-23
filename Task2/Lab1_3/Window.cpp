@@ -3,9 +3,6 @@
 #include <boost/range/algorithm/find_if.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
-#include "World\WeldVertexes.h" // TODO : see need it
-
-
 namespace
 {
 
@@ -90,27 +87,6 @@ float GetZKleinBottle(float U, float V)
 CWindow::CWindow()
 {
     SetBackgroundColor(WindowSpace::BLACK);
-
-	/////////////////
-	auto firstTriangle = std::make_shared<C3DTriangle>();
-
-	firstTriangle->SetVertex(0u, SVertexP3NT2(glm::vec3(-1.f, 1.f, 0.f), glm::vec2(1.f, 1.f), glm::vec3(-1.f, 1.f, 0.f)));
-	firstTriangle->SetVertex(1u, SVertexP3NT2(glm::vec3(1.f, 1.f, 0.f), glm::vec2(0.f, 1.f), glm::vec3(1.f, 1.f, 0.f)));
-	firstTriangle->SetVertex(2u, SVertexP3NT2(glm::vec3(1.f, -1.f, 0.f), glm::vec2(0.f, 0.f), glm::vec3(1.f, -1.f, 0.f)));
-
-	auto secondTriangle = std::make_shared<C3DTriangle>();
-
-	secondTriangle->SetVertex(0u, SVertexP3NT2(glm::vec3(1.f, -1.f, 0.f), glm::vec2(0.f, 0.f), glm::vec3(1.f, -1.f, 0.f)));
-	secondTriangle->SetVertex(1u, SVertexP3NT2(glm::vec3(-1.f, -1.f, 0.f), glm::vec2(0.f, 1.f), glm::vec3(1.f, 1.f, 0.f)));
-	secondTriangle->SetVertex(2u, SVertexP3NT2(glm::vec3(-1.f, 1.f, 0.f), glm::vec2(0.f, 0.f), glm::vec3(1.f, -1.f, 0.f)));
-
-	std::vector<std::pair<size_t, size_t>> indexesVertex;
-	indexesVertex.push_back({ 0, 2 });
-	indexesVertex.push_back({ 2, 0 });
-
-	Weld(firstTriangle, secondTriangle, indexesVertex);
-
-	/////////////////
 }
 
 void CWindow::OnWindowInit(const glm::ivec2 &size)
