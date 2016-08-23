@@ -40,6 +40,11 @@ private:
     unsigned m_textureId = 0;
 };
 
-using CTexture2DSharedPtr = std::shared_ptr<CTexture2D>;// TODO : see might need unique_ptr
+using CTexture2DSharedPtr = std::shared_ptr<CTexture2D>;
+
+// TODO : see might need unique_ptr
+// Используем unique_ptr с явно заданной функцией удаления вместо delete.
+using SDLSurfacePtr = std::unique_ptr<SDL_Surface, void(*)(SDL_Surface*)>;
+using SDLPixelFormatPtr = std::unique_ptr<SDL_PixelFormat, void(*)(SDL_PixelFormat*)>;
 
 CTexture2DSharedPtr LoadTexture2DFromBMP(const std::string &path);

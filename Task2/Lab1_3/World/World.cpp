@@ -56,7 +56,7 @@ void CWorld::Update(float deltaTime)
 void CWorld::CreateScene()
 {
 	CreateWallTypes();
-	m_map.Create("map.txt", this);
+	m_map.Create("Resources\\map.bmp", this);
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 
 }

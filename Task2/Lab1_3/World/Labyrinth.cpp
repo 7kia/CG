@@ -21,18 +21,13 @@ void CLabyrinthLevel::AddWall(PWall pWall)
 		{
 			auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
 
-			auto vertexes = currentRectangle->GetVertexes();	
-			auto indexes = currentRectangle->GetIndexes();
+			auto vertexes = currentRectangle->GetVertexes();
 
-			auto append = [&](uint32_t source) {
-				return source + uint32_t(m_indexCount);
-			};
-			boost::transform(indexes, indexes.begin(), append);
-
+			const uint32_t indexOffset = uint32_t(m_vertices.size());
+			boost::transform(currentRectangle->GetIndexes(), std::back_inserter(m_indicies), [&](uint32_t source) {
+				return source + indexOffset;
+			});
 			m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
-			m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
-
-			m_indexCount += currentRectangle->GetAmountVertexes();
 		}
 	}
 

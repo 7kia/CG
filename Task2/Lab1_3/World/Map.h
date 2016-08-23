@@ -8,10 +8,14 @@
 
 namespace MapSpace
 {
-	static const char RecognizeSymbols[] = {
-		  '+'
-		, ' '
-		, '0'
+	static const uint8_t RecognizeSymbols[] = {
+		// 
+		//  '+'
+		//, ' '
+		//, '0'
+		  0x0// Wall
+		, 0x1// Player
+		, 0x2// Spaxe
 	};
 
 	static const int SIZE_BORDER = 1;
@@ -28,6 +32,9 @@ public:
 	CMap(const std::string & mapPath, CWorld* pWorld);
 
 	virtual ~CMap() = default;
+
+	using Level = std::vector<uint8_t>;
+	using Map = std::vector<std::vector<uint8_t>>;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -45,15 +52,15 @@ private:
 	enum class IdSymbol
 	{
 		Wall = 0
-		, Space
 		, Player
+		, Space
 	};
 
-	void					ReadMap(std::ifstream & file);
-	void					ProcessRow(const std::string & row, size_t widthCount, int level);
+	void					ReadMap(const std::string & mapPath);
+	void					ProcessRow(const Level & row, size_t widthCount, int level);
 
 	void					AddTopLevel(size_t length, size_t width);
-	void					AddMiddleLevel(size_t length, size_t width);
+	void					AddMiddleLevel(SDL_Surface & surface);
 	void					AddLowLevel(size_t length, size_t width);
 
 	void					AddWall(const glm::vec3 & position
@@ -77,24 +84,18 @@ private:
 											, size_t length
 											, size_t width);
 	static bool				WallHaveCollision(int heigth);
-	static std::string		GenerateRowOfWalls(const std::string & borderRow);
-	static void				AddBorderSymbolsForRow(std::string & row);
+	static Level			GenerateRowOfWalls(const Level & borderRow);
+	static void				AddBorderSymbolsForRow(Level & row);
 
-	static void				InsertSymbolInRow(std::string & row
-											, std::string::const_iterator where
-											, std::string::const_iterator checkSymbol
-											, CMap::IdSymbol insteadWall
-											, IdSymbol insteadSpace);
 
 	void					ComputeVisibleEdge(size_t width);
 	void					SetWorld(CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	using Level = std::vector<std::string>;
 
 	glm::vec2						m_centerMap;
-	std::vector<Level>				m_map;
+	std::vector<Map>				m_map;
 
 	CLabyrinth						m_labyrinth;
 

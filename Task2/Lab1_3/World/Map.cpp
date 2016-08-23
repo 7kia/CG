@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Map.h"
 #include "World.h"
+#include "../Material/Texture2D.h"
 
 using namespace std;
 using namespace MapSpace;
@@ -26,25 +27,45 @@ void CMap::Update(float deltaTime)
 void CMap::Create(const std::string & mapPath, CWorld * pWorld)
 {
 	SetWorld(pWorld);
-	CheckAndOpenFileForReading(mapPath);
-	ReadMap(m_inputFile);
+
+	//CheckAndOpenFileForReading(mapPath);
+	ReadMap(mapPath);//m_inputFile
 
 	m_labyrinth.ShrinkToFit();
 }
 
-void CMap::ReadMap(ifstream & file)
+void CMap::ReadMap(const std::string & mapPath)
 {
-	size_t length = 0;
-	size_t width = 0;
+	SDLSurfacePtr pSurface(SDL_LoadBMP(mapPath.c_str()), SDL_FreeSurface);
+	if (!pSurface)
+	{
+		throw std::runtime_error("Cannot find texture at " + mapPath);
+	}
 
-	file >> length;
-	file >> width;
+	const GLenum pixelFormat = GL_RGB;
+	switch (pSurface->format->format)
+	{
+	case SDL_PIXELFORMAT_INDEX8:
+		break;
+	case SDL_PIXELFORMAT_RGB24:
+		break;
+	case SDL_PIXELFORMAT_BGR24:
+		pSurface.reset(SDL_ConvertSurfaceFormat(pSurface.get(),
+			SDL_PIXELFORMAT_RGB24, 0));
+		break;
+	default:
+		throw std::runtime_error("Unsupported image pixel format at " + mapPath);
+	}
+
+	size_t length = size_t(pSurface->w);
+	size_t width = size_t(pSurface->h);
+
 
 	m_centerMap = glm::vec2((length / 2.f + MapSpace::SIZE_BORDER) * WallSpace::SIZE
 							, (width / 2.f + MapSpace::SIZE_BORDER) * WallSpace::SIZE);
 
 	// Order changed for optimization
-	AddMiddleLevel(length, width);
+	AddMiddleLevel(*pSurface);
 	AddTopLevel(length, width);
 	AddLowLevel(length, width);
 
@@ -53,7 +74,7 @@ void CMap::ReadMap(ifstream & file)
 	//m_labyrinth.BuildLabyrinth(GetWalls());
 }
 
-void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
+void CMap::ProcessRow(const Level & row, size_t widthCount, int level)
 {
 	for (size_t index = 0; index < row.size(); ++index)
 	{
@@ -74,27 +95,14 @@ void CMap::ProcessRow(const std::string & row, size_t widthCount, int level)
 
 void CMap::AddTopLevel(size_t length, size_t width)
 {
-	Level topLevel;
+	Map topLevel;
 
 	for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
-		string row;
+		Level row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
-		{
-			
-			/*
-			if ((m_map[0][y][x] != RecognizeSymbols[size_t(IdSymbol::Wall)])
-				&& IsBetween(x, size_t(1), m_map[0][0].size() - 2)
-				&& IsBetween(y, size_t(1), m_map[0].size() - 2) )
-			{
-				row += RecognizeSymbols[size_t(IdSymbol::Wall)];
-			}
-			else
-			{
-				row += RecognizeSymbols[size_t(IdSymbol::Space)];
-			}
-			*/
-			row += RecognizeSymbols[size_t(IdSymbol::Wall)];
+		{		
+			row.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
 		}
 		topLevel.push_back(row);
 	}
@@ -102,38 +110,44 @@ void CMap::AddTopLevel(size_t length, size_t width)
 	m_map.emplace_back(topLevel);
 }
 
-void CMap::AddMiddleLevel(size_t length, size_t width)
+void CMap::AddMiddleLevel(SDL_Surface & surface)
 {
 	size_t widthCount = 0;
 
-	Level middleLevel;
-	string inputString;
-	getline(m_inputFile, inputString);// pass string
-	while (getline(m_inputFile, inputString))
+	m_map.resize(1);
+	m_map[0].reserve(surface.w * surface.h);
+
+	Map& middleLevel = m_map[0];
+	/////
+	// 
+
+	const auto rowSize = size_t(surface.w * surface.format->BytesPerPixel);
+	std::vector<uint8_t> row(rowSize);
+
+	for (size_t y = 0, height = size_t(surface.h); y < height; ++y)
 	{
-		if (widthCount > (width - 1))
-		{
-			throw std::runtime_error("Width labyrinth not correspond expected");
-		}
-		if (inputString.size() != length)
-		{
-			throw std::runtime_error("Length row not correspond expected");
-		}
-		// Add in start and end border symbols
-		AddBorderSymbolsForRow(inputString);
-		middleLevel.push_back(inputString);
+		auto *pixels = reinterpret_cast<uint8_t*>(surface.pixels);
+		auto *upperRow = pixels + rowSize * y;
+
+		std::memcpy(row.data(), upperRow, rowSize);
+		
+		AddBorderSymbolsForRow(row);
+		middleLevel.push_back(row);
+		row.clear();
 	}
+
 	// Top border row
 	middleLevel.insert(middleLevel.begin(), GenerateRowOfWalls(middleLevel.front()));
 	// Low border row
 	middleLevel.push_back(GenerateRowOfWalls(middleLevel.back()));
 
-	m_map.push_back(middleLevel);
+	//m_map.push_back(middleLevel);
+
 }
 
-std::string CMap::GenerateRowOfWalls(const std::string & borderRow)
+CMap::Level CMap::GenerateRowOfWalls(const CMap::Level & borderRow)
 {
-	std::string result;
+	Level result;
 	for (size_t index = 1; index < (borderRow.size() - 1); ++index)
 	{
 		/*
@@ -146,7 +160,7 @@ std::string CMap::GenerateRowOfWalls(const std::string & borderRow)
 			result += RecognizeSymbols[size_t(IdSymbol::Space)];
 		}
 		*/
-		result += RecognizeSymbols[size_t(IdSymbol::Wall)];
+		result.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
 		
 	}
 	// Border symbols
@@ -156,38 +170,22 @@ std::string CMap::GenerateRowOfWalls(const std::string & borderRow)
 	return result;
 }
 
-void CMap::AddBorderSymbolsForRow(std::string & row)
+void CMap::AddBorderSymbolsForRow(Level & row)
 {
 	row.insert(row.begin(), RecognizeSymbols[size_t(IdSymbol::Wall)]);
 	row.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
 }
 
-void CMap::InsertSymbolInRow(std::string & row
-							, std::string::const_iterator where
-							, std::string::const_iterator checkSymbol
-							, CMap::IdSymbol insteadWall
-							, CMap::IdSymbol insteadSpace)
-{
-	if (*checkSymbol != RecognizeSymbols[size_t(insteadSpace)])
-	{
-		row.insert(where, RecognizeSymbols[size_t(insteadSpace)]);
-	}
-	else
-	{
-		row.insert(where, RecognizeSymbols[size_t(insteadWall)]);
-	}
-}
-
 void CMap::AddLowLevel(size_t length, size_t width)
 {
-	Level lowLevel;
+	Map lowLevel;
 
 	for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
-		string row;
+		Level row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
-			row += RecognizeSymbols[size_t(IdSymbol::Wall)];
+			row.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
 		}
 		lowLevel.push_back(row);
 	}
@@ -328,7 +326,7 @@ void CMap::ComputeVisibleEdge(size_t width)
 {
 	for (size_t height = 0; height < 3; ++height)
 	{
-		string* row = nullptr;
+		Level* row = nullptr;
 		for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 		{
 			row = &m_map[height][y];
