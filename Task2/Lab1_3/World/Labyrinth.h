@@ -17,7 +17,7 @@ public:
 public:
 	void		AddWall(PWall pWall);
 
-	void		ReallocateMemory();
+	void		ShrinkToFit();
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
@@ -33,7 +33,7 @@ public:
 // Methods
 public:
 	void		AddWall(PWall pWall, size_t index);
-	void		ReallocateMemory();
+	void		ShrinkToFit();
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

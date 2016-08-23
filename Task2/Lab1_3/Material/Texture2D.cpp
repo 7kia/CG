@@ -59,7 +59,7 @@ CTexture2DSharedPtr LoadTexture2DFromBMP(const std::string &path)
     {
         throw std::runtime_error("Cannot find texture at " + path);
     }
-
+	
     const GLenum pixelFormat = GL_RGB;
     switch (pSurface->format->format)
     {

@@ -38,22 +38,9 @@ void CWorld::Draw() const
 
 	m_player.Draw();
 
-	/*
-		for (const IBodySharedPtr &pBody : m_opaqueBodies)
-	{
-		pBody->Draw();
-	}
-	for (const IBodySharedPtr &pBody : m_transparentBodies)
-	{
-		pBody->Draw();
-	}
-	*/
-
 	// TODO : без текстурировния лабиринта не работают коллизии
-	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {
-		
-	m_map.Draw();
-
+	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {	
+		m_map.Draw();
 	});
 }
 

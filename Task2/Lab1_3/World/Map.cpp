@@ -29,7 +29,7 @@ void CMap::Create(const std::string & mapPath, CWorld * pWorld)
 	CheckAndOpenFileForReading(mapPath);
 	ReadMap(m_inputFile);
 
-	m_labyrinth.ReallocateMemory();
+	m_labyrinth.ShrinkToFit();
 }
 
 void CMap::ReadMap(ifstream & file)

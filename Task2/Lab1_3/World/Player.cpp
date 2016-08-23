@@ -83,6 +83,11 @@ void CPlayer::ChangeWorldCamera()
 	m_idCamera = IdCameras::World;
 }
 
+void CPlayer::SwitchFlashLight()
+{
+	m_isFlashLightOn = !m_isFlashLightOn;
+}
+
 /*
 void CPlayer::ChangeCamera()
 {
@@ -105,34 +110,40 @@ void CPlayer::Update(float deltaTime)
 	auto playerPosition = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
 	GetCamera()->SetPosition(playerPosition);
 
-	// Visual part must place over labyrinth in cheat mode
-	if (m_idCamera == IdCameras::Player)
-	{
-		playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
-		m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
-	}
 	const float velocity = GetCurrentLinearVelocity(deltaTime);
 	const float rotationSpeed = GetCurrentRotationSpeed(deltaTime);
 	GetCamera()->Update(deltaTime
 						, velocity
 						, rotationSpeed);
 
-	auto linearVelocity = deltaTime * GetCamera()->GetCurrentDirection() * velocity;
+	auto direction = GetCamera()->GetCurrentDirection();
+	auto linearVelocity = deltaTime * direction * velocity;
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
 
+
+	playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
 	if (m_idCamera == IdCameras::Player)
 	{
+		m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
 		m_collision.Advance(deltaTime);
+		m_flashlight.SetPosition(GetCamera()->GetPosition());
 	}
 
-	m_flashlight.SetPosition(GetPosition());
+	//m_flashlight.SetDirection(direction);
 	ResetCurrentLinearVelocity();
 	ResetCurrentRotationSpeed();
 }
 
 void CPlayer::Draw() const
 {
-	//m_flashlight.Setup();// TODO : fix light
+	if (m_isFlashLightOn)
+	{
+		m_flashlight.Setup();// TODO : fix light
+	}
+	else
+	{
+		m_flashlight.Disable();
+	}
 
 	m_texture->DoWhileBinded([&] {
 		m_visual.Draw();

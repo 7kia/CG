@@ -84,6 +84,8 @@ public:
 	void ChangePlayerCamera();
 	void ChangeWorldCamera();
 
+
+	void SwitchFlashLight();// TODO : rename
 	//--------------------------------------------
 	// IActor
 	void							Update(float deltaTime) override final;
@@ -112,6 +114,8 @@ private:
 	std::array<std::unique_ptr<CAbstractRotatableCamera>, 2>	m_cameras;
 
 	CPositionLightSource			m_flashlight;
+	bool							m_isFlashLightOn = true;
+
 	C2DCircleCollision				m_collision;
 	CIdentity3DSphere				m_visual;
 
@@ -136,6 +140,7 @@ public:
 		, ResetDirectionWalk
 		, ChangePlayerCamera
 		, ChangeWorldCamera
+		, SwitchFlashLight
 		, AmountCommands
 	};
 

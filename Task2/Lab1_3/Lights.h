@@ -15,7 +15,9 @@ class ILightSource
 {
 public:
     virtual ~ILightSource() = default;
-    virtual void Setup()const = 0;
+    virtual void Setup() const = 0;
+	virtual void Disable() const {};// TODO : see need = 0;
+
 };
 
 class CAbstractLightSource
@@ -33,7 +35,7 @@ protected:
     unsigned	GetIndex() const;
 //////////////////////////////////////////////////////////////////////
 // Data
-private:
+protected:
     unsigned	m_index;
 };
 
@@ -61,4 +63,5 @@ public:
 // Methods
 public:
     void Setup() const override;
+	void Disable() const override;
 };

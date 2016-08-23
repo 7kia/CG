@@ -92,6 +92,11 @@ void CPlayer::CController::SetFunctionList()
 
 	SetSkill(IdCommands::ChangeWorldCamera, [&]() { m_master->ChangeWorldCamera(); });
 	SetKeysSkill(IdCommands::ChangeWorldCamera, { SDLK_b }, SDL_KEYDOWN);
+
+
+	SetSkill(IdCommands::SwitchFlashLight, [&]() { m_master->SwitchFlashLight(); });
+	SetKeysSkill(IdCommands::SwitchFlashLight, { SDLK_SPACE }, SDL_KEYUP);
+
 }
 
 void CPlayer::CController::CheckListCommands() const

@@ -21,50 +21,27 @@ void CLabyrinthLevel::AddWall(PWall pWall)
 		{
 			auto currentRectangle = dynamic_cast<C3DRectangle*>(visual->GetShape(index).get());
 
-			auto vertexes = currentRectangle->GetVertexes();
+			auto vertexes = currentRectangle->GetVertexes();	
+			auto indexes = currentRectangle->GetIndexes();
 
-			////////////////////////////////////
-			// Search common vertexes
-			VectorPairsIndexes replaceIndexes = FindCommonVertexes(m_vertices, vertexes);
+			auto append = [&](uint32_t source) {
+				return source + uint32_t(m_indexCount);
+			};
+			boost::transform(indexes, indexes.begin(), append);
 
-			if (true)//!WeldToFirst(this, currentRectangle, replaceIndexes))//
-			{
+			m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
+			m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
 
-				auto indexes = currentRectangle->GetIndexes();
-
-				auto append = [&](uint32_t source) {
-					return source + uint32_t(m_indexCount) * 4;
-				};
-				boost::transform(indexes, indexes.begin(), append);
-
-				m_vertices.insert(m_vertices.end(), vertexes.begin(), vertexes.end());
-				m_indicies.insert(m_indicies.end(), indexes.begin(), indexes.end());
-
-			}
-			
-			////////////////////////////////////
-			
-
-
-			++m_indexCount;
+			m_indexCount += currentRectangle->GetAmountVertexes();
 		}
 	}
 
 }
 
-void CLabyrinthLevel::ReallocateMemory()
+void CLabyrinthLevel::ShrinkToFit()
 {
-	auto vertexes = m_vertices;
-	auto indexes = m_indicies;
-
-	m_vertices.clear();
-	m_vertices.reserve(vertexes.size());
-	m_vertices = vertexes;
-
-	m_indicies.clear();
-	m_indicies.reserve(indexes.size());
-	m_indicies = indexes;
-
+	m_vertices.shrink_to_fit();
+	m_indicies.shrink_to_fit();
 }
 
 CLabyrinth::CLabyrinth()
@@ -83,10 +60,10 @@ void CLabyrinth::AddWall(PWall pWall, size_t index)
 	dynamic_cast<CLabyrinthLevel*>(m_shapes[index].get())->AddWall(pWall);
 }
 
-void CLabyrinth::ReallocateMemory()
+void CLabyrinth::ShrinkToFit()
 {
 	for (auto & level : m_shapes)
 	{
-		dynamic_cast<CLabyrinthLevel*>(level.get())->ReallocateMemory();
+		dynamic_cast<CLabyrinthLevel*>(level.get())->ShrinkToFit();
 	}
 }

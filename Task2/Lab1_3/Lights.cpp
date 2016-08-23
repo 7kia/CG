@@ -59,3 +59,8 @@ void CPositionLightSource::Setup() const
     // в однородных координатах, источник света будет точечным.
     glLightfv(GetIndex(), GL_POSITION, glm::value_ptr(m_position));
 }
+
+void CPositionLightSource::Disable() const
+{
+	glDisable(GLenum(m_index));
+}
