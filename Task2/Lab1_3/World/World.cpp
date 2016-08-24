@@ -2,9 +2,8 @@
 #include "World.h"
 
 CWorld::CWorld()
-	: IDrawable()
+	: IActor()
 	, IInputEventAcceptor()
-	, IUpdatable()
 	, CHaveWallTypes()
 	, CHavePhysicalWorld()
 	, CHavePlayer()

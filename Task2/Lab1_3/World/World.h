@@ -33,9 +33,8 @@ namespace WorldSpace
 }
 
 class CWorld
-	: public IDrawable
+	: public IActor
 	, public IInputEventAcceptor
-	, public IUpdatable
 	, public CHaveWallTypes
 	, public CHavePhysicalWorld
 	, public CHavePlayer

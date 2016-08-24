@@ -7,8 +7,7 @@ using namespace std;
 using namespace MapSpace;
 
 CMap::CMap(const string & mapPath, CWorld* pWorld)
-	: CHaveFileForReading()
-	, IActor()
+	: IActor()
 {
 	Create(mapPath, pWorld);
 
@@ -18,7 +17,6 @@ CMap::CMap(const string & mapPath, CWorld* pWorld)
 
 void CMap::Draw() const
 {
-	// TODO : not work
 	m_labyrinth.Draw();
 }
 

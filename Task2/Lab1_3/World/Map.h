@@ -24,8 +24,7 @@ namespace MapSpace
 class CWorld;
 
 class CMap
-	: public CHaveFileForReading
-	, public IActor
+	: public IActor
 {
 public:
 	CMap() = default;

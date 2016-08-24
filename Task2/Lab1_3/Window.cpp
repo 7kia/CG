@@ -39,49 +39,6 @@ void disableBlending()
 	glDisable(GL_BLEND);
 }
 
-float GetSincFromXY(float x, float y)
-{
-    const float radius = std::hypotf(x, y);
-    if (radius < std::numeric_limits<float>::epsilon())
-    {
-        return 1;
-    }
-    return sinf(radius) / radius;
-}
-
-// MobiusStrip
-float GetXMobiusStrip(float U, float V)
-{
-	return (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U);
-}
-
-float GetYMobiusStrip(float U, float V)
-{
-	return (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U);
-}
-
-float GetZMobiusStrip(float U, float V)
-{
-	return V / 2.f * sinf(U / 2.f);
-}
-
-const float r = 1.f;
-// KleinBottle
-float GetXKleinBottle(float U, float V)
-{
-	return 6.f * cosf(1.f + sinf(U)) + 4.f * r * (1.f - cosf(U / 2.f)) * cosf(U) * cosf(V);
-}
-
-float GetYKleinBottle(float U, float V)
-{
-	return 16.f * sinf(U) + 4.f * r * (1.f - cosf(U / 2.f)) * sinf(U) * cosf(V);
-}
-
-float GetZKleinBottle(float U, float V)
-{
-	return 4.f * r * (1.f - cosf(U / 2.f)) * sinf(V);
-}
-
 }
 
 CWindow::CWindow()

@@ -165,7 +165,7 @@ void CPlayer::SetCameras(const glm::vec3 & direction)
 	m_cameras[unsigned(IdCameras::Player)] = std::make_unique<CPlayerCamera>();
 	m_cameras[unsigned(IdCameras::Player)]->SetDirection(direction);
 
-	m_cameras[unsigned(IdCameras::World)] = std::make_unique<CWorldCamera>(0.f, 2.5f);
+	m_cameras[unsigned(IdCameras::World)] = std::make_unique<CWorldCamera>(0.f, 15.5f);
 
 	SetCamera(IdCameras::Player);
 }
