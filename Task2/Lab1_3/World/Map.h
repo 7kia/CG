@@ -45,7 +45,6 @@ public:
 	void							Update(float deltaTime) override final;
 	//--------------------------------------------
 
-	// TODO : do call-once
 	void							Create(const std::string & mapPath, CWorld* pWorld);
 private:
 	enum class IdSymbol

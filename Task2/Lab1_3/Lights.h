@@ -10,6 +10,8 @@
 
 #include "Mixin\HaveDirection.h"
 #include "Mixin\Have3DPosition.h"
+#include "Mixin\Drawable.h"
+#include "3DShape\3DSphere.h"
 
 class ILightSource
 {
@@ -22,6 +24,7 @@ public:
 
 class CAbstractLightSource
         : public ILightSource
+		, public IDrawable
 		, public CMaterialCharactiristics
         , private boost::noncopyable
 {
@@ -33,10 +36,13 @@ public:
 protected:
     void		SetupImpl() const;
     unsigned	GetIndex() const;
+
+	void		Draw() const override;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-    unsigned	m_index;
+    unsigned			m_index;
+	CIdentity3DSphere	m_visual;
 };
 
 class CDirectedLightSource 
@@ -64,4 +70,7 @@ public:
 public:
     void Setup() const override;
 	void Disable() const override;
+
+	void		Draw() const override;
+
 };

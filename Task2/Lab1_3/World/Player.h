@@ -78,13 +78,13 @@ public:
 	void							Draw() const override final;
 	//--------------------------------------------
 
-	// TODO : call-once
 	void							CreatePlayer(const glm::vec3 & position
 												, const glm::vec3 & direction
 												, CWorld* pWorld);
 	CAbstractRotatableCamera*		GetCamera();// TODO : see need there cons
 
 private:
+	////////////////////////////////////////////////////////////
 	// Commands
 	void							TurnLeft();
 	void							TurnRight();
@@ -98,7 +98,7 @@ private:
 	void							ChangeWorldCamera();
 
 	void							SwitchFlashLight();
-
+	////////////////////////////////////////////////////////////
 
 
 	void							SetCamera(CPlayer::IdCameras id);

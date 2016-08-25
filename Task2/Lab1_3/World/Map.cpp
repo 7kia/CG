@@ -6,6 +6,8 @@
 using namespace std;
 using namespace MapSpace;
 
+std::once_flag mapIsCreate;
+
 CMap::CMap(const string & mapPath, CWorld* pWorld)
 	: IActor()
 {
@@ -27,12 +29,15 @@ void CMap::Update(float deltaTime)
 
 void CMap::Create(const std::string & mapPath, CWorld * pWorld)
 {
-	SetWorld(pWorld);
+	std::call_once(mapIsCreate, 
+		[&]() {
+			SetWorld(pWorld);
 
-	//CheckAndOpenFileForReading(mapPath);
-	ReadMap(mapPath);//m_inputFile
+			ReadMap(mapPath);
 
-	m_labyrinth.ShrinkToFit();
+			m_labyrinth.ShrinkToFit();
+		}
+	);
 }
 
 void CMap::ReadMap(const std::string & mapPath)

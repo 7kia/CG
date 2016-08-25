@@ -68,6 +68,7 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 		throw std::runtime_error("Player position not define");
 	}
 
+
 	m_player.CreatePlayer(position, direction, this);
 	m_player.SetTexture(TextureSpace::TexturePaths[1]);
 }

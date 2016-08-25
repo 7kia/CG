@@ -2,6 +2,9 @@
 #include "Player.h"
 #include "World.h"
 
+std::once_flag playerIsCreate;
+
+
 CPlayer::SSkill::SSkill(const std::function<void()> function
 						, const KeyList & keys
 						, const EventType type)
@@ -121,12 +124,18 @@ void CPlayer::Update(float deltaTime)
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
 
 
-	playerPosition.y = PlayerSpace::HEIGHT_VISUAL_PART;
 	if (m_idCamera == IdCameras::Player)
 	{
 		m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
 		m_collision.Advance(deltaTime);
-		m_flashlight.SetPosition(GetCamera()->GetPosition());
+
+
+		//playerPosition.y = 1.f;// PlayerSpace::HEIGHT_VISUAL_PART;
+
+		//std::swap(playerPosition.x, playerPosition.z);
+		playerPosition += direction * 2.f;
+		playerPosition.y = 1.5f;
+		m_flashlight.SetPosition(playerPosition);
 	}
 
 	//m_flashlight.SetDirection(direction);
@@ -144,6 +153,7 @@ void CPlayer::Draw() const
 	{
 		m_flashlight.Disable();
 	}
+	//m_flashlight.Draw();
 
 	m_texture->DoWhileBinded([&] {
 		m_visual.Draw();
@@ -180,8 +190,6 @@ void CPlayer::SetCollison(CWorld* pWorld)
 	m_collision.SetPosition(position.x, position.y);
 	m_collision.SetVelocity(glm::vec2());
 
-
-	//m_visual.SetType(m_pWorld->GetWallType(0));
 	m_visual.SetTransform(glm::translate(glm::mat4(), position));
 
 	m_collision.AddToWorld(pWorld->GetWorld());
@@ -191,15 +199,21 @@ void CPlayer::CreatePlayer(const glm::vec3 & position
 	, const glm::vec3 & direction
 	, CWorld* pWorld)
 {
-	m_collision.SetPVisual(&m_visual);
+	std::call_once(playerIsCreate,
+		[&]()
+		{
+			m_collision.SetPVisual(&m_visual);
 
-	SetCameras(direction);
+			SetCameras(direction);
 
-	GetCamera()->SetPosition(position);
-	SetCollison(pWorld);
+			GetCamera()->SetPosition(position);
+			SetCollison(pWorld);
 
-	m_flashlight.SetPosition(position);
-	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
-	m_flashlight.SetAmbient(0.1f * PlayerSpace::WHITE_RGBA);
-	m_flashlight.SetSpecular(PlayerSpace::WHITE_RGBA);
+			m_flashlight.SetPosition(position);
+			m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);
+			m_flashlight.SetAmbient(0.1f * PlayerSpace::WHITE_RGBA);
+			m_flashlight.SetSpecular(PlayerSpace::WHITE_RGBA);
+		}
+	);
+	
 }

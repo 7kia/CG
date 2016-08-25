@@ -9,8 +9,10 @@ namespace
 
 CAbstractLightSource::CAbstractLightSource(unsigned index)
     : ILightSource()
+	, IDrawable()
 	, CMaterialCharactiristics()
 	, m_index(index)
+	, m_visual(20, 20)
 {
 }
 
@@ -28,6 +30,11 @@ void CAbstractLightSource::SetupImpl() const
 unsigned CAbstractLightSource::GetIndex() const
 {
     return m_index;
+}
+
+void CAbstractLightSource::Draw() const
+{
+	m_visual.Draw();
 }
 
 CDirectedLightSource::CDirectedLightSource(unsigned index)
@@ -63,4 +70,17 @@ void CPositionLightSource::Setup() const
 void CPositionLightSource::Disable() const
 {
 	glDisable(GLenum(m_index));
+}
+
+void CPositionLightSource::Draw() const
+{
+	glPushMatrix();
+
+	const glm::vec3 position3D = { m_position.x, m_position.y, m_position.z };
+	auto transform = glm::translate(glm::mat4(), position3D);
+	glMultMatrixf(glm::value_ptr(transform));
+
+	CAbstractLightSource::Draw();
+
+	glPopMatrix();
 }
