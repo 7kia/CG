@@ -68,6 +68,6 @@ private:
 	//std::vector<IBodySharedPtr>		m_transparentBodies;
 	CMap							m_map;
 
-	CPhongModelMaterial m_material;// TODO : transfer
-	CDirectedLightSource m_sunlight;
+	CPhongModelMaterial				m_material;// TODO : transfer
+	CDirectedLightSource			m_sunlight;
 };
