@@ -171,7 +171,7 @@ void CPlayer::SetCameras(const glm::vec3 & direction)
 }
 
 
-void CPlayer::SetCollison()
+void CPlayer::SetCollison(CWorld* pWorld)
 {
 	m_collision.SetRadius(1.f);
 	m_collision.SetReferenceSystemOrigin(glm::vec2());
@@ -184,12 +184,7 @@ void CPlayer::SetCollison()
 	//m_visual.SetType(m_pWorld->GetWallType(0));
 	m_visual.SetTransform(glm::translate(glm::mat4(), position));
 
-	m_collision.AddToWorld(m_pWorld->GetWorld());
-}
-
-void CPlayer::SetWorld(CWorld * pWorld)
-{
-	m_pWorld = pWorld;
+	m_collision.AddToWorld(pWorld->GetWorld());
 }
 
 void CPlayer::CreatePlayer(const glm::vec3 & position
@@ -201,8 +196,7 @@ void CPlayer::CreatePlayer(const glm::vec3 & position
 	SetCameras(direction);
 
 	GetCamera()->SetPosition(position);
-	SetWorld(pWorld);
-	SetCollison();
+	SetCollison(pWorld);
 
 	m_flashlight.SetPosition(position);
 	m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);

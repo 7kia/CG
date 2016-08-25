@@ -55,10 +55,10 @@ public:
 	// IUpdatable
 	void							Update(float deltaTime);
 	//--------------------------------------------
-
-
-	// TODO : do call_once
 	void							CreateScene();
+
+private:
+	// TODO : do call_once
 	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 //////////////////////////////////////////////////////////////////////
 // Data

@@ -72,37 +72,39 @@ public:
 		Player = 0
 		, World
 	};
-
-	void TurnLeft();
-	void TurnRight();
-	void ResetDirectionRotation();
-
-	void GoForward();
-	void GoBack();
-	void ResetDirectionWalk();
-
-	void ChangePlayerCamera();
-	void ChangeWorldCamera();
-
-
-	void SwitchFlashLight();// TODO : rename
 	//--------------------------------------------
 	// IActor
 	void							Update(float deltaTime) override final;
 	void							Draw() const override final;
 	//--------------------------------------------
-	void							SetCamera(CPlayer::IdCameras id);
-	CAbstractRotatableCamera*		GetCamera();// TODO : see need there const
 
-
-	void							SetWorld(CWorld* pWorld);
 	// TODO : call-once
 	void							CreatePlayer(const glm::vec3 & position
 												, const glm::vec3 & direction
 												, CWorld* pWorld);
+	CAbstractRotatableCamera*		GetCamera();// TODO : see need there cons
+
 private:
+	// Commands
+	void							TurnLeft();
+	void							TurnRight();
+	void							ResetDirectionRotation();
+
+	void							GoForward();
+	void							GoBack();
+	void							ResetDirectionWalk();
+
+	void							ChangePlayerCamera();
+	void							ChangeWorldCamera();
+
+	void							SwitchFlashLight();
+
+
+
+	void							SetCamera(CPlayer::IdCameras id);
+
 	void							SetCameras(const glm::vec3 & direction);
-	void							SetCollison();
+	void							SetCollison(CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
@@ -118,8 +120,6 @@ private:
 
 	C2DCircleCollision				m_collision;
 	CIdentity3DSphere				m_visual;
-
-	CWorld*							m_pWorld;// For add physic body
 };
 
 class CPlayer::CController
