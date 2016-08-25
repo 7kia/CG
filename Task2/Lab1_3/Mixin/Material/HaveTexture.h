@@ -22,7 +22,7 @@ public:
 public:
 	void					SetTexture(const std::string & texturePath);
 	void					SetTexture(CTexture2DSharedPtr pTexture);
-	CTexture2DSharedPtr		GetTexture() const; // TODO: return reference
+	CTexture2DSharedPtr		GetTexture() const;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

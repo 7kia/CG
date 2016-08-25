@@ -2,7 +2,6 @@
 
 #include "Camera.h"
 
-// TODO : rename
 class CWorldCamera
 	: public CAbstractRotatableCamera
 	, private boost::noncopyable

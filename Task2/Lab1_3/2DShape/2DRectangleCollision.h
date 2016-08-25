@@ -8,7 +8,6 @@
 #include "Static2DShape.h"
 #include "Rectangle.h"
 
-// TODO: stop mix in me!
 class C2DRectangleCollision final
 	: public CStatic2DShape
 	, public CRectangle
@@ -26,7 +25,7 @@ public:
 public:
 	static void			AddRectangleToBody(b2Body *body
 											, SSize size
-											, const glm::vec2 & shapeOrigin);// TODO : see need transfer
+											, const glm::vec2 & shapeOrigin);
 	//--------------------------------------------
 	// IStatic2DShape
 	void				AddToWorld(b2World * world) override;

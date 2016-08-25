@@ -24,7 +24,7 @@ public:
 // Methods
 public:
 	virtual void				AddToWorld(b2World * world) = 0;
-	virtual void				Advance(float dt) = 0;// TODO : see need this
+	virtual void				Advance(float dt) = 0;
 
 //////////////////////////////////////////////////////////////////////
 // Methods

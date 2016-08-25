@@ -23,8 +23,6 @@ public:
     {
         Bind();
         // При выходе из функции надо обязательно сделать Unbind.
-       
-		// TODO : see need it
 		// remove because was warnigns
 		//BOOST_SCOPE_EXIT_ALL() {
 		//	Unbind();
@@ -42,7 +40,6 @@ private:
 
 using CTexture2DSharedPtr = std::shared_ptr<CTexture2D>;
 
-// TODO : see might need unique_ptr
 // Используем unique_ptr с явно заданной функцией удаления вместо delete.
 using SDLSurfacePtr = std::unique_ptr<SDL_Surface, void(*)(SDL_Surface*)>;
 using SDLPixelFormatPtr = std::unique_ptr<SDL_PixelFormat, void(*)(SDL_PixelFormat*)>;

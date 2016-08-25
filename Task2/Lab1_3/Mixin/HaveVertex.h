@@ -46,15 +46,15 @@ public:
 	virtual void							SetIndex(size_t index, uint32_t newIndex) = 0;
 	virtual uint32_t						GetIndex(size_t index) const = 0;
 
-	virtual void							CheckVertexIndex(size_t index) const = 0;;// TODO : see need transfer to other place	
-	virtual void							CheckIdIndex(size_t index) const = 0;;// TODO : rename												  
+	virtual void							CheckVertexIndex(size_t index) const = 0;;	
+	virtual void							CheckIdIndex(size_t index) const = 0;;											  
 
 };
 
 class CHaveVertexes : public IHaveVertex
 {
 public:
-	CHaveVertexes();// TODO: delete parametr
+	CHaveVertexes();
 	CHaveVertexes(size_t size);
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -86,7 +86,7 @@ public:
 
 
 	void							CheckVertexIndex(size_t index) const override final;	
-	void							CheckIdIndex(size_t index) const override final;// TODO : rename												  
+	void							CheckIdIndex(size_t index) const override final;											  
 
 //////////////////////////////////////////////////////////////////////
 // Data

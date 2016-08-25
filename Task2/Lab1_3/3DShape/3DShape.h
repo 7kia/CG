@@ -22,7 +22,7 @@
 #include "../Mixin/Transformable.h"
 
 
-namespace// TODO : rewrite this namespace
+namespace
 {
 	typedef glm::vec3 Vertex;
 

@@ -30,8 +30,8 @@ void CDynamicBody::SetVelocity(const glm::vec2 & value)
 
 void CDynamicBody::ApplyAcceleration(const glm::vec2 & acceleration)
 {
-	const glm::vec2 convertAcceleration = Convert::ToBox(acceleration);//, true
-	m_body->ApplyForceToCenter(b2Vec2(convertAcceleration.x, convertAcceleration.y));// TODO : what is wake?
+	const glm::vec2 convertAcceleration = Convert::ToBox(acceleration);
+	m_body->ApplyForceToCenter(b2Vec2(convertAcceleration.x, convertAcceleration.y));
 }
 
 void CDynamicBody::ResetVelocity()

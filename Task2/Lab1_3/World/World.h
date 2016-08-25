@@ -63,10 +63,8 @@ private:
 // Data
 
 private:
-	//std::vector<IBodySharedPtr>		m_opaqueBodies;// TODO : see need it's
-	//std::vector<IBodySharedPtr>		m_transparentBodies;
 	CMap							m_map;
 
-	CPhongModelMaterial				m_material;// TODO : transfer
+	CPhongModelMaterial				m_material;
 	CDirectedLightSource			m_sunlight;
 };

@@ -15,7 +15,6 @@ namespace PlayerCameraSpace
 }
 
 
-// TODO : rename
 class CPlayerCamera final
 	: public CAbstractRotatableCamera
 	, private boost::noncopyable

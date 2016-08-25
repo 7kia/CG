@@ -20,7 +20,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	void		SetTransform(const glm::mat4 &transform) override;// TODO : see might would need "final"
+	void		SetTransform(const glm::mat4 &transform) override;
 	glm::mat4	GetTransform() const override;
 
 //////////////////////////////////////////////////////////////////////

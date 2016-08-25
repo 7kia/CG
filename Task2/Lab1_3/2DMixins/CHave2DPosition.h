@@ -14,7 +14,7 @@ namespace Convert
 }
 
 //
-// TODO : Coordinates accept in world coordinate system and convert to Box2d system
+// Coordinates accept in world coordinate system and convert to Box2d system
 //
 class IHave2DPosition
 {

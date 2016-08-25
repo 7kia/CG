@@ -45,9 +45,7 @@ void C2DCircleCollision::AddCircleToBody(b2Body *body, float radius)
 	circle.restitution = 0.5f;
 
 	// Add the shape to the body.
-	body->CreateFixture(&circle);// TODO : magic value
-
-	//m_body->CreateFixture(&circle, 2);
+	body->CreateFixture(&circle);
 }
 
 void C2DCircleCollision::CheckParametres()

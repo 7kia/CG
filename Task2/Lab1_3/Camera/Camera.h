@@ -11,12 +11,6 @@
 #include "../Mixin/Have3DPosition.h"
 #include "../Mixin/HaveDirection.h"
 
-namespace CameraSpace
-{
-	// TODO : see need transfer
-
-}
-
 class CAbcstartCamera
 	: public CHave3DPosition
 	, public CHaveDirection

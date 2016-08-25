@@ -18,7 +18,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	static void		AddCircleToBody(b2Body *body, float radiuse);// TODO : see need transfer
+	static void		AddCircleToBody(b2Body *body, float radiuse);
 	//--------------------------------------------
 	// IStatic2DShape
 	void			AddToWorld(b2World * world) override;

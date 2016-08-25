@@ -10,11 +10,7 @@ CStatic2DShape::CStatic2DShape()
 	m_defBody.position.x = NONE_VALUE::FLOAT;
 	m_defBody.position.y = NONE_VALUE::FLOAT;
 
-	//m_defBody.angle = NONE_VALUE::FLOAT; // TODO : see need define this
-
 	m_referenceSystemOrigin = NONE_VALUE::GLM_VEC2;
-	//m_shapeOrigin = NONE_VALUE::GLM_VEC2; // TODO : see need define this
-
 }
 
 void CStatic2DShape::SetPosition(const glm::vec2 & position)
@@ -76,26 +72,9 @@ void CStatic2DShape::CheckParametres()
 		throw std::runtime_error("Not define position!!!");
 	}
 
-	/*// TODO : see need define this
-		if (m_defBody.angle == NONE_VALUE::FLOAT)
-	{
-		throw std::runtime_error("Not define angle!!!");
-	}
-
-	*/
-
 	if (m_referenceSystemOrigin == NONE_VALUE::GLM_VEC2)
 	{
 		throw std::runtime_error("Not define reference system origin!!!");
 	}
-
-	/* // TODO : see need define this
-		if (m_shapeOrigin == NONE_VALUE::GLM_VEC2)
-	{
-		throw std::runtime_error("Not define shape origin!!!");
-	}
-
-	*/
-
 }
 

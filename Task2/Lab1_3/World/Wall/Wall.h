@@ -40,7 +40,7 @@ public:
 	void							Move(const glm::vec3 &value) override;
 	//--------------------------------------------
 	// ITransformable
-	void							SetTransform(const glm::mat4 &transform) override;// TODO : see might would need "final"
+	void							SetTransform(const glm::mat4 &transform) override;
 	glm::mat4						GetTransform() const override;
 	//--------------------------------------------
 
@@ -61,7 +61,9 @@ private:
 	CWallView										m_visual;
 
 	bool											m_haveCollision = false;
-	std::shared_ptr<C2DRectangleCollision>			m_collision; // TODO: why shared_ptr
+
+	// is shared_ptr because allocate memory if need collision
+	std::shared_ptr<C2DRectangleCollision>			m_collision; 
 };
 
 using PWall = std::shared_ptr<CWall>;

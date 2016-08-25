@@ -53,8 +53,10 @@ void CWall::SetVisible(bool value)
 
 void CWall::CheckVisibleIndex(size_t index) const
 {
-	(void)index;
-	// TODO : rewrite the method
+	if (!IsBetween(index, 0llu, m_visual.GetAmountShapes()))
+	{
+		throw std::runtime_error("Wall have not the index");
+	}
 }
 
 void CWall::SetPosition(const glm::vec3 & value)
