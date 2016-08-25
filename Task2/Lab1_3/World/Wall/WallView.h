@@ -76,7 +76,7 @@ public:
 	const CWallViewType*		GetType() const override;
 	//--------------------------------------------
 	// ITransformable
-	void						SetTransform(const glm::mat4 &transform) override;
+	void						SetTransform(const glm::mat4 & transform) override;
 	//--------------------------------------------
 private:
 	CTexture2DSharedPtr			GetTexture() const;

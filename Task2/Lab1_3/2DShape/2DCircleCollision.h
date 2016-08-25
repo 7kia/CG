@@ -24,10 +24,7 @@ public:
 	// IStatic2DShape
 	void			AddToWorld(b2World * world) override;
 
-	// Update visual part
 	void			Advance(float dt) override;
-	// Set visual part before create body, because view can have
-	// different from body
 //////////////////////////////////////////////////////////////////////
 // Methods
 private:
@@ -38,6 +35,4 @@ private:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	// These visual part player , the part will empty, player not draw
-	//CCircleView		m_visual;
 };
