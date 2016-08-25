@@ -32,9 +32,6 @@ public:
 	void							SetVisible(bool value) override;
 	void							SetVisible(size_t index, bool value) override;
 	bool							GetVisible(size_t index) const override;
-
-
-	void							CheckVisibleIndex(size_t index) const override;
 	//--------------------------------------------
 	// IHave3DPosition
 	void							SetPosition(const glm::vec3 &value) override;
@@ -55,6 +52,8 @@ public:
 	// for buiding labyrinth
 	const CWallView*				GetVisual() const;
 private:
+	void							CheckVisibleIndex(size_t index) const override;
+
 	bool							CheckContentCollision() const;
 //////////////////////////////////////////////////////////////////////
 // Data

@@ -80,7 +80,7 @@ void CMap::ReadMap(const std::string & mapPath)
 	//m_labyrinth.BuildLabyrinth(GetWalls());
 }
 
-void CMap::ProcessRow(const Level & row, size_t widthCount, int level)
+void CMap::ProcessRow(const Row & row, size_t widthCount, int level)
 {
 	for (size_t index = 0; index < row.size(); ++index)
 	{
@@ -101,11 +101,11 @@ void CMap::ProcessRow(const Level & row, size_t widthCount, int level)
 
 void CMap::AddTopLevel(size_t length, size_t width)
 {
-	Map topLevel;
+	Level topLevel;
 
 	for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
-		Level row;
+		Row row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{		
 			row.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
@@ -118,7 +118,7 @@ void CMap::AddTopLevel(size_t length, size_t width)
 
 void CMap::AddMiddleLevel(SDL_Surface & surface)
 {
-	Map middleLevel;
+	Level middleLevel;
 
 	const auto rowSize = size_t(surface.w * surface.format->BytesPerPixel);
 	std::vector<uint8_t> row(rowSize);
@@ -142,9 +142,9 @@ void CMap::AddMiddleLevel(SDL_Surface & surface)
 	m_map.push_back(middleLevel);
 }
 
-CMap::Level CMap::GenerateRowOfWalls(const CMap::Level & borderRow)
+CMap::Row CMap::GenerateRowOfWalls(const CMap::Row & borderRow)
 {
-	Level result;
+	Row result;
 	for (size_t index = 1; index < (borderRow.size() - 1); ++index)
 	{
 		result.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);	
@@ -156,7 +156,7 @@ CMap::Level CMap::GenerateRowOfWalls(const CMap::Level & borderRow)
 	return result;
 }
 
-void CMap::AddBorderSymbolsForRow(Level & row)
+void CMap::AddBorderSymbolsForRow(Row & row)
 {
 	row.insert(row.begin(), RecognizeSymbols[size_t(IdSymbol::Wall)]);
 	row.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
@@ -164,11 +164,11 @@ void CMap::AddBorderSymbolsForRow(Level & row)
 
 void CMap::AddLowLevel(size_t length, size_t width)
 {
-	Map lowLevel;
+	Level lowLevel;
 
 	for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 	{
-		Level row;
+		Row row;
 		for (size_t x = 0; x < (length + 2 * MapSpace::SIZE_BORDER); ++x)
 		{
 			row.push_back(RecognizeSymbols[size_t(IdSymbol::Wall)]);
@@ -312,7 +312,7 @@ void CMap::ComputeVisibleEdge(size_t width)
 {
 	for (size_t height = 0; height < 3; ++height)
 	{
-		Level* row = nullptr;
+		Row* row = nullptr;
 		for (size_t y = 0; y < (width + 2 * MapSpace::SIZE_BORDER); ++y)
 		{
 			row = &m_map[height][y];

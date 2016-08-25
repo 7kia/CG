@@ -32,8 +32,8 @@ public:
 
 	virtual ~CMap() = default;
 
-	using Level = std::vector<uint8_t>;
-	using Map = std::vector<std::vector<uint8_t>>;
+	using Row = std::vector<uint8_t>;
+	using Level = std::vector<std::vector<uint8_t>>;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -61,7 +61,7 @@ private:
 	};
 
 	void					ReadMap(const std::string & mapPath);
-	void					ProcessRow(const Level & row, size_t widthCount, int level);
+	void					ProcessRow(const Row & row, size_t widthCount, int level);
 
 	void					AddTopLevel(size_t length, size_t width);
 	void					AddMiddleLevel(SDL_Surface & surface);
@@ -88,8 +88,8 @@ private:
 											, size_t length
 											, size_t width);
 	static bool				WallHaveCollision(int heigth);
-	static Level			GenerateRowOfWalls(const Level & borderRow);
-	static void				AddBorderSymbolsForRow(Level & row);
+	static Row				GenerateRowOfWalls(const Row & borderRow);
+	static void				AddBorderSymbolsForRow(Row & row);
 
 
 	void					ComputeVisibleEdge(size_t width);
@@ -99,7 +99,7 @@ private:
 private:
 
 	glm::vec2						m_centerMap;
-	std::vector<Map>				m_map;
+	std::vector<Level>				m_map;
 
 	CLabyrinth						m_labyrinth;
 
