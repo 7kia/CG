@@ -4,21 +4,16 @@
 C2DRectangleCollision::C2DRectangleCollision()
 	: CStatic2DShape()
 	, CRectangle()
-	, CHaveReferenceToC3DShape()
 {
 	SetReferenceSystemOrigin(glm::vec2());
 }
 
 C2DRectangleCollision::C2DRectangleCollision(const glm::vec2 & leftTopPoint
 			, SSize size
-			, float rotate
-			, C3DShape* pVisual)
+			, float rotate)
 	: CStatic2DShape()
 	, CRectangle(size)
-	, CHaveReferenceToC3DShape()
 {
-	SetPVisual(pVisual);
-
 	SetPosition(leftTopPoint);
 	SetRotation(rotate);
 

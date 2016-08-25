@@ -24,7 +24,6 @@ CPlayer::CPlayer()
 	, m_pController(std::make_unique<CController>(this))
 	, m_visual(16, 16)
 {
-	m_collision.SetPVisual(&m_visual);
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 }
 
@@ -202,8 +201,6 @@ void CPlayer::CreatePlayer(const glm::vec3 & position
 	std::call_once(playerIsCreate,
 		[&]()
 		{
-			m_collision.SetPVisual(&m_visual);
-
 			SetCameras(direction);
 
 			GetCamera()->SetPosition(position);

@@ -109,7 +109,6 @@ void CWall::SetHaveCollision(bool value)
 	if (value)
 	{
 		m_collision = std::make_shared<C2DRectangleCollision>();
-		m_collision->SetPVisual(&m_visual);
 	}
 }
 

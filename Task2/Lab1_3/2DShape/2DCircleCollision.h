@@ -9,13 +9,12 @@
 class C2DCircleCollision
 	: public CDynamicBody
 	, public CCircle
-	, public CHaveReferenceToC3DShape
 	, private boost::noncopyable
 
 {
 public:
 	C2DCircleCollision();
-	C2DCircleCollision(float radius, const glm::vec2 &position, C3DShape* pVisual);
+	C2DCircleCollision(float radius, const glm::vec2 &position);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

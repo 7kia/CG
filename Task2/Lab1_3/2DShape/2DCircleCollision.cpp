@@ -4,17 +4,14 @@
 C2DCircleCollision::C2DCircleCollision()
 	: CDynamicBody()
 	, CCircle()
-	, CHaveReferenceToC3DShape()
 {
 	//SetOrigin(glm::vec2(DEFAULT_BALL::RADIUSE / 2.f, DEFAULT_BALL::RADIUSE / 2.f));
 }
 
-C2DCircleCollision::C2DCircleCollision(float radius, const glm::vec2 &position, C3DShape* pVisual)
+C2DCircleCollision::C2DCircleCollision(float radius, const glm::vec2 &position)
 	: CDynamicBody()
 	, CCircle(radius)
-	, CHaveReferenceToC3DShape()
 {
-	SetPVisual(pVisual);
 	SetPosition(position);
 }
 

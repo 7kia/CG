@@ -12,7 +12,6 @@
 class C2DRectangleCollision final
 	: public CStatic2DShape
 	, public CRectangle
-	, public CHaveReferenceToC3DShape
 	, private boost::noncopyable
 {
 public:
@@ -20,7 +19,6 @@ public:
 	C2DRectangleCollision(const glm::vec2 & leftTopPoint
 		, SSize size
 		, float rotate
-		, C3DShape* pVisual
 	);
 	virtual ~C2DRectangleCollision() = default;
 //////////////////////////////////////////////////////////////////////
