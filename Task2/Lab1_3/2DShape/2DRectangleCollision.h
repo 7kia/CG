@@ -3,7 +3,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "../World/Wall/WallView.h"
-#include "../Mixin/HaveReferenceToC3DShape.h"
 
 #include "Static2DShape.h"
 #include "Rectangle.h"

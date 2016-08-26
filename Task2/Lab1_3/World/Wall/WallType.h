@@ -5,7 +5,6 @@
 
 using WallTextureMap = std::array<glm::vec2, 4>;
 
-// TODO : see need transfer to cpp-file
 namespace WallTypeSpace
 {
 	enum class Id
@@ -21,14 +20,6 @@ namespace WallTypeSpace
 	const unsigned HEIGHT_MAP = 2;
 	const unsigned SIZE_TILE = 750;
 
-	/*
-	// TODO : see need its
-	// old
-	PATH_TO_RECOURCES + "brick.bmp",
-	PATH_TO_RECOURCES + "plank.bmp",
-	PATH_TO_RECOURCES + "arch.bmp",
-
-	*/
 
 	const WallTextureMap STANDART_UV_TEXTURE_MAP =
 	{
@@ -67,7 +58,6 @@ private:
 	
 };
 
-// TODO : might need transfer
 class IHavePointerToWallViewType
 {
 public:

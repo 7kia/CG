@@ -191,7 +191,6 @@
     <ClInclude Include="Mixin\HaveFileForWriting.h" />
     <ClInclude Include="Mixin\HaveLinearVelocity.h" />
     <ClInclude Include="Mixin\Have3DPosition.h" />
-    <ClInclude Include="Mixin\HaveReferenceToC3DShape.h" />
     <ClInclude Include="Mixin\HaveRotationSpeed.h" />
     <ClInclude Include="Mixin\HaveVertex.h" />
     <ClInclude Include="Mixin\HaveVisiblePart.h" />
@@ -245,7 +244,6 @@
     <ClCompile Include="Mixin\HaveFileForWriting.cpp" />
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp" />
     <ClCompile Include="Mixin\Have3DPosition.cpp" />
-    <ClCompile Include="Mixin\HaveReferenceToC3DShape.cpp" />
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp" />
     <ClCompile Include="Mixin\HaveVertex.cpp" />
     <ClCompile Include="Mixin\HaveVisiblePart.cpp" />

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../World/Wall/WallView.h"
-#include "../Mixin/HaveReferenceToC3DShape.h"
 
 #include "Dynamic2DShape.h"
 #include "Circle.h"

@@ -198,9 +198,6 @@
     <ClInclude Include="World\HavePhysicalWorld.h">
       <Filter>World</Filter>
     </ClInclude>
-    <ClInclude Include="Mixin\HaveReferenceToC3DShape.h">
-      <Filter>2DMixins</Filter>
-    </ClInclude>
     <ClInclude Include="World\HavePlayer.h">
       <Filter>World</Filter>
     </ClInclude>
@@ -352,9 +349,6 @@
     </ClCompile>
     <ClCompile Include="World\HavePlayer.cpp">
       <Filter>World</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\HaveReferenceToC3DShape.cpp">
-      <Filter>3DShape</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\Material\MaterialCharacteristics.cpp">
       <Filter>Mixin\Material</Filter>
