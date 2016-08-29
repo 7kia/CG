@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../Mixin/HaveFileForReading.h"
 #include "Wall/Wall.h"
 #include "Labyrinth.h"
 #include <string>
@@ -15,7 +14,7 @@ namespace MapSpace
 		//, '0'
 		  0x0// Wall
 		, 0x1// Player
-		, 0x2// Spaxe
+		, 0x2// Space
 	};
 
 	static const int SIZE_BORDER = 1;

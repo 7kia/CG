@@ -24,11 +24,9 @@ namespace PlayerSpace
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
 	const float LINEAR_MOVE_SPEED = 150.f;
-	const float HEIGHT_VISUAL_PART = 0.f;
+	const float HEIGHT_FLASHLIGHT = 1.5f;
 
 	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
-
-
 }
 
 class CWorld;
@@ -80,7 +78,8 @@ public:
 
 	void							CreatePlayer(const glm::vec3 & position
 												, const glm::vec3 & direction
-												, CWorld* pWorld);
+												, CWorld* pWorld
+												, const std::string & pathTexture);
 	CAbstractRotatableCamera*		GetCamera();// TODO : see need there cons
 
 private:

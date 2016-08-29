@@ -32,7 +32,7 @@ void CWorld::OnKeyUp(const SDL_KeyboardEvent & event)
 
 void CWorld::Draw() const
 {
-	m_sunlight.Setup();
+	//m_sunlight.Setup();
 	m_material.Setup();
 
 	m_player.Draw();
@@ -68,6 +68,8 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 	}
 
 
-	m_player.CreatePlayer(position, direction, this);
-	m_player.SetTexture(TextureSpace::TexturePaths[1]);
+	m_player.CreatePlayer(position
+						, direction
+						, this
+						, TextureSpace::TexturePaths[1]);
 }

@@ -51,9 +51,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractWindow.h">
-      <Filter>Файлы исходного кода</Filter>
-    </ClInclude>
     <ClInclude Include="DispatchEvent.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
@@ -108,13 +105,7 @@
     <ClInclude Include="Mixin\HaveRotationSpeed.h">
       <Filter>Mixin</Filter>
     </ClInclude>
-    <ClInclude Include="Mixin\HaveFileForReading.h">
-      <Filter>Mixin</Filter>
-    </ClInclude>
     <ClInclude Include="Mixin\FileProcess.h">
-      <Filter>Mixin</Filter>
-    </ClInclude>
-    <ClInclude Include="Mixin\HaveFileForWriting.h">
       <Filter>Mixin</Filter>
     </ClInclude>
     <ClInclude Include="World\Map.h">
@@ -210,11 +201,20 @@
     <ClInclude Include="Mixin\Material\HaveTexture.h">
       <Filter>Mixin\Material</Filter>
     </ClInclude>
+    <ClInclude Include="Material\libchapter3_private.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\ShaderProgram.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractWindowClient.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowClient.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AbstractWindow.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="DispatchEvent.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -274,12 +274,6 @@
     </ClCompile>
     <ClCompile Include="World\Wall\HaveWallTypes.cpp">
       <Filter>World\Wall</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\HaveFileForReading.cpp">
-      <Filter>Mixin</Filter>
-    </ClCompile>
-    <ClCompile Include="Mixin\HaveFileForWriting.cpp">
-      <Filter>Mixin</Filter>
     </ClCompile>
     <ClCompile Include="Mixin\HaveRotationSpeed.cpp">
       <Filter>Mixin</Filter>
@@ -358,6 +352,15 @@
     </ClCompile>
     <ClCompile Include="Mixin\Material\HaveTexture.cpp">
       <Filter>Mixin\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\ShaderProgram.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractWindowClient.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowClient.cpp">
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

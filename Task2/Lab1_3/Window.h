@@ -1,29 +1,27 @@
 #pragma once
 
-#include "World\World.h"
+#include <memory>
+#include <boost/noncopyable.hpp>
+#include <glm/fwd.hpp>
+#include <glm/vec2.hpp>
+#include <string>
 
-namespace WindowSpace
-{
-	const glm::vec4 BLACK = { 0, 0, 0, 1 };
-}
+class IWindowClient;
 
-class CWindow : public CAbstractInputControlWindow
+class CWindow : private boost::noncopyable
 {
 public:
     CWindow();
+    virtual ~CWindow();
 
-protected:
-    // CAbstractWindow interface
-    void OnWindowInit(const glm::ivec2 &size) override;
-    void OnUpdateWindow(float deltaSeconds) override;
-    void OnDrawWindow(const glm::ivec2 &size) override;
+    void Show(const std::string &title, const glm::ivec2 &size);
+    void SetBackgroundColor(glm::vec4 const& color);
+    void SetClient(IWindowClient *pClient);
+    glm::ivec2 GetWindowSize() const;
 
-    // IInputEventAcceptor interface
-    void OnKeyDown(const SDL_KeyboardEvent &) override;
-    void OnKeyUp(const SDL_KeyboardEvent &) override;
+    void DoMainLoop();
 
 private:
-    void SetupView(const glm::ivec2 &size);
-
-	CWorld m_world;
+    class Impl;
+    std::unique_ptr<Impl> m_pImpl;
 };

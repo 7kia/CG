@@ -3,7 +3,6 @@
 #include "Wall.h"
 #include <string>
 
-
 class CHaveWallTypes
 {
 public:

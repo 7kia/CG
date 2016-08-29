@@ -41,8 +41,10 @@ CPlayer::CPlayer(const glm::vec3 & position
 	, m_pController(std::make_unique<CController>(this))
 {
 	SetTexture(texturePath);
-	SetCameras(PlayerSpace::PLAYER_DIRECTION);
-	CreatePlayer(position, direction, pWorld);
+	CreatePlayer(position
+				, direction
+				, pWorld
+				, texturePath);
 }
 
 void CPlayer::TurnLeft()
@@ -128,16 +130,11 @@ void CPlayer::Update(float deltaTime)
 		m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
 		m_collision.Advance(deltaTime);
 
-
-		//playerPosition.y = 1.f;// PlayerSpace::HEIGHT_VISUAL_PART;
-
-		//std::swap(playerPosition.x, playerPosition.z);
 		playerPosition += direction * 2.f;
-		playerPosition.y = 1.5f;
+		//playerPosition.y = PlayerSpace::HEIGHT_FLASHLIGHT;
 		m_flashlight.SetPosition(playerPosition);
 	}
 
-	//m_flashlight.SetDirection(direction);
 	ResetCurrentLinearVelocity();
 	ResetCurrentRotationSpeed();
 }
@@ -166,15 +163,15 @@ void CPlayer::SetCamera(CPlayer::IdCameras id)
 
 CAbstractRotatableCamera* CPlayer::GetCamera()
 {
-	return m_cameras[unsigned(m_idCamera)].get();// TODO : see word it
+	return m_cameras[size_t(m_idCamera)].get();// TODO : see word it
 }
 
 void CPlayer::SetCameras(const glm::vec3 & direction)
 {
-	m_cameras[unsigned(IdCameras::Player)] = std::make_unique<CPlayerCamera>();
-	m_cameras[unsigned(IdCameras::Player)]->SetDirection(direction);
+	m_cameras[size_t(IdCameras::Player)] = std::make_unique<CPlayerCamera>();
+	m_cameras[size_t(IdCameras::Player)]->SetDirection(direction);
 
-	m_cameras[unsigned(IdCameras::World)] = std::make_unique<CWorldCamera>(0.f, 15.5f);
+	m_cameras[size_t(IdCameras::World)] = std::make_unique<CWorldCamera>(0.f, 15.5f);
 
 	SetCamera(IdCameras::Player);
 }
@@ -195,8 +192,9 @@ void CPlayer::SetCollison(CWorld* pWorld)
 }
 
 void CPlayer::CreatePlayer(const glm::vec3 & position
-	, const glm::vec3 & direction
-	, CWorld* pWorld)
+						, const glm::vec3 & direction
+						, CWorld* pWorld
+						, const std::string & pathTexture)
 {
 	std::call_once(playerIsCreate,
 		[&]()
@@ -205,6 +203,8 @@ void CPlayer::CreatePlayer(const glm::vec3 & position
 
 			GetCamera()->SetPosition(position);
 			SetCollison(pWorld);
+
+			SetTexture(pathTexture);
 
 			m_flashlight.SetPosition(position);
 			m_flashlight.SetDiffuse(PlayerSpace::WHITE_RGBA);

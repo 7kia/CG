@@ -26,10 +26,6 @@ namespace WorldSpace
 	const glm::vec3 SUNLIGHT_DIRECTION = { -1.f, 0.2f, 0.7f };
 	const float CAMERA_INITIAL_ROTATION = 0;
 	const float CAMERA_INITIAL_DISTANCE = 5.f;
-
-	const char BREAK_TEXTURE_PATH[] = "Resources/brick.bmp";
-	const char PLANK_TEXTURE_PATH[] = "Resources/plank.bmp";
-
 }
 
 class CWorld
@@ -61,7 +57,6 @@ private:
 	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 //////////////////////////////////////////////////////////////////////
 // Data
-
 private:
 	CMap							m_map;
 

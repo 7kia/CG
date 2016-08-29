@@ -15,6 +15,4 @@ public:
 // Data
 public:
 	std::shared_ptr<b2World>		m_world;
-
-
 };
