@@ -22,6 +22,6 @@ public:
 // Data
 private:
 	glm::vec4	m_emission;
-	float		m_shininess = 10.f;
+	float		m_shininess = 0.2f;
 
 };

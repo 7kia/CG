@@ -61,5 +61,4 @@ private:
 	CMap							m_map;
 
 	CPhongModelMaterial				m_material;
-	CDirectedLightSource			m_sunlight;
 };

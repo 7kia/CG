@@ -14,3 +14,23 @@ C3DRectangle::C3DRectangle()
 	m_indicies = { 0, 1, 3, 1, 2, 3};
 
 }
+
+void C3DRectangle::UpdateNormals()
+{
+	const Vertex &v1 = m_vertices[0].position;
+	const Vertex &v2 = m_vertices[1].position;
+	const Vertex &v3 = m_vertices[2].position;
+
+	const Vertex &v4 = m_vertices[3].position;
+
+	glm::vec3 normalFirstTriangle = glm::normalize(glm::cross(v2 - v1, v3 - v1));
+	//glm::vec3 normalSecondTriangle = glm::normalize(glm::cross(v2 - v4, v3 - v4));
+
+	for (auto & vertex : m_vertices)
+	{
+		vertex.normal = -normalFirstTriangle;
+	}
+	//m_vertices[0].normal = normalFirstTriangle;
+	//m_vertices[3].normal = normalSecondTriangle;
+
+}

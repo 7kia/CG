@@ -21,6 +21,8 @@ CWallView::CWallView()
 		pRectangle->SetSourceVertexPosition(1, WallSpace::CUBE_VERTICIES[face.vertexIndex2]);
 		pRectangle->SetSourceVertexPosition(2, WallSpace::CUBE_VERTICIES[face.vertexIndex3]);
 		pRectangle->SetSourceVertexPosition(3, WallSpace::CUBE_VERTICIES[face.vertexIndex4]);
+
+		pRectangle->UpdateNormals();
 	}
 
 	if (m_visible.size() != m_shapes.size())

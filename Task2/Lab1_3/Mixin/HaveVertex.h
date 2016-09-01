@@ -40,6 +40,8 @@ public:
 	virtual void							SetVertexNormal(size_t index, const glm::vec3 & normal) = 0;
 	virtual glm::vec3						GetVertexNormal(size_t index) const = 0;
 
+	virtual	void							UpdateNormals() {};
+
 	virtual void							SetVertexTexCoordinate(size_t index, const glm::vec2 & texCoordinate) = 0;
 	virtual glm::vec2						GetVertexTexCoordinate(size_t index) const = 0;
 
