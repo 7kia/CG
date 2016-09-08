@@ -88,7 +88,6 @@ void CLine::Draw() const
 		glDrawArrays(GL_POINTS, 0, GLsizei(m_vertices.size()));
 	});
 
-
 	glPopMatrix();
 }
 
@@ -100,10 +99,10 @@ void CLine::Tesselate(float length, size_t amountVertex)
     m_vertices.reserve(amountVertex);
     // вычисляем позиции вершин.
 	const float step = length / amountVertex;
-	const float shift = -length / 2.f;
+	const float shift = -length / 2.f + length * 0.25f;
     for (size_t index = 0; index < amountVertex; ++index)
     {
-        const float x = (-length / 2.f) + (index * step);
+        const float x = shift + (index * step);
         
 		SVertexP3NT2 vertex;
 		vertex.position = { x, 0.f, 0.f };

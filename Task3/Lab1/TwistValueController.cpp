@@ -5,8 +5,8 @@ namespace
 {
 const float MIN_TWIST = 0.f;
 const float MAX_TWIST = 2.f * M_PI;
-const float NEXT_TWIST_STEP = 0.2f;
-const float TWIST_CHANGE_SPEED = 1.f;
+const float NEXT_TWIST_STEP = 1.2f;
+const float TWIST_CHANGE_SPEED = 5.f;
 }
 
 // При каждом вызове Update величина twist "догоняет" назначенное значение.

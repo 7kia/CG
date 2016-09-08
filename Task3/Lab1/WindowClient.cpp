@@ -6,8 +6,8 @@ namespace
 const glm::vec4 BLACK = {0, 0, 0, 1};
 const float CAMERA_INITIAL_ROTATION = float(M_PI);
 const float CAMERA_INITIAL_DISTANCE = 10;
-const float LINE_LENGTH = 12.f;
-const size_t AMOUTN_VERTEX_TO_LINE = 50;
+const float LINE_LENGTH = 5.f;
+const size_t AMOUTN_VERTEX_TO_LINE = size_t(LINE_LENGTH * 1000.f * M_PI);
 void SetupOpenGLState()
 {
     // включаем механизмы трёхмерного мира.
@@ -55,6 +55,8 @@ CWindowClient::CWindowClient(CWindow &window)
     const std::string twistShader = CFilesystemUtils::LoadFileAsString("res/Kannabola.vert");
     m_programTwist.CompileShader(twistShader, ShaderType::Vertex);
     m_programTwist.Link();
+
+
 
     std::cerr << "-- TWIST program info ---" << std::endl;
     CProgramInfo info = m_programTwist.GetProgramInfo();
