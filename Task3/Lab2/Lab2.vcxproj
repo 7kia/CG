@@ -190,6 +190,12 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="WindowClient.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\checkers-and-triangle.frag" />
+    <None Include="..\res\checkers.frag" />
+    <None Include="..\res\copytexture.vert" />
+    <None Include="..\res\USSRFlag.frag" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

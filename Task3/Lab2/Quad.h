@@ -7,6 +7,8 @@ struct SVertexP2T2
 {
     glm::vec2 position;
     glm::vec2 texCoord;
+
+	SVertexP2T2(const glm::vec2 & position, const glm::vec2 & texCoord);
 };
 
 class CQuad

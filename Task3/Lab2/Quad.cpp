@@ -51,3 +51,9 @@ void CQuad::Draw() const
                        GL_UNSIGNED_BYTE, m_indicies.data());
     });
 }
+
+SVertexP2T2::SVertexP2T2(const glm::vec2 & position, const glm::vec2 & texCoord)
+	: position(position)
+	, texCoord(texCoord)
+{
+}

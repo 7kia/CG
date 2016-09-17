@@ -6,6 +6,78 @@ namespace
 const glm::vec2 QUAD_TOPLEFT = { -200, -200 };
 const glm::vec2 QUAD_SIZE = { 400, 400 };
 
+// TODO : rewrite
+std::vector<SVertexP2T2> Stroke5PointStar(const glm::vec2 & center, float outRadius, float innerRadius)
+{
+	const float STEP = float(M_PI * 4 / 5);
+
+	std::vector<SVertexP2T2> result;
+
+	float angle = float(-0.5 * M_PI);
+
+	// Center point
+	//result.push_back(SVertexP2T2(center, glm::vec2()));
+	// Соединяем отрезками прямой линии точки, расположенные на окружности
+	// в точках, с углами: -90, 54, 198, 342, 486 (126) градусов
+
+	//////////////////////////////////
+	// TODO : 10 triangles * 3 vertex
+	glm::vec2 currentVertex;
+	for (size_t vertexIndex = 0; vertexIndex < 30; ++vertexIndex)
+	{
+		const float angleShift = 1.f + STEP * float(vertexIndex);
+		float x;
+		float y;
+		switch (vertexIndex % 3)
+		{
+		case 0:
+			currentVertex = center;
+			break;
+		case 1:
+			x = center.x + outRadius * cosf(angle * angleShift);
+			y = center.y + outRadius * sinf(angle * angleShift);
+			currentVertex = glm::vec2(x, y);
+			break;
+		case 2:
+			x = center.x + innerRadius * cosf(angle * angleShift);
+			y = center.y + innerRadius * sinf(angle * angleShift);
+			currentVertex = glm::vec2(x, y);
+			break;
+		default:
+			break;
+		}
+
+		///
+		///
+		///
+		result.push_back(SVertexP2T2(currentVertex, glm::vec2()));
+
+	}
+	//////////////////////////////////
+	/*
+		for (int i = 0; i < 5; ++i, angle += STEP)
+	{
+		float x = center.x + outRadius * cosf(angle);
+		float y = center.y + outRadius * sinf(angle);
+		// функция glVertex2f добавляет в текущую группу примитивов
+		// точку, лежащую на плоскости z = 0
+		// суффикс 2f в названии функции обозначает, что задаются 2 координаты
+		// x и y типа GLfloat
+		result.push_back(SVertexP2T2(glm::vec2(x, y), glm::vec2() ));
+
+		x = center.x + innerRadius * cosf(angle + STEP / 2.f);
+		y = center.y + innerRadius * sinf(angle + STEP / 2.f);
+
+		result.push_back(SVertexP2T2(glm::vec2(x, y), glm::vec2()));
+
+	}
+	*/
+
+	
+	return result;
+}
+/////////////////////////
+
 void SetupOpenGLState()
 {
     // включаем механизмы трёхмерного мира.
@@ -38,6 +110,12 @@ CWindowClient::CWindowClient(CWindow &window)
     m_programPicture.Link();
 
     m_programQueue = { &m_programPicture, &m_programCheckers };
+
+	// TODO : rewrite
+	auto vertexes = Stroke5PointStar(glm::vec2(1.0f, 1.0f)
+									, 2.0f
+									, 1.0f);
+
 }
 
 void CWindowClient::OnUpdateWindow(float deltaSeconds)

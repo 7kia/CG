@@ -108,4 +108,18 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\copytexture.vert">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="..\res\checkers.frag">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="..\res\checkers-and-triangle.frag">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="..\res\USSRFlag.frag">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
 </Project>
