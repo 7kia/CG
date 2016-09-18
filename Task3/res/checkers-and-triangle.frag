@@ -23,59 +23,94 @@ vec2 GenerateStarPoint(const vec2 center
    const float M_PI = 3.14159265;
    const float STEP = M_PI * 4 / 5;
 
-   float angle = -0.5 * M_PI;
+   float angle = -0.5;
+   int residue = vertexIndex;
 
-      float angleShift = 1.f + STEP * float(vertexIndex);
-      float x;
-      float y;
+
+    float angleShift = 1.f + STEP * float(vertexIndex);
+    float x;
+    float y;
       
-      int residue = vertexIndex - (vertexIndex / 3);
-      if (residue == 0)
-      {
-         return center;
-      }
-      else if(residue == 1)
-      {
-         x = center.x + outRadius * cos(angle * angleShift);
-         y = center.y + outRadius * sin(angle * angleShift);
-         return vec2(x, y);
-      }
-      else if(residue == 2)
-      {
-         x = center.x + innerRadius * cos(angle * angleShift);
-         y = center.y + innerRadius * sin(angle * angleShift);
-         return vec2(x, y);
-      }
-
-      ///
-      ///
-      ///
-     // result.push_back(SVertexP2T2(result, vec2()));
-
-   //}
+     
+    x = center.x + innerRadius * cos(angle * angleShift);
+    y = center.y + innerRadius * sin(angle * angleShift);
+    return vec2(x, y);
+    
+      
    
  }
+
+
 
 void main()
 {
     vec2 pos = gl_TexCoord[0].xy;
 
 
-    vec2 starPoints[30];
-    for(int index = 0; index < 30; ++index)
+	// Generate vertex
+    vec2 starPoints[6];
+
+	vec2 center = vec2(2.f, 2.f);
+    for(int index = 0; index < 5; ++index)
     {
-       starPoints[index] =  GenerateStarPoint(vec2(2.5f, 2.5f)
-                                                , 2.f
-                                                , 1.f
+       starPoints[index] =  GenerateStarPoint(center
+                                                , 1.5f
+                                                , 0.5f
                                                 , index);
                                                 
     }
     
-    
-    //for(int index = 0; index < 30; index += 3)
-    //{
-               int index = 0;
-    if (PointIsInsideTriangle(starPoints[index], starPoints[index + 1], starPoints[index + 2], pos))
+
+	// Sort vertex
+	/*
+	for(int index = 3; index < 5; ++index)
+    {
+       if(starPoints[index + 1].x < starPoints[index + 2].x)
+	   {
+			vec2 buffer = starPoints[index + 1];
+
+			starPoints[index + 1] = starPoints[index + 2];
+			starPoints[index + 2] = buffer;
+	   }
+                                                
+    }
+	*/
+	/////
+	int sizeInTriangle = 5;
+    bool inTriangle[5];
+
+	bool resultBool = false;
+    for(int index = 0; index < (sizeInTriangle - 1); ++index)
+    {
+	//int index = 0;
+			inTriangle[index] = PointIsInsideTriangle(starPoints[index]
+															, starPoints[index + 1]
+															, center, pos);
+
+			//resultBool = resultBool || inTriangle[index];
+    }
+
+	resultBool = false;
+	/////////////////////////////////////////////
+	resultBool = resultBool || PointIsInsideTriangle(starPoints[0]
+															, starPoints[3]
+															, center, pos);
+	resultBool = resultBool || PointIsInsideTriangle(starPoints[1]
+															, starPoints[4]
+															, center, pos);
+	resultBool = resultBool || PointIsInsideTriangle(starPoints[2]
+															, starPoints[0]
+															, center, pos);
+	resultBool = resultBool || PointIsInsideTriangle(starPoints[3]
+															, starPoints[1]// TODO
+															, center, pos);
+	resultBool = resultBool || PointIsInsideTriangle(starPoints[4]
+															, starPoints[2]
+															, center, pos);
+	/////////////////////////////////////////////
+
+
+    if (resultBool)
     {
         gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }
@@ -88,8 +123,7 @@ void main()
         // is within a black or white check
         gl_FragColor = vec4((stepXY.x != stepXY.y) ? 1.0 : 0.0);
     }   
-    
-    //}                                     
+                                   
                                                 
     
            
