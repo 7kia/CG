@@ -118,10 +118,35 @@ bool DrawHammerAndSickle(vec2 pos)
 													,vec2(1.769f, 1.833f)
 													, pos);
 
-	resultBool = resultBool || CheckFillRectangle(vec2(1.478f, 1.846f)
-													,vec2(1.678f, 1.953f)
+	resultBool = resultBool || CheckFillRectangle(vec2(1.677f, 1.953f)
+													,vec2(1.777f, 2.106f)
 													,vec2(1.497f, 1.686f)												
-													,vec2(1.769f, 1.833f)
+													,vec2(1.936f, 2.071f)
+													, pos);
+
+	resultBool = resultBool || CheckFillRectangle(vec2(1.78f, 2.104f)
+													,vec2(1.805f, 2.246f)
+													,vec2(1.937f, 2.07f)												
+													,vec2(1.947f, 2.323f)
+													, pos);
+
+													
+	resultBool = resultBool || CheckFillRectangle(vec2(1.78f, 2.104f)
+													,vec2(1.805f, 2.246f)
+													,vec2(1.937f, 2.07f)												
+													,vec2(1.947f, 2.323f)
+													, pos);
+
+													
+	resultBool = resultBool || CheckFillRectangle(vec2(1.802f, 2.24f)
+													,vec2(1.787f, 2.53f)
+													,vec2(1.948f, 2.32f)
+													,vec2(1.855f, 2.607f)												
+													, pos);
+
+	resultBool = resultBool || PointIsInsideTriangle(vec2(1.791f, 2.521f)
+													,vec2(1.861f, 2.596f)
+													,vec2(1.651f, 2.815f)
 													, pos);
 	/////////////////////////////////////////////
 
