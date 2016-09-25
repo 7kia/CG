@@ -18,26 +18,21 @@ void SetupOpenGLState()
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
 }
 
-// MobiusStrip
-float GetXMobiusStrip(float U, float V)
+glm::vec3 GetPointMobiusStrip(float U, float V)
 {
-	return (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U);
+	glm::vec3 result;
+	result.x = (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U);
+	result.y = (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U);
+	result.z = V / 2.f * sinf(U / 2.f);
+
+	return result;
 }
 
-float GetYMobiusStrip(float U, float V)
-{
-	return (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U);
-}
-
-float GetZMobiusStrip(float U, float V)
-{
-	return V / 2.f * sinf(U / 2.f);
-}
 }
 
 CWindowClient::CWindowClient(CWindow &window)
     : CAbstractWindowClient(window)
-    , m_surface(GetXMobiusStrip, GetYMobiusStrip, GetZMobiusStrip)
+    , m_surface(GetPointMobiusStrip)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
     , m_lamp(GL_LIGHT1)

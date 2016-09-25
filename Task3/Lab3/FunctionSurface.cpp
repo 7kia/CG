@@ -6,11 +6,6 @@ namespace
 {
 const float DOT_SIZE = 5.f;
 
-glm::vec3 GetPosition(const Function2D &fn, float x, float z)
-{
-    const float y = fn(x, z);
-    return {x, y, z};
-}
 
 // вычисляет нормали численным методом,
 // с помощью векторного произведения.
@@ -29,12 +24,8 @@ void CalculateNormals(std::vector<SVertexP3NT2> &vertices, float step)
 
 }
 
-CSolidFunctionSurface::CSolidFunctionSurface(const Function2D &xFunction
-											, const Function2D &yFunction
-											, const Function2D &zFunction)
-    : m_xFunction(xFunction)
-	, m_yFunction(yFunction)
-	, m_zFunction(zFunction)
+CSolidFunctionSurface::CSolidFunctionSurface(const Function3D &xFunction)
+    : m_function(xFunction)
 {
 }
 
@@ -57,7 +48,7 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 			{
 				const float V = rangeV.x + step * float(ri);
 				SVertexP3NT2 vertex;
-				vertex.position = glm::vec3(glm::vec3(m_xFunction(U, V), m_yFunction(U, V), m_zFunction(U, V)));
+				vertex.position = m_function(U, V);
 				m_vertices.push_back(vertex);
 			}
 		}

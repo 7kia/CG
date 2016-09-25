@@ -6,7 +6,7 @@
 #include <glm/fwd.hpp>
 #include <glm/vec3.hpp>
 
-using Function2D = std::function<float(float, float)>;
+using Function3D = std::function<glm::vec3(float, float)>;
 using uint = unsigned int;
 // Вершина с трёхмерной позицией и нормалью.
 
@@ -16,9 +16,7 @@ class CSolidFunctionSurface final
 	: public CIdentity3DShape
 {
 public:
-    CSolidFunctionSurface(const Function2D &xFunction
-						, const Function2D &yFunction
-						, const Function2D &zFunction);
+    CSolidFunctionSurface(const Function3D &xFunction);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -35,10 +33,8 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-	Function2D					m_xFunction;// TODO : see will rewrite this part
-	Function2D					m_yFunction;
-	Function2D					m_zFunction;
+	Function3D					m_function;// TODO : see will rewrite this part
 
-    std::vector<SVertexP3NT2>		m_vertices;
+    std::vector<SVertexP3NT2>	m_vertices;
     std::vector<uint32_t>		m_indicies;
 };
