@@ -3,9 +3,10 @@
 
 class CTwistValueController
 {
+public:
+	CTwistValueController(float twist);
 //////////////////////////////////////////////////////////////////////
 // Methods
-
 public:
     void	Update(float deltaSeconds);
     bool	OnKeyDown(const SDL_KeyboardEvent &event);

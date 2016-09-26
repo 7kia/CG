@@ -9,6 +9,12 @@ const float NEXT_TWIST_STEP = 1.2f;
 const float TWIST_CHANGE_SPEED = 5.f;
 }
 
+CTwistValueController::CTwistValueController(float twist)
+	: m_currentTwistValue(twist)
+	, m_nextTwistValue(twist)
+{
+}
+
 // При каждом вызове Update величина twist "догоняет" назначенное значение.
 void CTwistValueController::Update(float deltaSeconds)
 {

@@ -23,35 +23,24 @@ std::vector<SVertexP2T2> Stroke5PointStar(const glm::vec2 & center, float outRad
 	//////////////////////////////////
 	// TODO : 10 triangles * 3 vertex
 	glm::vec2 currentVertex;
-	for (size_t vertexIndex = 0; vertexIndex < 30; ++vertexIndex)
+	size_t amountVertex = 5;
+	for (size_t vertexIndex = 0; vertexIndex < amountVertex; ++vertexIndex)
 	{
 		const float angleShift = 1.f + STEP * float(vertexIndex);
 		float x;
 		float y;
-		switch (vertexIndex % 3)
-		{
-		case 0:
-			currentVertex = center;
-			break;
-		case 1:
-			x = center.x + outRadius * cosf(angle * angleShift);
-			y = center.y + outRadius * sinf(angle * angleShift);
-			currentVertex = glm::vec2(x, y);
-			break;
-		case 2:
-			x = center.x + innerRadius * cosf(angle * angleShift);
-			y = center.y + innerRadius * sinf(angle * angleShift);
-			currentVertex = glm::vec2(x, y);
-			break;
-		default:
-			break;
-		}
+
+		x = center.x + innerRadius * cos(angle);
+		y = center.y + innerRadius * sin(angle);
+		//return vec2(x, y);
+		currentVertex.x = x;
+		currentVertex.y = y;
 
 		///
 		///
 		///
 		result.push_back(SVertexP2T2(currentVertex, glm::vec2()));
-
+		angle += STEP;
 	}
 	//////////////////////////////////
 	/*
@@ -72,7 +61,21 @@ std::vector<SVertexP2T2> Stroke5PointStar(const glm::vec2 & center, float outRad
 
 	}
 	*/
+	// Sort vertex
+	/*
+	for (int index = 3; index < amountVertex; index += 3)
+	{
+		if (result[index + 1].position.x < result[index + 2].position.x)
+		{
+			glm::vec2 buffer = result[index + 1].position;
 
+			result[index + 1] = result[index + 2];
+			result[index + 2].position = buffer;
+		}
+
+	}
+	*/
+	
 	
 	return result;
 }

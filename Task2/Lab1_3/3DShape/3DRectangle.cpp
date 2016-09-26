@@ -26,9 +26,14 @@ void C3DRectangle::UpdateNormals()
 	glm::vec3 normalFirstTriangle = glm::normalize(glm::cross(v2 - v1, v3 - v1));
 	//glm::vec3 normalSecondTriangle = glm::normalize(glm::cross(v2 - v4, v3 - v4));
 
+	if (abs(normalFirstTriangle.z) == 1)
+	{
+		normalFirstTriangle *= -1.f;
+	}
+
 	for (auto & vertex : m_vertices)
 	{
-		vertex.normal = -normalFirstTriangle;
+		vertex.normal = normalFirstTriangle;
 	}
 	//m_vertices[0].normal = normalFirstTriangle;
 	//m_vertices[3].normal = normalSecondTriangle;

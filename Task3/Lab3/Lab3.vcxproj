@@ -202,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\res\Kannabola.vert" />
+    <None Include="..\res\Klein.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

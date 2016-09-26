@@ -148,5 +148,8 @@
     <None Include="..\res\Kannabola.vert">
       <Filter>Файлы ресурсов</Filter>
     </None>
+    <None Include="..\res\Klein.vert">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>

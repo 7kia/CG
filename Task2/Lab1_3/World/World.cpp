@@ -8,7 +8,7 @@ CWorld::CWorld()
 	, CHavePhysicalWorld()
 	, CHavePlayer()
 {
-	m_material.SetAmbient(WorldSpace::WHITE_RGBA);
+	m_material.SetAmbient(WorldSpace::GRAY_RGBA);
 	m_material.SetDiffuse(WorldSpace::WHITE_RGBA);
 	m_material.SetSpecular(WorldSpace::FADED_WHITE_RGBA);
 	m_material.SetShininess(WorldSpace::MATERIAL_SHININESS);

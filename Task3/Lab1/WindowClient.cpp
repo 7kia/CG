@@ -26,6 +26,7 @@ CWindowClient::CWindowClient(CWindow &window)
     , m_sunlight(GL_LIGHT0)
     , m_lamp(GL_LIGHT1)
     , m_programFixed(CShaderProgram::fixed_pipeline_t())
+	, m_twistController(2 * M_PI)
 {
     const glm::vec3 SUNLIGHT_DIRECTION = {-1.f, 0.2f, 0.7f};
     const glm::vec3 LAMP_POSITION = {10.f, 5.0f, 1.9f};
