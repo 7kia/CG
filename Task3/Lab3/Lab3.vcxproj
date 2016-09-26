@@ -201,8 +201,7 @@
     <ClCompile Include="WindowClient.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\Kannabola.vert" />
-    <None Include="..\res\Klein.vert" />
+    <None Include="..\x64\Debug\res\HyperbolicParaboloid.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

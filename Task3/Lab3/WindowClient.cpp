@@ -27,42 +27,6 @@ glm::vec3 GetHyperbolicParaboloid(float x, float z)
 	return glm::vec3(x, (pow(x, 2) / pow(a, 2) + pow(z, 2) / pow(b, 2)) / 2, z);
 }
 
-
-glm::vec3 GetPointMobiusStrip(float U, float V)
-{
-	glm::vec3 result;
-	result.x = (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U);
-	result.y = (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U);
-	result.z = V / 2.f * sinf(U / 2.f);
-
-	return result;
-}
-
-glm::vec3 GetKleinBottle(float u, float v)
-{
-	const float r = 1.f;
-
-	float x = 0;
-	float y = 0;
-	float z = 0;
-
-	
-	if (IsBetween(u, 0.f, float(M_PI * 1.025f)))
-	{
-		x = 6 * cosf(u) * (1 + sinf(u)) + 4 * r * (1 - cosf(u) / 2) * cosf(u) * cosf(v);
-		y = 16 * sinf(u) + 4 * r * (1 - cosf(u) / 2) * sinf(u) * cosf(v);
-		z = 4 * r * (1 - cosf(u) / 2) * sinf(v);
-	}
-	else if (IsBetween(u, float(M_PI * 1.025f), float(2 * M_PI * 1.025f)))
-	{
-		x = 6 * cosf(u) * (1 + sinf(u)) - 4 * r * (1 - cosf(u) / 2) * cosf(v);
-		y = 16 * sinf(u);
-		z = 4 * r * (1 - cosf(u) / 2) * sinf(v);
-	}
-
-	return{ x, y, z };
-}
-
 }
 
 CWindowClient::CWindowClient(CWindow &window)
@@ -99,11 +63,7 @@ CWindowClient::CWindowClient(CWindow &window)
     m_umbrellaMat.SetDiffuse(GREEN_RGBA);
     m_umbrellaMat.SetAmbient(GREEN_RGBA * AMBIENT_SCALE);
 
-	 m_surface.Tesselate({ -2, 2 }, { -2, 2 }, 0.1f);
-	//m_surface.Tesselate({ -0.f, 2.f * M_PI }, { -1.f, 1.f }, 0.1f);
-	//m_surface.Tesselate({ 0, 6.4f }, { 0, 2 * M_PI * 1.025f }, 0.1795f);//0.18f
-
-	//{ 0, 6.4f }, { 0, 2 * M_PI * 1.025f }, 0.1f
+	m_surface.Tesselate({ -2, 2 }, { -2, 2 }, 0.1f);
 
 	const std::string twistShader = CFilesystemUtils::LoadFileAsString("res/HyperbolicParaboloid.vert");
     m_programTwist.CompileShader(twistShader, ShaderType::Vertex);

@@ -145,10 +145,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\Kannabola.vert">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
-    <None Include="..\res\Klein.vert">
+    <None Include="..\x64\Debug\res\HyperbolicParaboloid.vert">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>
