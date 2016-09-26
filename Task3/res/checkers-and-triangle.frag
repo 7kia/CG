@@ -86,13 +86,6 @@ bool DrawHammerAndSickle(vec2 pos)
 													,vec2(0.922f, 1.784f)
 													, pos);
 	/////////////////////////////////////////////
-	// Sickle peen
-	resultBool = resultBool || CheckFillRectangle(vec2(0.551f, 1.794f)
-													,vec2(0.777f, 1.976f)
-													,vec2(0.696f, 1.603f)												
-													,vec2(0.922f, 1.784f)
-													, pos);
-	/////////////////////////////////////////////
 	// Sickle blade
 	resultBool = resultBool || CheckFillRectangle(vec2(0.794f, 1.929f)
 													,vec2(0.997f, 2.071f)

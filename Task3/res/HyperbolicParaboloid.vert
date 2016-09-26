@@ -13,12 +13,9 @@ void main()
 
 	TWIST;
     vec4 twistedCoord = vec4(
-		x,//* TWIST
+		x,
 		gl_Vertex.y + (y - gl_Vertex.y) * TWIST ,//* TWIST
-        z ,//* TWIST
-		//x ,//+ (x - gl_Vertex.x) * TWIST
-       // gl_Vertex.y ,//+ (y - gl_Vertex.y) * TWIST
-        //z,// + (z - gl_Vertex.z) * TWIST
+        z ,
         gl_Vertex.w
     );
 
