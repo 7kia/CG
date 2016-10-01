@@ -17,9 +17,37 @@ void main()
 	float shift = PI;
 	float y = maxHeight;
 
-	
+	////////////////////////
+	// first step
+	///*
+	y = maxHeight * sin(radius + shift) / radius + height;
+	//*/
+	////////////////////////
+
+	////////////////////////
+	// second step
+	///*
+	shift = PI;
+	y = maxHeight * sin( 1.5 * (radius + shift) ) / radius + height;
+	//*/
+	////////////////////////
+
+
+	////////////////////////
+	// third step
+	///*
+	shift = 2.f * PI;
+	float flatShift = 1.5f * PI;// TODO : rename
+	if( (radius) > flatShift )
+	{
 		y = maxHeight * sin(radius + shift) / radius + height;
-	
+	}
+	else
+	{
+		y = maxHeight * sin(flatShift) / flatShift + height;
+	}
+	//*/
+	////////////////////////
 
 	TWIST;
     vec4 twistedCoord = vec4(
