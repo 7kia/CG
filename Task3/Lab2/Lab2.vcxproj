@@ -191,10 +191,10 @@
     <ClCompile Include="WindowClient.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\checkers-and-triangle.frag" />
     <None Include="..\res\checkers.frag" />
     <None Include="..\res\copytexture.vert" />
-    <None Include="..\res\USSRFlag.frag" />
+    <None Include="..\x64\Debug\res\checkers-and-triangle.frag" />
+    <None Include="..\x64\Debug\res\USSRFlag.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,7 +7,7 @@ int main(int, char *[])
     try
     {
         CWindow window;
-        window.Show("OpenGL Demo", {800, 600});
+        window.Show("Lab 2. Draw by fragment shader flag USSR", {800, 600});
         CWindowClient client(window);
         window.DoMainLoop();
     }

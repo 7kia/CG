@@ -7,7 +7,7 @@ int main(int, char *[])
     try
     {
         CWindow window;
-        window.Show("OpenGL Demo (+/- to control twist, SPACE to disable shader)", {800, 600});
+        window.Show("Lab 3 \"Transformation Elliptical to Hyperbolic paraboloid\"", {800, 600});
         CWindowClient client(window);
         window.DoMainLoop();
     }

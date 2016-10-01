@@ -28,10 +28,11 @@ void SetupOpenGLState()
 
 float GetSincFromXY(float x, float y)
 {
-    const float radius = std::hypotf(x, y);
+	const float maxHeight = 2.f;
+    const float radius = maxHeight * std::hypotf(x, y);
     if (radius < std::numeric_limits<float>::epsilon())
     {
-        return 1;
+        return maxHeight;
     }
     return sinf(radius) / radius;
 }

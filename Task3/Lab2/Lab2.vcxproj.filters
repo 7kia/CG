@@ -115,10 +115,10 @@
     <None Include="..\res\checkers.frag">
       <Filter>Файлы ресурсов</Filter>
     </None>
-    <None Include="..\res\checkers-and-triangle.frag">
+    <None Include="..\x64\Debug\res\USSRFlag.frag">
       <Filter>Файлы ресурсов</Filter>
     </None>
-    <None Include="..\res\USSRFlag.frag">
+    <None Include="..\x64\Debug\res\checkers-and-triangle.frag">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>

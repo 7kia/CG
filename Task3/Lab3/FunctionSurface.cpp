@@ -71,7 +71,7 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 	// рисуем двухсторонние полигоны
 	
 	// TODO : WARNING in two low strings is two magic number for correct draw Klein bottle
-	const float maxU = rangeU.x + step * float(columnCount - 1 - 2);
+	const float maxU = rangeU.x + step * float(columnCount - 1 - 2);excel
 	const float maxV = rangeV.x + step * float(rowCount - 1 - 1);
 
 		for (unsigned ci = 0; ci < columnCount; ++ci)
