@@ -1,5 +1,22 @@
 uniform float TWIST;
 
+bool IsBetween(float value, float start, float end)
+{
+	return (value >= start) && (value <= end);// TODO : see end
+}
+
+float GetNumberStep(float value)
+{
+	for(float start = 0.f; start < 3.f; ++start)
+	{
+		if( IsBetween(value, start, start + 1.f) )
+		{
+			return start;
+		}
+	}
+	
+}
+
 void main()
 {
 
@@ -17,37 +34,24 @@ void main()
 	float shift = PI;
 	float y = maxHeight;
 
-	////////////////////////
-	// first step
-	///*
-	y = maxHeight * sin(radius + shift) / radius + height;
-	//*/
-	////////////////////////
+	float numberStep = GetNumberStep(TWIST);// TODO : see need the type
 
-	////////////////////////
-	// second step
-	///*
-	shift = PI;
-	y = maxHeight * sin( 1.5 * (radius + shift) ) / radius + height;
-	//*/
-	////////////////////////
-
-
-	////////////////////////
-	// third step
-	///*
-	shift = 2.f * PI;
-	float flatShift = 1.5f * PI;// TODO : rename
-	if( (radius) > flatShift )
+	shift = (TWIST + 1.f) * PI;
+	if( (radius) < 0.01f )
 	{
-		y = maxHeight * sin(radius + shift) / radius + height;
+	y = maxHeight + height;;
 	}
 	else
 	{
-		y = maxHeight * sin(flatShift) / flatShift + height;
+			y = maxHeight * sin( (radius + shift)) / radius + height;
+
 	}
-	//*/
-	////////////////////////
+	
+
+	
+
+
+	
 
 	TWIST;
     vec4 twistedCoord = vec4(
