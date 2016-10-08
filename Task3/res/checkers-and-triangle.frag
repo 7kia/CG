@@ -74,20 +74,22 @@ bool CheckFillRectangle(vec2 firstPoint
 bool DrawHammerAndSickle(vec2 pos)
 {
 	bool resultBool = false;
+
+	vec2 hammerShift = vec2(0.125f, 0.f);
 	/////////////////////////////////////////////
 	// Hammer peen
-	resultBool = resultBool || CheckFillRectangle(vec2(0.433f, 2.632f)
-													,vec2(0.902f, 3.045f)
-													,vec2(0.724f, 2.365f)
-													,vec2(1.328f, 2.92f)
+	resultBool = resultBool || CheckFillRectangle(vec2(0.433f, 2.632f) + hammerShift
+													,vec2(0.902f, 3.045f) + hammerShift
+													,vec2(0.724f, 2.365f) + hammerShift
+													,vec2(1.328f, 2.92f) + hammerShift
 													
 													, pos);
 	/////////////////////////////////////////////
 	// Handle hammer
-	resultBool = resultBool || CheckFillRectangle(vec2(0.843f, 2.583f)
-													,vec2(1.015f, 2.77f)
-													,vec2(1.863f, 1.618f)
-													,vec2(2.035f, 1.805f)
+	resultBool = resultBool || CheckFillRectangle(vec2(0.843f, 2.583f) + hammerShift
+													,vec2(1.015f, 2.77f) + hammerShift
+													,vec2(1.863f, 1.618f) + hammerShift
+													,vec2(2.035f, 1.805f) + hammerShift
 													, pos);
 	
 	/////////////////////////////////////////////
@@ -129,7 +131,7 @@ void main()
 	// Generate vertex
     vec2 starPoints[5];
 
-	vec2 center = vec2(1.f, 3.5f);
+	vec2 center = vec2(1.225f, 3.5f);
     for(int index = 0; index < 5; ++index)
     {
        starPoints[index] =  GenerateStarPoint(center
