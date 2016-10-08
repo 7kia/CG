@@ -15,6 +15,18 @@ bool PointIsInsideTriangle(vec2 p0, vec2 p1, vec2 p2, vec2 p)
            PointIsOnTheLeft(p2, p0, p);
 }
 
+bool PointIsInsideCircle(vec2 p, float radius, float xShift, float yShift)
+{
+	float x = p.x - xShift;
+	x *= x;
+
+	float y = p.y - xShift;
+	y *= y;
+	
+
+	return (x + y) <= (radius * radius);
+}
+
 vec2 GenerateStarPoint(const vec2 center
                      , float radius
                      , int vertexIndex)
@@ -142,7 +154,8 @@ bool DrawHammerAndSickle(vec2 pos)
 													,vec2(1.651f, 2.815f)
 													, pos);
 	/////////////////////////////////////////////
-
+	resultBool = resultBool || PointIsInsideCircle(pos
+													, 0.65f, 1.392f, 2.534f);//1.392f, 2.534f
 	return resultBool;
 }
 
