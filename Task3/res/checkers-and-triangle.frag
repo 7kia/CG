@@ -20,7 +20,7 @@ bool PointIsInsideCircle(vec2 p, float radius, float xShift, float yShift)
 	float x = p.x - xShift;
 	x *= x;
 
-	float y = p.y - xShift;
+	float y = p.y - yShift;
 	y *= y;
 	
 
@@ -105,57 +105,16 @@ bool DrawHammerAndSickle(vec2 pos)
 													,vec2(1.1f, 1.963f)
 													, pos);
 
-	resultBool = resultBool || CheckFillRectangle(vec2(1.09f, 1.967f)
-													,vec2(1.268f, 1.865f)
-													,vec2(0.958f, 1.851f)												
-													,vec2(1.241f, 1.703f)
-													, pos);
 
-	resultBool = resultBool || CheckFillRectangle(vec2(1.256f, 1.87f)
-													,vec2(1.495f, 1.85f)
-													,vec2(1.223, 1.702f)												
-													,vec2(1.507f, 1.686f)
-													, pos);
-
-	resultBool = resultBool || CheckFillRectangle(vec2(1.478f, 1.846f)
-													,vec2(1.678f, 1.953f)
-													,vec2(1.497f, 1.686f)												
-													,vec2(1.769f, 1.833f)
-													, pos);
-
-	resultBool = resultBool || CheckFillRectangle(vec2(1.677f, 1.953f)
-													,vec2(1.777f, 2.106f)
-													,vec2(1.497f, 1.686f)												
-													,vec2(1.936f, 2.071f)
-													, pos);
-
-	resultBool = resultBool || CheckFillRectangle(vec2(1.78f, 2.104f)
-													,vec2(1.805f, 2.246f)
-													,vec2(1.937f, 2.07f)												
-													,vec2(1.947f, 2.323f)
-													, pos);
-
-													
-	resultBool = resultBool || CheckFillRectangle(vec2(1.78f, 2.104f)
-													,vec2(1.805f, 2.246f)
-													,vec2(1.937f, 2.07f)												
-													,vec2(1.947f, 2.323f)
-													, pos);
-
-													
-	resultBool = resultBool || CheckFillRectangle(vec2(1.802f, 2.24f)
-													,vec2(1.787f, 2.53f)
-													,vec2(1.948f, 2.32f)
-													,vec2(1.855f, 2.607f)												
-													, pos);
-
-	resultBool = resultBool || PointIsInsideTriangle(vec2(1.791f, 2.521f)
-													,vec2(1.861f, 2.596f)
-													,vec2(1.651f, 2.815f)
-													, pos);
+	
+	resultBool = resultBool || ( !PointIsInsideCircle(pos
+													, 0.65f, 1.392f, 2.534f)//1.392f, 2.534f
+									&&
+									PointIsInsideCircle(pos
+													, 0.7f, 1.455f, 2.422f)
+									&& (pos.x > 0.997f)
+									);
 	/////////////////////////////////////////////
-	resultBool = resultBool || PointIsInsideCircle(pos
-													, 0.65f, 1.392f, 2.534f);//1.392f, 2.534f
 	return resultBool;
 }
 
