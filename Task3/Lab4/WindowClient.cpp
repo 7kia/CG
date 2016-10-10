@@ -36,14 +36,14 @@ glm::vec3 GetSinc(float x, float z)
 {
 	const float height = -3.f;
 	const float maxHeight = 2.f;
-	const float radius = maxHeight * std::hypotf(x, z);
+	const float radius = maxHeight * std::hypotf(x, z) + 0.1f;
 	
 	return glm::vec3(x, sinf(radius) / radius + height, z);
 }
 
 glm::vec3  GetMobiusStrip(float U, float V)
 {
-	return glm::vec3((1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U)
+	return glm::vec3( (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U)
 		, (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U)
 		, V / 2.f * sinf(U / 2.f)
 	);

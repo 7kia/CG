@@ -61,20 +61,16 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 {
     m_vertices.clear();
 	// TODO : WARNING in two low strings is two magic number for correct draw Mobius strip
-    const unsigned columnCount = unsigned((rangeU.y - rangeU.x) / step) + 2;
-    const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step) + 1;
+    const unsigned columnCount = unsigned((rangeU.y - rangeU.x) / step);
+    const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step);
 
     // вычисляем позиции вершин.
 	// рисуем двухсторонние полигоны
 	
-	// TODO : WARNING in two low strings is two magic number for correct draw Klein bottle
-	const float maxU = rangeU.x + step * float(columnCount - 1 - 2);
-	const float maxV = rangeV.x + step * float(rowCount - 1 - 1);
-
 	for (unsigned ci = 0; ci < columnCount; ++ci)
 	{
 		const float U = rangeU.x + step * float(ci);
-		for (unsigned ri = 0; ri <= rowCount; ++ri)
+		for (unsigned ri = 0; ri < rowCount; ++ri)
 		{
 			const float V = rangeV.x + step * float(ri);
 			SVertexP3NT2 vertex;
