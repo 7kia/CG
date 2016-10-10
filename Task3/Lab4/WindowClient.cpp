@@ -41,20 +41,11 @@ glm::vec3 GetSinc(float x, float z)
 	return glm::vec3(x, sinf(radius) / radius + height, z);
 }
 
-glm::vec3  GetMobiusStrip(float U, float V)
-{
-	return glm::vec3( (1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U)
-		, (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U)
-		, V / 2.f * sinf(U / 2.f)
-	);
-}
-
 }
 
 CWindowClient::CWindowClient(CWindow &window)
     : CAbstractWindowClient(window)
     , m_surface(GetSinc)
-	, m_secondSurface(GetMobiusStrip)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
     , m_lamp(GL_LIGHT1)
@@ -89,7 +80,6 @@ CWindowClient::CWindowClient(CWindow &window)
 	m_umbrellaMat.SetShininess(MATERIAL_SHININESS);
 
 	m_surface.Tesselate({ -10.f, 10.f }, { -10.f, 10.f }, 0.2f);
-	m_secondSurface.Tesselate({ -0.f, 2.f * M_PI }, { -1.f, 1.f }, 0.1f);
 
 	const std::string twistShader = CFilesystemUtils::LoadFileAsString("res/ToWave.vert");
     m_programTwist.CompileShader(twistShader, ShaderType::Vertex);
@@ -121,24 +111,21 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
 
     // Если программа активна, используем её и рисуем поверхность
     // в режиме Wireframe.
-    if (m_programEnabled)
-    {
-        m_programTwist.Use();
-        CProgramUniform twist = m_programTwist.FindUniform("TWIST");
-        twist = m_twistController.GetCurrentValue();
+	if (m_programEnabled)
+	{
+		m_programTwist.Use();
+		CProgramUniform twist = m_programTwist.FindUniform("TWIST");
+		twist = m_twistController.GetCurrentValue();
 
 		std::cout << m_twistController.GetCurrentValue() << std::endl;
 
-       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        m_surface.Draw();
-		//m_secondSurface.Draw();
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    }
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		m_surface.Draw();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
     else
     {
         m_programFixed.Use();
-		//m_secondSurface.Draw();
-
 		m_surface.Draw();
     }
 }

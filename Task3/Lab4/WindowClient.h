@@ -20,7 +20,6 @@ private:
     void SetupView(const glm::ivec2 &size);
 
 	CSolidFunctionSurface m_surface;
-	CSolidFunctionSurface m_secondSurface;
 	CPhongModelMaterial m_umbrellaMat;
     CCamera m_camera;
     CDirectedLightSource m_sunlight;
