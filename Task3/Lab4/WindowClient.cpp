@@ -7,7 +7,8 @@ const glm::vec4 BLACK = {0, 0, 0, 1};
 const float CAMERA_INITIAL_ROTATION = float(M_PI);
 const float CAMERA_INITIAL_DISTANCE = 10;
 const int SPHERE_PRECISION = 40;
-const float MATERIAL_SHININESS = 30.f;
+const float MATERIAL_SHININESS = 100.f;
+const glm::vec4 FADED_WHITE_RGBA = { 0.3f, 0.3f, 0.3f, 1.f };
 
 void SetupOpenGLState()
 {
@@ -40,18 +41,27 @@ glm::vec3 GetSinc(float x, float z)
 	return glm::vec3(x, sinf(radius) / radius + height, z);
 }
 
+glm::vec3  GetMobiusStrip(float U, float V)
+{
+	return glm::vec3((1.f + (V / 2.f * cosf(U / 2.f))) * cosf(U)
+		, (1.f + (V / 2.f * cosf(U / 2.f))) * sinf(U)
+		, V / 2.f * sinf(U / 2.f)
+	);
+}
+
 }
 
 CWindowClient::CWindowClient(CWindow &window)
     : CAbstractWindowClient(window)
     , m_surface(GetSinc)
+	, m_secondSurface(GetMobiusStrip)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
     , m_lamp(GL_LIGHT1)
     , m_programFixed(CShaderProgram::fixed_pipeline_t())
 	, m_twistController(3.f)
 {
-    const glm::vec3 SUNLIGHT_DIRECTION = {-1.f, 0.2f, 0.7f};
+    const glm::vec3 SUNLIGHT_DIRECTION = {-0.2f, 1.5f, 0.1f};
     const glm::vec3 LAMP_POSITION = {0.f, 5.0f, 0.f};
     const glm::vec4 WHITE_RGBA = {1, 1, 1, 1};
     const glm::vec4 DARK_BLUE_RGBA = {0.2f, 0.2f, 0.6f, 1.f};
@@ -65,20 +75,21 @@ CWindowClient::CWindowClient(CWindow &window)
 
     m_sunlight.SetDirection(SUNLIGHT_DIRECTION);
     m_sunlight.SetDiffuse(WHITE_RGBA);
-    m_sunlight.SetAmbient(WHITE_RGBA);
+    m_sunlight.SetAmbient(AMBIENT_SCALE * WHITE_RGBA);
     m_sunlight.SetSpecular(WHITE_RGBA);
 
     m_lamp.SetPosition(LAMP_POSITION);
     m_lamp.SetDiffuse(WHITE_RGBA);
-    m_lamp.SetAmbient(0.1f * WHITE_RGBA);
+    m_lamp.SetAmbient(AMBIENT_SCALE * WHITE_RGBA);
     m_lamp.SetSpecular(WHITE_RGBA);
 
     m_umbrellaMat.SetDiffuse(GREEN_RGBA);
-    m_umbrellaMat.SetAmbient(GREEN_RGBA * AMBIENT_SCALE);
-
+    m_umbrellaMat.SetAmbient(GREEN_RGBA);
+	m_umbrellaMat.SetSpecular(FADED_WHITE_RGBA);
 	m_umbrellaMat.SetShininess(MATERIAL_SHININESS);
 
 	m_surface.Tesselate({ -10.f, 10.f }, { -10.f, 10.f }, 0.2f);
+	m_secondSurface.Tesselate({ -0.f, 2.f * M_PI }, { -1.f, 1.f }, 0.1f);
 
 	const std::string twistShader = CFilesystemUtils::LoadFileAsString("res/ToWave.vert");
     m_programTwist.CompileShader(twistShader, ShaderType::Vertex);
@@ -103,7 +114,7 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
     SetupView(GetWindow().GetWindowSize());
 
     m_sunlight.Setup();
-    m_lamp.Setup();
+	//m_lamp.Setup();
     m_umbrellaMat.Setup();
 
 
@@ -116,18 +127,18 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
         CProgramUniform twist = m_programTwist.FindUniform("TWIST");
         twist = m_twistController.GetCurrentValue();
 
-		//CProgramUniform startX = m_programTwist.FindUniform("startX");
-		//startX = m_umbrellaObj.GetVertexPosition(0);
-
 		std::cout << m_twistController.GetCurrentValue() << std::endl;
 
-       // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         m_surface.Draw();
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		//m_secondSurface.Draw();
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     else
     {
         m_programFixed.Use();
+		//m_secondSurface.Draw();
+
 		m_surface.Draw();
     }
 }

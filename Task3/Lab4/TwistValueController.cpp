@@ -5,8 +5,8 @@ namespace
 {
 const float MIN_TWIST = 0.f;
 const float MAX_TWIST = 3.25f ;//2.f * M_PI
-const float NEXT_TWIST_STEP = 0.2f;
-const float TWIST_CHANGE_SPEED = 1.0f;
+const float NEXT_TWIST_STEP = 0.1f;
+const float TWIST_CHANGE_SPEED = 1.5f;
 }
 
 CTwistValueController::CTwistValueController(float twist)

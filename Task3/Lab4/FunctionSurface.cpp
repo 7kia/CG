@@ -14,9 +14,6 @@ void CalculateNormals(std::vector<SVertexP3NT2> &vertices, float step)
 	for(SVertexP3NT2 & v : vertices)
 	{
         const glm::vec3 &position = v.position;
-        glm::vec3 dir1 = glm::vec3(position.y, position.x, position.z + step) - position;
-        glm::vec3 dir2 = glm::vec3(position.y, position.x + step, position.z) - position;
-		v.normal = glm::normalize(glm::cross(dir1, dir2));
     }
 	
 }
@@ -74,23 +71,28 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 	const float maxU = rangeU.x + step * float(columnCount - 1 - 2);
 	const float maxV = rangeV.x + step * float(rowCount - 1 - 1);
 
-		for (unsigned ci = 0; ci < columnCount; ++ci)
+	for (unsigned ci = 0; ci < columnCount; ++ci)
+	{
+		const float U = rangeU.x + step * float(ci);
+		for (unsigned ri = 0; ri <= rowCount; ++ri)
 		{
-			const float U = rangeU.x + step * float(ci);
-			for (unsigned ri = 0; ri < rowCount; ++ri)
-			{
-				const float V = rangeV.x + step * float(ri);
-				SVertexP3NT2 vertex;
-				vertex.position = m_function(U, V);
+			const float V = rangeV.x + step * float(ri);
+			SVertexP3NT2 vertex;
+			vertex.position = m_function(U, V);
 
-				// Only shader
-				vertex.texCoord = glm::vec2(U, V);
-				//vertex.texCoord = glm::vec2(U, V);
-				m_vertices.push_back(vertex);
-			}
+			// Only shader
+			vertex.texCoord = glm::vec2(U, V);
+
+			glm::vec3 dir1 = m_function(U + step, V) - vertex.position;
+			glm::vec3 dir2 = m_function(U, V + step) - vertex.position;
+			vertex.normal = -glm::normalize(glm::cross(dir1, dir2));
+
+			//vertex.texCoord = glm::vec2(U, V);
+			m_vertices.push_back(vertex);
 		}
+	}
 
-    CalculateNormals(m_vertices, step);
+
     // вычисляем индексы вершин.
 	CalculateTriangleStripIndicies(m_indicies, columnCount, rowCount);
 	m_vertices.shrink_to_fit();
