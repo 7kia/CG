@@ -13,12 +13,12 @@ CEarthProgramContext::CEarthProgramContext()
 {
     CTexture2DLoader loader;
 
-    m_pEarthTexture = loader.Load("res/img/earth_colormap.jpg");
-    m_pCloudTexture = loader.Load("res/img/earth_clouds.jpg");
-    m_pNightTexture = loader.Load("res/img/earth_at_night.jpg");
+    m_pEarthTexture = loader.Load("res\\img\\earth_colormap.jpg");
+    m_pCloudTexture = loader.Load("res\\img\\earth_clouds.jpg");
+    m_pNightTexture = loader.Load("res\\img\\earth_at_night.jpg");
 
-    const auto vertShader = CFilesystemUtils::LoadFileAsString("res/cloud_earth_robust.vert");
-    const auto fragShader = CFilesystemUtils::LoadFileAsString("res/cloud_earth_robust.frag");
+    const auto vertShader = CFilesystemUtils::LoadFileAsString("res\\cloud_earth_robust.vert");
+    const auto fragShader = CFilesystemUtils::LoadFileAsString("res\\cloud_earth_robust.frag");
     m_programEarth.CompileShader(vertShader, ShaderType::Vertex);
     m_programEarth.CompileShader(fragShader, ShaderType::Fragment);
     m_programEarth.Link();
