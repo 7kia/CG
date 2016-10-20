@@ -4,8 +4,6 @@
 
 namespace
 {
-const float DOT_SIZE = 5.f;
-
 struct CSurfaceTesselator : SMeshDataP3NT2
 {
 	void Tesselate(const glm::vec2 &rangeU
