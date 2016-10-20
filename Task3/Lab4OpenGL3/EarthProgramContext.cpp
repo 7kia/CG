@@ -17,7 +17,7 @@ CEarthProgramContext::CEarthProgramContext()
     m_pCloudTexture = loader.Load("res\\img\\earth_clouds.jpg");
     m_pNightTexture = loader.Load("res\\img\\earth_at_night.jpg");
 
-    const auto vertShader = CFilesystemUtils::LoadFileAsString("res\\cloud_earth_robust.vert");
+    const auto vertShader = CFilesystemUtils::LoadFileAsString("res\\fourthTaskVertexShader.vert");
     const auto fragShader = CFilesystemUtils::LoadFileAsString("res\\cloud_earth_robust.frag");
     m_programEarth.CompileShader(vertShader, ShaderType::Vertex);
     m_programEarth.CompileShader(fragShader, ShaderType::Fragment);

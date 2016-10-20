@@ -198,4 +198,12 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\x64\Debug\res\cloud_earth_robust.frag">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="..\x64\Debug\res\fourthTaskVertexShader.vert">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
 </Project>
