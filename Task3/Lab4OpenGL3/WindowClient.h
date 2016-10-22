@@ -3,6 +3,7 @@
 #include "Shape/IdentitySphere.h"
 #include "Shape/FunctionSurface.h"
 #include "EarthProgramContext.h"
+#include "WaveContext.h"
 
 
 #include <vector>
@@ -36,5 +37,6 @@ private:
 
     CCamera m_camera;
     CDirectedLightSource m_sunlight;
-    CEarthProgramContext m_earthProgramContext;
+    CWaveProgramContext m_programContext;// TOOD : rename // CEarthProgramContext
+
 };

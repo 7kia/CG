@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "EarthRenderer3D.h"
-#include "EarthProgramContext.h"
+#include "ProgramContext\ProgramContext.h"
 
 
-CEarthRenderer3D::CEarthRenderer3D(CEarthProgramContext &context)
+CEarthRenderer3D::CEarthRenderer3D(CProgramContext &context)
     : m_context(context)
     , m_vertexAttr(m_context.GetPositionAttr())
     , m_normalAttr(m_context.GetNormalAttr())

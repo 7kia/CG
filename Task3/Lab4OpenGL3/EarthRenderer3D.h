@@ -2,12 +2,12 @@
 #include "libchapter3.h"
 #include "Mixin\IRenderer3D.h"
 
-class CEarthProgramContext;
+class CProgramContext;
 
 class CEarthRenderer3D : public IRenderer3D
 {
 public:
-    CEarthRenderer3D(CEarthProgramContext &context);
+    CEarthRenderer3D(CProgramContext &context);
     ~CEarthRenderer3D();
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -21,7 +21,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
-    CEarthProgramContext	&m_context;
+	CProgramContext			&m_context;
     CVertexAttribute		m_vertexAttr;
     CVertexAttribute		m_normalAttr;
     CVertexAttribute		m_texCoordAttr;

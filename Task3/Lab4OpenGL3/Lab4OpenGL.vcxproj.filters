@@ -126,6 +126,9 @@
     <ClInclude Include="ProgramContext\ProgramContext.h">
       <Filter>Файлы исходного кода\ProgramContext</Filter>
     </ClInclude>
+    <ClInclude Include="WaveContext.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libchapter3\src\AbstractWindowClient.cpp">
@@ -206,12 +209,18 @@
     <ClCompile Include="ProgramContext\ProgramContext.cpp">
       <Filter>Файлы исходного кода\ProgramContext</Filter>
     </ClCompile>
+    <ClCompile Include="WaveContext.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\x64\Debug\res\cloud_earth_robust.frag">
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="..\x64\Debug\res\fourthTaskVertexShader.vert">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="..\x64\Debug\res\wave.frag">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>
