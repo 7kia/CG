@@ -36,5 +36,5 @@ private:
 
     CCamera m_camera;
     CDirectedLightSource m_sunlight;
-    CEarthProgramContext m_programContext;
+    CEarthProgramContext m_earthProgramContext;
 };

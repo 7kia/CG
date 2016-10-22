@@ -64,7 +64,7 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
     SetupView(GetWindow().GetWindowSize());
     SetupLight0();
 
-    CEarthRenderer3D renderer(m_programContext);
+    CEarthRenderer3D renderer(m_earthProgramContext);
     m_sphereObj.Draw(renderer);
 	m_surface.Draw(renderer);
 }
@@ -95,10 +95,10 @@ void CWindowClient::UpdateRotation(float deltaSeconds)
 {
     const float ROTATION_SPEED = 0.2f;
     const float deltaRotation = ROTATION_SPEED * deltaSeconds;
-    const mat4 model = glm::rotate(m_programContext.GetModel(),
+    const mat4 model = glm::rotate(m_earthProgramContext.GetModel(),
                                    deltaRotation,
                                    vec3(0, 1, 0));
-    m_programContext.SetModel(model);
+    m_earthProgramContext.SetModel(model);
 }
 
 void CWindowClient::SetupView(const glm::ivec2 &size)
@@ -116,8 +116,8 @@ void CWindowClient::SetupView(const glm::ivec2 &size)
 
     glViewport(0, 0, size.x, size.y);
 
-    m_programContext.SetView(view);
-    m_programContext.SetProjection(proj);
+    m_earthProgramContext.SetView(view);
+    m_earthProgramContext.SetProjection(proj);
 }
 
 void CWindowClient::SetupLight0()
@@ -126,5 +126,5 @@ void CWindowClient::SetupLight0()
     light0.specular = m_sunlight.GetSpecular();
     light0.diffuse = m_sunlight.GetDiffuse();
     light0.position = m_sunlight.GetUniformPosition();
-    m_programContext.SetLight0(light0);
+    m_earthProgramContext.SetLight(0, light0);
 }

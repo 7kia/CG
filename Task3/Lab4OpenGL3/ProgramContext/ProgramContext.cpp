@@ -9,10 +9,10 @@ namespace
 	}
 }
 
-CProgramContext::CProgramContext()
+CProgramContext::CProgramContext(size_t amountLights)
+	: m_lights(amountLights)
 {
 }
-
 
 void CProgramContext::SetModel(const glm::mat4 &value)
 {
@@ -44,7 +44,6 @@ const glm::mat4 &CProgramContext::GetProjection() const
 	return m_projection;
 }
 
-
 CVertexAttribute CProgramContext::GetPositionAttr() const
 {
 	return m_shaderProgram.FindAttribute("vertex");
@@ -60,6 +59,35 @@ CVertexAttribute CProgramContext::GetTexCoordAttr() const
 	return m_shaderProgram.FindAttribute("textureUV");
 }
 
+const CProgramContext::SLightSource & CProgramContext::GetLight(size_t index) const
+{
+	if (!IsBetween(index, size_t(0), m_lights.size() - 1))
+	{
+		throw std::runtime_error("Not exist light have index " + std::to_string(index));
+	}
+	return m_lights[index];
+}
+
+void CProgramContext::SetLight(size_t index, const SLightSource & source)
+{
+	if (!IsBetween(index, size_t(0), m_lights.size() - 1))
+	{
+		throw std::runtime_error("Not exist light have index " + std::to_string(index));
+	}
+	m_lights[index] = source;
+}
+
+void CProgramContext::Use()
+{
+	BindTextures();
+
+	m_shaderProgram.Use();
+
+	SetTexture();
+	SetView();
+	SetLights();
+}
+
 void CProgramContext::SetView() const
 {
 	const glm::mat4 mv = m_view * m_model;
@@ -67,6 +95,4 @@ void CProgramContext::SetView() const
 	m_shaderProgram.FindUniform("modelView") = mv;
 	m_shaderProgram.FindUniform("normalModelView") = GetNormalMatrix(mv);
 	m_shaderProgram.FindUniform("projection") = m_projection;
-
-
 }
