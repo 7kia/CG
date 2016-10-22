@@ -1,8 +1,9 @@
 #pragma once
 #include "libchapter3.h"
-#include "IdentitySphere.h"
+#include "Shape/IdentitySphere.h"
+#include "Shape/FunctionSurface.h"
 #include "EarthProgramContext.h"
-#include "FunctionSurface.h"
+
 
 #include <vector>
 

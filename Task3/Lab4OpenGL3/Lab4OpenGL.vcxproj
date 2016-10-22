@@ -179,14 +179,15 @@
     <ClInclude Include="..\libchapter3\src\Window.h" />
     <ClInclude Include="EarthProgramContext.h" />
     <ClInclude Include="EarthRenderer3D.h" />
-    <ClInclude Include="FunctionSurface.h" />
-    <ClInclude Include="IdentitySphere.h" />
     <ClInclude Include="Mixin\Drawable.h" />
     <ClInclude Include="Mixin\IRenderer3D.h" />
     <ClInclude Include="Mixin\MeshP3NT2.h" />
     <ClInclude Include="Mixin\Transformable.h" />
     <ClInclude Include="Mixin\Updatable.h" />
+    <ClInclude Include="ProgramContext\ProgramContext.h" />
     <ClInclude Include="Shape\3DShape.h" />
+    <ClInclude Include="Shape\FunctionSurface.h" />
+    <ClInclude Include="Shape\IdentitySphere.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="WindowClient.h" />
   </ItemGroup>
@@ -208,12 +209,13 @@
     <ClCompile Include="..\libchapter3\src\Window.cpp" />
     <ClCompile Include="EarthProgramContext.cpp" />
     <ClCompile Include="EarthRenderer3D.cpp" />
-    <ClCompile Include="FunctionSurface.cpp" />
-    <ClCompile Include="IdentitySphere.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mixin\MeshP3NT2.cpp" />
     <ClCompile Include="Mixin\Transformable.cpp" />
+    <ClCompile Include="ProgramContext\ProgramContext.cpp" />
     <ClCompile Include="Shape\3DShape.cpp" />
+    <ClCompile Include="Shape\FunctionSurface.cpp" />
+    <ClCompile Include="Shape\IdentitySphere.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="WindowClient.cpp" />
   </ItemGroup>

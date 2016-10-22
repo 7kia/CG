@@ -28,6 +28,9 @@
     <Filter Include="Файлы исходного кода\Shape">
       <UniqueIdentifier>{e09c2f11-2ae9-4966-ac6f-6e35bc74bf3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\ProgramContext">
+      <UniqueIdentifier>{1b36ed3f-3147-4bbd-8507-0d86e2d818c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,9 +75,6 @@
     <ClInclude Include="EarthRenderer3D.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="IdentitySphere.h">
-      <Filter>Файлы исходного кода</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
@@ -117,8 +117,14 @@
     <ClInclude Include="Mixin\MeshP3NT2.h">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionSurface.h">
-      <Filter>Файлы исходного кода</Filter>
+    <ClInclude Include="Shape\FunctionSurface.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\IdentitySphere.h">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramContext\ProgramContext.h">
+      <Filter>Файлы исходного кода\ProgramContext</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -153,9 +159,6 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="EarthRenderer3D.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="IdentitySphere.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -194,8 +197,14 @@
     <ClCompile Include="Mixin\MeshP3NT2.cpp">
       <Filter>Файлы исходного кода\Mixin</Filter>
     </ClCompile>
-    <ClCompile Include="FunctionSurface.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="Shape\FunctionSurface.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\IdentitySphere.cpp">
+      <Filter>Файлы исходного кода\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramContext\ProgramContext.cpp">
+      <Filter>Файлы исходного кода\ProgramContext</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
