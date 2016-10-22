@@ -2,15 +2,15 @@ uniform float TWIST;
 
 void main()
 {
-float ANGLE = (gl_Vertex.x);
+	float ANGLE = gl_Vertex.x;
 
-	float radiuse = (1.f + sin(ANGLE))
+	float radius = (1.f + sin(ANGLE))
 					* (1.f + 0.9f * cos(8.f * ANGLE))
 					* (1.f + 0.1f * cos(24.f * ANGLE))
 					* (0.5f + 0.05f * cos(140.f * ANGLE));
 
-	float x = radiuse * cos(ANGLE);
-	float y = radiuse * sin(ANGLE);
+	float x = radius * cos(ANGLE);
+	float y = radius * sin(ANGLE);
 	float z = 0.f;
 	 /*
       Rotate vertex around Y axis:

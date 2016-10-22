@@ -19,8 +19,6 @@ float GetNumberStep(float value)
 
 void main()
 {
-
-
 	float x = gl_Vertex.x;
 	float z = gl_Vertex.z;
 
@@ -37,22 +35,20 @@ void main()
 	float numberStep = GetNumberStep(TWIST);// TODO : see need the type
 
 	shift = (TWIST + 1.f) * PI;
-	if( (radius) < 0.01f )
+	/*
+	if( (maxHeight * sin( (radius + shift)) / radius + height) > 0.10f )
 	{
-	y = maxHeight + height;;
+		y = maxHeight + height;
 	}
 	else
 	{
-			y = maxHeight * sin( (radius + shift)) / radius + height;
-
+		y = maxHeight * sin( (radius + shift)) / radius + height;
 	}
+
+	*/
 	
-
+	y = maxHeight * sin( (radius + shift)) / (radius + 1) + height;
 	
-
-
-	
-
 	TWIST;
     vec4 twistedCoord = vec4(
 		x,
@@ -62,6 +58,7 @@ void main()
     );
 
     vec4 position = gl_ModelViewProjectionMatrix * twistedCoord;
+
     // Transform twisted coordinate
     gl_Position = position;
     gl_FrontColor = (position + vec4(1.0)) * 0.5;
