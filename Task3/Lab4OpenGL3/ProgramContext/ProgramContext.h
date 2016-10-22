@@ -33,13 +33,14 @@ public:
 	const SLightSource &				GetLight(size_t index)const;
 	void								SetLight(size_t index, const SLightSource &source);
 
-
+	CProgramUniform						FindUniform(const std::string &name) const;
 	void								Use();
 protected:
 	void								SetView() const;
 	virtual void						BindTextures() = 0;
 	virtual void						SetTexture() = 0;
 	virtual void						SetLights() = 0;
+	virtual void						SetAdditionalVariable() = 0;
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:

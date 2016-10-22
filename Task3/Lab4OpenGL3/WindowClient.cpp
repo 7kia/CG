@@ -35,7 +35,6 @@ glm::vec3 GetSinc(float x, float z)
 CWindowClient::CWindowClient(CWindow &window)
     : CAbstractWindowClient(window)
     , m_defaultVAO(CArrayObject::do_bind_tag())
-    , m_sphereObj(SPHERE_PRECISION, SPHERE_PRECISION)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
 	, m_surface(GetSinc)
@@ -65,8 +64,14 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
     SetupView(GetWindow().GetWindowSize());
     SetupLight0();
 
+
+
     CEarthRenderer3D renderer(m_programContext);
-    m_sphereObj.Draw(renderer);
+
+	CProgramUniform twist = m_programContext.FindUniform("TWIST");
+	twist = m_twistController.GetCurrentValue();
+	m_twistController.Update(deltaSeconds);
+
 	m_surface.Draw(renderer);
 
 	/*
@@ -91,12 +96,14 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
 	}
 	*/
 
-
 }
 
 void CWindowClient::OnKeyDown(const SDL_KeyboardEvent &event)
 {
-    m_camera.OnKeyDown(event);
+	if (m_camera.OnKeyDown(event) || m_twistController.OnKeyDown(event))
+	{
+		return;// TODO : see can it rewrite
+	}
 }
 
 void CWindowClient::OnKeyUp(const SDL_KeyboardEvent &event)

@@ -78,6 +78,11 @@ void CProgramContext::SetLight(size_t index, const SLightSource & source)
 	m_lights[index] = source;
 }
 
+CProgramUniform CProgramContext::FindUniform(const std::string & name) const
+{
+	return m_pCurrentShaderProgram->FindUniform(name);
+}
+
 void CProgramContext::Use()
 {
 	BindTextures();

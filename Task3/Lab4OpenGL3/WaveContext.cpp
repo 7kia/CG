@@ -15,7 +15,7 @@ CWaveProgramContext::CWaveProgramContext()
 
 	m_pWaveTexture = loader.Load("res\\img\\Water1.jpg");
 
-	const auto vertShader = CFilesystemUtils::LoadFileAsString("res\\fourthTaskVertexShader.vert");
+	const auto vertShader = CFilesystemUtils::LoadFileAsString("res\\WaveVertexShader.vert");
 	const auto fragShader = CFilesystemUtils::LoadFileAsString("res\\wave.frag");
 	m_shaderPrograms[0].CompileShader(vertShader, ShaderType::Vertex);
 	m_shaderPrograms[0].CompileShader(fragShader, ShaderType::Fragment);
@@ -40,4 +40,9 @@ void CWaveProgramContext::SetLights()
 	m_pCurrentShaderProgram->FindUniform("light0.position") = m_lights[0].position;
 	m_pCurrentShaderProgram->FindUniform("light0.diffuse") = m_lights[0].diffuse;
 	m_pCurrentShaderProgram->FindUniform("light0.specular") = m_lights[0].specular;
+}
+
+void CWaveProgramContext::SetAdditionalVariable()
+{
+	m_pCurrentShaderProgram->FindUniform("TWIST") = 0.f;
 }

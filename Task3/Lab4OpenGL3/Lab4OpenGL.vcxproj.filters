@@ -232,5 +232,8 @@
     <None Include="..\x64\Debug\res\ToWave.vert">
       <Filter>Файлы ресурсов</Filter>
     </None>
+    <None Include="..\x64\Debug\res\WaveVertexShader.vert">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>

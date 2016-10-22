@@ -1,6 +1,5 @@
 #pragma once
 #include "libchapter3.h"
-#include "Shape/IdentitySphere.h"
 #include "Shape/FunctionSurface.h"
 #include "EarthProgramContext.h"
 #include "WaveContext.h"
@@ -31,7 +30,6 @@ private:
     //  http://stackoverflow.com/questions/13403807/
     CArrayObject m_defaultVAO;
 
-    CIdentitySphere m_sphereObj;
 	CSolidFunctionSurface m_surface;
 
 

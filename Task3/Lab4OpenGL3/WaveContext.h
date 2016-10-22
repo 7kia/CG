@@ -13,6 +13,7 @@ public:
 	void					BindTextures() override;
 	void					SetTexture() override;
 	void					SetLights() override;
+	void					SetAdditionalVariable() override;
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
