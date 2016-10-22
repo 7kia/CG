@@ -4,10 +4,11 @@
 namespace
 {
 	static const size_t AMOUNT_LIGHT_TO_EARTH_CONTEXT = 1;
+	static const size_t AMOUNT_SHADER_TO_EARTH_CONTEXT = 1;
 }
 
 CEarthProgramContext::CEarthProgramContext()
-	: CProgramContext(AMOUNT_LIGHT_TO_EARTH_CONTEXT)
+	: CProgramContext(AMOUNT_LIGHT_TO_EARTH_CONTEXT, AMOUNT_SHADER_TO_EARTH_CONTEXT)
 {
     CTexture2DLoader loader;
 
@@ -17,9 +18,11 @@ CEarthProgramContext::CEarthProgramContext()
 
     const auto vertShader = CFilesystemUtils::LoadFileAsString("res\\fourthTaskVertexShader.vert");
     const auto fragShader = CFilesystemUtils::LoadFileAsString("res\\cloud_earth_robust.frag");
-    m_shaderProgram.CompileShader(vertShader, ShaderType::Vertex);
-    m_shaderProgram.CompileShader(fragShader, ShaderType::Fragment);
-    m_shaderProgram.Link();
+    m_shaderPrograms[0].CompileShader(vertShader, ShaderType::Vertex);
+    m_shaderPrograms[0].CompileShader(fragShader, ShaderType::Fragment);
+    m_shaderPrograms[0].Link();
+
+	m_pCurrentShaderProgram = &m_shaderPrograms[0];
 }
 
 void CEarthProgramContext::BindTextures()
@@ -38,15 +41,15 @@ void CEarthProgramContext::BindTextures()
 
 void CEarthProgramContext::SetTexture()
 {
-	m_shaderProgram.FindUniform("colormap") = 0; // GL_TEXTURE0
-	m_shaderProgram.FindUniform("surfaceDataMap") = 1; // GL_TEXTURE1
-	m_shaderProgram.FindUniform("nightColormap") = 2; // GL_TEXTURE2
+	m_pCurrentShaderProgram->FindUniform("colormap") = 0; // GL_TEXTURE0
+	m_pCurrentShaderProgram->FindUniform("surfaceDataMap") = 1; // GL_TEXTURE1
+	m_pCurrentShaderProgram->FindUniform("nightColormap") = 2; // GL_TEXTURE2
 
 }
 
 void CEarthProgramContext::SetLights()
 {
-	m_shaderProgram.FindUniform("light0.position") = m_lights[0].position;
-	m_shaderProgram.FindUniform("light0.diffuse") = m_lights[0].diffuse;
-	m_shaderProgram.FindUniform("light0.specular") = m_lights[0].specular;
+	m_pCurrentShaderProgram->FindUniform("light0.position") = m_lights[0].position;
+	m_pCurrentShaderProgram->FindUniform("light0.diffuse") = m_lights[0].diffuse;
+	m_pCurrentShaderProgram->FindUniform("light0.specular") = m_lights[0].specular;
 }

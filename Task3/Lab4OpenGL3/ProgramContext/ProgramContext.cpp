@@ -9,8 +9,9 @@ namespace
 	}
 }
 
-CProgramContext::CProgramContext(size_t amountLights)
+CProgramContext::CProgramContext(size_t amountLights, size_t amountShaders)
 	: m_lights(amountLights)
+	, m_shaderPrograms(amountShaders)
 {
 }
 
@@ -46,17 +47,17 @@ const glm::mat4 &CProgramContext::GetProjection() const
 
 CVertexAttribute CProgramContext::GetPositionAttr() const
 {
-	return m_shaderProgram.FindAttribute("vertex");
+	return m_pCurrentShaderProgram->FindAttribute("vertex");
 }
 
 CVertexAttribute CProgramContext::GetNormalAttr() const
 {
-	return m_shaderProgram.FindAttribute("normal");
+	return m_pCurrentShaderProgram->FindAttribute("normal");
 }
 
 CVertexAttribute CProgramContext::GetTexCoordAttr() const
 {
-	return m_shaderProgram.FindAttribute("textureUV");
+	return m_pCurrentShaderProgram->FindAttribute("textureUV");
 }
 
 const CProgramContext::SLightSource & CProgramContext::GetLight(size_t index) const
@@ -81,7 +82,7 @@ void CProgramContext::Use()
 {
 	BindTextures();
 
-	m_shaderProgram.Use();
+	m_pCurrentShaderProgram->Use();
 
 	SetTexture();
 	SetView();
@@ -91,8 +92,8 @@ void CProgramContext::Use()
 void CProgramContext::SetView() const
 {
 	const glm::mat4 mv = m_view * m_model;
-	m_shaderProgram.FindUniform("view") = m_view;
-	m_shaderProgram.FindUniform("modelView") = mv;
-	m_shaderProgram.FindUniform("normalModelView") = GetNormalMatrix(mv);
-	m_shaderProgram.FindUniform("projection") = m_projection;
+	m_pCurrentShaderProgram->FindUniform("view") = m_view;
+	m_pCurrentShaderProgram->FindUniform("modelView") = mv;
+	m_pCurrentShaderProgram->FindUniform("normalModelView") = GetNormalMatrix(mv);
+	m_pCurrentShaderProgram->FindUniform("projection") = m_projection;
 }

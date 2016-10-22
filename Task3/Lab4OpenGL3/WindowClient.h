@@ -4,7 +4,7 @@
 #include "Shape/FunctionSurface.h"
 #include "EarthProgramContext.h"
 #include "WaveContext.h"
-
+#include "TwistValueController.h"
 
 #include <vector>
 
@@ -37,6 +37,9 @@ private:
 
     CCamera m_camera;
     CDirectedLightSource m_sunlight;
-    CWaveProgramContext m_programContext;// TOOD : rename // CEarthProgramContext
+    CWaveProgramContext m_programContext;// TOOD : rename
+
+	bool m_programEnabled = true;
+	CTwistValueController m_twistController;
 
 };

@@ -39,6 +39,7 @@ CWindowClient::CWindowClient(CWindow &window)
     , m_camera(CAMERA_INITIAL_ROTATION, CAMERA_INITIAL_DISTANCE)
     , m_sunlight(GL_LIGHT0)
 	, m_surface(GetSinc)
+	, m_twistController(3.f)
 {
     const glm::vec3 SUNLIGHT_DIRECTION = {-1.f, 0.2f, 0.7f};
     const glm::vec4 WHITE_RGBA = {1, 1, 1, 1};
@@ -67,6 +68,30 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
     CEarthRenderer3D renderer(m_programContext);
     m_sphereObj.Draw(renderer);
 	m_surface.Draw(renderer);
+
+	/*
+		// Если программа активна, используем её и рисуем поверхность
+	// в режиме Wireframe.
+	if (m_programEnabled)
+	{
+		m_programTwist.Use();
+		CProgramUniform twist = m_programTwist.FindUniform("TWIST");
+		twist = m_twistController.GetCurrentValue();
+
+		std::cout << m_twistController.GetCurrentValue() << std::endl;
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		m_surface.Draw();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+	else
+	{
+		m_programFixed.Use();
+		m_surface.Draw();
+	}
+	*/
+
+
 }
 
 void CWindowClient::OnKeyDown(const SDL_KeyboardEvent &event)

@@ -5,7 +5,7 @@
 class CProgramContext
 {
 public:
-	CProgramContext(size_t amountLights);// TODO : see need it
+	CProgramContext(size_t amountLights, size_t amountShaders);// TODO : see need it
 
 	struct SLightSource
 	{
@@ -48,7 +48,8 @@ protected:
 	glm::mat4							m_projection;
 	glm::mat4							m_normalModelView;
 
-	CShaderProgram						m_shaderProgram;
+	CShaderProgram *					m_pCurrentShaderProgram = nullptr;
+	std::vector<CShaderProgram>			m_shaderPrograms;
 
 	std::vector<SLightSource>			m_lights;// TODO : transfer to other place
 

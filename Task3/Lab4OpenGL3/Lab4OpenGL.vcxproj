@@ -189,6 +189,7 @@
     <ClInclude Include="Shape\FunctionSurface.h" />
     <ClInclude Include="Shape\IdentitySphere.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TwistValueController.h" />
     <ClInclude Include="WaveContext.h" />
     <ClInclude Include="WindowClient.h" />
   </ItemGroup>
@@ -218,12 +219,14 @@
     <ClCompile Include="Shape\FunctionSurface.cpp" />
     <ClCompile Include="Shape\IdentitySphere.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TwistValueController.cpp" />
     <ClCompile Include="WaveContext.cpp" />
     <ClCompile Include="WindowClient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\x64\Debug\res\cloud_earth_robust.frag" />
     <None Include="..\x64\Debug\res\fourthTaskVertexShader.vert" />
+    <None Include="..\x64\Debug\res\ToWave.vert" />
     <None Include="..\x64\Debug\res\wave.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

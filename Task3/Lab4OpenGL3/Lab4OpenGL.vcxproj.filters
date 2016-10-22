@@ -129,6 +129,9 @@
     <ClInclude Include="WaveContext.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
+    <ClInclude Include="TwistValueController.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libchapter3\src\AbstractWindowClient.cpp">
@@ -212,6 +215,9 @@
     <ClCompile Include="WaveContext.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="TwistValueController.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\x64\Debug\res\cloud_earth_robust.frag">
@@ -221,6 +227,9 @@
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="..\x64\Debug\res\wave.frag">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="..\x64\Debug\res\ToWave.vert">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>
