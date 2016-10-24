@@ -68,33 +68,13 @@ void CWindowClient::OnUpdateWindow(float deltaSeconds)
 
     CEarthRenderer3D renderer(m_programContext);
 
-	CProgramUniform twist = m_programContext.FindUniform("TWIST");
-	twist = m_twistController.GetCurrentValue();
 	m_twistController.Update(deltaSeconds);
 
+	CProgramUniform twist = m_programContext.FindUniform("TWIST");
+	twist = m_twistController.GetCurrentValue();
+
+
 	m_surface.Draw(renderer);
-
-	/*
-		// Если программа активна, используем её и рисуем поверхность
-	// в режиме Wireframe.
-	if (m_programEnabled)
-	{
-		m_programTwist.Use();
-		CProgramUniform twist = m_programTwist.FindUniform("TWIST");
-		twist = m_twistController.GetCurrentValue();
-
-		std::cout << m_twistController.GetCurrentValue() << std::endl;
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		m_surface.Draw();
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	else
-	{
-		m_programFixed.Use();
-		m_surface.Draw();
-	}
-	*/
 
 }
 

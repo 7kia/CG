@@ -50,7 +50,6 @@ struct CSurfaceTesselator : SMeshDataP3NT2
 							, const Function3D &function)
 	{
 		vertices.clear();
-		// TODO : WARNING in two low strings is two magic number for correct draw Mobius strip
 		const unsigned columnCount = unsigned((rangeU.y - rangeU.x) / step);
 		const unsigned rowCount = unsigned((rangeV.y - rangeV.x) / step);
 
@@ -73,7 +72,6 @@ struct CSurfaceTesselator : SMeshDataP3NT2
 				glm::vec3 dir2 = function(U, V + step) - vertex.position;
 				vertex.normal = -glm::normalize(glm::cross(dir1, dir2));
 
-				//vertex.texCoord = glm::vec2(U, V);
 				vertices.push_back(vertex);
 			}
 		}
@@ -100,6 +98,17 @@ void CSolidFunctionSurface::Tesselate(const glm::vec2 &rangeU
 { 
 	CSurfaceTesselator tesselator;
 	tesselator.Tesselate(rangeU, rangeV, step, m_function);	
+	m_mesh.Copy(tesselator);
+
+	m_rangeU = rangeU;
+	m_rangeV = rangeV;
+	m_step = step;
+}
+
+void CSolidFunctionSurface::Update(float twist)
+{
+	CSurfaceTesselator tesselator;
+	tesselator.Tesselate(m_rangeU, m_rangeV, m_step, m_function);
 	m_mesh.Copy(tesselator);
 }
 

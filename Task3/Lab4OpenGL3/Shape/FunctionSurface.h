@@ -23,9 +23,11 @@ public:
     /// Инициализирует индексированную сетку треугольников
     /// @param rangeX - диапазон, где x - нижняя граница, y - верхняя граница
     /// @param rangeZ - диапазон, где x - нижняя граница, y - верхняя граница
-    void Tesselate(const glm::vec2 &rangeU
+	void	Tesselate(const glm::vec2 &rangeU
 					, const glm::vec2 &rangeV
 					, float step);
+
+	void	Update(float twist);// TODO : rename twist
 	//--------------------------------------------
     // CShape 
 	//--------------------------------------------
@@ -33,4 +35,9 @@ public:
 // Data
 private:
 	Function3D		m_function;// TODO : see will rewrite this part
+
+	glm::vec2		m_rangeU;
+	glm::vec2		m_rangeV;
+	float			m_step;
+
 };
