@@ -13,7 +13,7 @@ namespace TextureSpace
 		, Shoot
 	};
 
-	const std::unordered_map<size_t, std::string> TexturePaths =
+	static std::unordered_map<size_t, const std::string> TexturePaths =
 	{
 		{ size_t(Id::Tiles),  PATH_TO_RECOURCES + "Tiles.bmp" },
 		{ size_t(Id::Player),  PATH_TO_RECOURCES + "Player.bmp"},

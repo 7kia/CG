@@ -19,7 +19,7 @@ void CHaveWallTypes::CreateWallTypes()
 		SetWallType(size_t(Id::Arch), glm::vec2(0, 0));
 
 
-		m_wallTypes[0].SetTexture(TextureSpace::TexturePaths[0]);
+		m_wallTypes[0].SetTexture(TextureSpace::TexturePaths[size_t(TextureSpace::Id::Tiles)]);
 
 		for (size_t index = size_t(Id::Plank); index < size_t(Id::AmountTypes); ++index)
 		{

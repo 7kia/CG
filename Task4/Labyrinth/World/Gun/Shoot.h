@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Mixin/HaveLinearVelocity.h"
-
 #include "Mixin/HaveDirection.h"
-#include "Mixin/Drawable.h"
+#include "Mixin/Have3DPosition.h"
+
+#include "../Actor.h"
 
 #include "2DShape/2DCircleCollision.h"
-#include "3DShape\3DSphere.h"
+#include "3DShape/3DSphere.h"
 
 #include <map>
 #include <memory>
@@ -15,8 +16,7 @@
 #include <vector>
 #include <array>
 
-#include "ShootType.h"
-
+#include "ShootView.h"
 
 namespace ShootSpace
 {
@@ -36,16 +36,17 @@ class CShoot final
 	, public CHave3DPosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity
-	, public CHaveTexture
 {
 public:
 	CShoot();
-	explicit CShoot(const glm::vec3 & position
-		, const glm::vec3 & direction
-		, const std::string & texturePath// TODO : create types
-		, CWorld* pWorld);
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+	CShoot(const glm::vec3 & position
+				, const glm::vec3 & direction
+				, const CShootType * type
+				, CWorld* pWorld);
+
+	//CShoot &CShoot::operator=(const CShoot & value);
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 
 	
@@ -60,9 +61,11 @@ public:
 private:
 
 	void							SetCollison(CWorld* pWorld);
-	//////////////////////////////////////////////////////////////////////
-	// Data
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
 	C2DCircleCollision				m_collision;
-	CIdentity3DSphere				m_visual;
+	CShootView						m_visual;
 };
+
+using PShoot = std::shared_ptr<CShoot>;

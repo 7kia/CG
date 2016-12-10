@@ -219,16 +219,13 @@
     <ClInclude Include="World\Gun\Shoot.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
-    <ClInclude Include="World\HaveShoots.h">
-      <Filter>World</Filter>
-    </ClInclude>
     <ClInclude Include="World\Gun\ShootType.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
-    <ClInclude Include="World\Gun\HaveShootTypes.h">
+    <ClInclude Include="World\Gun\ShootView.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
-    <ClInclude Include="World\Gun\ShootView.h">
+    <ClInclude Include="World\Gun\HaveShootTypes.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
   </ItemGroup>
@@ -383,16 +380,13 @@
     <ClCompile Include="World\Gun\Shoot.cpp">
       <Filter>World\Gun</Filter>
     </ClCompile>
-    <ClCompile Include="World\HaveShoots.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="World\Gun\HaveShootTypes.cpp">
-      <Filter>World\Gun</Filter>
-    </ClCompile>
     <ClCompile Include="World\Gun\ShootType.cpp">
       <Filter>World\Gun</Filter>
     </ClCompile>
     <ClCompile Include="World\Gun\ShootView.cpp">
+      <Filter>World\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Gun\HaveShootTypes.cpp">
       <Filter>World\Gun</Filter>
     </ClCompile>
   </ItemGroup>

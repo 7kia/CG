@@ -10,7 +10,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "HavePlayer.h"
-#include "Gun\Shoot.h"
+#include "Gun\HaveShootTypes.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -34,6 +34,7 @@ class CWorld
 	: public IActor
 	, public IInputEventAcceptor
 	, public CHaveWallTypes
+	, public CHaveShootTypes
 	, public CHavePhysicalWorld
 	, public CHavePlayer
 {
@@ -57,11 +58,16 @@ public:
 
 private:
 	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
+	void							CreateShoot(const glm::vec3 & position
+												, const glm::vec3 & direction
+												, const CShootType * type
+												, CWorld * world);
 
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
 	CMap							m_map;
+	std::vector<PShoot>				m_shoots;
 
 	CPhongModelMaterial				m_material;
 };

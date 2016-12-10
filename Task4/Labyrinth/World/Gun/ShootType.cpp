@@ -2,5 +2,6 @@
 #include "ShootType.h"
 
 CShootType::CShootType()
+	: CHaveTexture()
 {
 }

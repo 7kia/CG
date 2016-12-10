@@ -5,7 +5,6 @@ CWall::CWall()
 	: IActor()
 	, ITransformable()
 	, IHave3DPosition()
-	, IHavePointerToWallViewType()
 	, IHaveVisiblePart()
 {
 }

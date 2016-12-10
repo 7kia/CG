@@ -3,28 +3,27 @@
 #include "../World.h"
 
 
-
 CShoot::CShoot()
 	: IActor()
 	, CHave3DPosition()
 	, CHaveDirection(ShootSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)
-	, m_visual(16, 16)
 {
 }
 
+
 CShoot::CShoot(const glm::vec3 & position
-	, const glm::vec3 & direction
-	, const std::string & texturePath
-	, CWorld* pWorld)
+				, const glm::vec3 & direction
+				, const CShootType * type
+				, CWorld* pWorld)
+
 	: IActor()
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)// TODO : fix to type
-	, m_visual(16, 16)
 {
 	SetCollison(pWorld);
-	SetTexture(texturePath);
+	SetType(type);
 }
 
 void CShoot::Update(float deltaTime)
@@ -45,7 +44,7 @@ void CShoot::Update(float deltaTime)
 
 void CShoot::Draw() const
 {
-	m_texture->DoWhileBinded([&] {
+	GetType()->GetTexture()->DoWhileBinded([&] {
 		m_visual.Draw();
 	});
 }

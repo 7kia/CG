@@ -6,11 +6,26 @@ static const float SCALE = 30.f;
 
 namespace Convert
 {
-	static float ToBox(const float value);
-	static glm::vec2 ToBox(const glm::vec2 & value);
 
-	static float ToNormal(const float value);
-	static glm::vec2 ToNormal(const glm::vec2 & value);
+	static float ToBox(const float value)
+	{
+		return value / SCALE;
+	}
+
+	static glm::vec2 ToBox(const const glm::vec2 & value)
+	{
+		return glm::vec2(Convert::ToBox(value.x), Convert::ToBox(value.y));
+	}
+
+	static float ToNormal(const float value)
+	{
+		return value * SCALE;
+	}
+
+	static glm::vec2 ToNormal(const glm::vec2 & value)
+	{
+		return glm::vec2(Convert::ToNormal(value.x), Convert::ToNormal(value.y));
+	}
 }
 
 //

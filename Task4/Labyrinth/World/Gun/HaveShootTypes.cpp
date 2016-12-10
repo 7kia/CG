@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "HaveShootTypes.h"
+#include "World\World.h"
 
 using namespace ShootTypeSpace;
 
@@ -18,7 +19,7 @@ void CHaveShootTypes::CreateShootTypes()
 		SetShootType(size_t(Id::Enemy));
 
 
-		m_shootTypes[0].SetTexture(TextureSpace::TexturePaths[TextureSpace::Id::Shoot]);
+		m_shootTypes[0].SetTexture(TextureSpace::TexturePaths[size_t(TextureSpace::Id::Shoot)]);
 
 		for (size_t index = size_t(Id::Player); index < size_t(Id::AmountTypes); ++index)
 		{
@@ -28,9 +29,9 @@ void CHaveShootTypes::CreateShootTypes()
 	});
 }
 
-const CShootType * CHaveShootTypes::GetShootType(size_t index) const
+const CShootType * CHaveShootTypes::GetShootType(const ShootTypeSpace::Id index) const
 {
-	return &m_shootTypes[index];
+	return &m_shootTypes[size_t(index)];
 }
 
 void CHaveShootTypes::SetShootType(size_t index)
@@ -38,3 +39,4 @@ void CHaveShootTypes::SetShootType(size_t index)
 	// TODO : rewrite if need
 	//m_shootTypes[index].SetPositionTile(position);
 }
+
