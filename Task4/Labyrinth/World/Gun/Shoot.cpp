@@ -63,3 +63,13 @@ void CShoot::SetCollison(CWorld* pWorld)
 
 	m_collision.AddToWorld(pWorld->GetWorld());
 }
+
+void CShoot::SetType(const CShootType * type)
+{
+	m_visual.SetType(type);
+}
+
+const CShootType * CShoot::GetType() const
+{
+	return m_visual.GetType();
+}

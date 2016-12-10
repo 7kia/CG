@@ -59,7 +59,6 @@ namespace WallSpace
 
 class CWallView final
 	: public ÑComposite3DShape
-	, public IHavePointerToWallViewType
 	, public CHaveVisiblePart
 {
 public:
@@ -72,8 +71,8 @@ public:
 	void						Draw() const override final;
 	//--------------------------------------------
 	// IHavePointerToWallViewType
-	void						SetType(const CWallViewType* type) override;
-	const CWallViewType*		GetType() const override;
+	void						SetType(const CWallViewType* type);
+	const CWallViewType*		GetType() const;
 	//--------------------------------------------
 	// ITransformable
 	void						SetTransform(const glm::mat4 & transform) override;

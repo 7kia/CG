@@ -66,3 +66,7 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 						, this
 						, TextureSpace::TexturePaths[1]);
 }
+
+void CWorld::CreateShoot(const glm::vec3 & position, const glm::vec3 & direction)
+{
+}

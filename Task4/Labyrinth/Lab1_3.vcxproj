@@ -203,9 +203,13 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowClient.h" />
     <ClInclude Include="World\Actor.h" />
+    <ClInclude Include="World\Gun\HaveShootTypes.h" />
     <ClInclude Include="World\Gun\Shoot.h" />
+    <ClInclude Include="World\Gun\ShootType.h" />
+    <ClInclude Include="World\Gun\ShootView.h" />
     <ClInclude Include="World\HavePhysicalWorld.h" />
     <ClInclude Include="World\HavePlayer.h" />
+    <ClInclude Include="World\HaveShoots.h" />
     <ClInclude Include="World\Labyrinth.h" />
     <ClInclude Include="World\Map.h" />
     <ClInclude Include="World\Player.h" />
@@ -254,9 +258,13 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowClient.cpp" />
+    <ClCompile Include="World\Gun\HaveShootTypes.cpp" />
     <ClCompile Include="World\Gun\Shoot.cpp" />
+    <ClCompile Include="World\Gun\ShootType.cpp" />
+    <ClCompile Include="World\Gun\ShootView.cpp" />
     <ClCompile Include="World\HavePhysicalWorld.cpp" />
     <ClCompile Include="World\HavePlayer.cpp" />
+    <ClCompile Include="World\HaveShoots.cpp" />
     <ClCompile Include="World\Labyrinth.cpp" />
     <ClCompile Include="World\Map.cpp" />
     <ClCompile Include="World\Player.cpp" />

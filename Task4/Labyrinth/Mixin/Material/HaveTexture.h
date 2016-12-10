@@ -1,15 +1,25 @@
 #pragma once
 
 #include "../../Material/Texture2D.h"
-
+#include <unordered_map>
 namespace TextureSpace
 {
 	const std::string PATH_TO_RECOURCES = "Resources/";
-	const std::string TexturePaths[] =
+
+	enum class Id
 	{
-		PATH_TO_RECOURCES + "Tiles.bmp",
-		PATH_TO_RECOURCES + "Player.bmp",
+		Tiles = 0
+		, Player
+		, Shoot
 	};
+
+	const std::unordered_map<size_t, std::string> TexturePaths =
+	{
+		{ size_t(Id::Tiles),  PATH_TO_RECOURCES + "Tiles.bmp" },
+		{ size_t(Id::Player),  PATH_TO_RECOURCES + "Player.bmp"},
+		{ size_t(Id::Shoot),  PATH_TO_RECOURCES + "Shoot.bmp"},
+	};
+
 
 }
 

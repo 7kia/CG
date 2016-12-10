@@ -10,6 +10,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "HavePlayer.h"
+#include "Gun\Shoot.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -56,6 +57,7 @@ public:
 
 private:
 	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
+
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

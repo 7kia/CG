@@ -1,21 +1,22 @@
 #pragma once
 
-#include "../Actor.h"
 #include "Mixin/HaveLinearVelocity.h"
-#include "Mixin/HaveRotationSpeed.h"
+
 #include "Mixin/HaveDirection.h"
 #include "Mixin/Drawable.h"
-#include "Mixin/Material/HaveTexture.h"
+
 #include "2DShape/2DCircleCollision.h"
 #include "3DShape\3DSphere.h"
-#include "Lights.h"
-#include "Camera\Cameras.h"
+
 #include <map>
 #include <memory>
 #include <string>
 #include <functional>
 #include <vector>
 #include <array>
+
+#include "ShootType.h"
+
 
 namespace ShootSpace
 {
@@ -53,6 +54,9 @@ public:
 	void							Update(float deltaTime) override final;
 	void							Draw() const override final;
 	//--------------------------------------------
+	void							SetType(const CShootType* type);
+	const CShootType*				GetType() const;
+
 private:
 
 	void							SetCollison(CWorld* pWorld);

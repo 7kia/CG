@@ -57,12 +57,3 @@ private:
 	glm::vec2				m_positionTile;// need set int value, measured in tiles
 	
 };
-
-class IHavePointerToWallViewType
-{
-public:
-	virtual ~IHavePointerToWallViewType() = default;
-
-	virtual void						SetType(const CWallViewType* type) = 0;
-	virtual const CWallViewType*		GetType() const = 0;
-};

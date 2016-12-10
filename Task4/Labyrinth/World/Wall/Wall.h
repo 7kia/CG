@@ -11,7 +11,6 @@ class CWall final
 	: public IActor
 	, public ITransformable
 	, public IHave3DPosition
-	, public IHavePointerToWallViewType
 	, public IHaveVisiblePart
 {
 public:
@@ -24,9 +23,8 @@ public:
 	void							Draw() const override;
 	void							Update(float deltaTime) override;
 	//--------------------------------------------
-	// IHavePointerToWallViewType
-	void							SetType(const CWallViewType* type) override;
-	const CWallViewType*			GetType() const override;
+	void							SetType(const CWallViewType* type);
+	const CWallViewType*			GetType() const;
 	//--------------------------------------------
 	// IHaveVisiblePart
 	void							SetVisible(bool value) override;
