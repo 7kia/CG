@@ -18,6 +18,8 @@
 #include <vector>
 #include <array>
 
+#include "Features.h"
+
 namespace PlayerSpace
 {
 	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
@@ -109,6 +111,7 @@ private:
 public:
 	class CController;
 	std::unique_ptr<CController>	m_pController;
+
 private:
 	IdCameras						m_idCamera = IdCameras::Player;
 	// TODO : see might can rewrite better
@@ -119,6 +122,8 @@ private:
 
 	C2DCircleCollision				m_collision;
 	CIdentity3DSphere				m_visual;
+
+	CDynamicFeature					m_health;
 };
 
 class CPlayer::CController

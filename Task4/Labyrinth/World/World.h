@@ -10,7 +10,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "HavePlayer.h"
-#include "Gun\HaveShootTypes.h"
+#include "Gun\HaveWeaponTypes.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -34,7 +34,7 @@ class CWorld
 	: public IActor
 	, public IInputEventAcceptor
 	, public CHaveWallTypes
-	, public CHaveShootTypes
+	, public CHaveWeaponTypes
 	, public CHavePhysicalWorld
 	, public CHavePlayer
 {
@@ -60,7 +60,7 @@ private:
 	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 	void							CreateShoot(const glm::vec3 & position
 												, const glm::vec3 & direction
-												, const CShootType * type
+												, const CShootType & type
 												, CWorld * world);
 
 //////////////////////////////////////////////////////////////////////

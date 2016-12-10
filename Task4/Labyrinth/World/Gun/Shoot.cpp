@@ -14,7 +14,7 @@ CShoot::CShoot()
 
 CShoot::CShoot(const glm::vec3 & position
 				, const glm::vec3 & direction
-				, const CShootType * type
+				, const CShootType & type
 				, CWorld* pWorld)
 
 	: IActor()
@@ -44,7 +44,7 @@ void CShoot::Update(float deltaTime)
 
 void CShoot::Draw() const
 {
-	GetType()->GetTexture()->DoWhileBinded([&] {
+	GetType().GetTexture()->DoWhileBinded([&] {
 		m_visual.Draw();
 	});
 }
@@ -63,12 +63,12 @@ void CShoot::SetCollison(CWorld* pWorld)
 	m_collision.AddToWorld(pWorld->GetWorld());
 }
 
-void CShoot::SetType(const CShootType * type)
+void CShoot::SetType(const CShootType & type)
 {
-	m_visual.SetType(type);
+	m_visual.SetType(&type);
 }
 
-const CShootType * CShoot::GetType() const
+const CShootType & CShoot::GetType() const
 {
-	return m_visual.GetType();
+	return *m_visual.GetType();
 }

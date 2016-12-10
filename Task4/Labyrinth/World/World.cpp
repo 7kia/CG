@@ -4,7 +4,7 @@
 CWorld::CWorld()
 	: IActor()
 	, IInputEventAcceptor()
-	, CHaveShootTypes()
+	, CHaveWeaponTypes()
 	, CHaveWallTypes()
 	, CHavePhysicalWorld()
 	, CHavePlayer()
@@ -34,6 +34,11 @@ void CWorld::Draw() const
 	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {	
 		m_map.Draw();
 	});
+
+	for (auto & shoot : m_shoots)
+	{
+		shoot->Draw();
+	}
 }
 
 void CWorld::Update(float deltaTime)
@@ -47,7 +52,7 @@ void CWorld::Update(float deltaTime)
 
 void CWorld::CreateScene()
 {
-	CreateShootTypes();
+	CreateWeaponTypes();
 	CreateWallTypes();
 	m_map.Create("Resources\\map.bmp", this);
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
@@ -75,10 +80,8 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 
 void CWorld::CreateShoot(const glm::vec3 & position
 	, const glm::vec3 & direction
-	, const CShootType * type
+	, const CShootType & type
 	, CWorld * world)
 {
 	m_shoots.push_back(std::make_shared<CShoot>(position, direction, type, world));
-
-	//m_v = CShoot(position, direction, type, world);
 }

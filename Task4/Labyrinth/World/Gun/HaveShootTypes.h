@@ -18,7 +18,7 @@ public:
 	using ArrayShootTypes = std::array<CShootType, size_t(ShootTypeSpace::AMOUNT_TYPES)>;
 
 	void							CreateShootTypes();
-	const CShootType*				GetShootType(const ShootTypeSpace::Id index) const;
+	const CShootType&				GetShootType(const ShootTypeSpace::Id index) const;
 
 protected:
 	void							SetShootType(size_t index);// TODO : see need there something

@@ -43,6 +43,9 @@
     <Filter Include="World\Gun">
       <UniqueIdentifier>{a72e5f6b-468d-424a-ac2c-b09691bf75aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="World\LifeObject">
+      <UniqueIdentifier>{4fe5c247-3791-473d-865b-6e7d8e0310aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -228,6 +231,18 @@
     <ClInclude Include="World\Gun\HaveShootTypes.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
+    <ClInclude Include="World\Features.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Gun\Weapon.h">
+      <Filter>World\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Gun\HaveWeaponTypes.h">
+      <Filter>World\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Gun\WeaponType.h">
+      <Filter>World\Gun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DispatchEvent.cpp">
@@ -387,6 +402,18 @@
       <Filter>World\Gun</Filter>
     </ClCompile>
     <ClCompile Include="World\Gun\HaveShootTypes.cpp">
+      <Filter>World\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Features.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Gun\Weapon.cpp">
+      <Filter>World\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Gun\HaveWeaponTypes.cpp">
+      <Filter>World\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Gun\WeaponType.cpp">
       <Filter>World\Gun</Filter>
     </ClCompile>
   </ItemGroup>

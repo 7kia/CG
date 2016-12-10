@@ -41,7 +41,7 @@ public:
 	CShoot();
 	CShoot(const glm::vec3 & position
 				, const glm::vec3 & direction
-				, const CShootType * type
+				, const CShootType & type
 				, CWorld* pWorld);
 
 	//CShoot &CShoot::operator=(const CShoot & value);
@@ -55,8 +55,8 @@ public:
 	void							Update(float deltaTime) override final;
 	void							Draw() const override final;
 	//--------------------------------------------
-	void							SetType(const CShootType* type);
-	const CShootType*				GetType() const;
+	void							SetType(const CShootType & type);
+	const CShootType&				GetType() const;
 
 private:
 

@@ -4,7 +4,7 @@
 
 using namespace ShootTypeSpace;
 
-std::once_flag shootTypesIsCreate;
+static std::once_flag shootTypesIsCreate;
 
 
 CHaveShootTypes::CHaveShootTypes()
@@ -29,14 +29,13 @@ void CHaveShootTypes::CreateShootTypes()
 	});
 }
 
-const CShootType * CHaveShootTypes::GetShootType(const ShootTypeSpace::Id index) const
+const CShootType & CHaveShootTypes::GetShootType(const ShootTypeSpace::Id index) const
 {
-	return &m_shootTypes[size_t(index)];
+	return m_shootTypes[size_t(index)];
 }
 
 void CHaveShootTypes::SetShootType(size_t index)
 {
-	// TODO : rewrite if need
-	//m_shootTypes[index].SetPositionTile(position);
 }
+
 
