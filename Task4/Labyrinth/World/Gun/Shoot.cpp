@@ -22,17 +22,20 @@ CShoot::CShoot(const glm::vec3 & position
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)// TODO : fix to type
 {
+
+
 	SetCollison(pWorld);
 	SetType(type);
+	
 }
 
 void CShoot::Update(float deltaTime)
 {
-	m_collision.ResetVelocity();
+	//m_collision.ResetVelocity();
 	auto collisionPosition = m_collision.GetPosition();
 	auto position = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
 
-	const float velocity = GetCurrentLinearVelocity(deltaTime);
+	const float velocity = GetMaxLinearVelocity();
 	auto direction = GetDirection();
 
 	auto linearVelocity = deltaTime * direction * velocity;

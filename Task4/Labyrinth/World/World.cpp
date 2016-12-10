@@ -47,6 +47,11 @@ void CWorld::Update(float deltaTime)
 
 	m_map.Update(deltaTime);
 
+	for (auto shoot : m_shoots)
+	{
+		shoot->Update(deltaTime);
+	}
+
 	m_world->Step(deltaTime, 8, 3);
 }
 
@@ -57,8 +62,8 @@ void CWorld::CreateScene()
 	m_map.Create("Resources\\map.bmp", this);
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 
-	CreateShoot(glm::vec3(2.f, 2.f, 1.f)
-		, glm::vec3(0.f, 1.f, 0.f)
+	CreateShoot(glm::vec3(-13.f, 0.5f, -7.f)
+		, glm::vec3(1.f, 0.f, 0.f)
 		, GetShootType(ShootTypeSpace::Id::Player)
 		, this);
 }
