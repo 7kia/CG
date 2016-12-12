@@ -20,7 +20,7 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Data
 protected:
-	CLifeObject*					m_player = nullptr;
+	CPlayer*						m_player = nullptr;
 	glm::vec3						m_spawnPoint;
 
 

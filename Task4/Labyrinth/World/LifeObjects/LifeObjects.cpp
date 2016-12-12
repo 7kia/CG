@@ -27,14 +27,11 @@ CLifeObject::CLifeObject(const CLifeObjectType & type, CWorld* pWorld)
 	SetCollison(pWorld);
 }
 
-CLifeObject::~CLifeObject()
-{
-}
 
-void CLifeObject::SetType(CLifeObjectType & setType)
+void CLifeObject::SetType(const CLifeObjectType & setType)
 {
-	//m_type.reset(&setType);
-
+	m_type.reset(&setType);
+	//m_type = &setType;
 	SetMaxLinearVelocity(m_type->GetVelocity());
 
 	m_health.SetValue(m_type->GetHealth());

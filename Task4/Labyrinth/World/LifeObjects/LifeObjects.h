@@ -21,18 +21,15 @@
 #include "Camera\Cameras.h"
 #include "DispatchEvent.h"
 
-#include "World/Features.h"
-
-
 #include "TypesLifeObjects.h"// TODO
 
 namespace LifeObjectSpace
 {
-	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
+	static const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
 
-	const float ROTATION_SPEED_RADIANS = 5.f;
-	const float LINEAR_MOVE_SPEED = 150.f;
-	const float HEIGHT_FLASHLIGHT = 1.5f;
+	static const float ROTATION_SPEED_RADIANS = 5.f;
+	static const float LINEAR_MOVE_SPEED = 150.f;
+	static const float HEIGHT_FLASHLIGHT = 1.5f;
 }
 
 class CWorld;
@@ -70,7 +67,7 @@ public:
 	void				Draw() const override;
 	//--------------------------------------------
 
-	void				SetType(CLifeObjectType &setType);
+	void				SetType(const CLifeObjectType &setType);
 
 	void				SetCollison(CWorld* pWorld);
 
@@ -136,7 +133,7 @@ protected:
 
 	CDynamicFeature					m_health;
 
-	CLifeObjectType*				m_type = nullptr;
+	//CLifeObjectType*				m_type = nullptr;
 	StateId							m_state = StateId::NotActive;
 	// TODO : delete
 };

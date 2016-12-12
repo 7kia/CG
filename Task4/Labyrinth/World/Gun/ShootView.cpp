@@ -6,7 +6,7 @@ CShootView::CShootView()
 {
 	// Might need several shapes
 	IBodySharedPtr pSphere = std::make_unique<CIdentity3DSphere>(16, 16);
-	pSphere->SetRadiuse(0.25f);
+	//pSphere->SetRadiuse(0.25f);
 	m_shapes.push_back(std::move(pSphere));
 	
 }

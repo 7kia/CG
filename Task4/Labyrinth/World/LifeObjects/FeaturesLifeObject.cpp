@@ -58,17 +58,9 @@ const CWeapon & CLifeObject::GetWeapon() const
 	return m_weapon;
 }
 
-void CLifeObject::SetHealthBar(const CBar & bar)
-{
-	m_healthBar = bar;
-}
 
-CBar & CLifeObject::GetHealthBar()
-{
-	return m_healthBar;
-}
 
-CLifeObjectType::ID CLifeObject::GetIdType() const
+CLifeObjectType::Id CLifeObject::GetIdType() const
 {
 	return m_type->GetId();
 }

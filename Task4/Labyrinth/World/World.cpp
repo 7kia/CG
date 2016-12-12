@@ -70,13 +70,13 @@ void CWorld::CreateScene()
 void CWorld::CreatePlayer(const glm::vec3 & position
 							, const glm::vec3 & direction)
 {
-	m_lifeObjects.push_back(CPlayer(position
+	m_lifeObjects.push_back(std::make_shared<CPlayer>(position
 									, direction
 									, GetLifeObjectType(CLifeObjectType::Id::Player)
 									, this)
 							);
 
-	m_player = &m_lifeObjects[0];
+	m_player = dynamic_cast<CPlayer*>(m_lifeObjects[0].get());// TODO :  fix convertation
 
 	if (position == glm::vec3())
 	{

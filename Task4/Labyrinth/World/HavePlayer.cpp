@@ -8,7 +8,7 @@ CHavePlayer::CHavePlayer()
 
 CAbcstartCamera* CHavePlayer::GetCamera()
 {
-	return m_player.GetCamera();
+	return GetPlayer()->GetCamera();
 }
 
 void CHavePlayer::SetSpawnPoint(const glm::vec3 & position)

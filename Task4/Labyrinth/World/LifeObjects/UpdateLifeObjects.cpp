@@ -4,7 +4,7 @@
 
 void CLifeObject::Draw() const
 {
-	m_texture->DoWhileBinded([&] {
+	m_type->GetTexture()->DoWhileBinded([&] {
 		m_visual.Draw();
 	});
 }

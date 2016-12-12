@@ -16,7 +16,6 @@ CPlayer::CPlayer()
 	: CLifeObject()
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
-	, m_visual(16, 16)
 {
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 }
