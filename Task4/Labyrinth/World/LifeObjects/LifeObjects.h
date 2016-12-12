@@ -45,7 +45,7 @@ class CLifeObject
 public:
 	// LifeObjects.cpp
 	CLifeObject();
-	CLifeObject(const CLifeObjectType & type, CWorld* pWorld);
+	CLifeObject(CLifeObjectType & type, CWorld* pWorld);
 
 public:
 	enum class StateId
@@ -67,7 +67,7 @@ public:
 	void				Draw() const override;
 	//--------------------------------------------
 
-	void				SetType(const CLifeObjectType &setType);
+	void				SetType(CLifeObjectType &setType);
 
 	void				SetCollison(CWorld* pWorld);
 
@@ -123,7 +123,7 @@ public:
 	///////
 
 protected:
-	std::shared_ptr<const CLifeObjectType>					m_type;//TypeLifeObject
+	CLifeObjectType*				m_type;//TypeLifeObject
 
 	C2DCircleCollision				m_collision;
 	CIdentity3DSphere				m_visual;

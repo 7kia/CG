@@ -3,7 +3,7 @@
 #include "World.h"
 
 
-CPlayer::SSkill::SSkill(const std::function<void()> function
+CPlayerController::SSkill::SSkill(const std::function<void()> function
 						, const KeyList & keys
 						, const EventType type)
 {
@@ -15,18 +15,18 @@ CPlayer::SSkill::SSkill(const std::function<void()> function
 CPlayer::CPlayer()
 	: CLifeObject()
 	, m_flashlight(GL_LIGHT1)
-	, m_pController(std::make_unique<CController>(this))
+	, m_pController(this)
 {
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 }
 
 CPlayer::CPlayer(const glm::vec3 & position
 				, const glm::vec3 & direction
-				, const CLifeObjectType & type
+				, CLifeObjectType & type
 				, CWorld* pWorld)
 	: CLifeObject(type, pWorld)
 	, m_flashlight(GL_LIGHT1)
-	, m_pController(std::make_unique<CController>(this))
+	, m_pController(this)
 {
 	SetCameras(direction);
 

@@ -17,12 +17,12 @@ CWorld::CWorld()
 
 void CWorld::OnKeyDown(const SDL_KeyboardEvent & event)
 {
-	GetPlayer()->m_pController->OnKeyDown(event);
+	GetPlayer()->m_pController.OnKeyDown(event);
 }
 
 void CWorld::OnKeyUp(const SDL_KeyboardEvent & event)
 {
-	GetPlayer()->m_pController->OnKeyUp(event);
+	GetPlayer()->m_pController.OnKeyUp(event);
 }
 
 void CWorld::Draw() const
@@ -70,10 +70,10 @@ void CWorld::CreateScene()
 void CWorld::CreatePlayer(const glm::vec3 & position
 							, const glm::vec3 & direction)
 {
-	m_lifeObjects.push_back(std::make_shared<CPlayer>(position
+	m_lifeObjects.push_back(std::move(std::make_unique<CPlayer>(position
 									, direction
 									, GetLifeObjectType(CLifeObjectType::Id::Player)
-									, this)
+									, this))
 							);
 
 	m_player = dynamic_cast<CPlayer*>(m_lifeObjects[0].get());// TODO :  fix convertation

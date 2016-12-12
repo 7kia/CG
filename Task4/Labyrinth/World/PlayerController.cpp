@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 
-CPlayer::CController::CController(CPlayer * master)
+CPlayerController::CPlayerController(CPlayer * master)
 	: IInputEventAcceptor()
 	, m_master(master)
 {
@@ -14,7 +14,7 @@ CPlayer::CController::CController(CPlayer * master)
 	CheckListCommands();
 }
 
-void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
+void CPlayerController::OnKeyDown(const SDL_KeyboardEvent & event)
 {
 	
 	IdCommands id = FindCommand(event, SDL_KEYDOWN);
@@ -24,7 +24,7 @@ void CPlayer::CController::OnKeyDown(const SDL_KeyboardEvent & event)
 	}
 }
 
-void CPlayer::CController::OnKeyUp(const SDL_KeyboardEvent & event)
+void CPlayerController::OnKeyUp(const SDL_KeyboardEvent & event)
 {
 	IdCommands id = FindCommand(event, SDL_KEYUP);
 	if (id != IdCommands::AmountCommands)
@@ -33,20 +33,20 @@ void CPlayer::CController::OnKeyUp(const SDL_KeyboardEvent & event)
 	}
 }
 
-void CPlayer::CController::SetSkill(IdCommands id, const std::function<void()> function)
+void CPlayerController::SetSkill(IdCommands id, const std::function<void()> function)
 {
 	m_listFunctions[id].m_skill = function;
 }
 
-void CPlayer::CController::SetKeysSkill(IdCommands id
-										, const CPlayer::KeyList & keys
-										, const CPlayer::EventType type)
+void CPlayerController::SetKeysSkill(IdCommands id
+										, const KeyList & keys
+										, const EventType type)
 {
 	m_listFunctions[id].m_keys = keys;
 	m_listFunctions[id].m_type = type;
 }
 
-CPlayer::CController::IdCommands CPlayer::CController::FindCommand(const SDL_KeyboardEvent & event, const EventType type)
+CPlayerController::IdCommands CPlayerController::FindCommand(const SDL_KeyboardEvent & event, const EventType type)
 {
 	for (const auto & element : m_listFunctions)
 	{
@@ -64,7 +64,7 @@ CPlayer::CController::IdCommands CPlayer::CController::FindCommand(const SDL_Key
 	return IdCommands::AmountCommands;
 }
 
-void CPlayer::CController::SetFunctionList()
+void CPlayerController::SetFunctionList()
 {
 	SetSkill(IdCommands::GoToForward, [&]() { m_master->GoForward(); });
 	SetKeysSkill(IdCommands::GoToForward, { SDLK_UP, SDLK_w }, SDL_KEYDOWN);
@@ -99,7 +99,7 @@ void CPlayer::CController::SetFunctionList()
 
 }
 
-void CPlayer::CController::CheckListCommands() const
+void CPlayerController::CheckListCommands() const
 {
 	for (const auto & element : m_listFunctions)
 	{

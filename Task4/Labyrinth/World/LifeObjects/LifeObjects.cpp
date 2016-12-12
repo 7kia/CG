@@ -14,7 +14,7 @@ CLifeObject::CLifeObject()
 }
 
 
-CLifeObject::CLifeObject(const CLifeObjectType & type, CWorld* pWorld)
+CLifeObject::CLifeObject(CLifeObjectType & type, CWorld* pWorld)
 	: IActor()
 	, CHave3DPosition()
 	, CHaveDirection()
@@ -28,9 +28,9 @@ CLifeObject::CLifeObject(const CLifeObjectType & type, CWorld* pWorld)
 }
 
 
-void CLifeObject::SetType(const CLifeObjectType & setType)
+void CLifeObject::SetType(CLifeObjectType & setType)
 {
-	m_type.reset(&setType);
+	m_type = &setType;
 	//m_type = &setType;
 	SetMaxLinearVelocity(m_type->GetVelocity());
 
