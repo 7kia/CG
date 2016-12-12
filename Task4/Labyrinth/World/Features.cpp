@@ -15,3 +15,18 @@ int CDynamicFeature::GetValue() const
 {
 	return m_value;
 }
+
+void CDynamicFeature::SetMaxValue(int setValue)
+{
+	m_maxValue = setValue;
+}
+
+void CDynamicFeature::AddMaxToValue(int summand)
+{
+	m_maxValue += summand;
+}
+
+int	CDynamicFeature::GetMaxValue() const
+{
+	return m_maxValue;
+}

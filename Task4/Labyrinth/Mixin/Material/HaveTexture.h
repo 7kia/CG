@@ -27,6 +27,7 @@ class CHaveTexture
 {
 public:
 	CHaveTexture();
+	virtual ~CHaveTexture() = default;
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

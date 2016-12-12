@@ -24,7 +24,7 @@ namespace ShootSpace
 
 	const float ROTATION_SPEED_RADIANS = 5.f;
 	const float LINEAR_MOVE_SPEED = 150.f;
-	const float HEIGHT_FLASHLIGHT = 1.5f;
+	const float RADIUS = 0.25f;
 
 	const glm::vec4 WHITE_RGBA = { 1, 1, 1, 1 };
 }

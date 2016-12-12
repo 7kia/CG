@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "HavePlayer.h"
+#include "World\World.h"
 
 CHavePlayer::CHavePlayer()
 {
@@ -18,4 +19,9 @@ void CHavePlayer::SetSpawnPoint(const glm::vec3 & position)
 glm::vec3 CHavePlayer::GetSpawnPoint() const
 {
 	return m_spawnPoint;
+}
+
+CPlayer * CHavePlayer::GetPlayer()
+{
+	return m_player;
 }

@@ -1,4 +1,4 @@
-#include "stdaxf.h"
+#include "stdafx.h"
 #include "World/World.h"
 #include "LifeObjects.h"
 
@@ -80,7 +80,8 @@ void CLifeObject::Shoot()
 	auto collisionPosition = m_collision.GetPosition();
 	auto entityPosition = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
 
+	auto direction = GetDirection();
 	m_world->CreateShoot(entityPosition
-		, GetDirection()
-		, m_world);
+		, glm::vec3(direction.x, direction.y, direction.z)
+		, m_weapon.GetTypeShoot());
 }

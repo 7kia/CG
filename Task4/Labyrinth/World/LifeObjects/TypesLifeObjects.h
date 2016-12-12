@@ -1,16 +1,9 @@
 #pragma once
 
-#include "../Entity/VisualDataType.h"
-#include "../Entity/SoundDataType.h"
-#include "../Entity/HaveDeathEffect.h"
+#include "Mixin/Material/HaveTexture.h"
 
-
-#include "../Entity/Entity.h"
-#include "../Entity/Collision.h"
-#include "../Entity/Features.h"
-#include "../Entity/Weapon.h"
-#include "../HealthBar/HealthBar.h"
-#include "../Effect/Effect.h"
+#include "World/Features.h"
+#include "World/Gun/Weapon.h"
 
 struct SRange
 {
@@ -22,30 +15,19 @@ struct SRange
 	float	end = 0;
 };
 
-static const std::vector<SRange> rangesDirections = {	SRange(-22.5f, 22.5f)
-													,	SRange(22.6f, 67.5f)
-													,	SRange(67.6f, 112.5f)
-													,	SRange(112.6f, 157.5f)
-													,	SRange(157.6f, 202.5f)
-													,	SRange(-157.5f, -112.6f)
-													,	SRange(-112.5f, -67.6f)
-													,	SRange(-67.5f, -22.6f) };
 
-class TypeLifeObject :
-	public CVisualDataType
-	, public CSoundDataType
-	, public CHaveDeathEffect
+
+class CLifeObjectType : public CHaveTexture
 {
 public:
-	~TypeLifeObject();
+	CLifeObjectType();
 public:
 
-	enum ID
+	enum Id
 	{
 			None = -1
 		,	Player
-		,	Zergling
-		,	Hydralisk
+		,	Enemy
 		,	AmountIDs
 	};
 
@@ -55,22 +37,21 @@ public:
 	void					SetHealth(int value);
 	int						GetHealth() const;
 
+	void					SetMaxHealth(int value);
+	int						GetMaxHealth() const;
+
+
 	void					SetVisionRange(float range);
 	float					GetVisionRange() const;
 
 	int						GetDamage();
 
-	void					SetWeapon(const CTypeWeapon& weapon);
-	const CTypeWeapon&		GetTypeWeapon() const;
+	void					SetWeapon(const CWeaponType& weapon);
+	const CWeaponType&		GetTypeWeapon() const;
 
-	void							SetMoveAnimations(const CollectionAnimations & animations);
-	const CollectionAnimations &	GetAnimationsMove() const;
 
-	void							SetAttackAnimations(const CollectionAnimations & animations);
-	const CollectionAnimations &	GetAttackAnimations() const;
-
-	void							SetId(ID id);
-	ID								GetId() const;
+	void							SetId(Id id);
+	Id								GetId() const;
 
 	// TODO : there not enough functional
 private:
@@ -78,10 +59,8 @@ private:
 	float							m_visionRange = 0.f;
 
 	CDynamicFeature					m_health;
-	const CTypeWeapon*				m_weapon;
+	const CWeaponType*				m_weapon;
 
-	CollectionAnimations			m_moveAnimations;
-	CollectionAnimations			m_attackAnimations;
 
-	ID								m_id = ID::None;
+	Id								m_id = Id::None;
 };

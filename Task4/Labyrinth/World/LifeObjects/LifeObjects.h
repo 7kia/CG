@@ -22,9 +22,18 @@
 #include "DispatchEvent.h"
 
 #include "World/Features.h"
-#include "World\Gun\Weapon.h"
+
 
 #include "TypesLifeObjects.h"// TODO
+
+namespace LifeObjectSpace
+{
+	const glm::vec3 PLAYER_DIRECTION = { 1.f, 0.f, 0.f };
+
+	const float ROTATION_SPEED_RADIANS = 5.f;
+	const float LINEAR_MOVE_SPEED = 150.f;
+	const float HEIGHT_FLASHLIGHT = 1.5f;
+}
 
 class CWorld;
 
@@ -35,15 +44,11 @@ class CLifeObject
 	, public CHaveDirection
 	, public CHaveLinearVelocity
 	, public CHaveRotationSpeed
-	, public CHaveTexture
 {
 public:
 	// LifeObjects.cpp
 	CLifeObject();
-	explicit CLifeObject(const glm::vec3 & position
-		, const glm::vec3 & direction
-		, const std::string & texturePath
-		, CWorld* pWorld);
+	CLifeObject(const CLifeObjectType & type, CWorld* pWorld);
 
 public:
 	enum class StateId
@@ -65,16 +70,13 @@ public:
 	void				Draw() const override;
 	//--------------------------------------------
 
-	void				SetType(TypeLifeObject &setType);
+	void				SetType(CLifeObjectType &setType);
 
 	void				SetCollison(CWorld* pWorld);
 
 	/////////////////
 	// UpdateLifeObject.cpp
 	virtual void			UpdatePosition(float dt);
-
-	void					SetAnimationMove();
-	void					SetAttackAnimation();
 
 	void					ResetWeapon();
 	/////////////////
@@ -91,7 +93,7 @@ public:
 
 	int					GetDamage();
 
-	void				SetTypeWeapon(const CTypeWeapon& weapon);
+	void				SetTypeWeapon(const CWeaponType& weapon);
 	const CWeapon&		GetWeapon() const;
 
 	//void				SetHealthBar(const CBar &bar);
@@ -99,8 +101,8 @@ public:
 
 	float				GetDistanceWeapon() const;
 
-	TypeLifeObject::ID			GetIdType() const;// TODO : see need it
-	const TypeLifeObject&		GetType() const;
+	CLifeObjectType::Id			GetIdType() const;// TODO : see need it
+	const CLifeObjectType&		GetType() const;
 	/////////////////
 
 	/////////////////
@@ -113,7 +115,7 @@ public:
 	void					SetWeaponState(CWeapon::IdState state);
 	CWeapon::IdState		GetWeaponState() const;
 
-	void					SetWeapon(const CTypeWeapon & typeWeapon);
+	void					SetWeapon(const CWeaponType & typeWeapon);
 	/////////////////
 public:
 
@@ -124,7 +126,7 @@ public:
 	///////
 
 protected:
-	std::shared_ptr<const TypeLifeObject>					m_type;//TypeLifeObject
+	std::shared_ptr<const CLifeObjectType>					m_type;//TypeLifeObject
 
 	C2DCircleCollision				m_collision;
 	CIdentity3DSphere				m_visual;
@@ -134,6 +136,7 @@ protected:
 
 	CDynamicFeature					m_health;
 
+	CLifeObjectType*				m_type = nullptr;
 	StateId							m_state = StateId::NotActive;
 	// TODO : delete
 };

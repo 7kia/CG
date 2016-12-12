@@ -1,4 +1,7 @@
+#include "stdafx.h"
+#include "World\World.h"
 #include "LifeObjects.h"
+
 
 void CLifeObject::SetHealth(int value)
 {
@@ -45,7 +48,7 @@ int CLifeObject::GetDamage()
 	return m_weapon.GetDamage();
 }
 
-void CLifeObject::SetTypeWeapon(const CTypeWeapon & weapon)
+void CLifeObject::SetTypeWeapon(const CWeaponType & weapon)
 {
 	m_weapon.SetType(weapon);
 }
@@ -65,12 +68,12 @@ CBar & CLifeObject::GetHealthBar()
 	return m_healthBar;
 }
 
-TypeLifeObject::ID CLifeObject::GetIdType() const
+CLifeObjectType::ID CLifeObject::GetIdType() const
 {
 	return m_type->GetId();
 }
 
-const TypeLifeObject & CLifeObject::GetType() const
+const CLifeObjectType & CLifeObject::GetType() const
 {
 	return *m_type;
 }

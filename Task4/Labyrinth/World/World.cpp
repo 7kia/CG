@@ -4,7 +4,7 @@
 CWorld::CWorld()
 	: IActor()
 	, IInputEventAcceptor()
-	, CHaveWeaponTypes()
+	, CHaveLifeObjects()
 	, CHaveWallTypes()
 	, CHavePhysicalWorld()
 	, CHavePlayer()
@@ -17,19 +17,19 @@ CWorld::CWorld()
 
 void CWorld::OnKeyDown(const SDL_KeyboardEvent & event)
 {
-	m_player.m_pController->OnKeyDown(event);
+	GetPlayer()->m_pController->OnKeyDown(event);
 }
 
 void CWorld::OnKeyUp(const SDL_KeyboardEvent & event)
 {
-	m_player.m_pController->OnKeyUp(event);
+	GetPlayer()->m_pController->OnKeyUp(event);
 }
 
 void CWorld::Draw() const
 {
 	m_material.Setup();
 
-	m_player.Draw();
+	m_player->Draw();// GetPlayer() not work, see can solve the problem
 
 	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {	
 		m_map.Draw();
@@ -43,7 +43,7 @@ void CWorld::Draw() const
 
 void CWorld::Update(float deltaTime)
 {
-	m_player.Update(deltaTime);
+	GetPlayer()->Update(deltaTime);
 
 	m_map.Update(deltaTime);
 
@@ -57,7 +57,6 @@ void CWorld::Update(float deltaTime)
 
 void CWorld::CreateScene()
 {
-	CreateWeaponTypes();
 	CreateWallTypes();
 	m_map.Create("Resources\\map.bmp", this);
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
@@ -65,22 +64,24 @@ void CWorld::CreateScene()
 	CreateShoot(glm::vec3(-13.f, 0.5f, -7.f)
 		, glm::vec3(1.f, 0.f, 0.f)
 		, GetShootType(ShootTypeSpace::Id::Player)
-		, this);
+		);
 }
 
 void CWorld::CreatePlayer(const glm::vec3 & position
 							, const glm::vec3 & direction)
 {
+	m_lifeObjects.push_back(CPlayer(position
+									, direction
+									, GetLifeObjectType(CLifeObjectType::Id::Player)
+									, this)
+							);
+
+	m_player = &m_lifeObjects[0];
+
 	if (position == glm::vec3())
 	{
 		throw std::runtime_error("Player position not define");
 	}
-
-
-	m_player.CreatePlayer(position
-						, direction
-						, this
-						, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]);
 }
 
 void CWorld::CreateShoot(const glm::vec3 & position
@@ -88,5 +89,5 @@ void CWorld::CreateShoot(const glm::vec3 & position
 	, const CShootType & type
 	)
 {
-	m_shoots.push_back(std::make_shared<CShoot>(position, direction, type, world));
+	m_shoots.push_back(std::make_shared<CShoot>(position, direction, type, this));
 }

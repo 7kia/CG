@@ -4,34 +4,22 @@
 
 using namespace WeaponTypeSpace;
 
-static std::once_flag weaponTypesIsCreate;
-
 
 CHaveWeaponTypes::CHaveWeaponTypes()
 	: CHaveShootTypes()
 {
-	CreateShootTypes();
-}
-
-void CHaveWeaponTypes::CreateWeaponTypes()
-{
-	std::call_once(weaponTypesIsCreate,
-		[&]() {
-		SetWeaponType(size_t(WeaponTypeSpace::Id::Player)
-						, 25
-						, 1.f
-						, GetShootType(ShootTypeSpace::Id::Player)
-						, 15.f
-						, 5.f);
-		SetWeaponType(size_t(WeaponTypeSpace::Id::Enemy)
-						, 5
-						, 1.f
-						, GetShootType(ShootTypeSpace::Id::Enemy)
-						, 15.f
-						, 5.f);
-
-
-	});
+	SetWeaponType(size_t(WeaponTypeSpace::Id::Player)
+		, 25
+		, 1.f
+		, GetShootType(ShootTypeSpace::Id::Player)
+		, 15.f
+		, 5.f);
+	SetWeaponType(size_t(WeaponTypeSpace::Id::Enemy)
+		, 5
+		, 1.f
+		, GetShootType(ShootTypeSpace::Id::Enemy)
+		, 15.f
+		, 5.f);
 }
 
 const CWeaponType * CHaveWeaponTypes::GetWeaponType(const WeaponTypeSpace::Id index) const

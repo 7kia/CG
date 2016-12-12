@@ -1,47 +1,41 @@
+#include "stdafx.h"
+#include "World\World.h"
 #include "LifeObjects.h"
 
-using namespace cocos2d;
-
 CLifeObject::CLifeObject()
-	: IActor()
+	:IActor()
 	, CHave3DPosition()
 	, CHaveDirection()
-	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
-	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
+	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
+	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, m_visual(16, 16)
 {
+
 }
 
-CLifeObject(const glm::vec3 & position
-		, const glm::vec3 & direction
-		, const std::string & texturePath
-		, CWorld* pWorld)
+
+CLifeObject::CLifeObject(const CLifeObjectType & type, CWorld* pWorld)
 	: IActor()
 	, CHave3DPosition()
 	, CHaveDirection()
-	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
-	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
+	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
+	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, m_visual(16, 16)
-{
 
+{
+	SetType(type);
+	SetCollison(pWorld);
 }
 
 CLifeObject::~CLifeObject()
 {
 }
 
-
-
-void CLifeObject::SetType(TypeLifeObject & setType)
+void CLifeObject::SetType(CLifeObjectType & setType)
 {
-	m_type.reset(&setType);
+	//m_type.reset(&setType);
 
-	setTexture(m_type->GetTexture());
-	setTextureRect(m_type->GetTextureRectangle());
-
-	CreateCollision();
-
-	SetVelocity(m_type->GetVelocity());
+	SetMaxLinearVelocity(m_type->GetVelocity());
 
 	m_health.SetValue(m_type->GetHealth());
 
@@ -54,7 +48,7 @@ void CLifeObject::SetCollison(CWorld* pWorld)
 	m_collision.SetRadius(1.f);
 	m_collision.SetReferenceSystemOrigin(glm::vec2());
 
-	auto position = GetCamera()->GetPosition();
+	auto position = GetPosition();
 	m_collision.SetPosition(position.x, position.y);
 	m_collision.SetVelocity(glm::vec2());
 
@@ -82,7 +76,7 @@ CWeapon::IdState CLifeObject::GetWeaponState() const
 	return m_weapon.GetState();
 }
 
-void CLifeObject::SetWeapon(const CTypeWeapon & typeWeapon)
+void CLifeObject::SetWeapon(const CWeaponType & typeWeapon)
 {
 	m_weapon.SetType(typeWeapon);
 }

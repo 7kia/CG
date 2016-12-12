@@ -19,7 +19,6 @@ public:
 public:
 	using ArrayWeaponTypes = std::array<CWeaponType, size_t(WeaponTypeSpace::AMOUNT_TYPES)>;
 
-	void							CreateWeaponTypes();
 	const CWeaponType*				GetWeaponType(const WeaponTypeSpace::Id index) const;
 
 protected:

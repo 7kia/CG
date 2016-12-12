@@ -1,82 +1,74 @@
+#include "stdafx.h"
 #include "TypesLifeObjects.h"
 
-using namespace cocos2d;
 
-TypeLifeObject::~TypeLifeObject()
+CLifeObjectType::CLifeObjectType()
+	: CHaveTexture()
 {
 }
 
-void TypeLifeObject::SetVelocity(float setVelocity)
+void CLifeObjectType::SetVelocity(float setVelocity)
 {
 	m_velocity = setVelocity;
 }
 
-float TypeLifeObject::GetVelocity() const
+float CLifeObjectType::GetVelocity() const
 {
 	return m_velocity;
 }
 
-void TypeLifeObject::SetHealth(int value)
+void CLifeObjectType::SetHealth(int value)
 {
 	m_health.SetValue(value);
 }
 
-int TypeLifeObject::GetHealth() const
+int CLifeObjectType::GetHealth() const
 {
 	return m_health.GetValue();
 }
 
-void TypeLifeObject::SetVisionRange(float range)
+void CLifeObjectType::SetMaxHealth(int value)
+{
+	m_health.SetMaxValue(value);
+}
+
+int CLifeObjectType::GetMaxHealth() const
+{
+	return m_health.GetMaxValue();
+}
+
+void CLifeObjectType::SetVisionRange(float range)
 {
 	m_visionRange = range;
 }
 
-float TypeLifeObject::GetVisionRange() const
+float CLifeObjectType::GetVisionRange() const
 {
 	return m_visionRange;
 }
 
-int TypeLifeObject::GetDamage()
+int CLifeObjectType::GetDamage()
 {
 	return m_weapon->GetDamage();
 }
 
-void TypeLifeObject::SetWeapon(const CTypeWeapon & weapon)
+void CLifeObjectType::SetWeapon(const CWeaponType & weapon)
 {
 	m_weapon = &weapon;
 }
 
-const CTypeWeapon & TypeLifeObject::GetTypeWeapon() const
+const CWeaponType & CLifeObjectType::GetTypeWeapon() const
 {
 	return *m_weapon;
 }
 
-void TypeLifeObject::SetMoveAnimations(const CollectionAnimations & animations)
-{
-	m_moveAnimations = animations;
-}
 
-const CollectionAnimations & TypeLifeObject::GetAnimationsMove() const
-{
-	return m_moveAnimations;
-}
-
-void TypeLifeObject::SetAttackAnimations(const CollectionAnimations & animations)
-{
-	m_attackAnimations = animations;
-}
-
-const CollectionAnimations & TypeLifeObject::GetAttackAnimations() const
-{
-	return m_attackAnimations;
-}
-
-void TypeLifeObject::SetId(ID id)
+void CLifeObjectType::SetId(Id id)
 {
 	m_id = id;
 }
 
-TypeLifeObject::ID TypeLifeObject::GetId() const
+CLifeObjectType::Id CLifeObjectType::GetId() const
 {
 	return m_id;
 }

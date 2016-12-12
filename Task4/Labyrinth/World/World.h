@@ -10,7 +10,7 @@
 #include "..\Material\PhongMaterial.h"
 
 #include "HavePlayer.h"
-#include "Gun\HaveWeaponTypes.h"
+#include "LifeObjects\HaveLifeObject.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -33,8 +33,8 @@ namespace WorldSpace
 class CWorld
 	: public IActor
 	, public IInputEventAcceptor
+	, public CHaveLifeObjects
 	, public CHaveWallTypes
-	, public CHaveWeaponTypes
 	, public CHavePhysicalWorld
 	, public CHavePlayer
 {
@@ -56,12 +56,13 @@ public:
 	//--------------------------------------------
 	void							CreateScene();
 
-private:
-	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 	void							CreateShoot(const glm::vec3 & position
 												, const glm::vec3 & direction
 												, const CShootType & type
 												);
+
+private:
+	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 
 //////////////////////////////////////////////////////////////////////
 // Data

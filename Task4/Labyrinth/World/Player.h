@@ -35,7 +35,7 @@ public:
 	CPlayer();
 	explicit CPlayer(const glm::vec3 & position
 					, const glm::vec3 & direction
-					, const std::string & texturePath
+					, const CLifeObjectType & type
 					, CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Methods
@@ -70,10 +70,6 @@ public:
 	void							UpdatePosition(float dt) override;
 
 
-	void							CreatePlayer(const glm::vec3 & position
-												, const glm::vec3 & direction
-												, CWorld* pWorld
-												, const std::string & pathTexture);
 	CAbstractRotatableCamera*		GetCamera();// TODO : see need there cons
 
 private:

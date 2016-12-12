@@ -11,8 +11,8 @@ class CShootView final
 {
 public:
 	CShootView();
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	//--------------------------------------------
 	// CIdentity3DShape
@@ -24,10 +24,12 @@ public:
 	// ITransformable
 	void						SetTransform(const glm::mat4 & transform) override;
 	//--------------------------------------------
+
+	void						SetRadius(float value);
 private:
 	CTexture2DSharedPtr			GetTexture() const;
-	//////////////////////////////////////////////////////////////////////
-	// Data
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
 	const CShootType*			m_pType = nullptr; // TODO: nullptrize me
 };

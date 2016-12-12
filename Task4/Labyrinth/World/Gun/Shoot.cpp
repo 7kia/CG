@@ -8,6 +8,7 @@ CShoot::CShoot()
 	, CHave3DPosition()
 	, CHaveDirection(ShootSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)
+	, m_collision(1.f, glm::vec2())
 {
 }
 
@@ -54,7 +55,7 @@ void CShoot::Draw() const
 
 void CShoot::SetCollison(CWorld* pWorld)
 {
-	m_collision.SetRadius(0.5f);// TODO : fix radius
+	m_collision.SetRadius(ShootSpace::RADIUS);// TODO : fix radius
 	m_collision.SetReferenceSystemOrigin(glm::vec2());
 
 	auto position = GetPosition();

@@ -214,6 +214,7 @@
     <ClInclude Include="World\HavePhysicalWorld.h" />
     <ClInclude Include="World\HavePlayer.h" />
     <ClInclude Include="World\Labyrinth.h" />
+    <ClInclude Include="World\LifeObjects\HaveLifeObject.h" />
     <ClInclude Include="World\LifeObjects\LifeObjects.h" />
     <ClInclude Include="World\LifeObjects\TypesLifeObjects.h" />
     <ClInclude Include="World\Map.h" />
@@ -275,6 +276,7 @@
     <ClCompile Include="World\HavePlayer.cpp" />
     <ClCompile Include="World\Labyrinth.cpp" />
     <ClCompile Include="World\LifeObjects\FeaturesLifeObject.cpp" />
+    <ClCompile Include="World\LifeObjects\HaveLifeObject.cpp" />
     <ClCompile Include="World\LifeObjects\LifeObjects.cpp" />
     <ClCompile Include="World\LifeObjects\TypesLifeObjects.cpp" />
     <ClCompile Include="World\LifeObjects\UpdateLifeObjects.cpp" />
