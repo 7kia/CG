@@ -16,6 +16,7 @@
 #include <vector>
 #include <array>
 
+#include "World\Features.h"
 #include "ShootView.h"
 
 namespace ShootSpace
@@ -30,6 +31,7 @@ namespace ShootSpace
 }
 
 class CWorld;
+class CWeapon;
 
 class CShoot final
 	: public IActor
@@ -41,7 +43,7 @@ public:
 	CShoot();
 	CShoot(const glm::vec3 & position
 				, const glm::vec3 & direction
-				, const CShootType & type
+				, const CWeapon & weapon
 				, CWorld* pWorld);
 
 	//CShoot &CShoot::operator=(const CShoot & value);
@@ -66,6 +68,8 @@ private:
 private:
 	C2DCircleCollision				m_collision;
 	CShootView						m_visual;
+
+	CStaticFeature					m_damage;
 };
 
 using PShoot = std::shared_ptr<CShoot>;

@@ -127,6 +127,10 @@ void CPlayer::UpdatePosition(float dt)
 		, rotationSpeed);
 
 	auto direction = GetCamera()->GetCurrentDirection();
+
+	SetDirection(direction);
+	SetPosition(playerPosition);
+
 	auto linearVelocity = dt * direction * velocity;
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
 

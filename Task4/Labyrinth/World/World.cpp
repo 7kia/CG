@@ -61,10 +61,14 @@ void CWorld::CreateScene()
 	m_map.Create("Resources\\map.bmp", this);
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 
-	CreateShoot(glm::vec3(-13.f, 0.5f, -7.f)
+	/*// TODO : delete it
+	CreateShoot(glm::vec3(-16.f, 0.5f, -16.f)
 		, glm::vec3(1.f, 0.f, 0.f)
 		, GetShootType(ShootTypeSpace::Id::Player)
+		,
 		);
+	*/
+	
 }
 
 void CWorld::CreatePlayer(const glm::vec3 & position
@@ -86,8 +90,11 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 
 void CWorld::CreateShoot(const glm::vec3 & position
 	, const glm::vec3 & direction
-	, const CShootType & type
+	, const CWeapon & weapon
 	)
 {
-	m_shoots.push_back(std::make_shared<CShoot>(position, direction, type, this));
+	m_shoots.push_back(std::make_shared<CShoot>(position
+		, direction
+		, weapon
+		, this));
 }

@@ -18,7 +18,7 @@ CHaveWeaponTypes::CHaveWeaponTypes()
 		, 5
 		, 1.f
 		, GetShootType(ShootTypeSpace::Id::Enemy)
-		, 15.f
+		, 2.f
 		, 5.f);
 }
 

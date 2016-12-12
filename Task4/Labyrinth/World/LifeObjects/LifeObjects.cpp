@@ -45,6 +45,8 @@ void CLifeObject::SetType(CLifeObjectType & setType)
 
 void CLifeObject::SetCollison(CWorld* pWorld)
 {
+	m_world = pWorld;
+
 	m_collision.SetRadius(1.f);
 	m_collision.SetReferenceSystemOrigin(glm::vec2());
 

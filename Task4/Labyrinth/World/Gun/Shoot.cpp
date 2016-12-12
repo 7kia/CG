@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Shoot.h"
 #include "../World.h"
-
+#include "World\Gun\Weapon.h"
 
 CShoot::CShoot()
 	: IActor()
@@ -15,19 +15,18 @@ CShoot::CShoot()
 
 CShoot::CShoot(const glm::vec3 & position
 				, const glm::vec3 & direction
-				, const CShootType & type
+				, const CWeapon & weapon
 				, CWorld* pWorld)
 
 	: IActor()
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
-	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)// TODO : fix to type
+	, CHaveLinearVelocity(weapon.GetType().GetVelocity())// TODO : fix to type
 {
-
+	m_damage.SetValue(weapon.GetType().GetDamage());
 
 	SetCollison(pWorld);
-	SetType(type);
-	
+	SetType(weapon.GetTypeShoot());
 }
 
 void CShoot::Update(float deltaTime)

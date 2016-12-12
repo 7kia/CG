@@ -58,7 +58,7 @@ public:
 
 	void							CreateShoot(const glm::vec3 & position
 												, const glm::vec3 & direction
-												, const CShootType & type
+												, const CWeapon & weapon
 												);
 
 private:

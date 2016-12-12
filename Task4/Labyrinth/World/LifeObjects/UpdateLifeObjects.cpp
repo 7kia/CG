@@ -77,11 +77,11 @@ void CLifeObject::ResetWeapon()
 
 void CLifeObject::Shoot()
 {
-	auto collisionPosition = m_collision.GetPosition();
-	auto entityPosition = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
 
 	auto direction = GetDirection();
-	m_world->CreateShoot(entityPosition
+	auto shiftShoot = glm::vec3(direction.x, direction.y, direction.z);
+	m_world->CreateShoot((GetPosition() + shiftShoot)
 		, glm::vec3(direction.x, direction.y, direction.z)
-		, m_weapon.GetTypeShoot());
+		, m_weapon
+		);
 }
