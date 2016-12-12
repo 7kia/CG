@@ -15,7 +15,7 @@ void CLifeObject::Update(float dt)
 	switch (m_state)
 	{
 	case StateId::NotActive:
-		break;
+		//break;
 	case StateId::Move:
 		UpdatePosition(dt);
 		break;

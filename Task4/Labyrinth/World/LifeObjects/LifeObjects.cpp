@@ -14,10 +14,13 @@ CLifeObject::CLifeObject()
 }
 
 
-CLifeObject::CLifeObject(CLifeObjectType & type, CWorld* pWorld)
+CLifeObject::CLifeObject(CLifeObjectType & type
+						, CWorld* pWorld
+						, const glm::vec3 & position
+						, const glm::vec3 & direction)
 	: IActor()
-	, CHave3DPosition()
-	, CHaveDirection()
+	, CHave3DPosition(position)
+	, CHaveDirection(direction)
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, m_visual(16, 16)

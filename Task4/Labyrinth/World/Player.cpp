@@ -24,7 +24,7 @@ CPlayer::CPlayer(const glm::vec3 & position
 				, const glm::vec3 & direction
 				, CLifeObjectType & type
 				, CWorld* pWorld)
-	: CLifeObject(type, pWorld)
+	: CLifeObject(type, pWorld, position, direction)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(this)
 {

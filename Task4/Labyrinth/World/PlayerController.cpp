@@ -97,6 +97,9 @@ void CPlayerController::SetFunctionList()
 	SetSkill(IdCommands::SwitchFlashLight, [&]() { m_master->SwitchFlashLight(); });
 	SetKeysSkill(IdCommands::SwitchFlashLight, { SDLK_SPACE }, SDL_KEYUP);
 
+	SetSkill(IdCommands::Shoot, [&]() { m_master->Shoot(); });
+	SetKeysSkill(IdCommands::Shoot, { SDLK_z }, SDL_KEYUP);
+
 }
 
 void CPlayerController::CheckListCommands() const
