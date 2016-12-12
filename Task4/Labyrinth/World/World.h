@@ -61,7 +61,7 @@ private:
 	void							CreateShoot(const glm::vec3 & position
 												, const glm::vec3 & direction
 												, const CShootType & type
-												, CWorld * world);
+												);
 
 //////////////////////////////////////////////////////////////////////
 // Data

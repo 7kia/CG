@@ -86,7 +86,7 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 void CWorld::CreateShoot(const glm::vec3 & position
 	, const glm::vec3 & direction
 	, const CShootType & type
-	, CWorld * world)
+	)
 {
 	m_shoots.push_back(std::make_shared<CShoot>(position, direction, type, world));
 }

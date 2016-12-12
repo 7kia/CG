@@ -243,6 +243,12 @@
     <ClInclude Include="World\Gun\WeaponType.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
+    <ClInclude Include="World\LifeObjects\LifeObjects.h">
+      <Filter>World\LifeObject</Filter>
+    </ClInclude>
+    <ClInclude Include="World\LifeObjects\TypesLifeObjects.h">
+      <Filter>World\LifeObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DispatchEvent.cpp">
@@ -415,6 +421,18 @@
     </ClCompile>
     <ClCompile Include="World\Gun\WeaponType.cpp">
       <Filter>World\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="World\LifeObjects\FeaturesLifeObject.cpp">
+      <Filter>World\LifeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="World\LifeObjects\LifeObjects.cpp">
+      <Filter>World\LifeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="World\LifeObjects\TypesLifeObjects.cpp">
+      <Filter>World\LifeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="World\LifeObjects\UpdateLifeObjects.cpp">
+      <Filter>World\LifeObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

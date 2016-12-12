@@ -1,16 +1,5 @@
 #pragma once
 
-#include "Actor.h"
-#include "../Mixin/HaveLinearVelocity.h"
-#include "../Mixin/HaveRotationSpeed.h"
-#include "../Mixin/HaveDirection.h"
-#include "../Mixin/Drawable.h"
-#include "../Mixin/Material/HaveTexture.h"
-#include "../2DShape/2DCircleCollision.h"
-#include "3DShape\3DSphere.h"
-#include "..\Lights.h"
-#include "..\Camera\Cameras.h"
-#include "..\DispatchEvent.h"
 #include <map>
 #include <memory>
 #include <string>
@@ -18,7 +7,13 @@
 #include <vector>
 #include <array>
 
-#include "Features.h"
+#include "LifeObjects\LifeObjects.h"
+
+#include "..\Lights.h"
+#include "..\Camera\Cameras.h"
+#include "..\DispatchEvent.h"
+
+
 
 namespace PlayerSpace
 {
@@ -34,12 +29,7 @@ namespace PlayerSpace
 class CWorld;
 
 class CPlayer final
-	: public IActor
-	, public CHave3DPosition
-	, public CHaveDirection
-	, public CHaveLinearVelocity
-	, public CHaveRotationSpeed
-	, public CHaveTexture
+	: public CLifeObject
 {
 public:
 	CPlayer();
@@ -74,9 +64,11 @@ public:
 	};
 	//--------------------------------------------
 	// IActor
-	void							Update(float deltaTime) override final;
+	//void							Update(float deltaTime) override final;
 	void							Draw() const override final;
 	//--------------------------------------------
+	void							UpdatePosition(float dt) override;
+
 
 	void							CreatePlayer(const glm::vec3 & position
 												, const glm::vec3 & direction
@@ -105,7 +97,6 @@ private:
 	void							SetCamera(CPlayer::IdCameras id);
 
 	void							SetCameras(const glm::vec3 & direction);
-	void							SetCollison(CWorld* pWorld);
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
@@ -120,10 +111,6 @@ private:
 	CPositionLightSource			m_flashlight;
 	bool							m_isFlashLightOn = true;
 
-	C2DCircleCollision				m_collision;
-	CIdentity3DSphere				m_visual;
-
-	CDynamicFeature					m_health;
 };
 
 class CPlayer::CController
@@ -145,6 +132,7 @@ public:
 		, ChangePlayerCamera
 		, ChangeWorldCamera
 		, SwitchFlashLight
+		, Shoot
 		, AmountCommands
 	};
 

@@ -15,11 +15,7 @@ CPlayer::SSkill::SSkill(const std::function<void()> function
 }
 
 CPlayer::CPlayer()
-	: IActor()
-	, CHave3DPosition()
-	, CHaveDirection(PlayerSpace::PLAYER_DIRECTION)
-	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
-	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
+	: CLifeObject()
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(std::make_unique<CController>(this))
 	, m_visual(16, 16)
@@ -31,13 +27,8 @@ CPlayer::CPlayer(const glm::vec3 & position
 				, const glm::vec3 & direction
 				, const std::string & texturePath
 				, CWorld* pWorld)
-	: IActor()
-	, CHave3DPosition()
-	, CHaveDirection()
-	, CHaveLinearVelocity(PlayerSpace::LINEAR_MOVE_SPEED)
-	, CHaveRotationSpeed(PlayerSpace::ROTATION_SPEED_RADIANS)
+	: CLifeObject()
 	, m_flashlight(GL_LIGHT1)
-	, m_visual(16, 16)
 	, m_pController(std::make_unique<CController>(this))
 {
 	SetTexture(texturePath);
@@ -106,9 +97,24 @@ void CPlayer::ChangeCamera()
 }
 */
 
-
-void CPlayer::Update(float deltaTime)
+void CPlayer::Draw() const
 {
+	if (m_isFlashLightOn)
+	{
+		m_flashlight.Setup();// TODO : fix light
+	}
+	else
+	{
+		m_flashlight.Disable();
+	}
+	//m_flashlight.Draw();
+
+	CLifeObject::Draw();
+}
+
+void CPlayer::UpdatePosition(float dt)
+{
+
 	m_collision.ResetVelocity();
 	auto collisionPosition = m_collision.GetPosition();
 	auto playerPosition = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
@@ -117,8 +123,8 @@ void CPlayer::Update(float deltaTime)
 	const float velocity = GetCurrentLinearVelocity(deltaTime);
 	const float rotationSpeed = GetCurrentRotationSpeed(deltaTime);
 	GetCamera()->Update(deltaTime
-						, velocity
-						, rotationSpeed);
+		, velocity
+		, rotationSpeed);
 
 	auto direction = GetCamera()->GetCurrentDirection();
 	auto linearVelocity = deltaTime * direction * velocity;
@@ -137,23 +143,6 @@ void CPlayer::Update(float deltaTime)
 
 	ResetCurrentLinearVelocity();
 	ResetCurrentRotationSpeed();
-}
-
-void CPlayer::Draw() const
-{
-	if (m_isFlashLightOn)
-	{
-		m_flashlight.Setup();// TODO : fix light
-	}
-	else
-	{
-		m_flashlight.Disable();
-	}
-	//m_flashlight.Draw();
-
-	m_texture->DoWhileBinded([&] {
-		m_visual.Draw();
-	});
 }
 
 void CPlayer::SetCamera(CPlayer::IdCameras id)
