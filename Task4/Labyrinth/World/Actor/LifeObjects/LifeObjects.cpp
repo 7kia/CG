@@ -8,6 +8,7 @@ CLifeObject::CLifeObject()
 	, CHaveDirection()
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
+	, CHaveHealth()
 	, m_visual(16, 16)
 {
 
@@ -23,6 +24,7 @@ CLifeObject::CLifeObject(CLifeObjectType & type
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
+	, CHaveHealth()
 	, m_visual(16, 16)
 
 {
@@ -38,6 +40,7 @@ void CLifeObject::SetType(CLifeObjectType & setType)
 	SetMaxLinearVelocity(m_type->GetVelocity());
 
 	m_health.SetValue(m_type->GetHealth());
+	m_health.SetMaxValue(m_type->GetHealth());
 
 	m_weapon.SetType(m_type->GetTypeWeapon());
 

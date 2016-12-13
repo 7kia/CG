@@ -4,9 +4,6 @@
 CHaveLifeObjects::CHaveLifeObjects()
 	: CHaveWeaponTypes()
 {
-	SetShootType(size_t(CLifeObjectType::Id::Player));
-	SetShootType(size_t(CLifeObjectType::Id::Enemy));
-
 	SetTypeLifeObject(size_t(CLifeObjectType::Id::Player)
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]
 		, 150.f

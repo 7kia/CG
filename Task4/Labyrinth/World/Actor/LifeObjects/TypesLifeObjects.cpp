@@ -27,16 +27,6 @@ int CLifeObjectType::GetHealth() const
 	return m_health.GetValue();
 }
 
-void CLifeObjectType::SetMaxHealth(int value)
-{
-	m_health.SetMaxValue(value);
-}
-
-int CLifeObjectType::GetMaxHealth() const
-{
-	return m_health.GetMaxValue();
-}
-
 void CLifeObjectType::SetVisionRange(float range)
 {
 	m_visionRange = range;

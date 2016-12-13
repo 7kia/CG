@@ -2,17 +2,6 @@
 #include "World\World.h"
 #include "LifeObjects.h"
 
-
-void CLifeObject::SetHealth(int value)
-{
-	m_health.SetValue(value);
-}
-
-void CLifeObject::AddHealth(int value)
-{
-	m_health.AddToValue(value);
-}
-
 void CLifeObject::SetState(StateId state)
 {
 	m_state = state;
@@ -26,16 +15,6 @@ void CLifeObject::SetState(StateId state)
 CLifeObject::StateId CLifeObject::GetState() const
 {
 	return m_state;
-}
-
-int CLifeObject::GetHealth()
-{
-	return m_health.GetValue();
-}
-
-int CLifeObject::GetMaxHealth()
-{
-	return m_type->GetHealth();
 }
 
 float CLifeObject::GetVisionRange() const

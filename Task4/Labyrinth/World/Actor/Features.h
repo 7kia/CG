@@ -21,7 +21,7 @@ public:
 	int					GetValue() const;
 
 	void				SetMaxValue(int setValue);
-	void				AddMaxToValue(int summand);
+	void				AddToMaxValue(int summand);
 
 	int					GetMaxValue() const;
 private:

@@ -9,16 +9,13 @@ static std::once_flag shootTypesIsCreate;
 
 CHaveShootTypes::CHaveShootTypes()
 {
-	SetShootType(size_t(Id::Player));
-	SetShootType(size_t(Id::Enemy));
+	SetShootType(size_t(Id::Player)
+		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Shoot)]
+		, 2.f);
+	SetShootType(size_t(Id::Enemy)
+		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Shoot)]
+		, 2.f);
 
-
-	m_shootTypes[0].SetTexture(TextureSpace::TexturePaths[size_t(TextureSpace::Id::Shoot)]);
-
-	for (size_t index = size_t(Id::Player); index < size_t(Id::AmountTypes); ++index)
-	{
-		m_shootTypes[index].SetTexture(m_shootTypes[0].GetTexture());// TODO : see can replace "0"
-	}
 }
 
 const CShootType & CHaveShootTypes::GetShootType(const ShootTypeSpace::Id index) const
@@ -26,8 +23,12 @@ const CShootType & CHaveShootTypes::GetShootType(const ShootTypeSpace::Id index)
 	return m_shootTypes[size_t(index)];
 }
 
-void CHaveShootTypes::SetShootType(size_t index)
+void CHaveShootTypes::SetShootType(size_t index
+								, const std::string & texturePath
+								, int health)
 {
+	m_shootTypes[index].SetHealth(health);
+	m_shootTypes[index].SetTexture(texturePath);
 }
 
 

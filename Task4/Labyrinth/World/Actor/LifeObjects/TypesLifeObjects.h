@@ -2,7 +2,7 @@
 
 #include "Mixin/Material/HaveTexture.h"
 
-#include "World/Actor/Features.h"
+#include "World/Actor/HaveHealth.h"
 #include "World/Gun/Weapon.h"
 
 struct SRange
@@ -34,12 +34,8 @@ public:
 	void					SetVelocity(float setVelocity);
 	float					GetVelocity() const;
 
-	void					SetHealth(int value);
+	void					SetHealth(int value);// TOOD : see can it mix
 	int						GetHealth() const;
-
-	void					SetMaxHealth(int value);
-	int						GetMaxHealth() const;
-
 
 	void					SetVisionRange(float range);
 	float					GetVisionRange() const;
@@ -58,7 +54,7 @@ private:
 	float							m_velocity = 0.f;
 	float							m_visionRange = 0.f;
 
-	CDynamicFeature					m_health;
+	CStaticFeature					m_health;
 	const CWeaponType*				m_weapon;
 
 

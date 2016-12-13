@@ -38,7 +38,7 @@ void CDynamicFeature::SetMaxValue(int setValue)
 	m_maxValue = setValue;
 }
 
-void CDynamicFeature::AddMaxToValue(int summand)
+void CDynamicFeature::AddToMaxValue(int summand)
 {
 	m_maxValue += summand;
 }

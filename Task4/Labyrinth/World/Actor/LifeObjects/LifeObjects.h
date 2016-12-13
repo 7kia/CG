@@ -41,6 +41,7 @@ class CLifeObject
 	, public CHaveDirection
 	, public CHaveLinearVelocity
 	, public CHaveRotationSpeed
+	, public CHaveHealth
 {
 public:
 	// LifeObjects.cpp
@@ -83,11 +84,7 @@ public:
 
 	/////////////////
 	// FeaturesLifeObject.cpp
-	void				SetHealth(int value);
-	void				AddHealth(int value);
 
-	int					GetHealth();
-	int					GetMaxHealth();
 
 	float				GetVisionRange() const;
 
@@ -133,8 +130,6 @@ protected:
 
 	CWorld*							m_world = nullptr;// For create shoot
 	CWeapon							m_weapon;
-
-	CDynamicFeature					m_health;
 
 	//CLifeObjectType*				m_type = nullptr;
 	StateId							m_state = StateId::NotActive;

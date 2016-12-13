@@ -1,5 +1,7 @@
 #pragma once
 
+#include "World/Actor/HaveHealth.h"
+
 #include "Mixin/Material/HaveTexture.h"
 #include <array>
 
@@ -27,21 +29,15 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
-	// TODO : see need it all
-	//  measured in tiles
-	//ShootTextureMap			GetTextureMap() const;
+	void					SetHealth(int value);// TOOD : see can it mix
+	int						GetHealth() const;
 
-	//void					SetPositionTile(const glm::vec2 & position);
-	//glm::vec2				GetPositionTile() const;
 
 private:
-	//  Texture map depent from tile position
-	//void					SetTextureMap(const glm::vec2 & position);
 
-	//////////////////////////////////////////////////////////////////////
-	// Data
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
-	// TODO : see need it
-	//glm::vec2				m_positionTile;// need set int value, measured in tiles
+	CStaticFeature					m_health;
 
 };

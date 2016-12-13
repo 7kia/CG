@@ -23,17 +23,15 @@ void ContactListener::BeginContact(b2Contact* contact) {
 
 	if ((userDataA == nullptr) || (userDataB == nullptr))
 	{
+		return;
+	}
+// TODO
 		IActor* actorAData = static_cast<IActor*>(userDataA);
 		IActor* actorBData = static_cast<IActor*>(userDataB);
 
 		auto typeA = actorAData->GetIdClass();
 		auto typeB = actorBData->GetIdClass();
 
-
-		// TODO
-
-		return;
-	}
 
 	/*
 

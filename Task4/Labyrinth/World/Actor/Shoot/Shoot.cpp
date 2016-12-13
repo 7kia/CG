@@ -8,6 +8,7 @@ CShoot::CShoot()
 	, CHave3DPosition()
 	, CHaveDirection(ShootSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)
+	, CHaveHealth()
 	, m_collision(1.f, glm::vec2())
 {
 }
@@ -22,6 +23,7 @@ CShoot::CShoot(const glm::vec3 & position
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(weapon.GetType().GetVelocity())// TODO : fix to type
+	, CHaveHealth()
 	, m_collision(1.f, glm::vec2())
 {
 	m_damage.SetValue(weapon.GetType().GetDamage());
@@ -72,6 +74,9 @@ void CShoot::SetCollison(CWorld* pWorld)
 void CShoot::SetType(const CShootType & type)
 {
 	m_visual.SetType(&type);
+
+	m_health.SetValue(type.GetHealth());
+	m_health.SetMaxValue(type.GetHealth());
 }
 
 const CShootType & CShoot::GetType() const

@@ -38,6 +38,7 @@ class CShoot final
 	, public CHave3DPosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity
+	, public CHaveHealth
 {
 public:
 	CShoot();
@@ -68,6 +69,8 @@ private:
 private:
 	C2DCircleCollision				m_collision;
 	CShootView						m_visual;
+
+	CShootType*						m_type;
 
 	CStaticFeature					m_damage;
 };

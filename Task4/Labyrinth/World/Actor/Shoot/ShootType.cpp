@@ -5,3 +5,13 @@ CShootType::CShootType()
 	: CHaveTexture()
 {
 }
+
+void CShootType::SetHealth(int value)
+{
+	m_health.SetValue(value);
+}
+
+int CShootType::GetHealth() const
+{
+	return m_health.GetValue();
+}
