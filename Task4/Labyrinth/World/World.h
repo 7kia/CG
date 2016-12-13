@@ -64,11 +64,12 @@ public:
 private:
 	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
 
+	void							DeleteDeathObject();
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
 	CMap							m_map;
 	std::vector<IActorSharedPtr>	m_actors;
-
+	std::vector<size_t>				m_deletables;
 	CPhongModelMaterial				m_material;
 };

@@ -49,7 +49,9 @@ void CWorld::Update(float deltaTime)
 		actor->Update(deltaTime);
 	}
 
+	DeleteDeathObject();
 	m_world->Step(deltaTime, 8, 3);
+
 }
 
 void CWorld::CreateScene()
@@ -77,13 +79,27 @@ void CWorld::CreatePlayer(const glm::vec3 & position
 	}
 }
 
+void CWorld::DeleteDeathObject()
+{
+	for (size_t index = m_actors.size(); index > 0; --index)
+	{
+		size_t resultIndex = index - 1;
+		if (!m_actors[resultIndex]->IsLive())
+		{
+			m_actors.erase(m_actors.begin() + resultIndex);
+		}
+	}
+};
+
 void CWorld::CreateShoot(const glm::vec3 & position
 	, const glm::vec3 & direction
 	, const CWeapon & weapon
 	)
 {
-	m_actors.push_back(std::make_shared<CShoot>(position
-		, direction
-		, weapon
-		, this));
+	std::shared_ptr<CShoot> addShoot = std::make_shared<CShoot>(position
+																, direction
+																, weapon
+																, this);
+
+	m_actors.push_back(addShoot);
 }

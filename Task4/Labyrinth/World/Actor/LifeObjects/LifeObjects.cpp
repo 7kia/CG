@@ -9,7 +9,6 @@ CLifeObject::CLifeObject()
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, CHaveHealth()
-	, CIsDeletable()
 	, m_visual(16, 16)
 {
 
@@ -26,7 +25,6 @@ CLifeObject::CLifeObject(CLifeObjectType & type
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, CHaveHealth()
-	, CIsDeletable()
 	, m_visual(16, 16)
 
 {

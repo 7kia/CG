@@ -42,7 +42,6 @@ class CLifeObject
 	, public CHaveLinearVelocity
 	, public CHaveRotationSpeed
 	, public CHaveHealth
-	, public CIsDeletable
 {
 public:
 	// LifeObjects.cpp

@@ -2,11 +2,13 @@
 
 #include "Mixin/Drawable.h"
 #include "Mixin/Updatable.h"
+#include "IsDeletable.h"
 #include <memory>
 
 class IActor
 	: public IDrawable
 	, public IUpdatable
+	, public CIsDeletable
 {
 public:
 	enum class idClass

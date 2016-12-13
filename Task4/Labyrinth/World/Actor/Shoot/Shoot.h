@@ -43,7 +43,6 @@ class CShoot final
 	, public CHaveLinearVelocity
 	, public CHaveHealth
 	, public CHaveDamage
-	, public CIsDeletable
 {
 public:
 	CShoot();

@@ -2,6 +2,10 @@
 #include "Actor.h"
 
 IActor::IActor(idClass id)
+	: IDrawable()
+	, IUpdatable()
+	, CIsDeletable()
+
 {
 	m_idClass = id;
 }

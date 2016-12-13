@@ -268,7 +268,7 @@
       <Filter>World\Actor</Filter>
     </ClInclude>
     <ClInclude Include="World\Actor\IsDeletable.h">
-      <Filter>World</Filter>
+      <Filter>World\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -468,7 +468,7 @@
       <Filter>World\Actor</Filter>
     </ClCompile>
     <ClCompile Include="World\Actor\IsDeletable.cpp">
-      <Filter>World</Filter>
+      <Filter>World\Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
