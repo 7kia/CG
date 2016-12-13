@@ -80,7 +80,10 @@ void CLifeObject::Shoot()
 
 	auto direction = GetDirection();
 	auto shiftShoot = glm::vec3(direction.x, direction.y, direction.z);
-	m_world->CreateShoot((GetPosition() + shiftShoot)
+
+	auto resultPosition = GetPosition() + shiftShoot;
+	resultPosition = glm::vec3(resultPosition.x, resultPosition.z, resultPosition.y);
+	m_world->CreateShoot(resultPosition
 		, glm::vec3(direction.x, direction.y, direction.z)
 		, m_weapon
 		);
