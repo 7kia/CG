@@ -181,7 +181,6 @@
     <ClInclude Include="Camera\Cameras.h" />
     <ClInclude Include="Camera\PlayerCamera.h" />
     <ClInclude Include="Camera\WorldCamera.h" />
-    <ClInclude Include="ContactListener.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Material\libchapter3_private.h" />
@@ -266,6 +265,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowClient.cpp" />
+    <ClCompile Include="World\Actor.cpp" />
     <ClCompile Include="World\Features.cpp" />
     <ClCompile Include="World\Gun\HaveShootTypes.cpp" />
     <ClCompile Include="World\Gun\HaveWeaponTypes.cpp" />

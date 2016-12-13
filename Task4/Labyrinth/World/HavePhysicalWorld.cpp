@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "HavePhysicalWorld.h"
+#include "World\World.h"
 
 CHavePhysicalWorld::CHavePhysicalWorld()
 {
@@ -11,4 +12,65 @@ CHavePhysicalWorld::CHavePhysicalWorld()
 b2World * CHavePhysicalWorld::GetWorld()
 {
 	return m_world.get();
+}
+
+
+void ContactListener::BeginContact(b2Contact* contact) {
+
+
+	void* userDataA = contact->GetFixtureA()->GetBody()->GetUserData();
+	void* userDataB = contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if ((userDataA == nullptr) || (userDataB == nullptr))
+	{
+		IActor* actorAData = static_cast<IActor*>(userDataA);
+		IActor* actorBData = static_cast<IActor*>(userDataB);
+
+		auto typeA = actorAData->GetIdClass();
+		auto typeB = actorBData->GetIdClass();
+
+
+		// TODO
+
+		return;
+	}
+
+	/*
+
+	//check if fixture A was a ball
+	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+	if (bodyUserData)
+	{
+	static_cast<Ball*>(bodyUserData)->startContact();
+
+	}
+
+	//check if fixture B was a ball
+	bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
+	if (bodyUserData)
+	{
+	static_cast<Ball*>(bodyUserData)->startContact();
+
+	}
+	*/
+
+
+}
+
+// TOOD: see need it
+void ContactListener::EndContact(b2Contact* contact) {
+
+	/*
+	//check if fixture A was a ball
+	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+	if (bodyUserData)
+	static_cast<Ball*>(bodyUserData)->endContact();
+
+	//check if fixture B was a ball
+	bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
+	if (bodyUserData)
+	static_cast<Ball*>(bodyUserData)->endContact();
+	*/
+
+
 }

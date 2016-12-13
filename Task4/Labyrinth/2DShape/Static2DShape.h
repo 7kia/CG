@@ -32,7 +32,7 @@ protected:
 	virtual void				CheckParametres() {};
 };
 
-class CLifeObject;
+class IActor;
 
 class CStatic2DShape
 	: public IStatic2DShape
@@ -63,8 +63,8 @@ public:
 	void						Advance(float dt) override { (void)dt;  };
 	//--------------------------------------------
 
-	void						SetMaster(CLifeObject * master);
-	CLifeObject*				GetMaster();
+	void						SetMaster(IActor * master);
+	IActor*						GetMaster();
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:

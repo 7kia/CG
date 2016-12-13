@@ -8,13 +8,15 @@ using namespace MapSpace;
 
 std::once_flag mapIsCreate;
 
+CMap::CMap()
+	: IActor(IActor::idClass::Map)
+{
+}
+
 CMap::CMap(const string & mapPath, CWorld* pWorld)
-	: IActor()
+	: IActor(IActor::idClass::Map)
 {
 	Create(mapPath, pWorld);
-
-	// Clear map, next it not need
-	m_map.clear();
 }
 
 void CMap::Draw() const
@@ -36,6 +38,9 @@ void CMap::Create(const std::string & mapPath, CWorld * pWorld)
 			ReadMap(mapPath);
 
 			m_labyrinth.ShrinkToFit();
+
+			// Clear map, next it not need
+			m_map.clear();
 		}
 	);
 }

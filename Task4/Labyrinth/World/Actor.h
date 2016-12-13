@@ -9,7 +9,27 @@ class IActor
 	, public IUpdatable
 {
 public:
+	enum class idClass
+	{
+		None = 0
+		, World
+		, Map
+		, Wall
+		, LifeObject
+		, Shoot
+	};
+
+	IActor(idClass id);
 	virtual ~IActor() = default;
+
+	idClass			GetIdClass() const;
+protected:
+	idClass			m_idClass = idClass::None;
+};
+
+static bool IsShootOrLifeObject(IActor::idClass id)
+{
+	return (id == IActor::idClass::LifeObject) || (id == IActor::idClass::Shoot);
 };
 
 using IActorUniquePtr = std::unique_ptr<IActor>;

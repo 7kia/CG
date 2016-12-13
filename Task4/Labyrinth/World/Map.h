@@ -26,7 +26,7 @@ class CMap
 	: public IActor
 {
 public:
-	CMap() = default;
+	CMap();
 	CMap(const std::string & mapPath, CWorld* pWorld);
 
 	virtual ~CMap() = default;

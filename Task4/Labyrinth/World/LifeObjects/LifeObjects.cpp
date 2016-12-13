@@ -3,7 +3,7 @@
 #include "LifeObjects.h"
 
 CLifeObject::CLifeObject()
-	:IActor()
+	: IActor(IActor::idClass::LifeObject)
 	, CHave3DPosition()
 	, CHaveDirection()
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
@@ -18,7 +18,7 @@ CLifeObject::CLifeObject(CLifeObjectType & type
 						, CWorld* pWorld
 						, const glm::vec3 & position
 						, const glm::vec3 & direction)
-	: IActor()
+	: IActor(IActor::idClass::LifeObject)
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
@@ -56,8 +56,8 @@ void CLifeObject::SetCollison(CWorld* pWorld)
 
 	m_visual.SetTransform(glm::translate(glm::mat4(), position));
 
-	m_collision.SetMaster(this);
 	m_collision.AddToWorld(pWorld->GetWorld());
+	m_collision.SetMaster(this);
 }
 
 void CLifeObject::Attack()
