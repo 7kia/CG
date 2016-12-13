@@ -6,14 +6,14 @@ CHaveLifeObjects::CHaveLifeObjects()
 {
 	SetTypeLifeObject(size_t(CLifeObjectType::Id::Player)
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]
-		, 150.f
+		, 15.f
 		, 5.f
 		, 100
 		, CWeaponType::Id::EnemyWeapon);// TODO : replace to PlayerWeapon
 
 	SetTypeLifeObject(size_t(CLifeObjectType::Id::Enemy)
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]// TODO: add texture for enemy
-		, 150.f
+		, 15.f
 		, 5.f
 		, 100
 		, CWeaponType::Id::EnemyWeapon);

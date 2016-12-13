@@ -14,6 +14,36 @@ b2World * CHavePhysicalWorld::GetWorld()
 	return m_world.get();
 }
 
+static bool ProcessContact(IActor::idClass typeA
+							, IActor::idClass typeB
+							, void* userDataA
+							, void* userDataB)
+{
+	if (typeA == IActor::idClass::Shoot)//
+	{
+		CShoot* shoot = static_cast<CShoot*>(userDataA);
+		////////////////////
+		// Shoot destroy
+		if (typeB == IActor::idClass::Shoot)
+		{
+
+			CShoot* secondShoot = static_cast<CShoot*>(userDataB);
+			shoot->AddHealth(-shoot->GetMaxHealth());
+			secondShoot->AddHealth(-secondShoot->GetMaxHealth());
+			return true;
+		}
+		////////////////////
+		else if (typeB == IActor::idClass::LifeObject)
+		{
+			CLifeObject* lifeObject = static_cast<CLifeObject*>(userDataB);
+
+			shoot->AddHealth(-shoot->GetMaxHealth());
+			lifeObject->AddHealth(-shoot->GetDamage());
+			return true;
+		}
+	}
+	return false;
+}
 
 void ContactListener::BeginContact(b2Contact* contact) {
 
@@ -32,30 +62,11 @@ void ContactListener::BeginContact(b2Contact* contact) {
 		auto typeA = actorAData->GetIdClass();
 		auto typeB = actorBData->GetIdClass();
 
-		//if (IsShootOrLifeObject(typeA) || IsShootOrLifeObject(typeB))
-		//{
-			if (typeA == IActor::idClass::Shoot)//
-			{
-				CShoot* shoot = static_cast<CShoot*>(userDataA);
-				////////////////////
-				// Shoot destroy
-				if (typeB == IActor::idClass::Shoot)
-				{
-					
-					CShoot* secondShoot = static_cast<CShoot*>(userDataB);
-					shoot->AddHealth(-shoot->GetMaxHealth());
-					secondShoot->AddHealth(-secondShoot->GetMaxHealth());
-				}
-				////////////////////
-				else if (typeB == IActor::idClass::LifeObject)
-				{
-					CLifeObject* lifeObject = static_cast<CLifeObject*>(userDataB);
-
-					shoot->AddHealth(-shoot->GetMaxHealth());
-					lifeObject->AddHealth(-shoot->GetDamage());
-				}
-			}
-		//}
+		if (!ProcessContact(typeA, typeB, userDataA, userDataB))
+		{
+			ProcessContact(typeB, typeA, userDataB, userDataA);
+		}
+			
 	/*
 
 	//check if fixture A was a ball
