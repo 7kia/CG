@@ -16,7 +16,7 @@
 #include <vector>
 #include <array>
 
-#include "World\Features.h"
+#include "World\Actor\Features.h"
 #include "ShootView.h"
 
 namespace ShootSpace

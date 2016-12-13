@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Shoot.h"
-#include "../World.h"
+#include "World\World.h"
 #include "World\Gun\Weapon.h"
 
 CShoot::CShoot()

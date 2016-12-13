@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Shoot.h"
-#include "../Features.h"
+#include "World\Actor\Shoot\Shoot.h"
+#include "World\Actor\Features.h"
 
 
 namespace WeaponTypeSpace

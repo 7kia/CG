@@ -2,7 +2,7 @@
 
 #include "Mixin/Material/HaveTexture.h"
 
-#include "World/Features.h"
+#include "World/Actor/Features.h"
 #include "World/Gun/Weapon.h"
 
 struct SRange

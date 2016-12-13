@@ -5,7 +5,7 @@
 
 
 #include "Weapon.h"
-#include "HaveShootTypes.h"
+#include "World\Actor\Shoot\HaveShootTypes.h"
 
 class CWorld;
 
