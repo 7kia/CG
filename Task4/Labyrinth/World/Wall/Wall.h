@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Actor.h"
-#include "../../2DShape/2DRectangleCollision.h"
-#include "../../Mixin/Have3DPosition.h"
+#include "World/Actor/Actor.h"
+#include "2DShape/2DRectangleCollision.h"
+#include "Mixin/Have3DPosition.h"
 #include "WallView.h"
 
 #include <glm\mat4x4.hpp>

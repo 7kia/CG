@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Mixin/Drawable.h"
-#include "../Mixin/Updatable.h"
+#include "Mixin/Drawable.h"
+#include "Mixin/Updatable.h"
 #include <memory>
 
 class IActor

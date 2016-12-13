@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "World.h"
+#include "World\World.h"
 
 
 CPlayerController::SSkill::SSkill(const std::function<void()> function

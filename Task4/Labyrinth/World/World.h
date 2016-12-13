@@ -1,16 +1,16 @@
 #pragma once
 
-#include "../Mixin/Drawable.h"
-#include "../Mixin/Updatable.h"
+#include "Mixin/Drawable.h"
+#include "Mixin/Updatable.h"
 
-#include "..\DispatchEvent.h"
-#include "..\3DShape\3DShapes.h"
-#include "..\Camera\Cameras.h"
-#include "..\Lights.h"
+#include "DispatchEvent.h"
+#include "3DShape\3DShapes.h"
+#include "Camera\Cameras.h"
+#include "Lights.h"
 #include "..\Material\PhongMaterial.h"
 
-#include "HavePlayer.h"
-#include "LifeObjects\HaveLifeObject.h"
+#include "Actor\Player\HavePlayer.h"
+#include "Actor\LifeObjects\HaveLifeObject.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"

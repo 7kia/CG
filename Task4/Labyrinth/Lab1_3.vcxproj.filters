@@ -43,8 +43,14 @@
     <Filter Include="World\Gun">
       <UniqueIdentifier>{a72e5f6b-468d-424a-ac2c-b09691bf75aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="World\LifeObject">
-      <UniqueIdentifier>{4fe5c247-3791-473d-865b-6e7d8e0310aa}</UniqueIdentifier>
+    <Filter Include="World\Actor">
+      <UniqueIdentifier>{bf1a7399-4f32-4838-8c85-f01436b8a93e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Actor\Player">
+      <UniqueIdentifier>{23e56957-08c4-460a-b1a3-751411e7d556}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Actor\LifeObjects">
+      <UniqueIdentifier>{371ddd68-0943-485f-96cc-ce0e20a78399}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,9 +106,6 @@
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="World\World.h">
-      <Filter>World</Filter>
-    </ClInclude>
-    <ClInclude Include="World\Player.h">
       <Filter>World</Filter>
     </ClInclude>
     <ClInclude Include="Mixin\HaveLinearVelocity.h">
@@ -180,9 +183,6 @@
     <ClInclude Include="2DMixins\CHave2DVelocity.h">
       <Filter>2DMixins</Filter>
     </ClInclude>
-    <ClInclude Include="World\Actor.h">
-      <Filter>World</Filter>
-    </ClInclude>
     <ClInclude Include="World\Wall\WallView.h">
       <Filter>World\Wall</Filter>
     </ClInclude>
@@ -193,9 +193,6 @@
       <Filter>Mixin</Filter>
     </ClInclude>
     <ClInclude Include="World\HavePhysicalWorld.h">
-      <Filter>World</Filter>
-    </ClInclude>
-    <ClInclude Include="World\HavePlayer.h">
       <Filter>World</Filter>
     </ClInclude>
     <ClInclude Include="Mixin\Material\MaterialCharacteristics.h">
@@ -243,14 +240,23 @@
     <ClInclude Include="World\Gun\WeaponType.h">
       <Filter>World\Gun</Filter>
     </ClInclude>
-    <ClInclude Include="World\LifeObjects\LifeObjects.h">
-      <Filter>World\LifeObject</Filter>
+    <ClInclude Include="World\Actor\Actor.h">
+      <Filter>World\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="World\LifeObjects\TypesLifeObjects.h">
-      <Filter>World\LifeObject</Filter>
+    <ClInclude Include="World\Actor\Player\Player.h">
+      <Filter>World\Actor\Player</Filter>
     </ClInclude>
-    <ClInclude Include="World\LifeObjects\HaveLifeObject.h">
-      <Filter>World\LifeObject</Filter>
+    <ClInclude Include="World\Actor\LifeObjects\HaveLifeObject.h">
+      <Filter>World\Actor\LifeObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Actor\LifeObjects\LifeObjects.h">
+      <Filter>World\Actor\LifeObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Actor\LifeObjects\TypesLifeObjects.h">
+      <Filter>World\Actor\LifeObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Actor\Player\HavePlayer.h">
+      <Filter>World\Actor\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -298,12 +304,6 @@
     </ClCompile>
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp">
       <Filter>Mixin</Filter>
-    </ClCompile>
-    <ClCompile Include="World\Player.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
-    <ClCompile Include="World\PlayerController.cpp">
-      <Filter>World</Filter>
     </ClCompile>
     <ClCompile Include="World\Map.cpp">
       <Filter>World</Filter>
@@ -380,9 +380,6 @@
     <ClCompile Include="World\HavePhysicalWorld.cpp">
       <Filter>World</Filter>
     </ClCompile>
-    <ClCompile Include="World\HavePlayer.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
     <ClCompile Include="Mixin\Material\MaterialCharacteristics.cpp">
       <Filter>Mixin\Material</Filter>
     </ClCompile>
@@ -425,23 +422,32 @@
     <ClCompile Include="World\Gun\WeaponType.cpp">
       <Filter>World\Gun</Filter>
     </ClCompile>
-    <ClCompile Include="World\LifeObjects\FeaturesLifeObject.cpp">
-      <Filter>World\LifeObject</Filter>
+    <ClCompile Include="World\Actor\Actor.cpp">
+      <Filter>World\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="World\LifeObjects\LifeObjects.cpp">
-      <Filter>World\LifeObject</Filter>
+    <ClCompile Include="World\Actor\Player\Player.cpp">
+      <Filter>World\Actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="World\LifeObjects\TypesLifeObjects.cpp">
-      <Filter>World\LifeObject</Filter>
+    <ClCompile Include="World\Actor\Player\PlayerController.cpp">
+      <Filter>World\Actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="World\LifeObjects\UpdateLifeObjects.cpp">
-      <Filter>World\LifeObject</Filter>
+    <ClCompile Include="World\Actor\LifeObjects\FeaturesLifeObject.cpp">
+      <Filter>World\Actor\LifeObjects</Filter>
     </ClCompile>
-    <ClCompile Include="World\LifeObjects\HaveLifeObject.cpp">
-      <Filter>World\LifeObject</Filter>
+    <ClCompile Include="World\Actor\LifeObjects\HaveLifeObject.cpp">
+      <Filter>World\Actor\LifeObjects</Filter>
     </ClCompile>
-    <ClCompile Include="World\Actor.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="World\Actor\LifeObjects\LifeObjects.cpp">
+      <Filter>World\Actor\LifeObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Actor\LifeObjects\TypesLifeObjects.cpp">
+      <Filter>World\Actor\LifeObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Actor\LifeObjects\UpdateLifeObjects.cpp">
+      <Filter>World\Actor\LifeObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Actor\Player\HavePlayer.cpp">
+      <Filter>World\Actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@ public:
 public:
 	using ArrayLifeObjectsTypes = std::array<CLifeObjectType, size_t(CLifeObjectType::AmountIDs)>;
 
-	CLifeObjectType&			GetLifeObjectType(const CLifeObjectType::Id index);
+	CLifeObjectType&				GetLifeObjectType(const CLifeObjectType::Id index);
 
 	void							SetTypeLifeObject(size_t index
 													, const std::string & textureName
@@ -26,5 +26,5 @@ public:
 // Data
 public:
 	std::vector<std::unique_ptr<CLifeObject>>	m_lifeObjects;
-	ArrayLifeObjectsTypes		m_lifeObjectsTypes;
+	ArrayLifeObjectsTypes						m_lifeObjectsTypes;
 };

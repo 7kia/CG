@@ -4,7 +4,7 @@
 #include "Mixin/HaveDirection.h"
 #include "Mixin/Have3DPosition.h"
 
-#include "../Actor.h"
+#include "World/Actor/Actor.h"
 
 #include "2DShape/2DCircleCollision.h"
 #include "3DShape/3DSphere.h"

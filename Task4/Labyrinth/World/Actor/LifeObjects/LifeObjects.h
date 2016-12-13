@@ -7,7 +7,7 @@
 #include <vector>
 #include <array>
 
-#include "World/Actor.h"
+#include "World/Actor/Actor.h"
 #include "Mixin/HaveLinearVelocity.h"
 #include "Mixin/HaveRotationSpeed.h"
 #include "Mixin/HaveDirection.h"

@@ -7,11 +7,11 @@
 #include <vector>
 #include <array>
 
-#include "LifeObjects\LifeObjects.h"
+#include "World\Actor\LifeObjects\LifeObjects.h"
 
-#include "..\Lights.h"
-#include "..\Camera\Cameras.h"
-#include "..\DispatchEvent.h"
+#include "Lights.h"
+#include "Camera\Cameras.h"
+#include "DispatchEvent.h"
 
 
 
