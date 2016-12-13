@@ -29,27 +29,27 @@ void CWorld::Draw() const
 {
 	m_material.Setup();
 
-	m_player->Draw();// GetPlayer() not work, see can solve the problem
+	//m_player->Draw();// GetPlayer() not work, see can solve the problem
 
 	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {	
 		m_map.Draw();
 	});
 
-	for (auto & shoot : m_shoots)
+	for (auto & actor : m_actors)
 	{
-		shoot->Draw();
+		actor->Draw();
 	}
 }
 
 void CWorld::Update(float deltaTime)
 {
-	GetPlayer()->Update(deltaTime);
+	//GetPlayer()->Update(deltaTime);
 
 	m_map.Update(deltaTime);
 
-	for (auto shoot : m_shoots)
+	for (auto actor : m_actors)
 	{
-		shoot->Update(deltaTime);
+		actor->Update(deltaTime);
 	}
 
 	m_world->Step(deltaTime, 8, 3);
@@ -74,13 +74,13 @@ void CWorld::CreateScene()
 void CWorld::CreatePlayer(const glm::vec3 & position
 							, const glm::vec3 & direction)
 {
-	m_lifeObjects.push_back(std::move(std::make_unique<CPlayer>(position
+	m_actors.push_back(std::move(std::make_unique<CPlayer>(position
 									, direction
 									, GetLifeObjectType(CLifeObjectType::Id::Player)
 									, this))
 							);
 
-	m_player = dynamic_cast<CPlayer*>(m_lifeObjects[0].get());// TODO :  fix convertation
+	m_player = dynamic_cast<CPlayer*>(m_actors[0].get());// TODO :  fix convertation
 
 	if (position == glm::vec3())
 	{
@@ -93,7 +93,7 @@ void CWorld::CreateShoot(const glm::vec3 & position
 	, const CWeapon & weapon
 	)
 {
-	m_shoots.push_back(std::make_shared<CShoot>(position
+	m_actors.push_back(std::make_shared<CShoot>(position
 		, direction
 		, weapon
 		, this));

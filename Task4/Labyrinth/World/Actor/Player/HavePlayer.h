@@ -16,6 +16,7 @@ public:
 	void							SetSpawnPoint(const glm::vec3 & position);
 	glm::vec3						GetSpawnPoint() const;
 
+	void							SetPlayer(CPlayer* pPlayer);
 	CPlayer*						GetPlayer();
 //////////////////////////////////////////////////////////////////////
 // Data

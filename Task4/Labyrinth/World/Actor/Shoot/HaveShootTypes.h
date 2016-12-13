@@ -12,8 +12,8 @@ class CHaveShootTypes
 {
 public:
 	CHaveShootTypes();
-	//////////////////////////////////////////////////////////////////////
-	// Methods
+//////////////////////////////////////////////////////////////////////
+// Methods
 public:
 	using ArrayShootTypes = std::array<CShootType, size_t(ShootTypeSpace::AMOUNT_TYPES)>;
 
@@ -23,8 +23,8 @@ protected:
 	void							SetShootType(size_t index
 												, const std::string & texturePath
 												, int health);// TODO : see need there something
-	//////////////////////////////////////////////////////////////////////
-	// Data
+//////////////////////////////////////////////////////////////////////
+// Data
 protected:
 	ArrayShootTypes					m_shootTypes;
 };

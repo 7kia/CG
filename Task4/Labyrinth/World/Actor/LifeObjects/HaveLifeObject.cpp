@@ -17,7 +17,6 @@ CHaveLifeObjects::CHaveLifeObjects()
 		, 5.f
 		, 100
 		, CWeaponType::Id::EnemyWeapon);
-
 	
 }
 

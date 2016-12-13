@@ -21,6 +21,11 @@ glm::vec3 CHavePlayer::GetSpawnPoint() const
 	return m_spawnPoint;
 }
 
+void CHavePlayer::SetPlayer(CPlayer * pPlayer)
+{
+	m_player = pPlayer;
+}
+
 CPlayer * CHavePlayer::GetPlayer()
 {
 	return m_player;

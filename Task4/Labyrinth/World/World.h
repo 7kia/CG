@@ -68,7 +68,7 @@ private:
 // Data
 private:
 	CMap							m_map;
-	std::vector<PShoot>				m_shoots;
+	std::vector<IActorSharedPtr>	m_actors;
 
 	CPhongModelMaterial				m_material;
 };

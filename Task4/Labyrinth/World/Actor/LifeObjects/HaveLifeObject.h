@@ -25,6 +25,5 @@ public:
 //////////////////////////////////////////////////////////////////////
 // Data
 public:
-	std::vector<std::unique_ptr<CLifeObject>>	m_lifeObjects;
 	ArrayLifeObjectsTypes						m_lifeObjectsTypes;
 };

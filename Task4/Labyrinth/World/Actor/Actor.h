@@ -32,4 +32,4 @@ static bool IsShootOrLifeObject(IActor::idClass id)
 	return (id == IActor::idClass::LifeObject) || (id == IActor::idClass::Shoot);
 };
 
-using IActorUniquePtr = std::unique_ptr<IActor>;
+using IActorSharedPtr = std::shared_ptr<IActor>;
