@@ -32,6 +32,8 @@ protected:
 	virtual void				CheckParametres() {};
 };
 
+class CLifeObject;
+
 class CStatic2DShape
 	: public IStatic2DShape
 	, public CHave2DOrigin
@@ -60,6 +62,9 @@ public:
 	void						AddToWorld(b2World * world) override;
 	void						Advance(float dt) override { (void)dt;  };
 	//--------------------------------------------
+
+	void						SetMaster(CLifeObject * master);
+	CLifeObject*				GetMaster();
 //////////////////////////////////////////////////////////////////////
 // Methods
 protected:

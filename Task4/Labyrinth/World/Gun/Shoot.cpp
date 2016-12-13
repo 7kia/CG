@@ -22,6 +22,7 @@ CShoot::CShoot(const glm::vec3 & position
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(weapon.GetType().GetVelocity())// TODO : fix to type
+	, m_collision(1.f, glm::vec2())
 {
 	m_damage.SetValue(weapon.GetType().GetDamage());
 

@@ -181,6 +181,7 @@
     <ClInclude Include="Camera\Cameras.h" />
     <ClInclude Include="Camera\PlayerCamera.h" />
     <ClInclude Include="Camera\WorldCamera.h" />
+    <ClInclude Include="ContactListener.h" />
     <ClInclude Include="DispatchEvent.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Material\libchapter3_private.h" />

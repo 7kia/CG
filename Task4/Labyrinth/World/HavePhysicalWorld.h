@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <Box2D\Box2D.h>
+#include "ContactListener.h"
 
 class CHavePhysicalWorld
 {
@@ -15,4 +15,5 @@ public:
 // Data
 public:
 	std::shared_ptr<b2World>		m_world;
+	ContactListener					m_contactListener;
 };

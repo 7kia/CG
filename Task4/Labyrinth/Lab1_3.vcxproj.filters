@@ -252,6 +252,9 @@
     <ClInclude Include="World\LifeObjects\HaveLifeObject.h">
       <Filter>World\LifeObject</Filter>
     </ClInclude>
+    <ClInclude Include="ContactListener.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DispatchEvent.cpp">

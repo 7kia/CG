@@ -56,6 +56,7 @@ void CLifeObject::SetCollison(CWorld* pWorld)
 
 	m_visual.SetTransform(glm::translate(glm::mat4(), position));
 
+	m_collision.SetMaster(this);
 	m_collision.AddToWorld(pWorld->GetWorld());
 }
 

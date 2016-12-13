@@ -63,6 +63,16 @@ void CStatic2DShape::AddToWorld(b2World * world)
 	m_body = world->CreateBody(&m_defBody);
 }
 
+void CStatic2DShape::SetMaster(CLifeObject * master)
+{
+	m_body->SetUserData(master);
+}
+
+CLifeObject * CStatic2DShape::GetMaster()
+{
+	return static_cast<CLifeObject*>(m_body->GetUserData());
+}
+
 void CStatic2DShape::CheckParametres()
 {
 	if ((m_defBody.position.x == NONE_VALUE::FLOAT)
