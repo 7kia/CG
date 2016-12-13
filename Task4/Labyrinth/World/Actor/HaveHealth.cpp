@@ -26,12 +26,12 @@ void CHaveHealth::AddToMaxHealth(int value)
 	m_health.AddToMaxValue(value);
 }
 
-int CHaveHealth::GetHealth()
+int CHaveHealth::GetHealth() const
 {
 	return m_health.GetValue();
 }
 
-int CHaveHealth::GetMaxHealth()
+int CHaveHealth::GetMaxHealth() const
 {
 	return m_health.GetMaxValue();
 }

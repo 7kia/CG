@@ -264,6 +264,9 @@
     <ClInclude Include="World\Actor\HaveHealth.h">
       <Filter>World\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="World\Actor\HaveDamage.h">
+      <Filter>World\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DispatchEvent.cpp">
@@ -456,6 +459,9 @@
       <Filter>World\Actor\Shoot</Filter>
     </ClCompile>
     <ClCompile Include="World\Actor\HaveHealth.cpp">
+      <Filter>World\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Actor\HaveDamage.cpp">
       <Filter>World\Actor</Filter>
     </ClCompile>
   </ItemGroup>

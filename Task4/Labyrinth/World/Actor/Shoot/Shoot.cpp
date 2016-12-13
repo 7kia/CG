@@ -26,7 +26,7 @@ CShoot::CShoot(const glm::vec3 & position
 	, CHaveHealth()
 	, m_collision(1.f, glm::vec2())
 {
-	m_damage.SetValue(weapon.GetType().GetDamage());
+	SetDamage(weapon.GetType().GetDamage());
 
 	SetCollison(pWorld);
 	SetType(weapon.GetTypeShoot());
@@ -75,8 +75,8 @@ void CShoot::SetType(const CShootType & type)
 {
 	m_visual.SetType(&type);
 
-	m_health.SetValue(type.GetHealth());
-	m_health.SetMaxValue(type.GetHealth());
+	SetHealth(type.GetHealth());
+	SetMaxHealth(type.GetHealth());
 }
 
 const CShootType & CShoot::GetType() const

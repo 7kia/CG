@@ -32,7 +32,30 @@ void ContactListener::BeginContact(b2Contact* contact) {
 		auto typeA = actorAData->GetIdClass();
 		auto typeB = actorBData->GetIdClass();
 
+		//if (IsShootOrLifeObject(typeA) || IsShootOrLifeObject(typeB))
+		//{
+			if (typeA == IActor::idClass::Shoot)//
+			{
+				CShoot* shoot = static_cast<CShoot*>(userDataA);
+				////////////////////
+				// Shoot destroy
+				if (typeB == IActor::idClass::Shoot)
+				{
+					
+					CShoot* secondShoot = static_cast<CShoot*>(userDataB);
+					shoot->AddHealth(-shoot->GetMaxHealth());
+					secondShoot->AddHealth(-secondShoot->GetMaxHealth());
+				}
+				////////////////////
+				else if (typeB == IActor::idClass::LifeObject)
+				{
+					CLifeObject* lifeObject = static_cast<CLifeObject*>(userDataB);
 
+					shoot->AddHealth(-shoot->GetMaxHealth());
+					lifeObject->AddHealth(-shoot->GetDamage());
+				}
+			}
+		//}
 	/*
 
 	//check if fixture A was a ball

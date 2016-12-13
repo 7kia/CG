@@ -8,7 +8,7 @@ public:
 	virtual ~IHavehealth() = default;
 
 	virtual void AddToMaxHealth(int value) = 0;
-	virtual int	GetMaxHealth() = 0;
+	virtual int	GetMaxHealth() const = 0;
 };
 
 class CHaveHealth : public IHavehealth
@@ -25,8 +25,8 @@ public:
 	void				SetMaxHealth(int value);
 	void				AddToMaxHealth(int value) override;
 
-	int					GetHealth();
-	int					GetMaxHealth() override;
+	int					GetHealth() const;
+	int					GetMaxHealth() const override;
 
 protected:
 	CDynamicFeature		m_health;

@@ -3,6 +3,11 @@
 
 using namespace std;
 
+CWeaponType::CWeaponType()
+	: CHaveDamage()
+{
+}
+
 void CWeaponType::SetTime(float time)
 {
 	m_time = time;
@@ -21,16 +26,6 @@ void CWeaponType::SetVelocity(float setVelocity)
 float CWeaponType::GetVelocity() const
 {
 	return m_velocity;
-}
-
-void CWeaponType::SetDamage(int value)
-{
-	m_damage.SetValue(value);
-}
-
-int CWeaponType::GetDamage() const
-{
-	return m_damage.GetValue();
 }
 
 void CWeaponType::SetTypeShoot(const CShootType & type)

@@ -16,7 +16,9 @@
 #include <vector>
 #include <array>
 
-#include "World\Actor\Features.h"
+#include "World\Actor\HaveHealth.h"
+#include "World\Actor\HaveDamage.h"
+
 #include "ShootView.h"
 
 namespace ShootSpace
@@ -39,6 +41,7 @@ class CShoot final
 	, public CHaveDirection
 	, public CHaveLinearVelocity
 	, public CHaveHealth
+	, public CHaveDamage
 {
 public:
 	CShoot();
@@ -71,8 +74,6 @@ private:
 	CShootView						m_visual;
 
 	CShootType*						m_type;
-
-	CStaticFeature					m_damage;
 };
 
 using PShoot = std::shared_ptr<CShoot>;

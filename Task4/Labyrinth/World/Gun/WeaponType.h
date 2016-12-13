@@ -1,7 +1,7 @@
 #pragma once
 
 #include "World\Actor\Shoot\Shoot.h"
-#include "World\Actor\Features.h"
+#include "World\Actor\HaveDamage.h"
 
 
 namespace WeaponTypeSpace
@@ -19,8 +19,10 @@ namespace WeaponTypeSpace
 
 };
 
-class CWeaponType 
+class CWeaponType : public CHaveDamage
 {
+public:
+	CWeaponType();
 public:
 	enum class Id
 	{
@@ -36,9 +38,6 @@ public:
 	void					SetVelocity(float setVelocity);
 	float					GetVelocity() const;
 
-	void					SetDamage(int value);
-	int						GetDamage() const;
-
 	void					SetTypeShoot(const CShootType &type);
 	const CShootType&		GetTypeShoot() const;
 
@@ -50,6 +49,5 @@ private:
 	float					m_time;
 	float					m_velocity;
 	float					m_distance;
-	CDynamicFeature			m_damage;
 	const CShootType*		m_type_shoot;
 };

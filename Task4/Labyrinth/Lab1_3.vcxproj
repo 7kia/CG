@@ -205,6 +205,7 @@
     <ClInclude Include="WindowClient.h" />
     <ClInclude Include="World\Actor\Actor.h" />
     <ClInclude Include="World\Actor\Features.h" />
+    <ClInclude Include="World\Actor\HaveDamage.h" />
     <ClInclude Include="World\Actor\HaveHealth.h" />
     <ClInclude Include="World\Actor\LifeObjects\HaveLifeObject.h" />
     <ClInclude Include="World\Actor\LifeObjects\LifeObjects.h" />
@@ -268,6 +269,7 @@
     <ClCompile Include="WindowClient.cpp" />
     <ClCompile Include="World\Actor\Actor.cpp" />
     <ClCompile Include="World\Actor\Features.cpp" />
+    <ClCompile Include="World\Actor\HaveDamage.cpp" />
     <ClCompile Include="World\Actor\HaveHealth.cpp" />
     <ClCompile Include="World\Actor\LifeObjects\FeaturesLifeObject.cpp" />
     <ClCompile Include="World\Actor\LifeObjects\HaveLifeObject.cpp" />
