@@ -63,14 +63,14 @@ void CStatic2DShape::AddToWorld(b2World * world)
 	m_body = world->CreateBody(&m_defBody);
 }
 
-void CStatic2DShape::SetMaster(IActor * master)
+void CStatic2DShape::SetMaster(CActor * master)
 {
 	m_body->SetUserData(master);
 }
 
-IActor * CStatic2DShape::GetMaster()
+CActor * CStatic2DShape::GetMaster()
 {
-	return static_cast<IActor*>(m_body->GetUserData());
+	return static_cast<CActor*>(m_body->GetUserData());
 }
 
 void CStatic2DShape::CheckParametres()

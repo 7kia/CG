@@ -5,7 +5,7 @@
 #include "IsDeletable.h"
 #include <memory>
 
-class IActor
+class CActor
 	: public IDrawable
 	, public IUpdatable
 	, public CIsDeletable
@@ -21,17 +21,12 @@ public:
 		, Shoot
 	};
 
-	IActor(idClass id);
-	virtual ~IActor() = default;
+	CActor(idClass id);
+	virtual ~CActor() = default;
 
 	idClass			GetIdClass() const;
 protected:
 	idClass			m_idClass = idClass::None;
 };
 
-static bool IsShootOrLifeObject(IActor::idClass id)
-{
-	return (id == IActor::idClass::LifeObject) || (id == IActor::idClass::Shoot);
-};
-
-using IActorSharedPtr = std::shared_ptr<IActor>;
+using IActorSharedPtr = std::shared_ptr<CActor>;

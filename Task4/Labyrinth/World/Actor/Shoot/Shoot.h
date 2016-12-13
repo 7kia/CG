@@ -37,7 +37,7 @@ class CWorld;
 class CWeapon;
 
 class CShoot final
-	: public IActor
+	: public CActor
 	, public CHave3DPosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity

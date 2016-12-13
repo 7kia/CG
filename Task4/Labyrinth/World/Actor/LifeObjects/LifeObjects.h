@@ -36,7 +36,7 @@ class CWorld;
 
 // TOOD : CMovement transfer to Behaveour
 class CLifeObject
-	: public IActor
+	: public CActor
 	, public CHave3DPosition
 	, public CHaveDirection
 	, public CHaveLinearVelocity

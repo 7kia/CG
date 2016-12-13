@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Actor.h"
 
-IActor::IActor(idClass id)
+CActor::CActor(idClass id)
 	: IDrawable()
 	, IUpdatable()
 	, CIsDeletable()
@@ -10,7 +10,7 @@ IActor::IActor(idClass id)
 	m_idClass = id;
 }
 
-IActor::idClass IActor::GetIdClass() const
+CActor::idClass CActor::GetIdClass() const
 {
 	return m_idClass;
 }

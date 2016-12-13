@@ -31,7 +31,7 @@ namespace WorldSpace
 }
 
 class CWorld
-	: public IActor
+	: public CActor
 	, public IInputEventAcceptor
 	, public CHaveLifeObjects
 	, public CHaveWallTypes

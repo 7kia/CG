@@ -8,7 +8,7 @@
 #include <glm\mat4x4.hpp>
 
 class CWall final
-	: public IActor
+	: public CActor
 	, public ITransformable
 	, public IHave3DPosition
 	, public IHaveVisiblePart

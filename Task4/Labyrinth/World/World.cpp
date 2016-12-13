@@ -2,7 +2,7 @@
 #include "World.h"
 
 CWorld::CWorld()
-	: IActor(IActor::idClass::World)
+	: CActor(CActor::idClass::World)
 	, IInputEventAcceptor()
 	, CHaveLifeObjects()
 	, CHaveWallTypes()

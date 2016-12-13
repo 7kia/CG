@@ -4,7 +4,7 @@
 #include "World\Gun\Weapon.h"
 
 CShoot::CShoot()
-	: IActor(IActor::idClass::Shoot)
+	: CActor(CActor::idClass::Shoot)
 	, CHave3DPosition()
 	, CHaveDirection(ShootSpace::PLAYER_DIRECTION)
 	, CHaveLinearVelocity(ShootSpace::LINEAR_MOVE_SPEED)
@@ -19,7 +19,7 @@ CShoot::CShoot(const glm::vec3 & position
 				, const CWeapon & weapon
 				, CWorld* pWorld)
 
-	: IActor(IActor::idClass::Shoot)
+	: CActor(CActor::idClass::Shoot)
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(weapon.GetType().GetVelocity())// TODO : fix to type

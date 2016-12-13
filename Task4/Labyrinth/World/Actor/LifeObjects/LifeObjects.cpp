@@ -3,7 +3,7 @@
 #include "LifeObjects.h"
 
 CLifeObject::CLifeObject()
-	: IActor(IActor::idClass::LifeObject)
+	: CActor(CActor::idClass::LifeObject)
 	, CHave3DPosition()
 	, CHaveDirection()
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
@@ -19,7 +19,7 @@ CLifeObject::CLifeObject(CLifeObjectType & type
 						, CWorld* pWorld
 						, const glm::vec3 & position
 						, const glm::vec3 & direction)
-	: IActor(IActor::idClass::LifeObject)
+	: CActor(CActor::idClass::LifeObject)
 	, CHave3DPosition(position)
 	, CHaveDirection(direction)
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)

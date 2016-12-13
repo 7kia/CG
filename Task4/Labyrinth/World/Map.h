@@ -23,7 +23,7 @@ namespace MapSpace
 class CWorld;
 
 class CMap
-	: public IActor
+	: public CActor
 {
 public:
 	CMap();

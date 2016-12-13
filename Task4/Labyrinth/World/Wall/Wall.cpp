@@ -2,7 +2,7 @@
 #include "Wall.h"
 
 CWall::CWall()
-	: IActor(IActor::idClass::Wall)
+	: CActor(CActor::idClass::Wall)
 	, ITransformable()
 	, IHave3DPosition()
 	, IHaveVisiblePart()
