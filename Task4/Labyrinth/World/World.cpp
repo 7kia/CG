@@ -29,8 +29,7 @@ void CWorld::Draw() const
 {
 	m_material.Setup();
 
-	//m_player->Draw();// GetPlayer() not work, see can solve the problem
-
+	// TODO : fix bind texture
 	m_wallTypes[0].GetTexture()->DoWhileBinded([&] {	
 		m_map.Draw();
 	});
@@ -43,8 +42,6 @@ void CWorld::Draw() const
 
 void CWorld::Update(float deltaTime)
 {
-	//GetPlayer()->Update(deltaTime);
-
 	m_map.Update(deltaTime);
 
 	for (auto actor : m_actors)
@@ -60,14 +57,6 @@ void CWorld::CreateScene()
 	CreateWallTypes();
 	m_map.Create("Resources\\map.bmp", this);
 	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
-
-	/*// TODO : delete it
-	CreateShoot(glm::vec3(-16.f, 0.5f, -16.f)
-		, glm::vec3(1.f, 0.f, 0.f)
-		, GetShootType(ShootTypeSpace::Id::Player)
-		,
-		);
-	*/
 	
 }
 

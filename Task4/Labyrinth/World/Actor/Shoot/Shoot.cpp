@@ -34,6 +34,8 @@ CShoot::CShoot(const glm::vec3 & position
 
 void CShoot::Update(float deltaTime)
 {
+	CheckHealth();
+
 	//m_collision.ResetVelocity();
 	auto collisionPosition = m_collision.GetPosition();
 	auto position = glm::vec3(collisionPosition.x, 0.f, collisionPosition.y);
@@ -69,6 +71,14 @@ void CShoot::SetCollison(CWorld* pWorld)
 	m_collision.AddToWorld(pWorld->GetWorld());
 	m_collision.SetMaster(this);
 
+}
+
+void CShoot::CheckHealth()
+{
+	if (GetHealth() <= 0)
+	{
+		SetStateLive(false);
+	}
 }
 
 void CShoot::SetType(const CShootType & type)

@@ -9,6 +9,7 @@ CLifeObject::CLifeObject()
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, CHaveHealth()
+	, CIsDeletable()
 	, m_visual(16, 16)
 {
 
@@ -25,6 +26,7 @@ CLifeObject::CLifeObject(CLifeObjectType & type
 	, CHaveLinearVelocity(LifeObjectSpace::LINEAR_MOVE_SPEED)
 	, CHaveRotationSpeed(LifeObjectSpace::ROTATION_SPEED_RADIANS)
 	, CHaveHealth()
+	, CIsDeletable()
 	, m_visual(16, 16)
 
 {
@@ -85,4 +87,12 @@ CWeapon::IdState CLifeObject::GetWeaponState() const
 void CLifeObject::SetWeapon(const CWeaponType & typeWeapon)
 {
 	m_weapon.SetType(typeWeapon);
+}
+
+void CLifeObject::CheckHealth()
+{
+	if (GetHealth() <= 0)
+	{
+		SetStateLive(false);
+	}
 }

@@ -18,6 +18,7 @@
 
 #include "World\Actor\HaveHealth.h"
 #include "World\Actor\HaveDamage.h"
+#include "World\Actor\IsDeletable.h"
 
 #include "ShootView.h"
 
@@ -42,6 +43,7 @@ class CShoot final
 	, public CHaveLinearVelocity
 	, public CHaveHealth
 	, public CHaveDamage
+	, public CIsDeletable
 {
 public:
 	CShoot();
@@ -49,8 +51,6 @@ public:
 				, const glm::vec3 & direction
 				, const CWeapon & weapon
 				, CWorld* pWorld);
-
-	//CShoot &CShoot::operator=(const CShoot & value);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -67,6 +67,9 @@ public:
 private:
 
 	void							SetCollison(CWorld* pWorld);
+
+	void							CheckHealth();
+
 //////////////////////////////////////////////////////////////////////
 // Data
 private:

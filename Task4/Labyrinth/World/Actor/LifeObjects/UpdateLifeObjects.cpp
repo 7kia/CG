@@ -11,6 +11,8 @@ void CLifeObject::Draw() const
 
 void CLifeObject::Update(float dt)
 {
+	CheckHealth();
+
 	int idAnimation;
 	switch (m_state)
 	{

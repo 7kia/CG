@@ -267,6 +267,9 @@
     <ClInclude Include="World\Actor\HaveDamage.h">
       <Filter>World\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="World\Actor\IsDeletable.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DispatchEvent.cpp">
@@ -463,6 +466,9 @@
     </ClCompile>
     <ClCompile Include="World\Actor\HaveDamage.cpp">
       <Filter>World\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Actor\IsDeletable.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

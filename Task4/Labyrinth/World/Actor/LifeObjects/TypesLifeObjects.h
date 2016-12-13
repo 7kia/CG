@@ -3,6 +3,7 @@
 #include "Mixin/Material/HaveTexture.h"
 
 #include "World/Actor/HaveHealth.h"
+#include "World/Actor/IsDeletable.h"
 #include "World/Gun/Weapon.h"
 
 struct SRange

@@ -42,6 +42,7 @@ class CLifeObject
 	, public CHaveLinearVelocity
 	, public CHaveRotationSpeed
 	, public CHaveHealth
+	, public CIsDeletable
 {
 public:
 	// LifeObjects.cpp
@@ -121,7 +122,10 @@ public:
 	float m_timerAttack = 0.f;
 	float m_timeReload = 0.05f;
 	///////
-
+//////////////////////////////////////////////////////////////////////
+// Methods
+protected:
+	void							CheckHealth();
 protected:
 	CLifeObjectType*				m_type;//TypeLifeObject
 
