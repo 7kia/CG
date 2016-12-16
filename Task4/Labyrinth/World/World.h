@@ -57,6 +57,19 @@ public:
 	void							Update(float deltaTime);
 	//--------------------------------------------
 
+
+	//--------------------------------------------
+	// Behavior // TOOD : trasfer to Behavior
+	void UpdateBehavior();
+
+
+	glm::vec3				GetDirectionToObject(CHave3DPosition & to, CHave3DPosition & from);
+
+	void DefineNeedAttackEnemy(CLifeObject & object, CLifeObject & enemy);
+
+	//--------------------------------------------
+
+
 	void							SwitchPlayState();
 	void							CreateScene();
 
@@ -64,6 +77,7 @@ public:
 												, const glm::vec3 & direction
 												, const CWeapon & weapon
 												);
+
 
 	ActorSharedPtr					CreateLifeObject(CLifeObjectType::Id id
 													, const glm::vec3 & position

@@ -83,10 +83,13 @@ void CShoot::CheckHealth()
 
 void CShoot::SetType(const CShootType & type)
 {
-	m_visual.SetType(&type);
+	m_type = &type;
+	m_visual.SetType(m_type);
 
-	SetHealth(type.GetHealth());
-	SetMaxHealth(type.GetHealth());
+	SetIdFaction(m_type->GetIdFaction());
+
+	SetHealth(m_type->GetHealth());
+	SetMaxHealth(m_type->GetHealth());
 }
 
 const CShootType & CShoot::GetType() const

@@ -4,6 +4,7 @@
 
 CLifeObjectType::CLifeObjectType()
 	: CHaveTexture()
+	, CHaveFaction()
 {
 }
 

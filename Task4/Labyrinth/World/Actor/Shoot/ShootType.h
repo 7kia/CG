@@ -1,6 +1,7 @@
 #pragma once
 
 #include "World/Actor/HaveHealth.h"
+#include "World/Actor/Faction.h"
 
 #include "Mixin/Material/HaveTexture.h"
 #include <array>
@@ -23,6 +24,7 @@ namespace ShootTypeSpace
 
 class CShootType
 	: public CHaveTexture
+	, public CHaveFaction
 {
 public:
 	CShootType();

@@ -3,6 +3,7 @@
 
 CShootType::CShootType()
 	: CHaveTexture()
+	, CHaveFaction()
 {
 }
 

@@ -45,6 +45,8 @@ void CWorld::Update(float deltaTime)
 {
 	if (m_play)
 	{
+		UpdateBehavior();
+
 		m_map.Update(deltaTime);
 
 		for (auto actor : m_actors)
@@ -90,7 +92,7 @@ ActorSharedPtr CWorld::CreateLifeObject(CLifeObjectType::Id id
 		throw std::runtime_error("LifeObject position not define");
 	}
 
-	ActorSharedPtr lifeObject;
+	LifeObjectSharedPtr lifeObject;
 	switch (id)
 	{
 		break;
@@ -115,6 +117,8 @@ ActorSharedPtr CWorld::CreateLifeObject(CLifeObjectType::Id id
 		throw std::runtime_error("LifeObject type not define");
 		break;
 	}
+
+	m_lifeObjects.push_back(lifeObject);
 	AddActorToFactionMap(lifeObject);
 	m_actors.push_back(lifeObject);
 
@@ -145,4 +149,48 @@ void CWorld::CreateShoot(const glm::vec3 & position
 																, this);
 	AddActorToFactionMap(addShoot);
 	m_actors.push_back(addShoot);
+}
+
+// TODO : tranfser to other place
+void CWorld::UpdateBehavior()// TODO : redefine
+{
+	glm::vec3 positionPlayer = GetPlayer()->GetPosition();
+	for (auto &object : m_lifeObjects)
+	{
+		if (object->GetIdType() != CLifeObjectType::Id::Player)
+		{
+			float distanse = glm::distance(positionPlayer, object->GetPosition());// positionPlayer.getDistance(object->getPosition());
+			if (distanse < object->GetVisionRange())
+			{
+				object->SetDirection(GetDirectionToObject(*object.get(), *GetPlayer()));
+				//DefineDirectionToEnemyForObject(object, positionPlayer);
+				DefineNeedAttackEnemy(*object.get(), *GetPlayer());
+			}
+		}
+	}
+
+}
+
+glm::vec3 CWorld::GetDirectionToObject(CHave3DPosition & to, CHave3DPosition & from)
+{
+	const glm::vec3 direction = to.GetPosition() - from.GetPosition();
+
+	return glm::normalize(direction);
+}
+
+void CWorld::DefineNeedAttackEnemy(CLifeObject & object, CLifeObject & enemy)
+{
+	float distanse = glm::distance(enemy.GetPosition(), object.GetPosition());
+	float distanceAttack = object.GetDistanceWeapon();
+
+	if (distanse < distanceAttack)
+	{
+		object.SetState(CLifeObject::StateId::Attack);
+	}
+	else
+	{
+		object.SetState(CLifeObject::StateId::Move);
+
+		//object->ResetWeapon();
+	}
 }

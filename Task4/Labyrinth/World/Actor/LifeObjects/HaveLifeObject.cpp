@@ -5,6 +5,7 @@ CHaveLifeObjects::CHaveLifeObjects()
 	: CHaveWeaponTypes()
 {
 	SetTypeLifeObject(size_t(CLifeObjectType::Id::Player)
+		, IdFaction::Player
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]
 		, 15.f
 		, 5.f
@@ -12,6 +13,7 @@ CHaveLifeObjects::CHaveLifeObjects()
 		, CWeaponType::Id::EnemyWeapon);// TODO : replace to PlayerWeapon
 
 	SetTypeLifeObject(size_t(CLifeObjectType::Id::Enemy)
+		, IdFaction::Enemy
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]// TODO: add texture for enemy
 		, 8.f
 		, 15.f
@@ -27,6 +29,7 @@ CLifeObjectType& CHaveLifeObjects::GetLifeObjectType(const CLifeObjectType::Id i
 }
 
 void CHaveLifeObjects::SetTypeLifeObject(size_t index
+	, IdFaction idFaction
 	, const std::string & textureName
 	, const float velocity
 	, const float visionRange
@@ -35,6 +38,7 @@ void CHaveLifeObjects::SetTypeLifeObject(size_t index
 	)
 {
 	//m_lifeObjectsTypes[index].SetId(index);
+	m_lifeObjectsTypes[index].SetIdFaction(idFaction);
 	m_lifeObjectsTypes[index].SetTexture(textureName);
 
 	m_lifeObjectsTypes[index].SetVelocity(velocity);

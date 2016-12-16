@@ -139,3 +139,4 @@ protected:
 	// TODO : delete
 };
 
+using LifeObjectSharedPtr = std::shared_ptr<CLifeObject>;

@@ -4,6 +4,7 @@
 
 #include "World/Actor/HaveHealth.h"
 #include "World/Actor/IsDeletable.h"
+#include "World/Actor/Faction.h"
 #include "World/Gun/Weapon.h"
 
 struct SRange
@@ -18,7 +19,9 @@ struct SRange
 
 
 
-class CLifeObjectType : public CHaveTexture
+class CLifeObjectType 
+	: public CHaveTexture
+	, public CHaveFaction
 {
 public:
 	CLifeObjectType();

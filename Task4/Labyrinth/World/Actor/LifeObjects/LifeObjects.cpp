@@ -39,6 +39,8 @@ void CLifeObject::SetType(CLifeObjectType & setType)
 	//m_type = &setType;
 	SetMaxLinearVelocity(m_type->GetVelocity());
 
+	SetIdFaction(m_type->GetIdFaction());
+
 	m_health.SetValue(m_type->GetHealth());
 	m_health.SetMaxValue(m_type->GetHealth());
 

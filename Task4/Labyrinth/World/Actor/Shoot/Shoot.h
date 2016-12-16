@@ -75,7 +75,7 @@ private:
 	C2DCircleCollision				m_collision;
 	CShootView						m_visual;
 
-	CShootType*						m_type;
+	const CShootType*						m_type;
 };
 
 using PShoot = std::shared_ptr<CShoot>;

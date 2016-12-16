@@ -21,6 +21,7 @@ public:
 
 protected:
 	void							SetShootType(size_t index
+												, IdFaction idFaction
 												, const std::string & texturePath
 												, int health);// TODO : see need there something
 //////////////////////////////////////////////////////////////////////
