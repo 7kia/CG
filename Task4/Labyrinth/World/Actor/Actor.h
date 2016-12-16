@@ -3,15 +3,17 @@
 #include "Mixin/Drawable.h"
 #include "Mixin/Updatable.h"
 #include "IsDeletable.h"
+#include "Faction.h"
 #include <memory>
 
 class CActor
 	: public IDrawable
 	, public IUpdatable
 	, public CIsDeletable
+	, public CHaveFaction
 {
 public:
-	enum class idClass
+	enum class IdClass
 	{
 		None = 0
 		, World
@@ -19,14 +21,16 @@ public:
 		, Wall
 		, LifeObject
 		, Shoot
+		, AmountClasses
 	};
 
-	CActor(idClass id);
+	CActor(IdClass id);
 	virtual ~CActor() = default;
 
-	idClass			GetIdClass() const;
+	IdClass			GetIdClass() const;
+
 protected:
-	idClass			m_idClass = idClass::None;
+	IdClass			m_idClass = IdClass::None;
 };
 
-using IActorSharedPtr = std::shared_ptr<CActor>;
+using ActorSharedPtr = std::shared_ptr<CActor>;

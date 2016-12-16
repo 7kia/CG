@@ -46,7 +46,7 @@ class CLifeObject
 public:
 	// LifeObjects.cpp
 	CLifeObject();
-	CLifeObject(CLifeObjectType & type
+	explicit CLifeObject(CLifeObjectType & type
 				, CWorld* pWorld
 				, const glm::vec3 & position
 				, const glm::vec3 & direction);

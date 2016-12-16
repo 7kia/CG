@@ -20,10 +20,10 @@ CPlayer::CPlayer()
 	SetCameras(PlayerSpace::PLAYER_DIRECTION);
 }
 
-CPlayer::CPlayer(const glm::vec3 & position
-				, const glm::vec3 & direction
-				, CLifeObjectType & type
-				, CWorld* pWorld)
+CPlayer::CPlayer(CLifeObjectType & type
+				, CWorld* pWorld
+				, const glm::vec3 & position
+				, const glm::vec3 & direction)
 	: CLifeObject(type, pWorld, position, direction)
 	, m_flashlight(GL_LIGHT1)
 	, m_pController(this)

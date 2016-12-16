@@ -11,6 +11,7 @@
 
 #include "Actor\Player\HavePlayer.h"
 #include "Actor\LifeObjects\HaveLifeObject.h"
+#include "World\HaveFactionSystem.h"
 #include "Wall\HaveWallTypes.h"
 #include "HavePhysicalWorld.h"
 #include "Map.h"
@@ -37,6 +38,7 @@ class CWorld
 	, public CHaveWallTypes
 	, public CHavePhysicalWorld
 	, public CHavePlayer
+	, public CHaveFactionSystem
 {
 public:
 	CWorld();
@@ -61,15 +63,22 @@ public:
 												, const CWeapon & weapon
 												);
 
+	ActorSharedPtr					CreateLifeObject(CLifeObjectType::Id id
+													, const glm::vec3 & position
+													, const glm::vec3 & direction);
+
 private:
-	void							CreatePlayer(const glm::vec3 & position, const glm::vec3 & direction);
+
+	
+	void							CreatePlayer(const glm::vec3 & position
+												, const glm::vec3 & direction);
 
 	void							DeleteDeathObject();
 //////////////////////////////////////////////////////////////////////
 // Data
 private:
 	CMap							m_map;
-	std::vector<IActorSharedPtr>	m_actors;
+	std::vector<ActorSharedPtr>		m_actors;
 	std::vector<size_t>				m_deletables;
 	CPhongModelMaterial				m_material;
 };

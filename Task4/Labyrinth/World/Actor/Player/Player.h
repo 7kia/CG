@@ -91,10 +91,11 @@ class CPlayer final
 {
 public:
 	CPlayer();
-	explicit CPlayer(const glm::vec3 & position
-					, const glm::vec3 & direction
-					, CLifeObjectType & type
-					, CWorld* pWorld);
+	explicit CPlayer(CLifeObjectType & type
+					, CWorld* pWorld
+					, const glm::vec3 & position
+					, const glm::vec3 & direction				
+					);
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:

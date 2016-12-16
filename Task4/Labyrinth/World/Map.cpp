@@ -9,12 +9,12 @@ using namespace MapSpace;
 std::once_flag mapIsCreate;
 
 CMap::CMap()
-	: CActor(CActor::idClass::Map)
+	: CActor(CActor::IdClass::Map)
 {
 }
 
 CMap::CMap(const string & mapPath, CWorld* pWorld)
-	: CActor(CActor::idClass::Map)
+	: CActor(CActor::IdClass::Map)
 {
 	Create(mapPath, pWorld);
 }

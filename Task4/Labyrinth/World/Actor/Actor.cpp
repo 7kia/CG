@@ -1,16 +1,17 @@
 #include "stdafx.h"
 #include "Actor.h"
 
-CActor::CActor(idClass id)
+CActor::CActor(IdClass id)
 	: IDrawable()
 	, IUpdatable()
 	, CIsDeletable()
+	, CHaveFaction()
 
 {
 	m_idClass = id;
 }
 
-CActor::idClass CActor::GetIdClass() const
+CActor::IdClass CActor::GetIdClass() const
 {
 	return m_idClass;
 }

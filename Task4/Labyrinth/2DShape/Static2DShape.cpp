@@ -61,6 +61,7 @@ void CStatic2DShape::SetRotation(float rotation)
 void CStatic2DShape::AddToWorld(b2World * world)
 {
 	m_body = world->CreateBody(&m_defBody);
+	m_body->SetUserData(nullptr);
 }
 
 void CStatic2DShape::SetMaster(CActor * master)

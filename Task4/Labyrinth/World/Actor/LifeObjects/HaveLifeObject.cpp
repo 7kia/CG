@@ -13,9 +13,9 @@ CHaveLifeObjects::CHaveLifeObjects()
 
 	SetTypeLifeObject(size_t(CLifeObjectType::Id::Enemy)
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]// TODO: add texture for enemy
+		, 8.f
 		, 15.f
-		, 5.f
-		, 100
+		, 10
 		, CWeaponType::Id::EnemyWeapon);
 	
 }

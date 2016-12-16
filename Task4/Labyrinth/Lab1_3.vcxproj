@@ -204,6 +204,7 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowClient.h" />
     <ClInclude Include="World\Actor\Actor.h" />
+    <ClInclude Include="World\Actor\Faction.h" />
     <ClInclude Include="World\Actor\Features.h" />
     <ClInclude Include="World\Actor\HaveDamage.h" />
     <ClInclude Include="World\Actor\HaveHealth.h" />
@@ -220,6 +221,7 @@
     <ClInclude Include="World\Gun\HaveWeaponTypes.h" />
     <ClInclude Include="World\Gun\WeaponType.h" />
     <ClInclude Include="World\Gun\Weapon.h" />
+    <ClInclude Include="World\HaveFactionSystem.h" />
     <ClInclude Include="World\HavePhysicalWorld.h" />
     <ClInclude Include="World\Labyrinth.h" />
     <ClInclude Include="World\Map.h" />
@@ -269,6 +271,7 @@
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowClient.cpp" />
     <ClCompile Include="World\Actor\Actor.cpp" />
+    <ClCompile Include="World\Actor\Faction.cpp" />
     <ClCompile Include="World\Actor\Features.cpp" />
     <ClCompile Include="World\Actor\HaveDamage.cpp" />
     <ClCompile Include="World\Actor\HaveHealth.cpp" />
@@ -288,6 +291,7 @@
     <ClCompile Include="World\Gun\HaveWeaponTypes.cpp" />
     <ClCompile Include="World\Gun\WeaponType.cpp" />
     <ClCompile Include="World\Gun\Weapon.cpp" />
+    <ClCompile Include="World\HaveFactionSystem.cpp" />
     <ClCompile Include="World\HavePhysicalWorld.cpp" />
     <ClCompile Include="World\Labyrinth.cpp" />
     <ClCompile Include="World\Map.cpp" />

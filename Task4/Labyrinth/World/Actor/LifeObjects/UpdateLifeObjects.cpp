@@ -67,6 +67,9 @@ void CLifeObject::UpdatePosition(float dt)
 	auto linearVelocity = dt * direction * velocity;
 	m_collision.ApplyAcceleration(glm::vec2(linearVelocity.x, linearVelocity.z));
 
+	m_visual.SetTransform(glm::translate(glm::mat4(), playerPosition));
+	m_collision.Advance(dt);
+
 	ResetCurrentLinearVelocity();
 	ResetCurrentRotationSpeed();
 
