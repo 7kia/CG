@@ -100,6 +100,9 @@ void CPlayerController::SetFunctionList()
 	SetSkill(IdCommands::Shoot, [&]() { m_master->Shoot(); });
 	SetKeysSkill(IdCommands::Shoot, { SDLK_z }, SDL_KEYUP);
 
+	SetSkill(IdCommands::SwitchPlayState, [&]() { m_master->SwitchPlayState(); });
+	SetKeysSkill(IdCommands::SwitchPlayState, { SDLK_p }, SDL_KEYUP);
+
 }
 
 void CPlayerController::CheckListCommands() const

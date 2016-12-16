@@ -43,16 +43,23 @@ void CWorld::Draw() const
 
 void CWorld::Update(float deltaTime)
 {
-	m_map.Update(deltaTime);
-
-	for (auto actor : m_actors)
+	if (m_play)
 	{
-		actor->Update(deltaTime);
+		m_map.Update(deltaTime);
+
+		for (auto actor : m_actors)
+		{
+			actor->Update(deltaTime);
+		}
+
+		DeleteDeathObject();
+		m_world->Step(deltaTime, 8, 3);
 	}
+}
 
-	DeleteDeathObject();
-	m_world->Step(deltaTime, 8, 3);
-
+void CWorld::SwitchPlayState()
+{
+	m_play = !m_play;
 }
 
 void CWorld::CreateScene()

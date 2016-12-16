@@ -83,6 +83,11 @@ void CPlayer::SwitchFlashLight()
 	m_isFlashLightOn = !m_isFlashLightOn;
 }
 
+void CPlayer::SwitchPlayState()
+{
+	m_world->SwitchPlayState();
+}
+
 /*
 void CPlayer::ChangeCamera()
 {

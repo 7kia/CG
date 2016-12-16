@@ -49,6 +49,7 @@ public:
 		, ChangeWorldCamera
 		, SwitchFlashLight
 		, Shoot
+		, SwitchPlayState
 		, AmountCommands
 	};
 
@@ -131,6 +132,7 @@ public:
 	void							ChangeWorldCamera();
 
 	void							SwitchFlashLight();
+	void							SwitchPlayState();
 	////////////////////////////////////////////////////////////
 private:
 	

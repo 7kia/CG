@@ -56,6 +56,8 @@ public:
 	// IUpdatable
 	void							Update(float deltaTime);
 	//--------------------------------------------
+
+	void							SwitchPlayState();
 	void							CreateScene();
 
 	void							CreateShoot(const glm::vec3 & position
@@ -79,6 +81,7 @@ private:
 private:
 	CMap							m_map;
 	std::vector<ActorSharedPtr>		m_actors;
-	std::vector<size_t>				m_deletables;
+	bool							m_play = true;
+
 	CPhongModelMaterial				m_material;
 };
