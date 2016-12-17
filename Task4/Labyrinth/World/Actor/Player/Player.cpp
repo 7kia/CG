@@ -40,31 +40,37 @@ CPlayer::CPlayer(CLifeObjectType & type
 
 void CPlayer::TurnLeft()
 {
+	SetState(StateId::Move);
 	m_directionRotation = DirectionRotation::Left;
 }
 
 void CPlayer::TurnRight()
 {
+	SetState(StateId::Move);
 	m_directionRotation = DirectionRotation::Right;
 }
 
 void CPlayer::ResetDirectionRotation()
 {
+	SetState(StateId::Move);
 	m_directionRotation = DirectionRotation::None;
 }
 
 void CPlayer::GoForward()
 {
+	SetState(StateId::Move);
 	m_directionWalk = DirectionWalk::Forward;
 }
 
 void CPlayer::GoBack()
 {
+	SetState(StateId::Move);
 	m_directionWalk = DirectionWalk::Back;
 }
 
 void CPlayer::ResetDirectionWalk()
 {
+	SetState(StateId::Move);
 	m_directionWalk = DirectionWalk::None;
 }
 

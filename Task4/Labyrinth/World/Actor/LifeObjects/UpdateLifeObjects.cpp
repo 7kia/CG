@@ -13,13 +13,13 @@ void CLifeObject::Update(float dt)
 {
 	CheckHealth();
 
-	UpdatePosition(dt);
+	//UpdatePosition(dt);
 	switch (m_state)
 	{
 	case StateId::NotActive:
 		//break;
 	case StateId::Move:
-		//UpdatePosition(dt);
+		UpdatePosition(dt);
 		break;
 	case StateId::Attack:
 		if (m_weapon.GetState() != CWeapon::IdState::NotShoot)
