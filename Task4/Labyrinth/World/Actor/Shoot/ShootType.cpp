@@ -16,3 +16,14 @@ int CShootType::GetHealth() const
 {
 	return m_health.GetValue();
 }
+
+
+void CShootType::SetId(Id id)
+{
+	m_id = id;
+}
+
+CShootType::Id CShootType::GetId() const
+{
+	return m_id;
+}

@@ -17,12 +17,12 @@ public:
 	//////////////////////////////////////////////////////////////////////
 	// Methods
 public:
-	using ArrayWeaponTypes = std::array<CWeaponType, size_t(WeaponTypeSpace::AMOUNT_TYPES)>;
+	using ArrayWeaponTypes = std::array<CWeaponType, size_t(CWeaponType::Id::AmountTypes)>;
 
-	const CWeaponType*				GetWeaponType(const WeaponTypeSpace::Id index) const;
+	const CWeaponType*				GetWeaponType(const CWeaponType::Id index) const;
 
 protected:
-	void							SetWeaponType(size_t index
+	void							SetWeaponType(CWeaponType::Id typeIndex
 												, const int damage
 												, const float timeReload
 												, const CShootType & shootType

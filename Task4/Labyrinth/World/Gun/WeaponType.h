@@ -3,34 +3,23 @@
 #include "World\Actor\Shoot\Shoot.h"
 #include "World\Actor\HaveDamage.h"
 
-
-namespace WeaponTypeSpace
-{
-	enum class Id
-	{
-		Player = 0
-		, Enemy
-		, AmountTypes
-	};
-
-
-	const unsigned AMOUNT_TYPES = unsigned(Id::AmountTypes);
-
-
-};
-
 class CWeaponType : public CHaveDamage
 {
 public:
 	CWeaponType();
-public:
+
 	enum class Id
 	{
-		NONE = -1,
+		None = -1,
 		PlayerWeapon = 0,
 		EnemyWeapon,
-		AmountIDs
+		AmountTypes
 	};
+//////////////////////////////////////////////////////////////////////
+// Methods
+
+public:
+	
 
 	void					SetTime(float time);
 	float					GetTime() const;
@@ -44,10 +33,18 @@ public:
 	void					SetDistanse(float distance);
 	float					GetDistance() const;
 
+	void					SetId(Id id);
+	Id						GetId() const;
+
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
 
 	float					m_time;
 	float					m_velocity;
 	float					m_distance;
 	const CShootType*		m_type_shoot;
+
+	Id						m_id = Id::None;
+
 };

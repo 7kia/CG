@@ -2,32 +2,32 @@
 #include "HaveWeaponTypes.h"
 #include "World\World.h"
 
-using namespace WeaponTypeSpace;
-
 
 CHaveWeaponTypes::CHaveWeaponTypes()
 	: CHaveShootTypes()
 {
-	SetWeaponType(size_t(WeaponTypeSpace::Id::Player)
-		, 25
-		, 1.f
-		, GetShootType(ShootTypeSpace::Id::Player)
-		, 15.f
-		, 5.f);
-	SetWeaponType(size_t(WeaponTypeSpace::Id::Enemy)
-		, 5
-		, 1.f
-		, GetShootType(ShootTypeSpace::Id::Enemy)
-		, 10.f
-		, 5.f);
+	SetWeaponType(CWeaponType::Id::PlayerWeapon
+		, 25// damage
+		, 1.f// timeReload
+		, GetShootType(CShootType::Id::Player)
+		, 4.f// velocity
+		, 4.f// distanse
+	);
+	SetWeaponType(CWeaponType::Id::EnemyWeapon
+		, 5// damage
+		, 1.f// timeReload
+		, GetShootType(CShootType::Id::Enemy)
+		, 4.f// velocity
+		, 4.f// distanse
+	);
 }
 
-const CWeaponType * CHaveWeaponTypes::GetWeaponType(const WeaponTypeSpace::Id index) const
+const CWeaponType * CHaveWeaponTypes::GetWeaponType(const CWeaponType::Id index) const
 {
 	return &m_weaponTypes[size_t(index)];
 }
 
-void CHaveWeaponTypes::SetWeaponType(size_t index
+void CHaveWeaponTypes::SetWeaponType(CWeaponType::Id typeIndex
 	, const int damage
 	, const float timeReload
 	, const CShootType & shootType
@@ -35,6 +35,10 @@ void CHaveWeaponTypes::SetWeaponType(size_t index
 	, const float distanse
 	)
 {
+	size_t index = size_t(typeIndex);
+	m_weaponTypes[index].SetId(typeIndex);
+
+
 	m_weaponTypes[index].SetDamage(damage);
 	m_weaponTypes[index].SetTime(timeReload);
 	m_weaponTypes[index].SetTypeShoot(shootType);// TODO : replace

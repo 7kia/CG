@@ -15,7 +15,7 @@ public:
 
 	CLifeObjectType&				GetLifeObjectType(const CLifeObjectType::Id index);
 
-	void							SetTypeLifeObject(size_t index
+	void							SetTypeLifeObject(CLifeObjectType::Id typeIndex
 													, IdFaction idFaction
 													, const std::string & textureName
 													, const float velocity

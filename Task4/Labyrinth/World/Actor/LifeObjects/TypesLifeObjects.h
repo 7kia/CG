@@ -25,7 +25,6 @@ class CLifeObjectType
 {
 public:
 	CLifeObjectType();
-public:
 
 	enum Id
 	{
@@ -34,6 +33,11 @@ public:
 		,	Enemy
 		,	AmountIDs
 	};
+//////////////////////////////////////////////////////////////////////
+// Methods
+public:
+
+	
 
 	void					SetVelocity(float setVelocity);
 	float					GetVelocity() const;
@@ -54,13 +58,14 @@ public:
 	Id								GetId() const;
 
 	// TODO : there not enough functional
+//////////////////////////////////////////////////////////////////////
+// Data
 private:
 	float							m_velocity = 0.f;
 	float							m_visionRange = 0.f;
 
 	CStaticFeature					m_health;
 	const CWeaponType*				m_weapon;
-
 
 	Id								m_id = Id::None;
 };

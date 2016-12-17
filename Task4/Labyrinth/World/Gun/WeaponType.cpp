@@ -48,4 +48,13 @@ float CWeaponType::GetDistance() const
 	return m_distance;
 }
 
+void CWeaponType::SetId(Id id)
+{
+	m_id = id;
+}
+
+CWeaponType::Id CWeaponType::GetId() const
+{
+	return m_id;
+}
 
