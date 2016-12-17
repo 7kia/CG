@@ -54,6 +54,8 @@ void CWorld::Update(float deltaTime)
 			actor->Update(deltaTime);
 		}
 
+		ActivateActiveWeapons();
+
 		DeleteDeathObject();
 		m_world->Step(deltaTime, 8, 3);
 	}
@@ -173,7 +175,7 @@ void CWorld::UpdateBehavior()// TODO : redefine
 
 glm::vec3 CWorld::GetDirectionToObject(CHave3DPosition & to, CHave3DPosition & from)
 {
-	const glm::vec3 direction = to.GetPosition() - from.GetPosition();
+	const glm::vec3 direction = from.GetPosition() - to.GetPosition();
 
 	return glm::normalize(direction);
 }
@@ -192,5 +194,27 @@ void CWorld::DefineNeedAttackEnemy(CLifeObject & object, CLifeObject & enemy)
 		object.SetState(CLifeObject::StateId::Move);
 
 		//object->ResetWeapon();
+	}
+}
+
+
+void CWorld::ActivateActiveWeapons()
+{
+	CWeapon::IdState stateWeapon;
+	CLifeObject::StateId stateObject;
+	for (const auto& lifeObject : m_lifeObjects)
+	{
+		stateWeapon = lifeObject->GetWeaponState();
+		stateObject = lifeObject->GetState();
+
+		if (stateObject != CLifeObject::StateId::Attack)
+		{
+			lifeObject->ResetWeapon();
+		}
+		else if ((stateObject == CLifeObject::StateId::Attack)
+			&& (stateWeapon == CWeapon::IdState::Shoot))
+		{
+			lifeObject->Shoot();
+		}
 	}
 }

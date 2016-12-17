@@ -67,6 +67,8 @@ public:
 
 	void DefineNeedAttackEnemy(CLifeObject & object, CLifeObject & enemy);
 
+	void ActivateActiveWeapons();
+
 	//--------------------------------------------
 
 

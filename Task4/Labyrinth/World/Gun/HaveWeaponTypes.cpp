@@ -10,15 +10,15 @@ CHaveWeaponTypes::CHaveWeaponTypes()
 		, 25// damage
 		, 1.f// timeReload
 		, GetShootType(CShootType::Id::Player)
-		, 4.f// velocity
-		, 4.f// distanse
+		, 9.f// velocity
+		, 7.f// distanse
 	);
 	SetWeaponType(CWeaponType::Id::EnemyWeapon
 		, 5// damage
 		, 1.f// timeReload
 		, GetShootType(CShootType::Id::Enemy)
-		, 4.f// velocity
-		, 4.f// distanse
+		, 9.f// velocity
+		, 7.f// distanse
 	);
 }
 

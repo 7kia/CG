@@ -16,7 +16,7 @@ CHaveLifeObjects::CHaveLifeObjects()
 		, IdFaction::Enemy
 		, TextureSpace::TexturePaths[size_t(TextureSpace::Id::Player)]// TODO: add texture for enemy
 		, 2.f// velocity
-		, 8.f// visionRange
+		, 12.f// visionRange
 		, 10// health
 		, CWeaponType::Id::EnemyWeapon);
 	
