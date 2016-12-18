@@ -54,8 +54,8 @@ float insc = exp(-dist * bi);
 
         result += Iamb + Idiff + Ispec;
     }
-
-    gl_FragColor = gl_FrontLightModelProduct.sceneColor + texture2D(colormap, gl_TexCoord[0].st) * result - (fogColor * (1 - insc)) ;
+//gl_FrontLightModelProduct.sceneColor + 
+    gl_FragColor = texture2D(colormap, gl_TexCoord[0].st) * result - (fogColor * (1 - insc)) ;
 
 }
 )***";
@@ -69,10 +69,10 @@ void SetupOpenGLState()
 	glCullFace(GL_BACK);
 
 	// включаем систему освещения
-	glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHTING);
 
 	// включаем текстурирование в старом стиле (OpenGL 1.1)
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
 }
 }
 

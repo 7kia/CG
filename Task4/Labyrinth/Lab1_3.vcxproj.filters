@@ -55,6 +55,9 @@
     <Filter Include="World\Actor\Shoot">
       <UniqueIdentifier>{41bc3619-b066-4e4a-b3e7-bfb2bf5a76d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProgramContext">
+      <UniqueIdentifier>{0753f970-3f7f-4b0d-8829-d57d0ff2806c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -276,6 +279,15 @@
     <ClInclude Include="World\Actor\Faction.h">
       <Filter>World\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Material\ProgramInfo.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\ProgramUniform.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\VertexAttribute.h">
+      <Filter>Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DispatchEvent.cpp">
@@ -481,6 +493,15 @@
     </ClCompile>
     <ClCompile Include="World\Actor\Faction.cpp">
       <Filter>World\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\ProgramInfo.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\ProgramUniform.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\VertexAttribute.cpp">
+      <Filter>Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

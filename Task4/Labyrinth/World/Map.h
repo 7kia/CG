@@ -2,6 +2,7 @@
 
 #include "Wall/Wall.h"
 #include "Labyrinth.h"
+#include "Actor/LifeObjects/LifeObjects.h"
 #include <string>
 #include <vector>
 
@@ -15,6 +16,8 @@ namespace MapSpace
 		  0x0// Wall
 		, 0x1// Player
 		, 0x2// Space
+		, 0x3
+		, 0x4
 	};
 
 	static const int SIZE_BORDER = 1;
@@ -50,6 +53,8 @@ private:
 	{
 		Wall = 0
 		, Player
+		, Exit
+		, Enemy
 		, Space
 	};
 	enum class NameLevels
@@ -69,7 +74,7 @@ private:
 	void					AddWall(const glm::vec3 & position
 									, size_t length
 									, size_t width); 
-	void					AddPlayer(const glm::vec3 & position);
+	void					AddLifeObject(CLifeObjectType::Id id, const glm::vec3 & position);
 	void					DefineVisibleLateralEdge(CWall* pWall
 												, const glm::vec3 & position
 												, const glm::vec3 & shifts);

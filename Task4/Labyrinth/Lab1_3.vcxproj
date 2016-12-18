@@ -97,7 +97,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -185,8 +185,11 @@
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Material\libchapter3_private.h" />
     <ClInclude Include="Material\PhongMaterial.h" />
+    <ClInclude Include="Material\ProgramInfo.h" />
+    <ClInclude Include="Material\ProgramUniform.h" />
     <ClInclude Include="Material\ShaderProgram.h" />
     <ClInclude Include="Material\Texture2D.h" />
+    <ClInclude Include="Material\VertexAttribute.h" />
     <ClInclude Include="Mixin\Drawable.h" />
     <ClInclude Include="Mixin\FileProcess.h" />
     <ClInclude Include="Mixin\HaveDirection.h" />
@@ -256,8 +259,11 @@
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material\PhongMaterial.cpp" />
+    <ClCompile Include="Material\ProgramInfo.cpp" />
+    <ClCompile Include="Material\ProgramUniform.cpp" />
     <ClCompile Include="Material\ShaderProgram.cpp" />
     <ClCompile Include="Material\Texture2D.cpp" />
+    <ClCompile Include="Material\VertexAttribute.cpp" />
     <ClCompile Include="Mixin\HaveDirection.cpp" />
     <ClCompile Include="Mixin\HaveLinearVelocity.cpp" />
     <ClCompile Include="Mixin\Have3DPosition.cpp" />

@@ -31,6 +31,8 @@ CTexture2D::~CTexture2D()
 
 void CTexture2D::Bind() const
 {
+	glActiveTexture(GL_TEXTURE0);
+
     glBindTexture(GL_TEXTURE_2D, m_textureId);
 }
 

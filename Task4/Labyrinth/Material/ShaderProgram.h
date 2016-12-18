@@ -4,6 +4,8 @@
 #include <boost/optional.hpp>
 #include <string>
 #include <memory>
+#include <vector>
+#include <map>
 
 enum class ShaderType
 {
@@ -13,6 +15,10 @@ enum class ShaderType
     TessEvaluation,
     Compute,
 };
+
+class CProgramInfo;
+class CProgramUniform;
+class CVertexAttribute;
 
 class CShaderProgram : private boost::noncopyable
 {
@@ -32,23 +38,16 @@ public:
     // о проблемах производительности или предупреждениях компилятора GLSL
     boost::optional<std::string> Validate()const;
 
+    CProgramInfo GetProgramInfo()const;
+    CProgramUniform FindUniform(const std::string &name)const;
+    CVertexAttribute FindAttribute(const std::string &name)const;
     void Use()const;
-    static void UseFixedPipeline();
-
-    template <class TFunction>
-    void DoWithProgram(TFunction && fn)const
-    {
-        Use();
-        // При выходе из функции возвращаем Fixed Pipeline.
-        BOOST_SCOPE_EXIT_ALL() {
-            UseFixedPipeline();
-        };
-        fn();
-    }
 
 private:
     void FreeShaders();
 
     unsigned m_programId = 0;
     std::vector<unsigned> m_shaders;
+    mutable std::map<std::string, int> m_uniformLocationCache;
+    mutable std::map<std::string, int> m_attributeLocationCache;
 };

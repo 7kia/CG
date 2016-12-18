@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "World.h"
+#include "AbstractWindowClient.h"
+#include <SDL2/SDL.h>
 
 CWorld::CWorld()
 	: CActor(CActor::IdClass::World)
@@ -43,36 +45,57 @@ void CWorld::Draw() const
 
 void CWorld::Update(float deltaTime)
 {
-	if (m_play)
+	switch (m_gameState)
 	{
-		UpdateBehavior();
-
-		m_map.Update(deltaTime);
-
-		for (auto actor : m_actors)
+	case GameState::Play:
 		{
-			actor->Update(deltaTime);
+			UpdateBehavior();
+
+			m_map.Update(deltaTime);
+
+			for (auto actor : m_actors)
+			{
+				actor->Update(deltaTime);
+			}
+
+			ActivateActiveWeapons();
+
+			DeleteDeathObject();
+			m_world->Step(deltaTime, 8, 3);
 		}
-
-		ActivateActiveWeapons();
-
-		DeleteDeathObject();
-		m_world->Step(deltaTime, 8, 3);
+		break;
+	case GameState::Pause:
+		break;
+	case GameState::Victory:
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "WIN", "You win!", nullptr);
+		break;
+	case GameState::Defeat:
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Defeat", "You died!", nullptr);
+		break;
+	default:
+		break;
 	}
 }
 
 void CWorld::SwitchPlayState()
 {
-	m_play = !m_play;
+	if (m_gameState == GameState::Pause)
+	{
+		m_gameState = GameState::Play;
+	}
+	else if (m_gameState == GameState::Play)
+	{
+		m_gameState = GameState::Pause;
+	}
 }
 
 void CWorld::CreateScene()
 {
 	CreateWallTypes();
 	m_map.Create("Resources\\map.bmp", this);
-	CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
+	//CreatePlayer(m_spawnPoint, PlayerSpace::PLAYER_DIRECTION);
 	
-	CreateLifeObject(CLifeObjectType::Enemy, glm::vec3(-10.f, 0.f, -10.f), glm::vec3());
+	//CreateLifeObject(CLifeObjectType::Enemy, glm::vec3(-10.f, 0.f, -10.f), glm::vec3());
 
 }
 
@@ -135,8 +158,16 @@ void CWorld::DeleteDeathObject()
 		if (!m_actors[resultIndex]->IsLive())
 		{
 			DeleteFromFactionMapActor(m_actors[resultIndex]);
+			if (m_actors[resultIndex]->GetIdFaction() == IdFaction::Player)
+			{
+				m_gameState = GameState::Defeat;
+			}
 			m_actors.erase(m_actors.begin() + resultIndex);
 		}
+	}
+	if ((m_actors.size() == 1) && (m_actors[0]->GetIdFaction() == IdFaction::Player))
+	{
+		m_gameState = GameState::Victory;
 	}
 };
 

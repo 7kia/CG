@@ -42,6 +42,14 @@ class CWorld
 {
 public:
 	CWorld();
+
+	enum class GameState
+	{
+		Play
+		, Pause
+		, Defeat
+		, Victory
+	};
 //////////////////////////////////////////////////////////////////////
 // Methods
 public:
@@ -84,12 +92,13 @@ public:
 	ActorSharedPtr					CreateLifeObject(CLifeObjectType::Id id
 													, const glm::vec3 & position
 													, const glm::vec3 & direction);
+	void							CreatePlayer(const glm::vec3 & position
+												, const glm::vec3 & direction);
+
 
 private:
 
 	
-	void							CreatePlayer(const glm::vec3 & position
-												, const glm::vec3 & direction);
 
 	void							DeleteDeathObject();
 //////////////////////////////////////////////////////////////////////
@@ -97,7 +106,6 @@ private:
 private:
 	CMap							m_map;
 	std::vector<ActorSharedPtr>		m_actors;
-	bool							m_play = true;
-
+	GameState						m_gameState = GameState::Play;
 	CPhongModelMaterial				m_material;
 };

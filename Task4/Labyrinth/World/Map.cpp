@@ -91,7 +91,15 @@ void CMap::ProcessRow(const Row & row, size_t widthCount, int level)
 	{
 		if (row[index] == RecognizeSymbols[size_t(IdSymbol::Player)])
 		{
-			AddPlayer(glm::vec3(index, widthCount, level));
+			AddLifeObject(CLifeObjectType::Id::Player, glm::vec3(index, widthCount, level));
+		}
+		else if (row[index] == RecognizeSymbols[size_t(IdSymbol::Enemy)])
+		{
+			AddLifeObject(CLifeObjectType::Id::Enemy, glm::vec3(index, widthCount, level));
+		}
+		else if (row[index] == RecognizeSymbols[size_t(IdSymbol::Exit)])
+		{
+
 		}
 		else if (row[index] == RecognizeSymbols[size_t(IdSymbol::Space)])
 		{
@@ -380,8 +388,10 @@ void CMap::AddWall(const glm::vec3 & position
 	float xPosition = WallSpace::SIZE * x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * y - m_centerMap.y;
 
+	size_t typeIndex = GetIndexWallType(position, length, width);
 	auto pWall = std::make_shared<CWall>();
-	pWall->SetType(m_pWorld->GetWallType(GetIndexWallType(position, length, width)));
+
+	pWall->SetType(m_pWorld->GetWallType(typeIndex));
 	pWall->SetVisible(false);
 
 	// Next define visible edge for player
@@ -417,10 +427,21 @@ void CMap::AddWall(const glm::vec3 & position
 	m_labyrinth.AddWall(pWall, z + 1);
 }
 
-void CMap::AddPlayer(const glm::vec3 & position)
+void CMap::AddLifeObject(CLifeObjectType::Id id, const glm::vec3 & position)
 {
 	float xPosition = WallSpace::SIZE * position.x - m_centerMap.x;
 	float yPosition = WallSpace::SIZE * position.y - m_centerMap.y;
 
-	m_pWorld->SetSpawnPoint(glm::vec3(xPosition, yPosition, position.z * WallSpace::SIZE));
+	const auto positionOnMap = glm::vec3(xPosition, yPosition, position.z * WallSpace::SIZE);
+	if (id == CLifeObjectType::Id::Player)
+	{
+		m_pWorld->SetSpawnPoint(positionOnMap);
+
+		m_pWorld->CreatePlayer(positionOnMap, PlayerSpace::PLAYER_DIRECTION);
+	}
+	else
+	{
+		m_pWorld->CreateLifeObject(id, positionOnMap, PlayerSpace::PLAYER_DIRECTION);
+	}
+	
 }
